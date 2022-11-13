@@ -36,6 +36,25 @@ export const OrderListBox = styled.div`
       font-weight: 400;
     }
   }
+  @media screen and (max-width: 700px) {
+    .orderList {
+      display: flex;
+      align-items: center;
+      height: 70px;
+      font-weight: bold;
+
+      > :first-child {
+        margin-left: 20px;
+        width: 40%;
+      }
+      > :nth-child(2) {
+        width: 30%;
+      }
+      > :nth-child(3) {
+        font-weight: 400;
+      }
+    }
+  }
 `;
 export const Order = styled.div`
   border: ${(props) =>
@@ -47,6 +66,12 @@ export const Order = styled.div`
   font-size: 20px;
   background-color: white;
   margin-bottom: 40px;
+  .reqText {
+    display: flex;
+    align-items: center;
+    margin-left: 45px;
+    height: 70px;
+  }
   .detailedMenu {
     display: flex;
     justify-content: end;
@@ -84,6 +109,41 @@ export const Order = styled.div`
     > :first-child {
       font-weight: bold;
       margin-right: 9px;
+    }
+  }
+  @media screen and (max-width: 700px) {
+    font-size: 16px;
+    #oderInfo {
+      > :first-child {
+        margin: 0;
+        width: 15%;
+        font-size: 24px;
+        margin-left: 20px;
+      }
+      > :nth-child(2) {
+        text-align: center;
+        width: 20%;
+      }
+      > div > b {
+        font-size: 20px;
+      }
+    }
+    .reqText {
+      margin-left: 20px;
+    }
+    #orderTime {
+      display: flex;
+      justify-content: space-around;
+      flex-grow: 1;
+      margin-left: 5px;
+      font-size: 16px;
+      > :first-child {
+        text-align: right;
+        margin-right: 30px;
+      }
+    }
+    .detailedMenuIcon {
+      margin-right: 15px;
     }
   }
 `;

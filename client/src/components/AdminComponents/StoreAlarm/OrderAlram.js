@@ -37,7 +37,7 @@ const OrderAlram = ({ menu, idx }) => {
             </div>
           );
         })}
-        <div className="orderList">
+        <div className="reqText">
           <b>{`요청사항 : ${menu.reqText}`}</b>
         </div>
       </OrderListBox>
