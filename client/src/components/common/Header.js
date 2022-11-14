@@ -4,19 +4,21 @@ import styled from 'styled-components';
 import Logo from './../../assets/img/logo.png'
 import UserExImg from './../../assets/img/user_ex_img.png'
 import IconSignout from './../../assets/img/icon_signout.png'
+import IconList from './../../assets/img/icon_list.png'
 import * as S from './Header.style'
 
 const Header = () => {
-    const isLogin = false
+    const isLogin = true
     return (
         <S.HeaderWrap>
             <S.Inside>
                 <S.LogoImg src={Logo} alt='주문해조 logo' />
+                <S.IconBtn><S.MListIcon src={IconList} alt='리스트' /><span>알람</span></S.IconBtn>
                 <S.ButtonWrap>
                     {
                         isLogin ?
                             <>
-                                <S.LineBtnUser> <Link to='/'><img src={UserExImg} alt='username' />상호명</Link></S.LineBtnUser>
+                                <S.LineBtnUser> <Link to='/'><img src={UserExImg} alt='username' /><span>상호명</span></Link></S.LineBtnUser>
                                 <S.LineBtnUserNoUnder>  <Link to='/'><img src={IconSignout} alt='sign out' />로그아웃</Link ></S.LineBtnUserNoUnder>
                             </>
                             :
