@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import BellIcon from './../../assets/img/bell_icon.png'
@@ -6,11 +6,15 @@ import IconTable from './../../assets/img/icon_table.png'
 import IconMenu from './../../assets/img/icon_menu.png'
 import IconPlus from './../../assets/img/icon_plus.png'
 import IconQR from './../../assets/img/icon_QR.png'
+import IconClose from './../../assets/img/icon_close_white.png'
 import * as S from './Gnb.style'
 
 const Gnb = () => {
+    const [gnbToggleOpen, setGnbToggleOpen] = useState(false)
+    //기능구현 아직입니다~ (open state redux로 관리예정)
     return (
-        <S.GnbContainer>
+        <S.GnbContainer active={gnbToggleOpen}>
+            <S.CloseBtn onClick={() => setGnbToggleOpen(false)}><img src={IconClose} alt='close_btn' /></S.CloseBtn>
             <S.GnbList>
                 <S.TopLi>
                     <NavLink>
@@ -45,6 +49,7 @@ const Gnb = () => {
                         QR Table
                     </NavLink>
                 </S.Li>
+                <S.MSpan>로그아웃</S.MSpan>
             </S.GnbList>
 
         </S.GnbContainer>

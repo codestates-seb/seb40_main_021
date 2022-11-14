@@ -8,6 +8,9 @@ width: 100%;
 height: calc(100vh - 70px);
 padding-top: 70px;
 display: flex;
+@media screen and (max-width: 700px) {
+    padding-top: 50px;
+}
 `
 
 const s = () => {

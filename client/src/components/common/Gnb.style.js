@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
 export const GnbContainer = styled.div`
 position: absolute;
@@ -7,6 +7,53 @@ left: 0;
 width: 300px;
 height: calc(100vh - 70px);
 background-color: #313E46;
+@media screen and (max-width: 700px) {
+    height: 100vh;
+    z-index: 11;
+    width: 100%;
+   top:0;
+   left: -100%;
+   transition: left 0.3s;
+   ${(position) =>
+        position.active &&
+        css`
+     left: 0%;
+     `
+    }
+}
+`
+
+export const MSpan = styled.span`
+display: block;
+color: white;
+margin: 0 auto;
+text-align: center;
+margin-top: 20px;
+font-size: 13px;
+cursor: pointer;
+display: none;
+& :hover{
+    text-decoration: underline;
+}
+@media screen and (max-width: 700px) {
+    display: block;
+}
+`
+export const CloseBtn = styled.button`
+display: none;
+background-color: transparent;
+border: none;
+position: absolute;
+top: 20px;
+right: 20px;
+cursor: pointer;
+@media screen and (max-width: 700px) {
+    display: block;
+}
+& img{
+height: 18px;
+width: 18px;
+}
 `
 export const GnbList = styled.ul`
 width: 100%;
