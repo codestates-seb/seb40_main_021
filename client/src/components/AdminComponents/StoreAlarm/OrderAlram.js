@@ -15,15 +15,12 @@ const OrderAlram = ({ menu, idx }) => {
           <div>{`${menu.orderTime.date}`}</div>
           <div>{`${menu.orderTime.time}`}</div>
         </div>
-        <div
-          className="detailedMenu"
-          onClick={() => {
-            setMenuViewDetails(!menuViewDetails);
-          }}
-        >
+        <div className="detailedMenu">
           <MdExpandMore
             className="detailedMenuIcon"
-            menuViewDetails={menuViewDetails}
+            onClick={() => {
+              setMenuViewDetails(!menuViewDetails);
+            }}
           ></MdExpandMore>
         </div>
       </div>

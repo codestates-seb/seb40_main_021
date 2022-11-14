@@ -60,11 +60,21 @@ const OrderAlarms = () => {
     ],
   };
   return (
-    <MainContents>
-      {dummyData.data.map((menu, idx) => {
-        return <OrderAlram key={menu.id} menu={menu} idx={idx}></OrderAlram>;
-      })}
-    </MainContents>
+    <>
+      <Lable>
+        <label>주문 알람</label>
+      </Lable>
+      <MainContents>
+        <div className="label"></div>
+        <>
+          {dummyData.data.map((menu, idx) => {
+            return (
+              <OrderAlram key={menu.id} menu={menu} idx={idx}></OrderAlram>
+            );
+          })}
+        </>
+      </MainContents>
+    </>
   );
 };
 
@@ -72,5 +82,18 @@ export default OrderAlarms;
 
 const MainContents = styled.main`
   width: 100%;
-  height: 100%;
+  height: 70vh;
+  overflow-y: scroll;
+  .label {
+    width: 100%;
+    font-weight: bold;
+    font-size: 24px;
+    margin: 0 0 21px 20px;
+  }
+`;
+const Lable = styled.div`
+  width: 100%;
+  font-weight: bold;
+  font-size: 24px;
+  margin: 0 0 21px 20px;
 `;
