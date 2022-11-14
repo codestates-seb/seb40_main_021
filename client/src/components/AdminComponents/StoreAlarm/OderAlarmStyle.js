@@ -69,7 +69,6 @@ export const Order = styled.div`
   .reqText {
     display: flex;
     align-items: center;
-    margin-left: 45px;
     height: 70px;
   }
   .detailedMenu {
@@ -112,6 +111,9 @@ export const Order = styled.div`
       margin-right: 9px;
     }
   }
+  .reqText {
+    padding-left: 40px;
+  }
   @media screen and (max-width: 700px) {
     font-size: 16px;
     .detailedMenuIcon {
@@ -133,10 +135,11 @@ export const Order = styled.div`
         }
       }
     }
+    .reqText {
+      padding-left: 20px;
+    }
   }
-  .reqText {
-    margin-left: 20px;
-  }
+
   #orderTime {
     flex-grow: 0;
     font-size: 0.8rem;

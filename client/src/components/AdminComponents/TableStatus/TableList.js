@@ -1,8 +1,7 @@
 import React from "react";
-import OrderAlram from "./OrderAlram";
+import TableStatus from "./TableStatus";
 import styled from "styled-components";
-
-const OrderAlarms = () => {
+const TableList = () => {
   const dummyData = {
     data: [
       {
@@ -73,7 +72,7 @@ const OrderAlarms = () => {
           },
         ],
         orderTime: { date: "2022-11-10", time: "17:25" },
-        reqText: "된장찌개에 된장 빼주세요",
+        reqText: "된장에 된장 빼주세요",
       },
       {
         id: 2,
@@ -189,39 +188,22 @@ const OrderAlarms = () => {
   };
   return (
     <MainContents>
-      <div className="subTitle">
-        <label>주문 알람</label>
-      </div>
-      <div className="orderAlrams">
-        <>
-          {dummyData.data.map((menu, idx) => {
-            return (
-              <OrderAlram key={menu.id} menu={menu} idx={idx}></OrderAlram>
-            );
-          })}
-        </>
-      </div>
+      {dummyData.data.map((order) => {
+        return <TableStatus key={order.id} data={order}></TableStatus>;
+      })}
     </MainContents>
   );
 };
 
-export default OrderAlarms;
-
 const MainContents = styled.main`
-  .orderAlrams {
-    width: 70%;
-    height: 70vh;
-    overflow-y: scroll;
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #a9a9a9;
-    }
-  }
-  .subTitle {
-    font-weight: bold;
-    font-size: 24px;
-    margin: 0 0 5px 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 500px;
+  align-items: center;
+  min-width: max-content;
+  @media screen and (max-width: 700px) {
+    display: flex;
+    flex-direction: column;
   }
 `;
+export default TableList;
