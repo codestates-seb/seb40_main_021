@@ -23,6 +23,7 @@ const CallAlarm = ({ data }) => {
   );
 };
 const CallAlarmContainer = styled.div`
+  width: 100%;
   cursor: pointer;
   .onAlarm {
     display: flex;

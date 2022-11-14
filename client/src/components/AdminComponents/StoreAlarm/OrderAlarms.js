@@ -208,9 +208,10 @@ const OrderAlarms = () => {
 export default OrderAlarms;
 
 const MainContents = styled.main`
+  width: 90%;
   .orderAlrams {
-    width: 70%;
-    height: 70vh;
+    width: 100%;
+    height: 60vh;
     overflow-y: scroll;
     ::-webkit-scrollbar {
       width: 8px;

@@ -59,13 +59,14 @@ export const OrderListBox = styled.div`
 export const Order = styled.div`
   border: ${({ menuViewDetails }) =>
     menuViewDetails ? "3px solid rgb(255, 107, 0)" : "none"};
-  box-shadow: 1px 1px 10px 1px lightgray;
+  box-shadow: 0 4px 2px 0px lightgray;
   border-radius: 3px;
-  width: 80%;
+  width: 98%;
   height: auto;
   font-size: 20px;
   background-color: white;
   margin-bottom: 40px;
+  margin-left: 20px;
   .reqText {
     display: flex;
     align-items: center;

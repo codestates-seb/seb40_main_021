@@ -39,8 +39,7 @@ const CallAlarms = () => {
 };
 const CallAlarmContainer = styled.div`
   display: flex;
-  width: 100%;
-
+  width: 90%;
   .callAlarms {
     margin-bottom: 50px;
     width: 100%;
