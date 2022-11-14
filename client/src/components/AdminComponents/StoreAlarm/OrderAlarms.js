@@ -60,12 +60,11 @@ const OrderAlarms = () => {
     ],
   };
   return (
-    <>
-      <Lable>
+    <MainContents>
+      <div className="subTitle">
         <label>주문 알람</label>
-      </Lable>
-      <MainContents>
-        <div className="label"></div>
+      </div>
+      <div className="orderAlrams">
         <>
           {dummyData.data.map((menu, idx) => {
             return (
@@ -73,27 +72,22 @@ const OrderAlarms = () => {
             );
           })}
         </>
-      </MainContents>
-    </>
+      </div>
+    </MainContents>
   );
 };
 
 export default OrderAlarms;
 
 const MainContents = styled.main`
-  width: 100%;
-  height: 70vh;
-  overflow-y: scroll;
-  .label {
+  .orderAlrams {
     width: 100%;
+    height: 70vh;
+    overflow-y: scroll;
+  }
+  .subTitle {
     font-weight: bold;
     font-size: 24px;
-    margin: 0 0 21px 20px;
+    margin: 0 0 5px 20px;
   }
-`;
-const Lable = styled.div`
-  width: 100%;
-  font-weight: bold;
-  font-size: 24px;
-  margin: 0 0 21px 20px;
 `;

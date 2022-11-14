@@ -9,7 +9,7 @@ const OrderAlram = ({ menu, idx }) => {
       <div id="oderInfo">
         <b>{`${menu.tableNum} 번`}</b>
         <div>
-          주문 <b>{menu.orders.length}</b>개
+          총 <b>{menu.orders.length}</b>개
         </div>
         <div id="orderTime">
           <div>{`${menu.orderTime.date}`}</div>

@@ -114,34 +114,39 @@ export const Order = styled.div`
   }
   @media screen and (max-width: 700px) {
     font-size: 16px;
+    .detailedMenuIcon {
+      margin-right: 10px;
+    }
     #oderInfo {
       > :first-child {
         margin: 0;
         width: 15%;
-        font-size: 24px;
+        font-size: 1.2rem;
         margin-left: 20px;
       }
       > :nth-child(2) {
+        font-size: 1rem;
         text-align: center;
         width: 20%;
-      }
-      > div > b {
-        font-size: 20px;
+        b {
+          font-size: 1.1rem;
+        }
       }
     }
-    .reqText {
-      margin-left: 20px;
-    }
-    #orderTime {
-      display: flex;
-      justify-content: space-around;
-      flex-grow: 1;
-      margin-left: 5px;
-      font-size: 16px;
-      > :first-child {
-        text-align: right;
-        margin-right: 30px;
-      }
+  }
+  .reqText {
+    margin-left: 20px;
+  }
+  #orderTime {
+    flex-grow: 0;
+    font-size: 0.8rem;
+
+    margin-left: 10px;
+
+    margin-right: 10px;
+    > :first-child {
+      text-align: right;
+      margin-right: 25px;
     }
   }
 `;

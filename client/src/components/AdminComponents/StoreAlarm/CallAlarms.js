@@ -8,22 +8,28 @@ const CallAlarms = () => {
       { id: 0, tableNum: 7, calltime: "17:15" },
       { id: 1, tableNum: 3, calltime: "17:11" },
       { id: 2, tableNum: 5, calltime: "17:08" },
+      { id: 3, tableNum: 10, calltime: "16:55" },
+      { id: 4, tableNum: 1, calltime: "16:50" },
+      { id: 4, tableNum: 1, calltime: "16:50" },
+      { id: 4, tableNum: 1, calltime: "16:50" },
+      { id: 4, tableNum: 1, calltime: "16:50" },
     ],
   };
   return (
     <CallAlarmContainer>
-      <div id="icon">
-        <div className="label">
-          <label>호출알람</label>
+      <div className="subTitle">
+        <label>호출알람</label>
+        <div id="icon">
+          <img
+            width="50px"
+            height="50px"
+            src={require("../../../assets/callAlarmIcon.png")}
+            alt=""
+          ></img>
         </div>
-        <img
-          width="50px"
-          height="50px"
-          src={require("../../../assets/callAlarmIcon.png")}
-          alt=""
-        ></img>
       </div>
-      <div className="callAlarmsBox">
+
+      <div className="callAlarms">
         {dummyData.data.map((call) => {
           return <Callalram key={call.id} data={call}></Callalram>;
         })}
@@ -31,25 +37,48 @@ const CallAlarms = () => {
     </CallAlarmContainer>
   );
 };
-
 const CallAlarmContainer = styled.div`
   display: flex;
-  margin-bottom: 50px;
-  #icon {
+  width: 100%;
+
+  .callAlarms {
+    margin-bottom: 50px;
+    width: 100%;
     display: flex;
+    overflow-y: scroll;
+  }
+  .subTitle {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
+    width: max-content;
     margin-left: 20px;
     margin-right: 50px;
-    .label {
-      font-size: 24px;
-      font-weight: bold;
+    font-size: 24px;
+    font-weight: bold;
+    label {
+      width: max-content;
       margin-bottom: 10px;
     }
+    #icon {
+      width: max-content;
+      display: inline-block;
+    }
+    @media screen and (max-width: 700px) {
+      margin-right: 30px;
+      label {
+        margin-bottom: 0px;
+      }
+      #icon {
+        display: none;
+        justify-content: start;
+        flex-direction: row;
+      }
+    }
   }
-  .callAlarmsBox {
-    display: flex;
+  @media screen and (max-width: 700px) {
+    display: inline-block;
   }
 `;
 
