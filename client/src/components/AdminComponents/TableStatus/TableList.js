@@ -187,27 +187,55 @@ const TableList = () => {
       ],
    };
    return (
-      <MainContents>
-         {dummyData.data.map(order => {
-            return <TableStatus key={order.id} data={order}></TableStatus>;
-         })}
-      </MainContents>
+      <Content>
+         <div>
+            <h1>테이블 목록</h1>
+         </div>
+         <div className="table">
+            {dummyData.data.map(order => {
+               return <TableStatus key={order.id} data={order}></TableStatus>;
+            })}
+         </div>
+      </Content>
    );
 };
 
-const MainContents = styled.main`
-   display: grid;
+const Content = styled.div`
    width: calc(100% - 300px);
    padding-left: 300px;
    margin-top: 50px;
-   flex-grow: 1;
-   grid-template-columns: 1fr 1fr 1fr;
-   grid-template-rows: 500px;
-   align-items: center;
-   justify-content: center;
+   > :first-child {
+      font-weight: bold;
+      font-size: 1.5rem;
+      margin-left: 100px;
+   }
+   .table {
+      display: grid;
+      width: 100%;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 500px;
+      align-items: center;
+      justify-items: center;
+
+      @media screen and (max-width: 1400px) {
+         grid-template-columns: 1fr 1fr;
+      }
+      @media screen and (max-width: 1000px) {
+         grid-template-columns: 1fr;
+         flex-grow: 1;
+      }
+      @media screen and (max-width: 700px) {
+         grid-template-columns: 1fr;
+         flex-grow: 1;
+      }
+   }
    @media screen and (max-width: 700px) {
-      display: flex;
-      flex-direction: column;
+      width: 100%;
+      padding-left: 0;
+      > :first-child {
+         margin-left: 0px;
+         text-align: center;
+      }
    }
 `;
 export default TableList;
