@@ -12,20 +12,13 @@ function App() {
       <Reset />
       <BrowserRouter>
         <Header />
-        {/* 레아이웃 컴포넌트 추가 했습니다.*/}
-        <Layout>
-          <GnbLayout />
-          <Routes>
-            <Route path="/alarm" element={<AlarmPage />}></Route>
-          </Routes>
-        </Layout>
+        <Routes>
+          <Route path='/user' element={<GnbLayout />}>
+            <Route path="/user" element={<AlarmPage />} />
+          </Route>
+        </Routes>
       </BrowserRouter>
     </div>
   );
 }
-const Layout = styled.div`
-  display: flex;
-  width: 100%;
-  height: 100%;
-`;
 export default App;
