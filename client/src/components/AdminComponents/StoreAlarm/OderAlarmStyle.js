@@ -12,7 +12,7 @@ const dropMenuList = keyframes`
 
 `;
 export const OrderListBox = styled.div`
-  display: ${(props) => (props.menuViewDetails ? "block" : "none")};
+  display: ${({ menuViewDetails }) => (menuViewDetails ? "block" : "none")};
 
   animation: ${dropMenuList} 0.3s;
 
@@ -57,19 +57,19 @@ export const OrderListBox = styled.div`
   }
 `;
 export const Order = styled.div`
-  border: ${(props) =>
-    props.menuViewDetails ? "3px solid rgb(255, 107, 0)" : "none"};
-  box-shadow: 1px 1px 10px 1px lightgray;
+  border: ${({ menuViewDetails }) =>
+    menuViewDetails ? "3px solid rgb(255, 107, 0)" : "none"};
+  box-shadow: 0 4px 2px 0px lightgray;
   border-radius: 3px;
-  width: 80%;
+  width: 98%;
   height: auto;
   font-size: 20px;
   background-color: white;
   margin-bottom: 40px;
+  margin-left: 20px;
   .reqText {
     display: flex;
     align-items: center;
-    margin-left: 45px;
     height: 70px;
   }
   .detailedMenu {
@@ -79,11 +79,12 @@ export const Order = styled.div`
     width: auto;
   }
   .detailedMenuIcon {
+    cursor: pointer;
     margin-right: 65px;
     width: 30px;
     height: 30px;
-    transform: ${(props) =>
-      props.menuViewDetails ? "scaleY(1)" : "scaleY(-1)"};
+    transform: ${({ menuViewDetails }) =>
+      menuViewDetails ? "scaleY(1)" : "scaleY(-1)"};
     transition: 0.3s;
   }
   #oderInfo {
@@ -111,39 +112,45 @@ export const Order = styled.div`
       margin-right: 9px;
     }
   }
+  .reqText {
+    padding-left: 40px;
+  }
   @media screen and (max-width: 700px) {
     font-size: 16px;
+    .detailedMenuIcon {
+      margin-right: 10px;
+    }
     #oderInfo {
       > :first-child {
         margin: 0;
         width: 15%;
-        font-size: 24px;
+        font-size: 1.2rem;
         margin-left: 20px;
       }
       > :nth-child(2) {
+        font-size: 1rem;
         text-align: center;
         width: 20%;
-      }
-      > div > b {
-        font-size: 20px;
+        b {
+          font-size: 1.1rem;
+        }
       }
     }
     .reqText {
-      margin-left: 20px;
+      padding-left: 20px;
     }
-    #orderTime {
-      display: flex;
-      justify-content: space-around;
-      flex-grow: 1;
-      margin-left: 5px;
-      font-size: 16px;
-      > :first-child {
-        text-align: right;
-        margin-right: 30px;
-      }
-    }
-    .detailedMenuIcon {
-      margin-right: 15px;
+  }
+
+  #orderTime {
+    flex-grow: 0;
+    font-size: 0.8rem;
+
+    margin-left: 10px;
+
+    margin-right: 10px;
+    > :first-child {
+      text-align: right;
+      margin-right: 25px;
     }
   }
 `;
