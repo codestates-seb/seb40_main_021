@@ -18,7 +18,8 @@ const Container = styled.div`
   align-items: center;
   margin-top: 30px;
   flex-grow: 1;
-  width: 60%;
+  width: calc(100% - 300px);
+  padding-left: 300px;
   @media screen and (max-width: 700px) {
     width: 100%;
   }

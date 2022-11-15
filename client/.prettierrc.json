@@ -1,0 +1,13 @@
+{
+  "printWidth": 120,
+  "tabWidth": 3,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "bracketSpacing": true,
+  "jsxBracketSameLine": true,
+  "arrowParens": "avoid",
+  "vueIndentScriptAndStyle": false,
+  "endOfLine": "auto"
+}
