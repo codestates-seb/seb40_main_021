@@ -10,53 +10,53 @@ import IconClose from "./../../assets/img/icon_close_white.png";
 import * as S from "./Gnb.style";
 
 const Gnb = () => {
-  const [gnbToggleOpen, setGnbToggleOpen] = useState(false);
-  //기능구현 아직입니다~ (open state redux로 관리예정)
-  return (
-    <S.GnbContainer active={gnbToggleOpen}>
-      <S.CloseBtn onClick={() => setGnbToggleOpen(false)}>
-        <img src={IconClose} alt="close_btn" />
-      </S.CloseBtn>
-      <S.GnbList>
-        <S.TopLi>
-          <NavLink>
-            <div>
-              <S.Bell on={true}>
-                <span>1</span>
-                <img src={BellIcon} alt="벨알람" />
-              </S.Bell>
-              매장알람
-            </div>
-          </NavLink>
-        </S.TopLi>
-        <S.Li>
-          <NavLink to="table">
-            <S.TableImg src={IconTable} alt="table icon" />
-            테이블 현황
-          </NavLink>
-        </S.Li>
-        <S.Li>
-          <NavLink to="table">
-            <S.MenuImg src={IconMenu} alt="menu icon" />
-            메뉴 목록
-          </NavLink>
-        </S.Li>
-        <S.Li>
-          <NavLink to="table">
-            <S.PlusImg src={IconPlus} alt="plus icon" />
-            메뉴판 제작
-          </NavLink>
-        </S.Li>
-        <S.Li>
-          <NavLink to="table">
-            <S.QrImg src={IconQR} alt="qr icon" />
-            QR Table
-          </NavLink>
-        </S.Li>
-        <S.MSpan>로그아웃</S.MSpan>
-      </S.GnbList>
-    </S.GnbContainer>
-  );
+    const [gnbToggleOpen, setGnbToggleOpen] = useState(false);
+    //기능구현 아직입니다~ (open state redux로 관리예정)
+    return (
+        <S.GnbContainer active={gnbToggleOpen}>
+            <S.CloseBtn onClick={() => setGnbToggleOpen(false)}>
+                <img src={IconClose} alt="close_btn" />
+            </S.CloseBtn>
+            <S.GnbList>
+                <S.TopLi>
+                    <NavLink>
+                        <div>
+                            <S.Bell bell={true}>
+                                <span>1</span>
+                                <img src={BellIcon} alt="벨알람" />
+                            </S.Bell>
+                            매장알람
+                        </div>
+                    </NavLink>
+                </S.TopLi>
+                <S.Li>
+                    <NavLink to="table">
+                        <S.TableImg src={IconTable} alt="table icon" />
+                        테이블 현황
+                    </NavLink>
+                </S.Li>
+                <S.Li>
+                    <NavLink to="table">
+                        <S.MenuImg src={IconMenu} alt="menu icon" />
+                        메뉴 목록
+                    </NavLink>
+                </S.Li>
+                <S.Li>
+                    <NavLink to="table">
+                        <S.PlusImg src={IconPlus} alt="plus icon" />
+                        메뉴판 제작
+                    </NavLink>
+                </S.Li>
+                <S.Li>
+                    <NavLink to="table">
+                        <S.QrImg src={IconQR} alt="qr icon" />
+                        QR Table
+                    </NavLink>
+                </S.Li>
+                <S.MSpan>로그아웃</S.MSpan>
+            </S.GnbList>
+        </S.GnbContainer>
+    );
 };
 
 export default Gnb;
