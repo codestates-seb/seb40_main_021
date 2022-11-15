@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 export const HeaderWrap = styled.div`
-  /* position fixed -> sticky로 변경했습니다.*/
-  position: sticky;
+  position: fixed;
   z-index: 10;
   top: 0;
   left: 0;
