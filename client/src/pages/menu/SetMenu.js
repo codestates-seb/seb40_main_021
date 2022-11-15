@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import CategoryLi from '../../components/Menu/Category/CategoryLi';
 import MenuList from '../../components/Menu/MenuList';
 import IconAdd from '../../assets/img/icon_add.png';
+import IconCategoryAdd from '../../assets/img/icon_category_plus.png';
 const SetMenuLayout = styled.div`
 width: calc(100% - 300px);
 height: calc(100vh - 70px);
@@ -32,7 +33,7 @@ height: auto;
 filter: drop-shadow( 0px 2px 4px rgba(0, 0, 0, 0.15));
 `
 const CategoryWrap = styled.ul`
-width: 100%;
+width: calc(100% - 120px);
 overflow-y: scroll;
 display: flex;
 
@@ -127,8 +128,29 @@ font-weight: 700;
     width: 50%;
 }
 `
+const CategoryAddBtn = styled.button`
+cursor: pointer;
+border: none;
+background-color: transparent;
+text-decoration: underline;
+position: absolute;
+top: 14px;
+right: 5px;
+display: flex;
+align-items: center;
+& img {
+    margin-right: 8px;
+}
+`
 const SetMenu = () => {
+    const [menuCount, setMenuCount] = useState(1)
+    const [toggleCategoryAdd, setToggleCategoryAdd] = useState(false)
 
+    const menulist = Array(menuCount).fill().map((v, i) => i + 1)
+
+    const menuCountPlus = () => {
+        setMenuCount(menuCount + 1)
+    }
     return (
         <SetMenuLayout>
             <Head>메뉴판 제작</Head>
@@ -137,15 +159,17 @@ const SetMenu = () => {
                     <CategoryLi active={true} name={'기본 카테고리'} placeholder={'카테고리를 입력해주세요'} />
                     <CategoryLi active={false} name={'카테고리 2'} />
                 </CategoryWrap>
+                <CategoryAddBtn onClick={() => setToggleCategoryAdd(!toggleCategoryAdd)}>
+                    {toggleCategoryAdd ? <><img src={IconCategoryAdd} alt='categoryAdd' />카테고리 추가</> : '취소'}
+                </CategoryAddBtn>
                 <MenuContainerWarp>
+
                     <SettingHead>메뉴등록</SettingHead>
                     <MenuListUl>
-                        {/* <MenuList /> */}
-                        <MenuList />
-                        <MenuList />
+                        {menulist.map((el, idx) => <MenuList key={idx} idx={idx} />)}
                     </MenuListUl>
 
-                    <AddBtn><img src={IconAdd} alt='add' />추가</AddBtn>
+                    <AddBtn onClick={menuCountPlus}><img src={IconAdd} alt='add' />추가</AddBtn>
                 </MenuContainerWarp>
             </MenuLayout>
             <BtnWrap><WhiteBtn>미리보기</WhiteBtn><OrangeBtn>저장</OrangeBtn></BtnWrap>

@@ -21,6 +21,7 @@ font-size: 14px;
 `
 const CategorySettingWarp = styled.div`
 display: flex;
+white-space: nowrap;
 align-items: center;
 & input:disabled{
     background-color: transparent;

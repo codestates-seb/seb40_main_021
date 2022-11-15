@@ -122,7 +122,7 @@ border: none;
 background-color: transparent;
 `
 
-const MenuList = () => {
+const MenuList = ({ idx }) => {
     const [imgSrc, setImageSrc] = useState('')
     const encodeFileToBase64 = (fileBlob) => {
         const reader = new FileReader();
@@ -134,7 +134,6 @@ const MenuList = () => {
             };
         });
     };
-    const idx = 2
     return (
         <List>
             <ListLi>
