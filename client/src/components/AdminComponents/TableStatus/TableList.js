@@ -197,9 +197,12 @@ const TableList = () => {
 
 const MainContents = styled.main`
   display: grid;
+  margin-top: 50px;
+  flex-grow: 1;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 500px;
   align-items: center;
+  justify-content: center;
   min-width: max-content;
   @media screen and (max-width: 700px) {
     display: flex;
