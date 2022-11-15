@@ -4,6 +4,7 @@ import CategoryLi from '../../components/Menu/Category/CategoryLi';
 import MenuList from '../../components/Menu/MenuList';
 import IconAdd from '../../assets/img/icon_add.png';
 import IconCategoryAdd from '../../assets/img/icon_category_plus.png';
+import ButtonWrap from '../../components/Menu/ButtonWrap';
 const SetMenuLayout = styled.div`
 width: calc(100% - 300px);
 height: calc(100vh - 70px);
@@ -28,6 +29,7 @@ margin-bottom: 30px;
 `
 
 const MenuLayout = styled.div`
+position: relative;
 width: 100%;
 height: auto;
 filter: drop-shadow( 0px 2px 4px rgba(0, 0, 0, 0.15));
@@ -101,7 +103,7 @@ padding: 12px 0px;
 cursor: pointer;
 border-radius: 10px;
 border: 2px solid #FF6C01;
-background-color: transparent;
+background-color: white;
 font-size: 15px;
 font-weight: 700;
 margin-right: 10px ;
@@ -171,8 +173,9 @@ const SetMenu = () => {
 
                     <AddBtn onClick={menuCountPlus}><img src={IconAdd} alt='add' />추가</AddBtn>
                 </MenuContainerWarp>
+                <ButtonWrap />
             </MenuLayout>
-            <BtnWrap><WhiteBtn>미리보기</WhiteBtn><OrangeBtn>저장</OrangeBtn></BtnWrap>
+
         </SetMenuLayout>
     );
 };
