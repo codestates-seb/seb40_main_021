@@ -4,7 +4,7 @@ import Header from "./components/common/Header";
 import GnbLayout from "./components/common/GnbLayout";
 import AlarmPage from "./pages/user/Alarm";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import styled from "styled-components";
+import SetMenu from "./pages/menu/SetMenu";
 
 function App() {
   return (
@@ -15,6 +15,7 @@ function App() {
         <Routes>
           <Route path='/user' element={<GnbLayout />}>
             <Route path="/user" element={<AlarmPage />} />
+            <Route path="/user/menusetting" element={<SetMenu />} />
           </Route>
         </Routes>
       </BrowserRouter>

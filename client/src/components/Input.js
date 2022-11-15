@@ -15,7 +15,7 @@ const InputBox = styled.input`
 
 const Input = ({ type = "text", value, handleValue, width }) => {
   return (
-      <InputBox type={type} defaultValue={value} onChange={(e) => handleValue(e.target.value)} width={width} />
+    <InputBox type={type} defaultValue={value} onChange={(e) => handleValue(e.target.value)} width={width} />
   );
 };
 
