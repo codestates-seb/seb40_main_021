@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 // import Input from '../../Input';
+// import ButtonWrap from '../../Menu/ButtonWrap';
 
 const StoreInfo = () => {
    const dummyData = {
@@ -74,7 +75,7 @@ const MainContants = styled.div`
       display: flex;
       box-sizing: border-box;
       width: 90%;
-      height: 350px;
+      height: 400px;
       background-color: white;
       box-shadow: 0 4px 2px 0px lightgray;
       padding: 50px;
@@ -100,6 +101,8 @@ const MainContants = styled.div`
       height: 100%;
       width: 90%;
       margin-left: 30px;
+      overflow-y: scroll;
+
       th {
          height: 50px;
          max-height: 50px;

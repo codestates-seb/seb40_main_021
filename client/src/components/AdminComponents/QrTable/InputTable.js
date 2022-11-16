@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Input from '../../Input';
 import styled from 'styled-components';
+import Button from '../Button';
 const InputTable = () => {
    const [tableValue, setTableValue] = useState('');
    return (
@@ -13,7 +14,7 @@ const InputTable = () => {
          <div className="createQrBox">
             <h2 className="label">테이블 수</h2>
             <Input value="테이블 수 를 입력 해주세요." handleValue={setTableValue} width="220px"></Input>
-            <button>QR 생성</button>
+            <Button></Button>
          </div>
       </InputTableBox>
    );
