@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createQr } from '../../redux/action/action';
 
 const Btn = styled.button`
@@ -25,8 +25,16 @@ const Btn = styled.button`
 // };
 
 const ButtonWrap = ({ text, num }) => {
+   const setOverlapNumState = useSelector(state => state.tableNumInputValueOverlap);
+   const setSavedTebleNum = useSelector(state => state.setSavedTebleNum);
    const dispatch = useDispatch();
    const hadleClickCreateQR = () => {
+      if (num > 30) {
+         alert('30 이하의 숫자를 입력해주세요.');
+      }
+      if (isNaN(num)) {
+         alert('숫자를 입력해주세요.');
+      }
       const QrList = [];
       for (let i = 0; i < num; i++) {
          QrList.push({ qrURL: null, tableNum: null, date: new Date().toLocaleDateString().slice(0, -1) });
@@ -35,6 +43,15 @@ const ButtonWrap = ({ text, num }) => {
    };
    const handleClickSaveQr = () => {
       //서버에 post 요청
+      console.log(setOverlapNumState);
+      console.log(setSavedTebleNum);
+      if (!setOverlapNumState && !setSavedTebleNum) {
+         alert('데이터 전송');
+      } else {
+         //데이터 패치
+
+         alert('중복된 테이블 번호가 입력되었습니다.');
+      }
    };
 
    return <Btn onClick={text === 'QR 등록' ? hadleClickCreateQR : handleClickSaveQr}>{text}</Btn>;

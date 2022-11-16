@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import InputTables from './InputTable';
 import QrList from './QrList';
 import Button from '../Button';
+import { useSelector } from 'react-redux';
 
 const CreateQR = () => {
+   const tableNumInputValueOverlap = useSelector(state => state.tableNumInputValueOverlap);
    return (
       <MainContants>
          <div className="title">
@@ -25,6 +27,9 @@ const CreateQR = () => {
             </div>
             <QrList></QrList>
             <div className="QrSaveBtn">
+               <div className="overlapNum">
+                  {tableNumInputValueOverlap ? '중복된 테이블 번호가 입력되었습니다.' : null}
+               </div>
                <Button text={'저장'}></Button>
             </div>
          </main>
@@ -38,6 +43,11 @@ const MainContants = styled.div`
    height: 90%;
    width: 100%;
    margin-top: 50px;
+   .overlapNum {
+      color: rgb(255, 107, 0);
+      width: 80%;
+      height: 40px;
+   }
    .QrSaveBtn {
       display: flex;
       justify-content: end;

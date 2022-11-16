@@ -3,13 +3,14 @@ import styled from 'styled-components';
 import QrInfo from './QrInfo';
 import { useSelector } from 'react-redux';
 const QrList = () => {
-   const tableTheNum = useSelector(state => state.qrDate);
+   const qrDatas = useSelector(state => state.qrDate);
+
    return (
       <QrListBox>
-         {tableTheNum.length === 0 ? (
+         {qrDatas.length === 0 ? (
             <div className="emptyList">저장할 QR이 없습니다.</div>
          ) : (
-            tableTheNum.map((data, idx) => {
+            qrDatas.map((data, idx) => {
                return <QrInfo key={idx} data={data} idx={idx}></QrInfo>;
             })
          )}
