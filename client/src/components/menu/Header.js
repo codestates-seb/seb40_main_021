@@ -1,8 +1,10 @@
+import { HeaderStyle } from '../../style/menu.style';
+
 export const Header = () => {
   return (
-    <header>
+    <HeaderStyle>
       <div className="storeName">🍽️주문해조</div>
       <div>NO.7</div>
-    </header>
+    </HeaderStyle>
   );
 };

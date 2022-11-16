@@ -1,18 +1,24 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBell } from '@fortawesome/free-regular-svg-icons';
+import {
+  faUtensils,
+  faBell,
+  faStore,
+  faCartShopping,
+} from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
+import { BottomNavStyle } from '../../style/menu.style';
 
 export const BottomNav = (modal) => {
   const navHandler = () => {
     modal.setIsModalOpen(true);
   };
   return (
-    <div className="bottomNav-wrapper">
+    <BottomNavStyle>
       <NavLink
         to="/"
         className={({ isActive }) => (isActive ? 'active button' : 'button')}
       >
-        <FontAwesomeIcon icon={faBell} />
+        <FontAwesomeIcon icon={faUtensils} />
         <p>메뉴</p>
       </NavLink>
 
@@ -24,7 +30,7 @@ export const BottomNav = (modal) => {
         to="/store"
         className={({ isActive }) => (isActive ? 'active button' : 'button')}
       >
-        <FontAwesomeIcon icon={faBell} />
+        <FontAwesomeIcon icon={faStore} />
         <p>가게정보</p>
       </NavLink>
 
@@ -32,9 +38,9 @@ export const BottomNav = (modal) => {
         to="/order/cart"
         className={({ isActive }) => (isActive ? 'active button' : 'button')}
       >
-        <FontAwesomeIcon icon={faBell} />
+        <FontAwesomeIcon icon={faCartShopping} />
         <p>주문목록</p>
       </NavLink>
-    </div>
+    </BottomNavStyle>
   );
 };

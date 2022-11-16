@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-regular-svg-icons';
 import { useState } from 'react';
+import { ModalStyle } from '../../style/menu.style';
 
 export const Modal = (modal) => {
   const [callStaff, setCallStaff] = useState(false);
@@ -13,7 +14,7 @@ export const Modal = (modal) => {
   };
 
   return (
-    <>
+    <ModalStyle>
       <div className="modal-bg"></div>
       <div className="modal">
         {callStaff ? (
@@ -36,6 +37,6 @@ export const Modal = (modal) => {
           </>
         )}
       </div>
-    </>
+    </ModalStyle>
   );
 };
