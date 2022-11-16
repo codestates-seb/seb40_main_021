@@ -1,6 +1,5 @@
-import React from "react";
-import OrderAlram from "./OrderAlram";
-import styled from "styled-components";
+import OrderAlram from './OrderAlram';
+import styled from 'styled-components';
 
 const OrderAlarms = () => {
   const dummyData = {
@@ -11,25 +10,25 @@ const OrderAlarms = () => {
         orders: [
           {
             id: 0,
-            menu: "김치찌개",
+            menu: '김치찌개',
             quantity: 1,
             price: 7000,
           },
           {
             id: 1,
-            menu: "처음처럼",
+            menu: '처음처럼',
             quantity: 2,
             price: 4000,
           },
           {
             id: 2,
-            menu: "카스",
+            menu: '카스',
             quantity: 5,
             price: 4000,
           },
         ],
-        orderTime: { date: "2022-11-10", time: "17:25" },
-        reqText: "김치찌개에 김치 빼주세요",
+        orderTime: { date: '2022-11-10', time: '17:25' },
+        reqText: '김치찌개에 김치 빼주세요',
       },
       {
         id: 1,
@@ -37,25 +36,25 @@ const OrderAlarms = () => {
         orders: [
           {
             id: 0,
-            menu: "된장찌개",
+            menu: '된장찌개',
             quantity: 2,
             price: 7000,
           },
           {
             id: 1,
-            menu: "카스",
+            menu: '카스',
             quantity: 5,
             price: 4000,
           },
           {
             id: 2,
-            menu: "공기밥",
+            menu: '공기밥',
             quantity: 2,
             price: 1000,
           },
         ],
-        orderTime: { date: "2022-11-10", time: "17:25" },
-        reqText: "김치찌개에 김치 빼주세요",
+        orderTime: { date: '2022-11-10', time: '17:25' },
+        reqText: '김치찌개에 김치 빼주세요',
       },
     ],
   };
