@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { storeInfoUpdate } from '../../../redux/action/action';
+import { useSelector } from 'react-redux';
 
 const BtnWrap = styled.div`
    display: flex;
@@ -44,10 +47,15 @@ const OrangeBtn = styled.button`
    }
 `;
 const ButtonWrap = ({ bottom }) => {
+   const dispatch = useDispatch();
+   const UpdateState = useSelector(state => state.data.storeInfoUpdateState);
+   const handleClickStorInfoUpdate = () => {
+      dispatch(storeInfoUpdate());
+   };
    return (
       <BtnWrap bottom={bottom}>
          <WhiteBtn>미리보기</WhiteBtn>
-         <OrangeBtn>메뉴판 수정</OrangeBtn>
+         <OrangeBtn onClick={handleClickStorInfoUpdate}>{UpdateState ? '확인' : '가게정보 수정'}</OrangeBtn>
       </BtnWrap>
    );
 };

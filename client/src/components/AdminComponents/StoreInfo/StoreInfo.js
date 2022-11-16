@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-// import Input from '../../Input';
-// import ButtonWrap from '../../Menu/ButtonWrap';
-
+import InfoTable from './InfoTable';
+import InfoUpdateInput from './InfoUpdateInput';
+import { useSelector } from 'react-redux';
 const StoreInfo = () => {
    const dummyData = {
       data: {
@@ -11,11 +11,12 @@ const StoreInfo = () => {
          address: '서울시 서울구 서울동 서울빌딩 서울길 123-45 678호',
          number: '010-1234-5678',
          businessNum: '12345351-135314',
-         businessTime: ['월~토 12:00 ~ 23:00', '일 12:00 ~ 23:00'],
+         businessTime: '월~토 12:00 ~ 23:00 일 12:00 ~ 23:00',
          description:
             '매일 깨끗하고 신선한재료로 맛있는 퓨전요리와 경양식. 고급원두를 사용한 다양한 커피 분위기좋고 경치좋고 맛있기까지하는 맛나요 가게로 놀러오세요~^^',
       },
    };
+   const UpdateState = useSelector(state => state.data.storeInfoUpdateState);
    return (
       <MainContants>
          <div className="title">
@@ -27,32 +28,7 @@ const StoreInfo = () => {
             </div>
             <div className="storeInfoContainer">
                <div>{dummyData.data.name}</div>
-               <hbody className="sotrinfo">
-                  <tr>
-                     <th>주소</th>
-                     <td>{dummyData.data.address}</td>
-                  </tr>
-                  <tr>
-                     <th>연락처</th>
-                     <td>{dummyData.data.number}</td>
-                  </tr>
-                  <tr>
-                     <th>사업자 번호</th>
-                     <td>{dummyData.data.businessNum}</td>
-                  </tr>
-                  <tr>
-                     <th>영업시간</th>
-                     <div className="sotreTimes">
-                        {dummyData.data.businessTime.map(data => {
-                           return <td className="sotreTime">{data}</td>;
-                        })}
-                     </div>
-                  </tr>
-                  <tr>
-                     <th>가게설명</th>
-                     <td>{dummyData.data.description}</td>
-                  </tr>
-               </hbody>
+               {UpdateState ? <InfoUpdateInput /> : <InfoTable />}
             </div>
          </main>
       </MainContants>
