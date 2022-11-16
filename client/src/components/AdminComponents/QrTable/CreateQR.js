@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import InputTables from './InputTable';
 import QrList from './QrList';
+import Button from '../Button';
 
 const CreateQR = () => {
    return (
@@ -17,17 +18,15 @@ const CreateQR = () => {
             </div>
             <div className="flex">
                <div className="th">
-                  <div>선택</div>
                   <div>No.</div>
                   <div>테이블 번호</div>
                   <div>생성날짜</div>
                </div>
-               <div className="print">
-                  <div>선택 인쇄</div>
-                  <div>전체 인쇄</div>
-               </div>
             </div>
             <QrList></QrList>
+            <div className="QrSaveBtn">
+               <Button text={'저장'}></Button>
+            </div>
          </main>
       </MainContants>
    );
@@ -39,20 +38,10 @@ const MainContants = styled.div`
    height: 90%;
    width: 100%;
    margin-top: 50px;
-   .print {
+   .QrSaveBtn {
       display: flex;
-
       justify-content: end;
-      flex-grow: 1;
-      > :first-child {
-         border-bottom: 1px solid gray;
-         cursor: pointer;
-      }
-      > :last-child {
-         margin-left: 30px;
-         border-bottom: 1px solid gray;
-         cursor: pointer;
-      }
+      margin-top: 20px;
    }
    .flex {
       display: flex;

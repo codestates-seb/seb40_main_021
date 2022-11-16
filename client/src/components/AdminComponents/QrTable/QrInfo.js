@@ -1,13 +1,20 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { registerTableNum } from '../../../redux/action/action';
 import styled from 'styled-components';
 const QrInfo = ({ data, idx }) => {
-   console.log(idx);
+   const dispatch = useDispatch();
+   const onChangeTableNumDispatch = e => {
+      const tableNum = e.target.value;
+      dispatch(registerTableNum(tableNum, idx));
+   };
    return (
       <QrInfoBox>
          <div className="qrInfos">
-            <input type="checkbox" className="qrInfo"></input>
-            <div>{idx}</div>
-            <div>{data.tableNum}</div>
+            <div>{idx + 1}</div>
+            <div>
+               <input type="text" onChange={e => onChangeTableNumDispatch(e)}></input>
+            </div>
             <div>{data.date}</div>
          </div>
       </QrInfoBox>
@@ -15,7 +22,6 @@ const QrInfo = ({ data, idx }) => {
 };
 const QrInfoBox = styled.div`
    height: 50px;
-
    .qrInfos {
       display: grid;
       height: 100%;
