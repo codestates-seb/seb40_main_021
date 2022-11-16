@@ -13,10 +13,13 @@ const InputBox = styled.input`
   }
 `;
 
-const Input = ({ type = "text", value, handleValue, width }) => {
+const Input = ({ type, value, handleValue, width, placeholders }) => {
   return (
-    <InputBox type={type} defaultValue={value} onChange={(e) => handleValue(e.target.value)} width={width} />
+
+      <InputBox type={type} defaultValue={value} onChange={(e) => handleValue(e.target.value)} width={width} placeholders={placeholders} />
+
   );
 };
 
 export default Input;
+
