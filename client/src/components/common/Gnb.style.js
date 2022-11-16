@@ -15,8 +15,8 @@ export const GnbContainer = styled.div`
     left: -100%;
     transition: left 0.3s;
     ${(position) =>
-      position.active &&
-      css`
+        position.active &&
+        css`
         left: 0%;
       `}
   }
@@ -59,7 +59,7 @@ export const GnbList = styled.ul`
 `;
 export const TopLi = styled.li`
   height: 214px;
-
+  background-color: #4A555C;
   & a {
     display: flex;
     align-items: center;
@@ -72,6 +72,15 @@ export const TopLi = styled.li`
     text-align: center;
     font-weight: 700;
   }
+  & a.active{
+    background-color: #F6F6F6;
+    color: black;
+
+  }
+
+  & a.active span{
+    display: none;
+  }
 `;
 export const Bell = styled.div`
   background-color: #313e46;
@@ -80,6 +89,7 @@ export const Bell = styled.div`
   font-weight: 700;
   font-size: 16px;
   border-radius: 100%;
+  border: 3px solid #FF8F8F;
   width: 80px;
   height: 80px;
   margin-bottom: 9px;
@@ -92,10 +102,11 @@ export const Bell = styled.div`
   margin-bottom: 12px;
   & img {
     margin-top: -7px;
+
   }
 
   & span {
-    padding: 3px 10px;
+    padding: 4px 10px 2px;
     border-radius: 25px;
     background-color: #ff5252;
     font-size: 24px;

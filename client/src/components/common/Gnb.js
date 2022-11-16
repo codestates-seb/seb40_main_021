@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import BellIcon from "./../../assets/img/bell_icon.png";
 import IconTable from "./../../assets/img/icon_table.png";
+import IconTableActive from "./../../assets/img/icon_table_active.png";
 import IconMenu from "./../../assets/img/icon_menu.png";
+import IconMenuActive from "./../../assets/img/icon_menu_active.png";
 import IconPlus from "./../../assets/img/icon_plus.png";
+import IconPlusActive from "./../../assets/img/icon_plus_active.png";
 import IconQR from "./../../assets/img/icon_QR.png";
 import IconClose from "./../../assets/img/icon_close_white.png";
 import * as S from "./Gnb.style";
@@ -12,6 +15,10 @@ import * as S from "./Gnb.style";
 const Gnb = () => {
     const [gnbToggleOpen, setGnbToggleOpen] = useState(false);
     //기능구현 아직입니다~ (open state redux로 관리예정)
+
+    function isActive(path) {
+        return window.location.pathname.startsWith(path);
+    }
     return (
         <S.GnbContainer active={gnbToggleOpen}>
             <S.CloseBtn onClick={() => setGnbToggleOpen(false)}>
@@ -19,9 +26,9 @@ const Gnb = () => {
             </S.CloseBtn>
             <S.GnbList>
                 <S.TopLi>
-                    <NavLink>
+                    <NavLink to='/user/'>
                         <div>
-                            <S.Bell bell={true}>
+                            <S.Bell bell={true} >
                                 <span>1</span>
                                 <img src={BellIcon} alt="벨알람" />
                             </S.Bell>
@@ -31,19 +38,19 @@ const Gnb = () => {
                 </S.TopLi>
                 <S.Li>
                     <NavLink to="table">
-                        <S.TableImg src={IconTable} alt="table icon" />
+                        <S.TableImg src={isActive('/user/table') ? IconTableActive : IconTable} alt="table icon" />
                         테이블 현황
                     </NavLink>
                 </S.Li>
                 <S.Li>
-                    <NavLink to="table">
-                        <S.MenuImg src={IconMenu} alt="menu icon" />
+                    <NavLink to="menu">
+                        <S.MenuImg src={isActive('/user/menu') ? IconMenuActive : IconMenu} alt="menu icon" />
                         메뉴 목록
                     </NavLink>
                 </S.Li>
                 <S.Li>
-                    <NavLink to="table">
-                        <S.PlusImg src={IconPlus} alt="plus icon" />
+                    <NavLink to="/user/menusetting">
+                        <S.PlusImg src={isActive('/user/menusetting') ? IconPlusActive : IconPlus} alt="plus icon" />
                         메뉴판 제작
                     </NavLink>
                 </S.Li>
