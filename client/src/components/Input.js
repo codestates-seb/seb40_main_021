@@ -45,7 +45,9 @@ input {
 
 const Input = ({ type, value, handleValue, width, placeholders }) => {
   return (
+
       <InputBox type={type} defaultValue={value} onChange={(e) => handleValue(e.target.value)} width={width} placeholders={placeholders} />
+
   );
 };
 
