@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 import Logo from './../../assets/img/logo.png'
 import UserExImg from './../../assets/img/user_ex_img.png'
 import IconSignout from './../../assets/img/icon_signout.png'

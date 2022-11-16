@@ -1,6 +1,5 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import styled from "styled-components";
 import BellIcon from "./../../assets/img/bell_icon.png";
 import IconTable from "./../../assets/img/icon_table.png";
 import IconTableActive from "./../../assets/img/icon_table_active.png";

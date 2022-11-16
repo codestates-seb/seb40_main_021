@@ -53,10 +53,10 @@ font-weight: 700;
     width: 50%;
 }
 `
-const ButtonWrap = ({ bottom }) => {
+const ButtonWrap = ({ name }) => {
     return (
 
-        <BtnWrap bottom={bottom}><WhiteBtn>미리보기</WhiteBtn><OrangeBtn>저장</OrangeBtn></BtnWrap>
+        <BtnWrap><WhiteBtn>미리보기</WhiteBtn><OrangeBtn>{name}</OrangeBtn></BtnWrap>
 
     );
 };
