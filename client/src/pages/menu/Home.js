@@ -1,22 +1,25 @@
-import { useState } from 'react';
-import { BottomNav } from '../../components/menu/BottomNav';
-import { Header } from '../../components/menu/Header';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { MenuDetailed } from '../../components/menu/MenuDetailed';
 import { MenuList } from '../../components/menu/MenuList';
-import { Modal } from '../../components/menu/Modal';
 import { NavMenu } from '../../components/menu/NavMenu';
+import { saveMenuId } from '../../redux/actions/menuAction';
 import { Wrapper } from '../../style/menu.style';
 
 export const Home = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    return () => {
+      dispatch(saveMenuId(null));
+    };
+  });
   return (
     <Wrapper>
-      <main>
-        <Header />
+      <main className="no-padding">
         <NavMenu />
         <MenuList />
-        <BottomNav setIsModalOpen={setIsModalOpen} />
-        {isModalOpen && <Modal setIsModalOpen={setIsModalOpen} />}
+        <MenuDetailed />
       </main>
     </Wrapper>
   );
