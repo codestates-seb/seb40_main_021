@@ -1,12 +1,15 @@
 package com.example.demo.menu.dto;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class MenuPatchDto {
     private long menuId;
 
@@ -16,7 +19,7 @@ public class MenuPatchDto {
     @NotBlank(message = "The content must not be blank.")
     private String menuContent;
 
-//    @NotBlank(message = "The price must not be blank.")
+    @NotNull
     private Integer price;
 
     public void setMenuId(long menuId){

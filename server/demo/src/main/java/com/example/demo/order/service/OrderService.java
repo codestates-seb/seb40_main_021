@@ -1,16 +1,14 @@
 package com.example.demo.order.service;
 
-import com.example.demo.category.entity.Category;
 import com.example.demo.menu.entity.Menu;
 import com.example.demo.menu.repository.MenuRepository;
 import com.example.demo.order.entity.Order;
-import com.example.demo.order.entity.OrderMenu;
 import com.example.demo.order.repository.OrderMenuRepository;
 import com.example.demo.order.repository.OrderRepository;
 import com.example.demo.table.entity.Table;
 import com.example.demo.table.repository.TableRepository;
-import com.example.demo.user.entity.User;
-import com.example.demo.user.repository.UserRepository;
+import com.example.demo.user.entity.Member;
+import com.example.demo.user.repository.MemberRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,12 +23,12 @@ public class OrderService {
     private final TableRepository tableRepository;
     private final MenuRepository menuRepository;
     private final OrderRepository orderRepository;
-    private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
     private final OrderMenuRepository orderMenuRepository;
 
-    public Order createOrder(Order order, Long userId) {
-        Optional<User> user = userRepository.findById(userId);
-        List<Table> tableList = tableRepository.findAllByUser(user.get())
+    public Order createOrder(Order order, Long memberId) {
+        Optional<Member> member = memberRepository.findById(memberId);
+        List<Table> tableList = tableRepository.findAllByMember(member.get())
                 .stream().filter(table -> table.getTableNumber() == order.getTable().getTableNumber())
                 .collect(Collectors.toList());
         order.setTable(tableList.get(0));
@@ -44,9 +42,9 @@ public class OrderService {
         return orderRepository.save(order);
     }
 
-    public void deleteOrder(Long userId, int tableNumber) {
-        Optional<User> user = userRepository.findById(userId);
-        List<Table> tableList = tableRepository.findAllByUser(user.get())
+    public void deleteOrder(Long memberId, int tableNumber) {
+        Optional<Member> member = memberRepository.findById(memberId);
+        List<Table> tableList = tableRepository.findAllByMember(member.get())
                 .stream().filter(table -> table.getTableNumber() == tableNumber)
                 .collect(Collectors.toList());
         List<Order> orderList = orderRepository.findAllByTable(tableList.get(0));

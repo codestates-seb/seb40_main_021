@@ -11,21 +11,20 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface MenuMapper {
-    default Menu menuPostDtoToMenu(CategoryService categoryService, /*UserService userService, */MenuPostDto menuPostDto){
+    default Menu menuPostDtoToMenu(CategoryService categoryService, MenuPostDto menuPostDto){
         Menu menu = new Menu();
         menu.setMenuName(menuPostDto.getMenuName());
         menu.setMenuContent(menuPostDto.getMenuContent());
         menu.setPrice(menuPostDto.getPrice());
         menu.setVote(0);
         menu.setCategory(categoryService.findVerifiedCategory(menuPostDto.getCategoryId()));
-//        menu.setUser(userService.findUser(answerPostDto.getUserId()));
+
         return menu;
     }
     Menu menuPatchDtoToMenu(MenuPatchDto menuPatchDto);
     default MenuResponseDto menuToMenuResponseDto(Menu menu){
         MenuResponseDto menuResponseDto = new MenuResponseDto();
         menuResponseDto.setMenuId(menu.getMenuId());
-        menuResponseDto.setMenuStatus(menu.getMenuStatus());
         menuResponseDto.setMenuName(menu.getMenuName());
         menuResponseDto.setMenuContent(menu.getMenuContent());
         menuResponseDto.setPrice(menu.getPrice());

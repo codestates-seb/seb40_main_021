@@ -14,8 +14,6 @@ public class CategoryPatchDto {
     @NotBlank(message = "The name must not be blank.")
     private String categoryName;
 
-//    private Category.CategoryStatus categoryStatus;
-
     public void setCategoryId(long categoryId){
         this.categoryId = categoryId;
     }

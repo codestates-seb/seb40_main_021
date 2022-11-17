@@ -11,9 +11,4 @@ import lombok.Setter;
 public class CategoryResponseDtos {
     private long categoryId;
     private String categoryName;
-    private Category.CategoryStatus categoryStatus;
-
-//    public String getCategoryStatus(){
-//        return categoryStatus.getStatus();
-//    }
 }

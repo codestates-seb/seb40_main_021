@@ -4,17 +4,20 @@ import com.example.demo.category.dto.*;
 import com.example.demo.category.entity.Category;
 import com.example.demo.menu.mapper.MenuMapper;
 import com.example.demo.menu.service.MenuService;
+import com.example.demo.user.entity.Member;
+import com.example.demo.user.service.MemberService;
 import org.mapstruct.Mapper;
 
 import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface CategoryMapper {
-    default Category categoryPostDtoToCategory(/*UserSevice userService, */CategoryPostDto categoryPostDto){
+    default Category categoryPostDtoToCategory(CategoryPostDto categoryPostDto){
         Category category = new Category();
-
-//        question.setUser(userService.findUser(categoryPostDto.getUserId()));
+        Member member = new Member();
+        member.setId(categoryPostDto.getMemberId());
         category.setCategoryName(categoryPostDto.getCategoryName());
+        category.setMember(member);
 
         return category;
     }
@@ -27,7 +30,6 @@ public interface CategoryMapper {
     default CategoryResponseDto categoryToCategoryResponseDto(Category category){
         CategoryResponseDto categoryResponseDto = new CategoryResponseDto();
         categoryResponseDto.setCategoryId(category.getCategoryId());
-        categoryResponseDto.setCategoryStatus(category.getCategoryStatus());
         categoryResponseDto.setCategoryName(category.getCategoryName());
         return categoryResponseDto;
     }
@@ -38,23 +40,19 @@ public interface CategoryMapper {
 
         long categoryId = 0L;
         String categoryName = null;
-        Category.CategoryStatus categoryStatus = null;
 
         categoryId = category.getCategoryId();
         categoryName = category.getCategoryName();
-        categoryStatus = category.getCategoryStatus();
 
-        CategoryResponseDtos categoryResponseDto = new CategoryResponseDtos( categoryId, categoryName, categoryStatus );
+        CategoryResponseDtos categoryResponseDto = new CategoryResponseDtos( categoryId, categoryName);
 
         return categoryResponseDto;
     }
     default CategoryAndMenuResponseDto categoryToCategoryAndMenuResponseDtos(MenuService menuService,
-                                                                             MenuMapper menuMapper,
                                                                              Category category){
         CategoryAndMenuResponseDto categoryAndMenuResponseDto = new CategoryAndMenuResponseDto();
         categoryAndMenuResponseDto.setCategoryId(category.getCategoryId());
         categoryAndMenuResponseDto.setCategoryName(category.getCategoryName());
-        categoryAndMenuResponseDto.setCategoryStatus(category.getCategoryStatus());
         categoryAndMenuResponseDto.setMenus(menuService.findMenus());
         return categoryAndMenuResponseDto;
     }

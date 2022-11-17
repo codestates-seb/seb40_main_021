@@ -5,7 +5,7 @@ import com.example.demo.table.dto.TableDto;
 import com.example.demo.table.entity.Table;
 import com.example.demo.table.mapper.TableMapper;
 import com.example.demo.table.service.TableService;
-import com.example.demo.user.entity.User;
+import com.example.demo.user.entity.Member;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,51 +24,51 @@ public class TableController {
     private final TableService tableService;
     private final TableMapper mapper;
 
-    @PostMapping("/{user-id}")
-    public ResponseEntity postTable(@PathVariable("user-id") @Positive Long userId,
+    @PostMapping("/{member-id}")
+    public ResponseEntity postTable(@PathVariable("member-id") @Positive Long memberId,
                                     @Valid @RequestBody TableDto.postList requestBody) {
-        requestBody.setUserId(userId);
+        requestBody.setMemberId(memberId);
         List<Table> tableList = tableService.createTable(mapper.tablePostDtoToTableList(requestBody));
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PatchMapping("/{user-id}")
-    public ResponseEntity patchTable(@PathVariable("user-id") @Positive Long userId,
+    @PatchMapping("/{member-id}")
+    public ResponseEntity patchTable(@PathVariable("member-id") @Positive Long memberId,
                                      @Valid @RequestBody TableDto.Patch requestBody) {
-        User user = new User();
-        user.setUserId(userId);
-        tableService.updateTable(user, requestBody);
+        Member member = new Member();
+        member.setId(memberId);
+        tableService.updateTable(member, requestBody);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/{user-id}")
-    public ResponseEntity getTable(@PathVariable("user-id") @Positive Long userId) {
-        List<Table> tableList = tableService.getTables(userId);
+    @GetMapping("/{member-id}")
+    public ResponseEntity getTable(@PathVariable("member-id") @Positive Long memberId) {
+        List<Table> tableList = tableService.getTables(memberId);
 
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.tablesToTableGetResponseDto(tableList)), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{user-id}/{tableNumber}")
-    public ResponseEntity deleteTable(@PathVariable("user-id") @Positive Long userId,
+    @DeleteMapping("/{member-id}/{tableNumber}")
+    public ResponseEntity deleteTable(@PathVariable("member-id") @Positive Long memberId,
                                       @PathVariable("tableNumber") @Positive int tableNumber) {
-        tableService.deleteTable(userId, tableNumber);
+        tableService.deleteTable(memberId, tableNumber);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/{user-id}/qr")
-    public ResponseEntity getAllQr(@PathVariable("user-id") @Positive Long userId) {
-        List<Table> tableList = tableService.getAllQr(userId);
+    @GetMapping("/{member-id}/qr")
+    public ResponseEntity getAllQr(@PathVariable("member-id") @Positive Long memberId) {
+        List<Table> tableList = tableService.getAllQr(memberId);
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.tablesToGetQrResponseDto(tableList)), HttpStatus.OK);
     }
 
-    @GetMapping("/{user-id}/qr/{tableNumber}")
-    public ResponseEntity getOneQr(@PathVariable("user-id") @Positive Long userId,
+    @GetMapping("/{member-id}/qr/{tableNumber}")
+    public ResponseEntity getOneQr(@PathVariable("member-id") @Positive Long memberId,
                                    @PathVariable("tableNumber") @Positive int tableNumber) {
-        Table table = tableService.getOneQr(userId, tableNumber);
+        Table table = tableService.getOneQr(memberId, tableNumber);
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.tableToGetQrResponseDto(table)), HttpStatus.OK);
     }

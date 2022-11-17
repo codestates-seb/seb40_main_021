@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class MenuService {
@@ -21,7 +22,7 @@ public class MenuService {
     }
     //메뉴 생성
     public Menu createMenu(Menu menu){
-        verifyExistsMenu(menu.getMenuName());
+        verifyExistsMenu(menu);
         return menuRepository.save(menu);
     }
     // 메뉴 업데이트
@@ -59,9 +60,12 @@ public class MenuService {
         Menu findMenu = optionalMenu.orElseThrow(() -> new BusinessLogicException(ExceptionCode.MENU_NOT_FOUND));
         return findMenu;
     }
-    private void verifyExistsMenu(String menuName){
-        Optional<Menu> menu = menuRepository.findByMenuName(menuName);
-        if (menu.isPresent())
+    private void verifyExistsMenu(Menu menu){
+        List<Menu> menuList = menuRepository.findAllByCategory(menu.getCategory())
+                .stream().filter(findMenu -> findMenu.getMenuName() == menu.getMenuName())
+                .collect(Collectors.toList());
+
+        if (menuList.size() > 0)
             throw new BusinessLogicException(ExceptionCode.MENU_EXISTS);
     }
 }

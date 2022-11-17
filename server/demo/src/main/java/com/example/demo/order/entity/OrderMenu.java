@@ -28,18 +28,4 @@ public class OrderMenu {
     @ManyToOne
     @JoinColumn(name = "MENU_ID")
     private Menu menu;
-
-//    public void addOrder(Order order) {
-//        this.order = order;
-//        if (!this.order.getOrderMenuList().contains(this)) {
-//            this.order.getOrderMenuList().add(this);
-//        }
-//    }
-//
-//    public void addMenu(Menu menu) {
-//        this.menu = menu;
-//        if (!this.menu.getOrderMenuList().contains(this)) {
-//            this.menu.addOrderMenu(this);
-//        }
-//    }
 }

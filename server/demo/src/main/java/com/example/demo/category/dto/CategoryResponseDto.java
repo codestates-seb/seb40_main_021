@@ -7,13 +7,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-//@AllArgsConstructor
 public class CategoryResponseDto {
     private long categoryId;
     private String categoryName;
-    private Category.CategoryStatus categoryStatus;
-
-//    public String getCategoryStatus(){
-//        return categoryStatus.getStatus();
-//    }
 }

@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @Setter
 public class CategoryPostDto {
-//    private long userId;
+    private long memberId;
     @NotBlank(message = "The name must not be blank.")
     private String categoryName;
 

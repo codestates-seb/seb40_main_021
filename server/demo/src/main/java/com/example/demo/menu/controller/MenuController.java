@@ -1,14 +1,13 @@
 package com.example.demo.menu.controller;
 
 import com.example.demo.category.service.CategoryService;
+import com.example.demo.dto.SingleResponseDto;
 import com.example.demo.menu.dto.MenuVoteDto;
 import com.example.demo.menu.dto.MenuPatchDto;
 import com.example.demo.menu.dto.MenuPostDto;
-import com.example.demo.menu.dto.MenuResponseDto;
 import com.example.demo.menu.entity.Menu;
 import com.example.demo.menu.mapper.MenuMapper;
 import com.example.demo.menu.service.MenuService;
-import com.example.demo.response.SingleResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -19,8 +18,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/menu")

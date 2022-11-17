@@ -3,8 +3,6 @@ package com.example.demo.order.dto;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 public class OrderMenuDto {
     @Getter

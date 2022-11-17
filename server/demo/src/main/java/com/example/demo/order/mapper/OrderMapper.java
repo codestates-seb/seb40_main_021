@@ -1,7 +1,6 @@
 package com.example.demo.order.mapper;
 
 import com.example.demo.menu.entity.Menu;
-import com.example.demo.menu.mapper.MenuMapper;
 import com.example.demo.order.dto.OrderDto;
 import com.example.demo.order.dto.OrderMenuDto;
 import com.example.demo.order.entity.Order;
@@ -27,10 +26,8 @@ public interface OrderMapper {
             menu.setMenuId(requestBody.getOrderMenus().get(i).getMenuId());
 
             OrderMenu orderMenu = new OrderMenu();
-//            orderMenu.addMenu(menu);
             orderMenu.setMenu(menu);
             orderMenu.setQuantity(requestBody.getOrderMenus().get(i).getQuantity());
-//            orderMenu.addOrder(order);
             orderMenu.setOrder(order);
             orderMenuList.add(orderMenu);
         }

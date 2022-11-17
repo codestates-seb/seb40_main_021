@@ -12,7 +12,7 @@ public class TableDto {
     @Setter
     @NoArgsConstructor
     public static class postList {
-        private Long userId;
+        private Long memberId;
         private List<TableDto.Post> tableList;
     }
 

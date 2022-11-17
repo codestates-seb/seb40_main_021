@@ -4,7 +4,7 @@ import com.example.demo.order.entity.Order;
 import com.example.demo.order.entity.OrderMenu;
 import com.example.demo.table.dto.TableDto;
 import com.example.demo.table.entity.Table;
-import com.example.demo.user.entity.User;
+import com.example.demo.user.entity.Member;
 import org.mapstruct.Mapper;
 
 import java.util.ArrayList;
@@ -18,14 +18,14 @@ public interface TableMapper {
         List<Table> tableList = new ArrayList<>();
 
         for(int i = 0; i < requestBody.getTableList().size(); i++) {
-            User user = new User();
+            Member member = new Member();
             Table table = new Table();
 
-            user.setUserId(requestBody.getUserId());
+            member.setId(requestBody.getMemberId());
             table.setTableNumber(requestBody.getTableList().get(i).getTableNumber());
             table.setQrUrl(requestBody.getTableList().get(i).getQrUrl());
             table.setCreatedAt(requestBody.getTableList().get(i).getCreatedAt());
-            table.setUser(user);
+            table.setMember(member);
 
             tableList.add(table);
         }

@@ -1,7 +1,7 @@
 package com.example.demo.table.entity;
 
 import com.example.demo.order.entity.Order;
-import com.example.demo.user.entity.User;
+import com.example.demo.user.entity.Member;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -29,8 +29,8 @@ public class Table {
     private String createdAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_ID")
-    private User user;
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
 
     @OneToMany(mappedBy = "table")
     private List<Order> orderList = new ArrayList<>();

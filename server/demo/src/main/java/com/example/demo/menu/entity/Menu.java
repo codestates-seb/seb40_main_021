@@ -14,7 +14,6 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-//@Table(name = "MENU")
 public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,25 +31,8 @@ public class Menu {
     @Column(nullable = false)
     private Integer vote = 0;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = true, name = "STATUS")
-    private MenuStatus menuStatus = MenuStatus.MENU_EXIST;
-
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "CATEGORY_ID")
     private Category category;
-
-    public enum MenuStatus{
-        MENU_EXIST("존재하는 메뉴");
-
-        @Getter
-        private String status;
-
-        MenuStatus(String status){
-            this.status = status;
-        }
-    }
-
-
 }

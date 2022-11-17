@@ -1,8 +1,6 @@
 package com.example.demo.order.controller;
 
 import com.example.demo.dto.SingleResponseDto;
-import com.example.demo.menu.dto.MenuDto;
-import com.example.demo.menu.entity.Menu;
 import com.example.demo.order.dto.OrderDto;
 import com.example.demo.order.entity.Order;
 import com.example.demo.order.mapper.OrderMapper;
@@ -25,19 +23,19 @@ public class OrderController {
     private final OrderService orderService;
     private final OrderMapper mapper;
 
-    @PostMapping("/{user-id}")
-    public ResponseEntity postOrder(@PathVariable("user-id") @Positive Long userId,
+    @PostMapping("/{member-id}")
+    public ResponseEntity postOrder(@PathVariable("member-id") @Positive Long memberId,
                                     @Valid @RequestBody OrderDto.Post requestBody) {
-        Order order = orderService.createOrder(mapper.orderPostDtoToOrder(requestBody), userId);
+        Order order = orderService.createOrder(mapper.orderPostDtoToOrder(requestBody), memberId);
 
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.orderToOrderPostResponseDto(order)), HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/{user-id}/{tableNumber}")
-    public ResponseEntity deleteOrder(@PathVariable("user-id") @Positive Long userId,
+    @DeleteMapping("/{member-id}/{tableNumber}")
+    public ResponseEntity deleteOrder(@PathVariable("member-id") @Positive Long memberId,
                                       @PathVariable("tableNumber") @Positive int tableNumber) {
-        orderService.deleteOrder(userId, tableNumber);
+        orderService.deleteOrder(memberId, tableNumber);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

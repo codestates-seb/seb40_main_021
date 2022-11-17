@@ -1,6 +1,8 @@
 package com.example.demo.menu.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
@@ -9,6 +11,8 @@ import javax.validation.constraints.Positive;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class MenuPostDto {
     @Positive
     @NotNull
@@ -20,6 +24,6 @@ public class MenuPostDto {
     @NotBlank(message = "The content must not be blank.")
     private String menuContent;
 
-//    @NotBlank(message = "The price must not be blank.")
+    @NotNull
     private Integer price;
 }

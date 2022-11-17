@@ -10,7 +10,6 @@ import lombok.Setter;
 //@AllArgsConstructor
 public class MenuResponseDto {
     private long menuId;
-    private Menu.MenuStatus menuStatus;
     private String menuName;
     private String menuContent;
     private int price;
