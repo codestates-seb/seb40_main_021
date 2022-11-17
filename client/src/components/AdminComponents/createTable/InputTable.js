@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 // import Input from '../../Input';  보류
 import styled from 'styled-components';
-import Button from '../Button';
+import Button from './Button';
 
 const InputTable = () => {
    const [tableValue, setTableValue] = useState('');

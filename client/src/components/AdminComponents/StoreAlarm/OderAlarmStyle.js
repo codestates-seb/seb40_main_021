@@ -3,11 +3,11 @@ import styled, { keyframes } from 'styled-components';
 const dropMenuList = keyframes`
       0% {
             opacity: 0;
-            transform: translate3d(0, -100%, 0);
+            transform: translate3d(0%, -100%, 0);
         }
         to {
             opacity: 1;
-            transform: translateZ(0);
+            transform: translateY(0);
         }
 
 `;
@@ -56,6 +56,7 @@ export const OrderListBox = styled.div`
    }
 `;
 export const Order = styled.div`
+   cursor: pointer;
    border: ${({ menuViewDetails }) => (menuViewDetails ? '3px solid rgb(255, 107, 0)' : 'none')};
    box-shadow: 0 4px 2px 0px lightgray;
    border-radius: 3px;
@@ -81,7 +82,7 @@ export const Order = styled.div`
       margin-right: 65px;
       width: 30px;
       height: 30px;
-      transform: ${({ menuViewDetails }) => (menuViewDetails ? 'scaleY(1)' : 'scaleY(-1)')};
+      transform: ${({ menuViewDetails }) => (menuViewDetails ? 'rotate(-180deg)' : 'rotate(0deg)')};
       transition: 0.3s;
    }
    #oderInfo {

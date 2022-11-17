@@ -3,6 +3,8 @@ export const CREATE_QR = 'CREATE_QR';
 export const REGISTER_TABLE_NUM = 'REGISTER_TABLE_NUM';
 export const SET_OVERLAP_NUM_STATE = 'SET_OVERLAP_NUM_STATE';
 export const SET_SEVED_TABLE_NUM = 'SET_SEVED_TABLE_NUM';
+export const MODIFYING_SAVED_TABLE_NUM = 'MODIFYING_SAVED_TABLE_NUM';
+export const SAVED_TABLE_LIST_CHECKBOX_ARR = 'SAVED_TABLE_LIST_CHECKBOX_ARR';
 
 export const storeInfoUpdate = () => {
    return {
@@ -41,6 +43,22 @@ export const setSavedTebleNum = chack => {
       type: SET_SEVED_TABLE_NUM,
       playload: {
          chack,
+      },
+   };
+};
+export const modifyingSavedTableNum = chack => {
+   return {
+      type: MODIFYING_SAVED_TABLE_NUM,
+      playload: {
+         chack,
+      },
+   };
+};
+export const savedTableListCheckBoxArr = idx => {
+   return {
+      type: SAVED_TABLE_LIST_CHECKBOX_ARR,
+      playload: {
+         idx,
       },
    };
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import InputTables from './InputTable';
 import QrList from './QrList';
-import Button from '../Button';
+import Button from './Button';
 import { useSelector } from 'react-redux';
 
 const CreateQR = () => {
@@ -10,7 +10,7 @@ const CreateQR = () => {
    return (
       <MainContants>
          <div className="title">
-            <h1>QR Table</h1>
+            <h1>테이블 생성</h1>
             <label>* 메뉴판을 등록완료 하시면 테이블 수 별로 QR 코드를 제작하실 수 있습니다.</label>
          </div>
          <main className="mainContant">
@@ -22,7 +22,7 @@ const CreateQR = () => {
                <div className="th">
                   <div>No.</div>
                   <div>테이블 번호</div>
-                  <div>생성날짜</div>
+                  <div>가능여부</div>
                </div>
             </div>
             <QrList></QrList>
@@ -50,7 +50,7 @@ const MainContants = styled.div`
    }
    .QrSaveBtn {
       display: flex;
-      justify-content: end;
+      justify-content: space-between;
       margin-top: 20px;
    }
    .flex {
@@ -63,11 +63,11 @@ const MainContants = styled.div`
       display: grid;
       align-items: center;
       justify-items: center;
-      grid-template-columns: repeat(4, 120px);
+      grid-template-columns: repeat(3, 200px);
       font-weight: bold;
    }
    .QrTable {
-      font-size: 1.3rem;
+      font-size: 16px;
       font-weight: bold;
       margin-bottom: 20px;
    }
@@ -98,10 +98,10 @@ const MainContants = styled.div`
       padding: 50px;
       overflow: hidden;
    }
-   @media screen and (max-width: 1100px) {
+   @media screen and (max-width: 1250px) {
       .th {
          margin-top: 20px;
-         grid-template-columns: repeat(4, 50%);
+         grid-template-columns: repeat(3, 50%);
       }
       .flex {
          min-width: auto;
@@ -110,7 +110,7 @@ const MainContants = styled.div`
    }
    @media screen and (max-width: 700px) {
       .th {
-         grid-template-columns: repeat(4, 80px);
+         grid-template-columns: repeat(3, 100px);
       }
       .flex {
          min-width: auto;

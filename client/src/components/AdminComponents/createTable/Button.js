@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { createQr } from '../../redux/action/action';
+import { createQr } from '../../../redux/action/action';
 
 const Btn = styled.button`
    width: 120px;
@@ -43,8 +43,7 @@ const ButtonWrap = ({ text, num }) => {
    };
    const handleClickSaveQr = () => {
       //서버에 post 요청
-      console.log(setOverlapNumState);
-      console.log(setSavedTebleNum);
+
       if (!setOverlapNumState && !setSavedTebleNum) {
          alert('데이터 전송');
       } else {

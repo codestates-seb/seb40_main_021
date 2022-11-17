@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import CreateQR from '../../components/AdminComponents/QrTable/CreateQR';
+import CreateTable from '../../components/AdminComponents/createTable/CreateTable';
 
 const QrTable = () => {
    return (
       <QrTableContainer>
-         <CreateQR></CreateQR>
+         <CreateTable></CreateTable>
       </QrTableContainer>
    );
 };

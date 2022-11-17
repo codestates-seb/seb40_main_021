@@ -188,7 +188,7 @@ const TableList = () => {
    };
    return (
       <Content>
-         <div>
+         <div className="title">
             <h1>테이블 목록</h1>
          </div>
          <div className="table">
@@ -201,9 +201,13 @@ const TableList = () => {
 };
 
 const Content = styled.div`
+   height: calc(100vh - 70px);
    width: calc(100% - 300px);
    padding-left: 300px;
-   margin-top: 50px;
+   overflow: scroll;
+   .title {
+      padding: 50px;
+   }
    > :first-child {
       font-weight: bold;
       font-size: 1.5rem;
@@ -212,7 +216,7 @@ const Content = styled.div`
    .table {
       display: grid;
       width: 100%;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
       grid-template-rows: 500px;
       align-items: center;
       justify-items: center;
@@ -222,6 +226,8 @@ const Content = styled.div`
       }
       @media screen and (max-width: 1000px) {
          grid-template-columns: 1fr;
+         grid-template-rows: 1fr;
+
          flex-grow: 1;
       }
       @media screen and (max-width: 700px) {
