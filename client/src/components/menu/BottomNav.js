@@ -7,8 +7,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 import { BottomNavStyle } from '../../style/menu.style';
+import { useSelector } from 'react-redux';
 
 export const BottomNav = (modal) => {
+  const cart = useSelector((store) => store.menuReducer.cart);
+
   const navHandler = () => {
     modal.setIsModalOpen(true);
   };
@@ -39,6 +42,7 @@ export const BottomNav = (modal) => {
         className={({ isActive }) => (isActive ? 'active button' : 'button')}
       >
         <FontAwesomeIcon icon={faCartShopping} />
+        {cart.length > 0 && <span className="cartCount">{cart.length}</span>}
         <p>주문목록</p>
       </NavLink>
     </BottomNavStyle>

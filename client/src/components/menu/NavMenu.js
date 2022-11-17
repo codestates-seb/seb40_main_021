@@ -1,17 +1,17 @@
 import { Search } from './Search';
+import { useSelector } from 'react-redux';
+import { Category } from './Category';
 
 export const NavMenu = () => {
+  const category = useSelector((store) => store.menuReducer.category);
   return (
-    <ul className="nav-wrapper">
+    <div className="nav-wrapper">
       <Search />
-      <li className="active">대표 메뉴</li>
-      <li>세트 메뉴</li>
-      <li>사이드 메뉴</li>
-      <li>음료</li>
-      <li>음료</li>
-      <li>음료</li>
-      <li>음료</li>
-      <li>음료</li>
-    </ul>
+      <ul>
+        {category.map((category, idx) => (
+          <Category key={idx} data={category} />
+        ))}
+      </ul>
+    </div>
   );
 };

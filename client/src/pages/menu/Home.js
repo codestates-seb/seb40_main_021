@@ -5,6 +5,7 @@ import { MenuList } from '../../components/menu/MenuList';
 import { NavMenu } from '../../components/menu/NavMenu';
 import { saveMenuId } from '../../redux/actions/menuAction';
 import { Wrapper } from '../../style/menu.style';
+// import { Search } from '../../components/menu/Search';
 
 export const Home = () => {
   const dispatch = useDispatch();
