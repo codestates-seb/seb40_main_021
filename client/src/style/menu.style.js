@@ -15,8 +15,9 @@ export const Wrapper = styled.div`
     padding: 0 20px 20px;
     background-color: white;
     box-shadow: 0px 1px 7px rgb(0 0 0 / 18%);
+
     .nav-wrapper {
-      width: 100%;
+      width: 100vw;
       max-width: 500px;
       background-color: white;
       position: fixed;
@@ -24,26 +25,41 @@ export const Wrapper = styled.div`
       left: 50%;
       transform: translate(-50%);
       display: flex;
-      flex-wrap: nowrap;
-      padding: 0 15px 0 65px;
-      overflow-x: auto;
-      overflow-y: hidden;
-      -webkit-overflow-scrolling: touch;
+      /* flex-wrap: nowrap; */
+      padding: 0 0 0 65px;
+      /* overflow-x: scroll; */
+      /* overflow-y: hidden; */
+
       /* box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15); */
-      &::-webkit-scrollbar {
-        display: none;
+
+      ul {
+        width: 100%;
+        max-width: 500px;
+        position: fixed;
+        left: 0;
+        padding-left: 65px;
+        /* position: absolute; */
+        display: flex;
+        overflow-x: scroll;
+        -webkit-overflow-scrolling: touch;
+        &::-webkit-scrollbar {
+          display: none;
+        }
       }
       li {
         flex: 0 0 auto;
-        padding: 7px 10px;
+
         margin: 10px 7px;
-        border-radius: 20px;
-        box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.18);
-        cursor: pointer;
-        font-size: 14px;
-        font-weight: 600;
-        &.active {
-          background-color: #ffd6b8;
+
+        button {
+          padding: 7px 10px;
+          border-radius: 20px;
+          box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.18);
+          font-size: 14px;
+          font-weight: 600;
+          &.active {
+            background-color: #ffd6b8;
+          }
         }
       }
     }
@@ -57,6 +73,7 @@ export const Wrapper = styled.div`
       display: flex;
       padding: 2.5px 20px;
       transition: 0.6s;
+      z-index: 1;
 
       input {
         width: 100%;
@@ -516,6 +533,24 @@ export const BottomNavStyle = styled.div`
     font-size: 24px;
     cursor: pointer;
     text-decoration: none;
+    position: relative;
+    .cart {
+      position: relative;
+    }
+    .cartCount {
+      width: 18px;
+      height: 18px;
+      background-color: #ff3535;
+      color: white;
+      font-size: 8px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: -8px;
+      right: 8px;
+    }
     p {
       font-size: 10px;
       margin-top: 5px;
@@ -555,6 +590,8 @@ export const HeaderStyle = styled.header`
 `;
 
 export const ModalStyle = styled.div`
+  position: fixed;
+  z-index: 9999;
   .modal-bg {
     width: 100%;
     height: 100%;
