@@ -1,78 +1,16 @@
+import { useSelector } from 'react-redux';
+import { Menu } from './Menu';
+
 export const MenuList = () => {
+  const menus = useSelector((store) => store.menuReducer.menu);
+
   return (
     <section className="menulist-wrapper">
       <h1>대표 메뉴</h1>
       <ul className="grid-container">
-        <li>
-          <div className="menuImgBox">img</div>
-          <div className="menuTxtBox">
-            <div className="inline">
-              <h2>맛있는 치킨</h2>
-              <span>인기</span>
-            </div>
-            <p>16,000원</p>
-          </div>
-        </li>
-        <li>
-          <div className="menuImgBox">img</div>
-          <div className="menuTxtBox">
-            <div className="inline">
-              <h2>맛있는 치킨</h2>
-              <span>인기</span>
-            </div>
-            <p>16,000원</p>
-          </div>
-        </li>
-        <li>
-          <div className="menuImgBox">img</div>
-          <div className="menuTxtBox">
-            <div className="inline">
-              <h2>맛있는 치킨</h2>
-              <span>인기</span>
-            </div>
-            <p>16,000원</p>
-          </div>
-        </li>
-        <li>
-          <div className="menuImgBox">img</div>
-          <div className="menuTxtBox">
-            <div className="inline">
-              <h2>맛있는 치킨</h2>
-              <span>인기</span>
-            </div>
-            <p>16,000원</p>
-          </div>
-        </li>
-        <li>
-          <div className="menuImgBox">img</div>
-          <div className="menuTxtBox">
-            <div className="inline">
-              <h2>맛있는 치킨</h2>
-              <span>인기</span>
-            </div>
-            <p>16,000원</p>
-          </div>
-        </li>
-        <li>
-          <div className="menuImgBox">img</div>
-          <div className="menuTxtBox">
-            <div className="inline">
-              <h2>맛있는 치킨</h2>
-              <span>인기</span>
-            </div>
-            <p>16,000원</p>
-          </div>
-        </li>
-        <li>
-          <div className="menuImgBox">img</div>
-          <div className="menuTxtBox">
-            <div className="inline">
-              <h2>맛있는 치킨</h2>
-              <span>인기</span>
-            </div>
-            <p>16,000원</p>
-          </div>
-        </li>
+        {menus.map((menu) => (
+          <Menu key={menu.id} menu={menu} />
+        ))}
       </ul>
     </section>
   );

@@ -1,147 +1,41 @@
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { CartItem } from '../../components/menu/CartItem';
+import { emptyCart, orderMenu } from '../../redux/actions/menuAction';
+
 export const Cart = () => {
+  const [total, setTotal] = useState(0);
+  const cart = useSelector((store) => store.menuReducer.cart);
+  let temp = 0;
+  const dispatch = useDispatch();
+  useEffect(() => {
+    // 서버에 요청 -> 카트에 담긴 목록 불러오기
+    cart.map((menu) => (temp += menu.price * menu.quantity));
+    setTotal(temp);
+  });
+
+  const orderHandler = () => {
+    // 서버에 요청 -> cart 데이터 보내기
+    if (cart.length === 0) {
+      return alert('주문할 메뉴를 선택해주세요!');
+    }
+    dispatch(orderMenu(cart));
+    dispatch(emptyCart());
+    return alert('주문이 완료되었습니다.');
+  };
+
   return (
     <div className="menu-container">
-      <h1>총 주문 메뉴: 2개</h1>
+      <h1>총 주문 메뉴: {cart.length}개</h1>
       <ul>
-        <li className="stored-menu">
-          <div className="left">
-            <div className="imgBox"></div>
-            <div className="menuTxt">
-              <h2>맛있는 치킨</h2>
-              <p>16,000원</p>
-            </div>
-          </div>
-          <div className="right">
-            <button className="delete">x</button>
-            <div className="quantity">
-              <button>-</button>
-              <p>1</p>
-              <button>+</button>
-            </div>
-          </div>
-        </li>
-        <li className="stored-menu">
-          <div className="left">
-            <div className="imgBox"></div>
-            <div className="menuTxt">
-              <h2>콜라</h2>
-              <p>8,000원</p>
-            </div>
-          </div>
-          <div className="right">
-            <button className="delete">x</button>
-            <div className="quantity">
-              <button>-</button>
-              <p>4</p>
-              <button>+</button>
-            </div>
-          </div>
-        </li>
-        <li className="stored-menu">
-          <div className="left">
-            <div className="imgBox"></div>
-            <div className="menuTxt">
-              <h2>콜라</h2>
-              <p>8,000원</p>
-            </div>
-          </div>
-          <div className="right">
-            <button className="delete">x</button>
-            <div className="quantity">
-              <button>-</button>
-              <p>4</p>
-              <button>+</button>
-            </div>
-          </div>
-        </li>
-        <li className="stored-menu">
-          <div className="left">
-            <div className="imgBox"></div>
-            <div className="menuTxt">
-              <h2>콜라</h2>
-              <p>8,000원</p>
-            </div>
-          </div>
-          <div className="right">
-            <button className="delete">x</button>
-            <div className="quantity">
-              <button>-</button>
-              <p>4</p>
-              <button>+</button>
-            </div>
-          </div>
-        </li>
-        <li className="stored-menu">
-          <div className="left">
-            <div className="imgBox"></div>
-            <div className="menuTxt">
-              <h2>콜라</h2>
-              <p>8,000원</p>
-            </div>
-          </div>
-          <div className="right">
-            <button className="delete">x</button>
-            <div className="quantity">
-              <button>-</button>
-              <p>4</p>
-              <button>+</button>
-            </div>
-          </div>
-        </li>
-        <li className="stored-menu">
-          <div className="left">
-            <div className="imgBox"></div>
-            <div className="menuTxt">
-              <h2>콜라</h2>
-              <p>8,000원</p>
-            </div>
-          </div>
-          <div className="right">
-            <button className="delete">x</button>
-            <div className="quantity">
-              <button>-</button>
-              <p>4</p>
-              <button>+</button>
-            </div>
-          </div>
-        </li>
-        <li className="stored-menu">
-          <div className="left">
-            <div className="imgBox"></div>
-            <div className="menuTxt">
-              <h2>콜라</h2>
-              <p>8,000원</p>
-            </div>
-          </div>
-          <div className="right">
-            <button className="delete">x</button>
-            <div className="quantity">
-              <button>-</button>
-              <p>4</p>
-              <button>+</button>
-            </div>
-          </div>
-        </li>
-        <li className="stored-menu">
-          <div className="left">
-            <div className="imgBox"></div>
-            <div className="menuTxt">
-              <h2>콜라</h2>
-              <p>8,000원</p>
-            </div>
-          </div>
-          <div className="right">
-            <button className="delete">x</button>
-            <div className="quantity">
-              <button>-</button>
-              <p>4</p>
-              <button>+</button>
-            </div>
-          </div>
-        </li>
+        {cart.map((menu) => (
+          <CartItem key={menu.id} data={menu} />
+        ))}
       </ul>
-      <p className="total-price">총 주문 금액 : 24,000원</p>
-      <button className="order-btn">주문하기</button>
+      <p className="total-price">총 주문 금액 : {total}원</p>
+      <button className="order-btn" onClick={orderHandler}>
+        주문하기
+      </button>
     </div>
   );
 };
