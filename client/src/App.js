@@ -8,6 +8,12 @@ import Table from './pages/user/TablePage';
 import Store from './pages/user/StorePage';
 import CreateTable from './pages/user/CreateTablePage';
 import QrTable from './pages/user/QrTablePage';
+import SetMenu from './pages/menu/SetMenu';
+import SignupTos from './pages/Signup/SignupTos';
+import MemberInfo from './pages/Signup/MemberInfo';
+import StoreInfo from './pages/Signup/StoreInfo';
+import Complete from './pages/Signup/Complete';
+import Login from './pages/Signup/Login';
 function App() {
    return (
       <div className="App">
@@ -21,7 +27,13 @@ function App() {
                   <Route path="/user/store" element={<Store />} />
                   <Route path="/user/create" element={<CreateTable />} />
                   <Route path="/user/qr" element={<QrTable />} />
+                  <Route path="/user/menusetting" element={<SetMenu />} />
                </Route>
+               <Route exact path="/" element={<SignupTos />} />
+               <Route path="/MemberInfo" element={<MemberInfo />} />
+               <Route path="/StoreInfo" element={<StoreInfo />} />
+               <Route path="/Complete" element={<Complete />} />
+               <Route path="/Login" element={<Login />} />
             </Routes>
          </BrowserRouter>
       </div>
