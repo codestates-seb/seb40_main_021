@@ -53,7 +53,7 @@ public class CategoryController {
         return new ResponseEntity<>(categoryMapper.categoryToCategoryResponseDto(response), HttpStatus.OK);
     }
     // 특정 카테고리 조회
-    @GetMapping("/{category-id}")
+    @GetMapping("/read/{category-id}")
     public ResponseEntity getCategory(@PathVariable("category-id") @Positive long categoryId){
         Category category = categoryService.findCategory(categoryId);
 
