@@ -1,8 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Active, AgreeDetail, AgreeDetailActive, AgreeTitle, AgreeTitleAdd, BtnArea, BtnDefault, Container, DivideLine, MemberPanel, MemberReg, PageTitle, PanelTitle, Wrapper } from './SignupTos.Style';
+import {
+   Active,
+   AgreeDetail,
+   AgreeDetailActive,
+   AgreeTitle,
+   AgreeTitleAdd,
+   BtnArea,
+   BtnDefault,
+   Container,
+   DivideLine,
+   MemberPanel,
+   MemberReg,
+   PageTitle,
+   PanelTitle,
+   Wrapper,
+} from './SignupTos.Style';
 
 const SignupTos = () => {
+   const [isChecked, setIsChecked] = useState({
+      agree1: false,
+      agree2: false,
+   });
+
+   const handleChange = e => {
+      const { name, checked } = e.target;
+
+      setIsChecked({
+         ...isChecked,
+         [name]: checked,
+      });
+   };
+
    return (
       <Wrapper>
          <Container>
@@ -21,7 +50,13 @@ const SignupTos = () => {
                      <h5>1. 개인정보 이용동의</h5>
                   </PanelTitle>
                   <AgreeTitle>
-                     <input type="checkbox" id="check1" name="checkbox" />
+                     <input
+                        type="checkbox"
+                        id="check1"
+                        name="agree1"
+                        value={isChecked.agree1}
+                        onChange={handleChange}
+                     />
                      <label for="check1">
                         <h5>(필수)개인정보 이용 동의서</h5>
                      </label>
@@ -50,7 +85,13 @@ const SignupTos = () => {
                      </h5>
                   </AgreeDetailActive>
                   <AgreeTitleAdd>
-                     <input type="checkbox" id="check2" name="checkbox" />
+                     <input
+                        type="checkbox"
+                        id="check2"
+                        name="agree2"
+                        value={isChecked.agree2}
+                        onChange={handleChange}
+                     />
                      <label for="check2">
                         <h5>(필수)테스트정보 이용 동의서</h5>
                      </label>
@@ -81,7 +122,7 @@ const SignupTos = () => {
 
                   <BtnArea>
                      <BtnDefault>
-                        <Link to="/MemberInfo">다음</Link>
+                        <Link to={!!isChecked.agree1 && !!isChecked.agree2 ? '/MemberInfo' : null}>다음</Link>
                      </BtnDefault>
                   </BtnArea>
                </MemberPanel>
