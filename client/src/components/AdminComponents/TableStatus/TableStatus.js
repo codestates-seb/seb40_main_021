@@ -37,7 +37,7 @@ const TableStatusBox = styled.div`
    flex-direction: column;
    justify-content: start;
    align-items: center;
-   width: 300px;
+   width: 70%;
    height: 300px;
    box-shadow: 0 4px 2px 0px lightgray;
    font-size: 1.3rem;
@@ -51,14 +51,14 @@ const TableStatusBox = styled.div`
       height: 80px;
       border-bottom: 1px solid gray;
       > :nth-child(1) {
-         font-size: 2rem;
+         font-size: 32px;
          font-weight: bold;
          width: 70%;
          margin-left: 10px;
       }
       > :nth-child(2) {
          b {
-            font-size: 1.8rem;
+            font-size: 24px;
          }
       }
    }
@@ -80,13 +80,16 @@ const TableStatusBox = styled.div`
          width: 100%;
          margin: 10px 0 10px 0;
          > :nth-child(1) {
+            font-size: 16px;
             width: 35%;
             font-weight: bold;
          }
          > :nth-child(2) {
+            font-size: 15px;
             width: 30%;
          }
          > :nth-child(3) {
+            font-size: 15px;
             font-weight: bold;
          }
       }
@@ -106,8 +109,11 @@ const TableStatusBox = styled.div`
          margin-right: 10px;
       }
    }
-   @media screen and (max-width: 700px) {
-      margin-bottom: 50px;
+   @media screen and (max-width: 1400px) {
+      width: 60%;
+   }
+   @media screen and (max-width: 1000px) {
+      margin-bottom: 30px;
    }
 `;
 

@@ -37,6 +37,9 @@ const InputBox = styled.input`
          border-bottom: 3px solid #666666;
       }
 
+      /* :active {
+         border-bottom: 3px solid #FF6C01;
+      } */
    @media screen and (max-width: 600px) {
 
          background: #f4f4f4;
@@ -51,11 +54,12 @@ const InputBox = styled.input`
    }
 `;
 
-const Input = ({ type, name, handleValue, width, value, placeholder, idx }) => {
+const Input = ({ type, name, handleValue, width, value, placeholder, idx, active }) => {
    return (
       <InputBox
          type={type}
          idx={idx}
+         active={active}
          value={value}
          //  defaultValue={value}
          onChange={e => handleValue(e)}

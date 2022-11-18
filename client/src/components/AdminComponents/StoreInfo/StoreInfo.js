@@ -16,7 +16,8 @@ const StoreInfo = () => {
             '매일 깨끗하고 신선한재료로 맛있는 퓨전요리와 경양식. 고급원두를 사용한 다양한 커피 분위기좋고 경치좋고 맛있기까지하는 맛나요 가게로 놀러오세요~^^',
       },
    };
-   const UpdateState = useSelector(state => state.data.storeInfoUpdateState);
+   const UpdateState = useSelector(state => state.storeInfoUpdateState);
+   console.log(UpdateState);
    return (
       <MainContants>
          <div className="title">
@@ -40,6 +41,10 @@ const MainContants = styled.div`
    align-items: center;
    width: 100%;
    margin-top: 50px;
+   .table {
+      border-collapse: separate;
+      border-spacing: 0 15px;
+   }
    .sotreTimes {
       display: flex;
       flex-direction: column;
@@ -51,11 +56,11 @@ const MainContants = styled.div`
       display: flex;
       box-sizing: border-box;
       width: 90%;
-      height: 400px;
+      height: 100%;
+      max-height: 500px;
       background-color: white;
       box-shadow: 0 4px 2px 0px lightgray;
       padding: 50px;
-      overflow: hidden;
    }
    > :first-child {
       //title
@@ -75,7 +80,7 @@ const MainContants = styled.div`
       display: flex;
       flex-direction: column;
       height: 100%;
-      width: 90%;
+      width: 100%;
       margin-left: 30px;
       overflow-y: scroll;
 
@@ -96,7 +101,6 @@ const MainContants = styled.div`
    @media screen and (max-width: 1100px) {
       .mainContant {
          flex-direction: column;
-         height: 500px;
       }
       .storeInfoContainer {
          margin-top: 30px;

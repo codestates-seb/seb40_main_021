@@ -15,8 +15,8 @@ export const InfoTable = () => {
    };
    return (
       <div>
-         <table>
-            <tbody className="sotrinfo">
+         <table className="table">
+            <tbody>
                <tr>
                   <th>주소</th>
                   <td>{dummyData.data.address}</td>

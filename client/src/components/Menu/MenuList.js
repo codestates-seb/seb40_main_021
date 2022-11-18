@@ -145,7 +145,7 @@ const MenuList = ({ el }) => {
     //number , 쉼표처리
     let number = pricesChange
     number = number.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-
+    console.log(pricesChange)
     return (
         <S.List>
             <S.ListLi>

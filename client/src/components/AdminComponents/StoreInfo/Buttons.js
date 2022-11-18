@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
 import { storeInfoUpdate } from '../../../redux/action/action';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 const BtnWrap = styled.div`
    display: flex;
@@ -48,7 +47,7 @@ const OrangeBtn = styled.button`
 `;
 const ButtonWrap = ({ bottom }) => {
    const dispatch = useDispatch();
-   const UpdateState = useSelector(state => state.data.storeInfoUpdateState);
+   const UpdateState = useSelector(state => state.storeInfoUpdateState);
    const handleClickStorInfoUpdate = () => {
       dispatch(storeInfoUpdate());
    };
