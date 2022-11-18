@@ -29,7 +29,22 @@ public class Member extends BaseTimeEntity {
     @Column(length = 100)
     private String password;
 
-    @Enumerated(EnumType.STRING)
+
+    //businessNumber, image, storeDescription, storeAddress, storePhoneNumber,
+    //storeOpeningHours
+
+    private String businessNumber;
+    private String about;
+    private String address;
+    private String contactNumber;
+
+
+
+
+
+
+
+        @Enumerated(EnumType.STRING)
     private Role role;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
