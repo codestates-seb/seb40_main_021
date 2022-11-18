@@ -72,7 +72,7 @@ const Login = () => {
                      name="password"
                      onChange={handlePassword}
                   />
-                  {/* <span>아이디 비밀번호를 확인해 주세요.</span> */}
+                  
                   {passwordError && <span>영문, 숫자,특수문자 포함 8자리 이상</span>}
                   <IdRemember>
                      <input type="checkbox" id="rememberCheck" name="checkbox" />
@@ -84,7 +84,7 @@ const Login = () => {
 
                <LoginBtn>
                   <BtnFill href="./index.html">
-                     <Link to="/">로그인</Link>
+                  <Link to={!idError && !passwordError ? "/" : null}>로그인</Link>
                   </BtnFill>
                </LoginBtn>
             </LoginPanel>
