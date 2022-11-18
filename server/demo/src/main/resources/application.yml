@@ -41,7 +41,7 @@ spring:
         driver-class-name: com.mysql.cj.jdbc.Driver
         url: jdbc:mysql://localhost:3306/mainproject?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
         username: root
-        password: yourPassword
+        password: kms31204120!
 
     security:
         jwt:
@@ -55,7 +55,7 @@ spring:
         database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
         generate-ddl: true
         hibernate:
-            ddl-auto: create
+            ddl-auto: update
         show_sql: true
         format_sql: true
 

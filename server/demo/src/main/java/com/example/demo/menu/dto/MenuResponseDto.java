@@ -9,6 +9,7 @@ import lombok.Setter;
 @Getter
 //@AllArgsConstructor
 public class MenuResponseDto {
+    private long memberId;
     private long menuId;
     private String menuName;
     private String menuContent;

@@ -1,7 +1,10 @@
 package com.example.demo.menu.entity;
 
 import com.example.demo.category.entity.Category;
+import com.example.demo.user.entity.Member;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,4 +38,9 @@ public class Menu {
     @ManyToOne
     @JoinColumn(name = "CATEGORY_ID")
     private Category category;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
 }

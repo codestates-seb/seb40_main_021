@@ -18,6 +18,10 @@ public class MenuPostDto {
     @NotNull
     private Long categoryId;
 
+    @Positive
+    @NotNull
+    private Long memberId;
+
     @NotBlank(message = "The name must not be blank.")
     private String menuName;
 

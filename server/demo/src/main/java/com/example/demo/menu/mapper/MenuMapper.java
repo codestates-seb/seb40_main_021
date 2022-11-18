@@ -5,6 +5,7 @@ import com.example.demo.menu.dto.MenuPatchDto;
 import com.example.demo.menu.dto.MenuPostDto;
 import com.example.demo.menu.dto.MenuResponseDto;
 import com.example.demo.menu.entity.Menu;
+import com.example.demo.user.entity.Member;
 import org.mapstruct.Mapper;
 
 import java.util.List;
@@ -13,17 +14,21 @@ import java.util.List;
 public interface MenuMapper {
     default Menu menuPostDtoToMenu(CategoryService categoryService, MenuPostDto menuPostDto){
         Menu menu = new Menu();
+        Member member = new Member();
+        member.setId(menuPostDto.getMemberId());
         menu.setMenuName(menuPostDto.getMenuName());
         menu.setMenuContent(menuPostDto.getMenuContent());
         menu.setPrice(menuPostDto.getPrice());
         menu.setVote(0);
         menu.setCategory(categoryService.findVerifiedCategory(menuPostDto.getCategoryId()));
+        menu.setMember(member);
 
         return menu;
     }
     Menu menuPatchDtoToMenu(MenuPatchDto menuPatchDto);
     default MenuResponseDto menuToMenuResponseDto(Menu menu){
         MenuResponseDto menuResponseDto = new MenuResponseDto();
+        menuResponseDto.setMemberId(menu.getMember().getId());
         menuResponseDto.setMenuId(menu.getMenuId());
         menuResponseDto.setMenuName(menu.getMenuName());
         menuResponseDto.setMenuContent(menu.getMenuContent());

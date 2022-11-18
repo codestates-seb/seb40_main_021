@@ -1,7 +1,9 @@
 package com.example.demo.user.entity;
 
 import com.example.demo.category.entity.Category;
+import com.example.demo.menu.entity.Menu;
 import com.example.demo.table.entity.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableLoadTimeWeaving;
@@ -52,6 +54,10 @@ public class Member extends BaseTimeEntity {
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
     private List<Table> tableList = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "member", cascade =  CascadeType.REMOVE)
+    private List<Menu> menuList = new ArrayList<>();
 
     public void encodePassword(PasswordEncoder passwordEncoder) {
         this.password = passwordEncoder.encode(password);

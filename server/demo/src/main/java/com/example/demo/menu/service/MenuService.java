@@ -5,6 +5,8 @@ import com.example.demo.exception.BusinessLogicException;
 import com.example.demo.exception.ExceptionCode;
 import com.example.demo.menu.entity.Menu;
 import com.example.demo.menu.repository.MenuRepository;
+import com.example.demo.user.entity.Member;
+import com.example.demo.user.repository.MemberRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,17 +14,22 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+
 public class MenuService {
     private final MenuRepository menuRepository;
     private final CategoryRepository categoryRepository;
+    private final MemberRepository memberRepository;
 
-    public MenuService(MenuRepository menuRepository, CategoryRepository categoryRepository){
+    public MenuService(MenuRepository menuRepository, CategoryRepository categoryRepository, MemberRepository memberRepository){
         this.menuRepository = menuRepository;
         this.categoryRepository = categoryRepository;
+        this.memberRepository = memberRepository;
     }
     //메뉴 생성
     public Menu createMenu(Menu menu){
         verifyExistsMenu(menu);
+        Optional<Member> member = memberRepository.findById(menu.getMember().getId());
+        menu.setMember(member.get());
         return menuRepository.save(menu);
     }
     // 메뉴 업데이트
