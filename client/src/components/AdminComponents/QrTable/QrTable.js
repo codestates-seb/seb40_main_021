@@ -27,6 +27,12 @@ const CreateQR = () => {
             date: new Date().toLocaleDateString().slice(0, -1),
             qrURL: `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/3`,
          },
+         {
+            id: 3,
+            tableNum: 4,
+            date: new Date().toLocaleDateString().slice(0, -1),
+            qrURL: `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/4`,
+         },
       ],
    };
    const allChackBoxRef = useRef(null);
@@ -90,7 +96,7 @@ const CreateQR = () => {
             </div>
             <QrList></QrList>
             <div className="printBtn">
-               <Button text1={'전체 인쇄'} text2={'선택 인쇄'}></Button>
+               <Button></Button>
             </div>
          </main>
       </MainContants>

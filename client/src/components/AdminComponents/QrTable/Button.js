@@ -1,10 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { printModal } from '../../../redux/action/action';
+import Printe from '../Print/Printe';
+
+const ButtonWrap = () => {
+   const dispatch = useDispatch();
+
+   const savedTableListCheckBoxArrState = useSelector(state => state.savedTableListCheckBoxArr);
+
+   const printModalState = useSelector(state => state.printModal);
+
+   const handleClickPrintBtn = () => {
+      savedTableListCheckBoxArrState.length === 0 ? alert('선택된 QR Table이 없습니다.') : dispatch(printModal(true));
+   };
+   return (
+      <Btns>
+         <button onClick={handleClickPrintBtn} className="PrintBtn">
+            인쇄
+         </button>
+         {printModalState ? <Printe /> : null}
+      </Btns>
+   );
+};
+
 const Btns = styled.div`
    display: flex;
    justify-content: end;
    width: 100%;
-   .AllPrintBtn {
+   .PrintBtn {
       width: 120px;
       height: 47px;
       border: 2px solid #ff6c01;
@@ -20,29 +44,5 @@ const Btns = styled.div`
          width: 50%;
       }
    }
-   .SelectPrintBtn {
-      width: 120px;
-      height: 47px;
-      border: 2px solid #ff6c01;
-      cursor: pointer;
-      color: black;
-      border-radius: 10px;
-      background-color: white;
-      font-size: 15px;
-      font-weight: 700;
-      @media screen and (max-width: 700px) {
-         width: 50%;
-      }
-   }
 `;
-
-const ButtonWrap = ({ text1, text2 }) => {
-   return (
-      <Btns>
-         <button className="SelectPrintBtn">{text2}</button>
-         <button className="AllPrintBtn">{text1}</button>
-      </Btns>
-   );
-};
-
 export default ButtonWrap;

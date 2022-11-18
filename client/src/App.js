@@ -14,12 +14,14 @@ import MemberInfo from './pages/Signup/MemberInfo';
 import StoreInfo from './pages/Signup/StoreInfo';
 import Complete from './pages/Signup/Complete';
 import Login from './pages/Signup/Login';
+import { useSelector } from 'react-redux';
 function App() {
+   const printModalState = useSelector(state => state.printModal);
    return (
       <div className="App">
          <Reset />
          <BrowserRouter>
-            <Header />
+            {printModalState ? null : <Header />}
             <Routes>
                <Route path="/user" element={<GnbLayout />}>
                   <Route path="/user" element={<AlarmPage />} />
