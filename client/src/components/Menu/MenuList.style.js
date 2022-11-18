@@ -5,6 +5,7 @@ export const List = styled.li`
 list-style: none;
 width: 100%;
 margin-bottom: 30px;
+color: black;
 @media screen and (max-width: 700px) {
 }
 `
@@ -38,6 +39,8 @@ width: 100%;
 & p {
     font-size: 14px;
     margin-bottom: 8px;
+    display: flex;
+    align-items: center;
 }
 & p.menuListItem {
     font-size: 25px;
@@ -57,6 +60,11 @@ width: 100%;
 & p.menuListAbout {
     font-size: 15px;
     margin-top: 10px;
+}
+& p span {
+    font-size: 13px;
+    color: #FF6B00;
+    margin-left: 8px;
 }
 @media screen and (max-width: 700px) {
     margin-bottom: 12px;

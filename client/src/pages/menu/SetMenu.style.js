@@ -58,7 +58,21 @@ margin-bottom: 26px;
 `
 export const MenuListUl = styled.ul`
 
+
 `
+export const NoMenu = styled.p`
+& span {
+    font-size: 14px;
+    color: #6D6D6D;
+    text-align: center;
+    display: block;
+    margin-bottom: 12px;
+}
+    
+    padding: 50px 40px;
+
+`
+
 export const AddBtn = styled.button`
 display: flex;
 align-items: center;
@@ -113,6 +127,8 @@ filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.1));
 export const OrangeBtn = styled.button`
 filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.1));
 width: 120px;
+display: block;
+    margin: 0 auto;
 height: 47px;
 align-items: center;
 padding: 12px 0px;

@@ -61,7 +61,7 @@ const MenuViewList = ({ el }) => {
                     <S.InputList>
                         <S.InputListWrap>
                             <p>설명</p>
-                            <p className='menuListAbout'>{el.about}</p>
+                            <p className='menuListAbout'>{el.menuAbout}</p>
                         </S.InputListWrap>
                     </S.InputList>
                 </S.InputWrap>

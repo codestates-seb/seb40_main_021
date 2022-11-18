@@ -12,7 +12,7 @@ const Menu = () => {
             menuName: '김치찌개',
             prices: '8000',
             recommend: true,
-            about: '맛있는 김치찌개'
+            menuAbout: '맛있는 김치찌개'
 
         },
         {
@@ -21,7 +21,7 @@ const Menu = () => {
             menuName: '김치찌개',
             prices: '8000',
             recommend: true,
-            about: '맛있는 김치찌개'
+            menuAbout: '맛있는 김치찌개'
 
         }
     ]
@@ -37,7 +37,11 @@ const Menu = () => {
                 <S.MenuContainerWarp>
                     <S.SettingHead>메뉴목록</S.SettingHead>
                     <S.MenuListUl>
-                        {menulist.map((el, idx) => <MenuViewList key={idx} idx={idx} el={el} />)}
+                        {
+                            menulist.length === 0 ? <S.NoMenu> <span>메뉴가 없습니다. 메뉴를 등록해주세요.</span> <S.OrangeBtn>메뉴 등록</S.OrangeBtn> </S.NoMenu> :
+                                menulist.map((el, idx) => <MenuViewList key={idx} idx={idx} el={el} />)
+                        }
+
                     </S.MenuListUl>
                 </S.MenuContainerWarp>
 
