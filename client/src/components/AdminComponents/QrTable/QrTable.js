@@ -53,12 +53,12 @@ const CreateQR = () => {
    };
 
    const allCheck = () => {
-      for (let idx = 0; idx < dummyData.data.length; idx++) {
-         dispatch(savedTableListCheckBoxArr(idx));
-      }
-
       if (allChackBoxRef.current.checked) {
+         dispatch(clearSavedTableListCheckBoxArr());
          dispatch(qrListAllCheck(true));
+         for (let idx = 0; idx < dummyData.data.length; idx++) {
+            dispatch(savedTableListCheckBoxArr(idx));
+         }
       } else {
          dispatch(qrListAllCheck(false));
          dispatch(clearSavedTableListCheckBoxArr());
