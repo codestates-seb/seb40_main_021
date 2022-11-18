@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import Input from '../../Input';
+// import Input from '../../Input';  보류
 import styled from 'styled-components';
-import Button from '../Button';
+import Button from './Button';
+
 const InputTable = () => {
    const [tableValue, setTableValue] = useState('');
+   const hadleClickCreateQR = e => {
+      setTableValue(e.target.value);
+   };
    return (
       <InputTableBox>
          <div className="createQrBox">
@@ -13,8 +17,13 @@ const InputTable = () => {
          </div>
          <div className="createQrBox">
             <h2 className="label">테이블 수</h2>
-            <Input value="테이블 수 를 입력 해주세요." handleValue={setTableValue} width="220px"></Input>
-            <Button></Button>
+            <input
+               type="text"
+               placeholder="테이블 수를 입력하세요"
+               onChange={e => {
+                  hadleClickCreateQR(e);
+               }}></input>
+            <Button text={'QR 등록'} num={tableValue}></Button>
          </div>
       </InputTableBox>
    );

@@ -2,12 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import InputTables from './InputTable';
 import QrList from './QrList';
+import Button from './Button';
+import { useSelector } from 'react-redux';
 
 const CreateQR = () => {
+   const tableNumInputValueOverlap = useSelector(state => state.tableNumInputValueOverlap);
    return (
       <MainContants>
          <div className="title">
-            <h1>QR Table</h1>
+            <h1>테이블 생성</h1>
             <label>* 메뉴판을 등록완료 하시면 테이블 수 별로 QR 코드를 제작하실 수 있습니다.</label>
          </div>
          <main className="mainContant">
@@ -17,17 +20,18 @@ const CreateQR = () => {
             </div>
             <div className="flex">
                <div className="th">
-                  <div>선택</div>
                   <div>No.</div>
                   <div>테이블 번호</div>
-                  <div>생성날짜</div>
-               </div>
-               <div className="print">
-                  <div>선택 인쇄</div>
-                  <div>전체 인쇄</div>
+                  <div>가능여부</div>
                </div>
             </div>
             <QrList></QrList>
+            <div className="QrSaveBtn">
+               <div className="overlapNum">
+                  {tableNumInputValueOverlap ? '중복된 테이블 번호가 입력되었습니다.' : null}
+               </div>
+               <Button text={'저장'}></Button>
+            </div>
          </main>
       </MainContants>
    );
@@ -39,20 +43,15 @@ const MainContants = styled.div`
    height: 90%;
    width: 100%;
    margin-top: 50px;
-   .print {
+   .overlapNum {
+      color: rgb(255, 107, 0);
+      width: 80%;
+      height: 40px;
+   }
+   .QrSaveBtn {
       display: flex;
-
-      justify-content: end;
-      flex-grow: 1;
-      > :first-child {
-         border-bottom: 1px solid gray;
-         cursor: pointer;
-      }
-      > :last-child {
-         margin-left: 30px;
-         border-bottom: 1px solid gray;
-         cursor: pointer;
-      }
+      justify-content: space-between;
+      margin-top: 20px;
    }
    .flex {
       display: flex;
@@ -64,11 +63,11 @@ const MainContants = styled.div`
       display: grid;
       align-items: center;
       justify-items: center;
-      grid-template-columns: repeat(4, 120px);
+      grid-template-columns: repeat(3, 200px);
       font-weight: bold;
    }
    .QrTable {
-      font-size: 1.3rem;
+      font-size: 16px;
       font-weight: bold;
       margin-bottom: 20px;
    }
@@ -99,10 +98,10 @@ const MainContants = styled.div`
       padding: 50px;
       overflow: hidden;
    }
-   @media screen and (max-width: 1100px) {
+   @media screen and (max-width: 1250px) {
       .th {
          margin-top: 20px;
-         grid-template-columns: repeat(4, 50%);
+         grid-template-columns: repeat(3, 50%);
       }
       .flex {
          min-width: auto;
@@ -111,7 +110,7 @@ const MainContants = styled.div`
    }
    @media screen and (max-width: 700px) {
       .th {
-         grid-template-columns: repeat(4, 80px);
+         grid-template-columns: repeat(3, 100px);
       }
       .flex {
          min-width: auto;
