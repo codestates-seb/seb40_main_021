@@ -1,12 +1,25 @@
 import {
+  CATEGORY_SELECTED,
+  DELETE_MENU,
   EMPTY_CART,
   GET_SELECTED_MENU,
+  MENU_SELECTED,
+  MINUS_QUANTITY,
   ORDER_MENUS,
+  PLUS_QUANTITY,
   PUT_CARTITEM,
   SAVE_MENUID,
 } from '../actions/menuAction';
 
 const initialState = {
+  category: [
+    { id: 0, name: '대표메뉴' },
+    { id: 1, name: '세트메뉴' },
+    { id: 2, name: '사이드메뉴' },
+    { id: 3, name: '음료' },
+    { id: 4, name: '디저트' },
+    { id: 5, name: '포장메뉴' },
+  ],
   menu: [
     {
       id: 0,
@@ -57,6 +70,29 @@ export const menuReducer = (state = initialState, action) => {
         };
       }
     }
+    case MINUS_QUANTITY: {
+      const targetMenu = state.cart.find(
+        (menu) => menu.id === action.payload.id
+      );
+      if (targetMenu) {
+        targetMenu.quantity -= 1;
+      }
+      return { ...state, cart: [...state.cart] };
+    }
+
+    case PLUS_QUANTITY: {
+      const targetMenu = state.cart.find(
+        (menu) => menu.id === action.payload.id
+      );
+
+      if (targetMenu) {
+        targetMenu.quantity += 1;
+      }
+      return { ...state, cart: [...state.cart] };
+    }
+
+    case DELETE_MENU:
+      return { ...state, cart: [...action.payload] };
 
     case EMPTY_CART:
       return { ...state, cart: [] };
@@ -91,7 +127,17 @@ export const menuIdReducer = (state = null, action) => {
 
 export const activeReducer = (state = false, action) => {
   switch (action.type) {
-    case 'MENU_SELECTED':
+    case MENU_SELECTED:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
+export const categoryReducer = (state = 0, action) => {
+  switch (action.type) {
+    case CATEGORY_SELECTED:
       return action.payload;
 
     default:
