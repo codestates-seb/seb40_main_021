@@ -7,6 +7,7 @@ export const MODIFYING_SAVED_TABLE_NUM = 'MODIFYING_SAVED_TABLE_NUM';
 export const SAVED_TABLE_LIST_CHECKBOX_ARR = 'SAVED_TABLE_LIST_CHECKBOX_ARR';
 export const QR_LIST_ALL_CHECK = 'QR_LIST_ALL_CHECK';
 export const PRINT_MODAL = 'PRINT_MODAL';
+export const CLEAR_SAVED_TABLE_LIST_CHECKBOX_ARR = 'CLEAR_SAVED_TABLE_LIST_CHECKBOX_ARR';
 
 export const storeInfoUpdate = () => {
    return {
@@ -62,6 +63,11 @@ export const savedTableListCheckBoxArr = idx => {
       payload: {
          idx,
       },
+   };
+};
+export const clearSavedTableListCheckBoxArr = () => {
+   return {
+      type: CLEAR_SAVED_TABLE_LIST_CHECKBOX_ARR,
    };
 };
 export const qrListAllCheck = chack => {

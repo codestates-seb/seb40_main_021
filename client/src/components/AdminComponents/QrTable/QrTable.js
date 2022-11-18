@@ -5,7 +5,12 @@ import Button from './Button';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { CiEdit } from 'react-icons/ci';
 import { useDispatch, useSelector } from 'react-redux';
-import { modifyingSavedTableNum, qrListAllCheck, savedTableListCheckBoxArr } from '../../../redux/action/action';
+import {
+   modifyingSavedTableNum,
+   qrListAllCheck,
+   savedTableListCheckBoxArr,
+   clearSavedTableListCheckBoxArr,
+} from '../../../redux/action/action';
 const CreateQR = () => {
    const dummyData = {
       data: [
@@ -52,7 +57,12 @@ const CreateQR = () => {
          dispatch(savedTableListCheckBoxArr(idx));
       }
 
-      allChackBoxRef.current.checked ? dispatch(qrListAllCheck(true)) : dispatch(qrListAllCheck(false));
+      if (allChackBoxRef.current.checked) {
+         dispatch(qrListAllCheck(true));
+      } else {
+         dispatch(qrListAllCheck(false));
+         dispatch(clearSavedTableListCheckBoxArr());
+      }
    };
    return (
       <MainContants>
