@@ -1,4 +1,4 @@
-import { MENU_USER_ADD, MENU_USER_UPDATE, MENU_USER_DELETE } from '../action/action';
+import { MENU_USER_ADD, MENU_USER_UPDATE, MENU_USER_DELETE, ERROR_CASE_HANDLE } from '../action/action';
 import { v4 as uuidv4 } from 'uuid';
 
 const initialState = {
@@ -27,14 +27,18 @@ const menuUserItemReducer = (state = initialState, action) => {
             return Object.assign({}, state, { data: changeData });
         case MENU_USER_UPDATE:
 
-            const menuNameChange = state.data.find(x => x.id === action.payload.id).menuName = action.payload.menuNameValue
-            const menuAboutChange = state.data.find(x => x.id === action.payload.id).menuAbout = action.payload.menuAboutValue
-            const menuImgChange = state.data.find(x => x.id === action.payload.id).menuImg = action.payload.menuImgValue
-            const pricesChange = state.data.find(x => x.id === action.payload.id).prices = action.payload.pricesValue
-            return Object.assign({}, state, { menuName: menuNameChange, prices: pricesChange, menuImg: menuImgChange, menuAbout: menuAboutChange });
+            state.data.find(x => x.id === action.payload.id).menuName = action.payload.menuNameValue
+            state.data.find(x => x.id === action.payload.id).menuAbout = action.payload.menuAboutValue
+            state.data.find(x => x.id === action.payload.id).menuImg = action.payload.menuImgValue
+            state.data.find(x => x.id === action.payload.id).prices = action.payload.pricesValue
+            state.data.find(x => x.id === action.payload.id).recommnd = action.payload.checked
+            return state
         case MENU_USER_DELETE:
             const deletMenu = state.data.filter((el, idx) => el.id !== action.payload.id)
             return Object.assign({}, state, { data: deletMenu });
+        case ERROR_CASE_HANDLE:
+            state.data.find(x => x.id === action.payload.id).errorMessage = action.payload.message
+            return Object.assign({}, state);
         default:
             return state;
     }
