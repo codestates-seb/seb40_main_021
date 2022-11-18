@@ -33,6 +33,7 @@ const SetMenu = () => {
     const state = useSelector((store) => store.menuUserItemReducer)
     const menuCountPlus = () => {
         dispatch(menuUserAdd({
+            id: uuidv4(),
             menuImg: '',
             prices: '',
             menuName: '',
@@ -67,7 +68,7 @@ const SetMenu = () => {
                 <S.MenuContainerWarp>
                     <S.SettingHead>메뉴등록</S.SettingHead>
                     <S.MenuListUl>
-                        {state.data.map((el, idx) => <MenuList el={el} idx={idx} key={idx} />)}
+                        {state.data.map((el, idx) => <MenuList el={el} key={el.id} />)}
                     </S.MenuListUl>
                     <S.AddBtn onClick={menuCountPlus}><img src={IconAdd} alt='add' />추가</S.AddBtn>
                 </S.MenuContainerWarp>

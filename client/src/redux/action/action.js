@@ -23,11 +23,11 @@ export const menuUserAdd = (res) => {
       payload: { res }
    }
 }
-export const menuUserUpdate = (idx, menuAboutValue, menuNameValue, menuImgValue, pricesValue) => {
+export const menuUserUpdate = (id, menuAboutValue, menuNameValue, menuImgValue, pricesValue) => {
    return {
       type: MENU_USER_UPDATE,
       payload: {
-         idx,
+         id,
          menuAboutValue,
          menuNameValue,
          menuImgValue,
@@ -36,11 +36,11 @@ export const menuUserUpdate = (idx, menuAboutValue, menuNameValue, menuImgValue,
    }
 }
 
-export const menuUserDelete = (idx) => {
+export const menuUserDelete = (id) => {
    return {
       type: MENU_USER_DELETE,
       payload: {
-         idx
+         id
       }
    }
 }
