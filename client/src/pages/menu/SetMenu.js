@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { menuUserAdd } from "../../redux/action/action";
 import CategoryLi from '../../components/Menu/Category/CategoryLi';
 import MenuList from '../../components/Menu/MenuList';
 import IconAdd from '../../assets/img/icon_add.png';
@@ -6,23 +8,53 @@ import IconCategoryAdd from '../../assets/img/icon_category_plus.png';
 import ButtonWrap from '../../components/Menu/ButtonWrap';
 import CategoryAdd from '../../components/Menu/Category/CategoryAdd';
 import * as S from './SetMenu.style'
+import { v4 as uuidv4 } from 'uuid';
 
 const SetMenu = () => {
-    const [menuCount, setMenuCount] = useState(1)
+    // const [menuCount, setMenuCount] = useState([{
+    //     id: uuidv4(),
+    //     menuImg: '',
+    //     prices: '',
+    //     menuName: '',
+    //     menuAbout: '',
+    //     recommnd: false,
+    //     errorMessage:
+    //     {
+    //         menuName: '',
+    //         menuAbout: '',
+    //         prices: '',
+    //         menuImg: ''
+    //     }
+
+    // }])
     const [toggleCategoryAdd, setToggleCategoryAdd] = useState(false)
 
-    const menulist = Array(menuCount).fill().map((v, i) => i + 1)
-
+    const dispatch = useDispatch()
+    const state = useSelector((store) => store.menuUserItemReducer)
     const menuCountPlus = () => {
-        setMenuCount(menuCount + 1)
+        dispatch(menuUserAdd({
+            menuImg: '',
+            prices: '',
+            menuName: '',
+            menuAbout: '',
+            recommnd: false,
+            errorMessage:
+            {
+                menuName: '',
+                menuAbout: '',
+                prices: '',
+                menuImg: ''
+            }
+        }))
     }
+    console.log(state)
     return (
         <S.SetMenuLayout>
             <S.Head>메뉴판 제작</S.Head>
             <S.MenuLayout>
                 <S.CategoryWrap>
                     <CategoryLi active={true} edit={true} name={'기본 카테고리'} placeholder={'카테고리를 입력해주세요'} />
-                    <CategoryLi active={false} disabled={false} readOnly={false} name={'카테고리 2'} />
+                    {/* <CategoryLi active={false} disabled={false} readOnly={false} name={'카테고리 2'} /> */}
                     {
                         toggleCategoryAdd ? <CategoryAdd active={false} placeholder={'카테고리 입력'} /> : null
                     }
@@ -35,7 +67,7 @@ const SetMenu = () => {
                 <S.MenuContainerWarp>
                     <S.SettingHead>메뉴등록</S.SettingHead>
                     <S.MenuListUl>
-                        {menulist.map((el, idx) => <MenuList key={idx} idx={idx} />)}
+                        {state.data.map((el, idx) => <MenuList el={el} idx={idx} key={idx} />)}
                     </S.MenuListUl>
                     <S.AddBtn onClick={menuCountPlus}><img src={IconAdd} alt='add' />추가</S.AddBtn>
                 </S.MenuContainerWarp>
