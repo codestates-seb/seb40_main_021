@@ -14,8 +14,7 @@ const Img = styled.div`
    display: flex;
    flex-direction: column;
    align-items: center;
-   margin-top: 30px;
-   border: 1px solid black;
+   border: 1px solid lightgray;
 
    img {
       box-sizing: border-box;

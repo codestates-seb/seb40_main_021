@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Qrimg from './Qrimg';
 import { useDispatch, useSelector } from 'react-redux';
 import { printModal } from '../../../redux/action/action';
 
 const Printe = () => {
+   const [clickPrintBtn, setClickPrintBtn] = useState(false);
    const dummyData = {
       data: [
          {
@@ -36,8 +37,10 @@ const Printe = () => {
    const dispatch = useDispatch();
    const savedTableListCheckBoxArrState = useSelector(state => state.savedTableListCheckBoxArr);
    const filterQrList = dummyData.data.filter((qr, idx) => savedTableListCheckBoxArrState.includes(idx));
-   const print = () => {
-      window.print();
+   const print = async () => {
+      await setClickPrintBtn(true);
+      await window.print();
+      await setClickPrintBtn(false);
    };
 
    const exit = () => {
@@ -46,13 +49,17 @@ const Printe = () => {
    return (
       <PrintContainer>
          <div className="imgs">
-            <div className="btnBox">
-               <button className="printBtn" onClick={print}>
-                  <div>프린트</div>
-               </button>
-               <button onClick={exit} className="exitBtn">
-                  X
-               </button>
+            <div>
+               {clickPrintBtn ? null : (
+                  <div className="btnBox">
+                     <button className="printBtn" onClick={print}>
+                        <div>프린트</div>
+                     </button>
+                     <button onClick={exit} className="exitBtn">
+                        X
+                     </button>
+                  </div>
+               )}
             </div>
             <div className="qrImg">
                {filterQrList.map(Qr => {
@@ -82,6 +89,7 @@ const PrintContainer = styled.main`
    }
    .btnBox {
       margin-top: 20px;
+      margin-bottom: 30px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -94,7 +102,7 @@ const PrintContainer = styled.main`
          height: 25px;
          border: 2px solid #ff6c01;
          cursor: pointer;
-         color: white;
+         color: black;
          border-radius: 10px;
          margin-left: 30px;
          background-color: #ff6c01;
@@ -102,14 +110,11 @@ const PrintContainer = styled.main`
          font-weight: 700;
       }
       .exitBtn {
-         border: 2px solid #ff6c01;
          background-color: white;
          margin-right: 20px;
          border-radius: 5px;
+         border: 0;
          cursor: pointer;
-         :hover {
-            background-color: lightgray;
-         }
       }
    }
 

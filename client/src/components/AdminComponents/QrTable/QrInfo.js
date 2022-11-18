@@ -43,7 +43,8 @@ const QrInfo = ({ data, idx }) => {
 };
 const QrInfoBox = styled.div`
    height: 50px;
-   border: ${({ isIncludes }) => (isIncludes ? '1px solid rgb(255, 107, 0);' : 'none')};
+   margin-bottom: 5px;
+   border: ${({ isIncludes }) => (isIncludes ? '1px solid rgb(255, 107, 0);' : '1px solid rgb(200, 200, 200)')};
    .tableNuminput {
       border: 0;
       height: 30px;

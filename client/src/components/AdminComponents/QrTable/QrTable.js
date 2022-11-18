@@ -43,9 +43,11 @@ const CreateQR = () => {
    const allChackBoxRef = useRef(null);
    const dispatch = useDispatch();
    const modifyingSavedTableNumState = useSelector(state => state.modifyingSavedTableNum);
-
+   const savedTableListCheckBoxArrState = useSelector(state => state.savedTableListCheckBoxArr);
    const handleClcikModifyingSavedTableNum = () => {
-      dispatch(modifyingSavedTableNum(!modifyingSavedTableNumState));
+      savedTableListCheckBoxArrState.length === 0
+         ? alert('선택된 QR Table이 없습니다.')
+         : dispatch(modifyingSavedTableNum(!modifyingSavedTableNumState));
    };
    const handleClcikSubmitNewTableNum = () => {
       alert('전송');
@@ -95,8 +97,8 @@ const CreateQR = () => {
             <div className="flex">
                <div className="th">
                   <div className="allCheck">
-                     전체선택
                      <input ref={allChackBoxRef} type="checkbox" onClick={allCheck}></input>
+                     전체선택
                   </div>
                   <div>No.</div>
                   <div>테이블 번호</div>
@@ -124,7 +126,7 @@ const MainContants = styled.div`
       justify-content: center;
       align-items: center;
       > :first-child {
-         margin-left: 10px;
+         margin-right: 10px;
       }
    }
    .u_d_btn {
