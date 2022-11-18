@@ -9,6 +9,7 @@ const QrInfo = ({ idx }) => {
 
    const dummyData = [{ tableNum: 1 }, { tableNum: 2 }, { tableNum: 3 }];
    const qrDataList = useSelector(state => state.qrDate);
+
    const dispatch = useDispatch();
 
    const onChangeTableNumDispatch = e => {

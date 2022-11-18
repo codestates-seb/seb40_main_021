@@ -5,6 +5,7 @@ export const SET_OVERLAP_NUM_STATE = 'SET_OVERLAP_NUM_STATE';
 export const SET_SEVED_TABLE_NUM = 'SET_SEVED_TABLE_NUM';
 export const MODIFYING_SAVED_TABLE_NUM = 'MODIFYING_SAVED_TABLE_NUM';
 export const SAVED_TABLE_LIST_CHECKBOX_ARR = 'SAVED_TABLE_LIST_CHECKBOX_ARR';
+export const QR_LIST_ALL_CHECK = 'QR_LIST_ALL_CHECK';
 
 export const storeInfoUpdate = () => {
    return {
@@ -59,6 +60,14 @@ export const savedTableListCheckBoxArr = idx => {
       type: SAVED_TABLE_LIST_CHECKBOX_ARR,
       playload: {
          idx,
+      },
+   };
+};
+export const qrListAllCheck = chack => {
+   return {
+      type: QR_LIST_ALL_CHECK,
+      playload: {
+         chack,
       },
    };
 };

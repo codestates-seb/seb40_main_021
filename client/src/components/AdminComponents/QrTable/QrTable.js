@@ -1,12 +1,35 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import QrList from './QrList';
 import Button from './Button';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { CiEdit } from 'react-icons/ci';
 import { useDispatch, useSelector } from 'react-redux';
-import { modifyingSavedTableNum } from '../../../redux/action/action';
+import { modifyingSavedTableNum, qrListAllCheck, savedTableListCheckBoxArr } from '../../../redux/action/action';
 const CreateQR = () => {
+   const dummyData = {
+      data: [
+         {
+            id: 0,
+            tableNum: 1,
+            date: new Date().toLocaleDateString().slice(0, -1),
+            qrURL: `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/1`,
+         },
+         {
+            id: 1,
+            tableNum: 2,
+            date: new Date().toLocaleDateString().slice(0, -1),
+            qrURL: `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/2`,
+         },
+         {
+            id: 2,
+            tableNum: 3,
+            date: new Date().toLocaleDateString().slice(0, -1),
+            qrURL: `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/3`,
+         },
+      ],
+   };
+   const allChackBoxRef = useRef(null);
    const dispatch = useDispatch();
    const modifyingSavedTableNumState = useSelector(state => state.modifyingSavedTableNum);
 
@@ -16,6 +39,14 @@ const CreateQR = () => {
    const handleClcikSubmitNewTableNum = () => {
       alert('전송');
       handleClcikModifyingSavedTableNum();
+   };
+
+   const allCheck = () => {
+      for (let idx = 0; idx < dummyData.data.length; idx++) {
+         dispatch(savedTableListCheckBoxArr(idx));
+      }
+
+      allChackBoxRef.current.checked ? dispatch(qrListAllCheck(true)) : dispatch(qrListAllCheck(false));
    };
    return (
       <MainContants>
@@ -47,7 +78,10 @@ const CreateQR = () => {
 
             <div className="flex">
                <div className="th">
-                  <div>선택</div>
+                  <div className="allCheck">
+                     전체선택
+                     <input ref={allChackBoxRef} type="checkbox" onClick={allCheck}></input>
+                  </div>
                   <div>No.</div>
                   <div>테이블 번호</div>
                   <div>생성 날짜</div>
@@ -69,6 +103,14 @@ const MainContants = styled.div`
    height: 90%;
    width: 100%;
    margin-top: 50px;
+   .allCheck {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      > :first-child {
+         margin-left: 10px;
+      }
+   }
    .u_d_btn {
       display: flex;
       align-items: center;

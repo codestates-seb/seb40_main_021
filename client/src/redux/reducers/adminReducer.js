@@ -6,8 +6,10 @@ import {
    SET_SEVED_TABLE_NUM,
    MODIFYING_SAVED_TABLE_NUM,
    SAVED_TABLE_LIST_CHECKBOX_ARR,
+   QR_LIST_ALL_CHECK,
 } from '../action/action';
 const adminState = {
+   qrListAllCheck: false,
    storeInfoUpdateState: false,
    qrDate: [],
    savedTableListCheckBoxArr: [],
@@ -19,8 +21,8 @@ const adminState = {
 const adminReducer = (state = adminState, action) => {
    switch (action.type) {
       case CLICK_TO_StoreInfoUpdate:
-         const currenState = state.storeInfoUpdateState;
-         return Object.assign({}, state, { storeInfoUpdateState: !currenState });
+         const currenStoreInfoUpdateState = state.storeInfoUpdateState;
+         return Object.assign({}, state, { storeInfoUpdateState: !currenStoreInfoUpdateState });
       case CREATE_QR:
          return Object.assign({}, state, { qrDate: action.playload.QrList });
 
@@ -51,7 +53,8 @@ const adminReducer = (state = adminState, action) => {
             newSavedTableListCheckBoxArr = [...state.savedTableListCheckBoxArr, action.playload.idx];
          }
          return Object.assign({}, state, { savedTableListCheckBoxArr: newSavedTableListCheckBoxArr });
-
+      case QR_LIST_ALL_CHECK:
+         return Object.assign({}, state, { qrListAllCheck: action.playload.chack });
       default:
          return state;
    }

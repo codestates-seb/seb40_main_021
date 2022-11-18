@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { savedTableListCheckBoxArr } from '../../../redux/action/action';
@@ -11,11 +11,21 @@ const QrInfo = ({ data, idx }) => {
       dispatch(savedTableListCheckBoxArr(idx));
    };
 
+   const qrListAllCheckState = useSelector(state => state.qrListAllCheck);
+   const inputRef = useRef(null);
+   useEffect(() => {
+      if (qrListAllCheckState) {
+         inputRef.current.checked = true;
+      } else {
+         inputRef.current.checked = false;
+      }
+   }, [qrListAllCheckState]);
+
    return (
       <QrInfoBox isIncludes={isIncludes}>
          <div className="qrInfos">
             <div>
-               <input onClick={() => handleClickCheckBox(idx)} type="checkbox"></input>
+               <input ref={inputRef} onClick={() => handleClickCheckBox(idx)} type="checkbox"></input>
             </div>
             <div>{idx + 1}</div>
             <div className="tableNumBox">
