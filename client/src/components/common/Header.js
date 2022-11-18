@@ -5,18 +5,19 @@ import UserExImg from './../../assets/img/user_ex_img.png'
 import IconSignout from './../../assets/img/icon_signout.png'
 import IconList from './../../assets/img/icon_list.png'
 import * as S from './Header.style'
+import { useDispatch, useSelector } from 'react-redux';
+import { gnbToggleOpen } from '../../redux/action/action';
 
 const Header = () => {
     const isLogin = true
-    const [gnbToggleOpen, setGnbToggleOpen] = useState(false)
-    const GnbOpen = () => {
-        setGnbToggleOpen(true)
-    }
+    const dispatch = useDispatch();
+
     return (
         <S.HeaderWrap>
             <S.Inside>
                 <S.LogoImg src={Logo} alt='주문해조 logo' />
-                <S.IconBtn onClick={GnbOpen}><S.MListIcon src={IconList} alt='리스트' /><span>알람</span></S.IconBtn>
+                <S.IconBtn onClick={() => dispatch(gnbToggleOpen(true))}><S.MListIcon src={IconList} alt='리스트' /><span>알람</span></S.IconBtn>
+                <S.PageName>테이블 목록</S.PageName>
                 <S.ButtonWrap>
                     {
                         isLogin ?

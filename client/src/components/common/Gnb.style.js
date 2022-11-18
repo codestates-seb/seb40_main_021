@@ -1,4 +1,12 @@
 import styled, { css } from "styled-components";
+import IconTable from "./../../assets/img/icon_table.png";
+import IconTableActive from "./../../assets/img/icon_table_active.png";
+import IconMenu from "./../../assets/img/icon_menu.png";
+import IconMenuActive from "./../../assets/img/icon_menu_active.png";
+import IconPlus from "./../../assets/img/icon_plus.png";
+import IconPlusActive from "./../../assets/img/icon_plus_active.png";
+import IconQR from "./../../assets/img/icon_QR.png";
+import IconQRActive from "./../../assets/img/icon_qr_active.png";
 
 export const GnbContainer = styled.div`
   position: absolute;
@@ -135,27 +143,51 @@ export const Li = styled.li`
       background-color: #f6f6f6;
       color: black;
     }
+
+    &.active .tableImg{
+        background: url(${IconTableActive});
+    }
+    &.active .menuImg{
+        background: url(${IconMenuActive});
+    }
+    &.active .plusImg{
+        background: url(${IconPlusActive});
+    }
+    &.active .qrImg{
+        background: url(${IconQRActive});
+    }
   }
 `;
-export const TableImg = styled.img`
+export const TableImg = styled.span`
+display: block;
   width: 24px;
   height: 24px;
   margin-right: 12px;
+  background: url(${IconTable});
+  background-size:cover;
 `;
-export const MenuImg = styled.img`
+export const MenuImg = styled.span`
+display: block;
   width: 20px;
   height: 20px;
   margin-right: 12px;
+  background: url(${IconMenu});
+  background-size:cover;
 `;
-export const PlusImg = styled.img`
-  width: 16x;
+export const PlusImg = styled.span`
+display: block;
+  width: 16px;
   height: 16px;
   margin-right: 12px;
+  background: url(${IconPlus});
   margin-top: -5px;
 `;
-export const QrImg = styled.img`
+export const QrImg = styled.span`
+display: block;
   width: 30px;
   height: 30px;
   margin-right: 6px;
   margin-top: -14px;
+  background: url(${IconQR});
+  background-size:cover;
 `;
