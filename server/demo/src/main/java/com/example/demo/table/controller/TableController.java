@@ -33,7 +33,7 @@ public class TableController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PatchMapping("/update/{member-id}")  // 생성완료된 테이블번호를 바꾸기(만들어지지 않은 테이블번호로 바꿔야됨)
+    @PatchMapping("/update/{member-id}")
     public ResponseEntity patchTableNumber(@PathVariable("member-id") @Positive Long memberId,
                                            @Valid @RequestBody TableDto.patchList requestBody) {
         requestBody.setMemberId(memberId);
@@ -74,7 +74,7 @@ public class TableController {
                 new SingleResponseDto<>(mapper.tablesToGetQrResponseDto(tableList)), HttpStatus.OK);
     }
 
-    @GetMapping("/{member-id}/qr/{tableNumber}") // 이거 선택인쇄로 바꿔보자
+    @GetMapping("/{member-id}/qr/{tableNumber}")
     public ResponseEntity getOneQr(@PathVariable("member-id") @Positive Long memberId,
                                    @PathVariable("tableNumber") @Positive int tableNumber) {
         Table table = tableService.getOneQr(memberId, tableNumber);
