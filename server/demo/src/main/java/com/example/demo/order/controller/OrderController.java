@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
+import java.util.List;
 
 @RestController
 @RequestMapping("/order")
@@ -38,5 +39,16 @@ public class OrderController {
                                       @PathVariable("tableNumber") @Positive int tableNumber) {
         orderService.deleteOrder(memberId, tableNumber);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/{member-id}/{tableNumber}")
+    public ResponseEntity getOrderList(@PathVariable("member-id") @Positive Long memberId,
+                                       @PathVariable("tableNumber") @Positive int tableNumber) {
+
+        List<OrderDto.getOrderMenuResponse> orderMenuResponseList =
+                orderService.getOrderMenuResponseList(memberId, tableNumber);
+
+        return new ResponseEntity<>(
+                new SingleResponseDto<>(orderMenuResponseList), HttpStatus.OK);
     }
 }
