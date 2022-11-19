@@ -33,6 +33,15 @@ public class TableController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @PatchMapping("/update/{member-id}")
+    public ResponseEntity patchTableNumber(@PathVariable("member-id") @Positive Long memberId,
+                                           @Valid @RequestBody TableDto.patchList requestBody) {
+        requestBody.setMemberId(memberId);
+        tableService.updateTableNumber(requestBody);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @PatchMapping("/{member-id}")
     public ResponseEntity patchTable(@PathVariable("member-id") @Positive Long memberId,
                                      @Valid @RequestBody TableDto.Patch requestBody) {

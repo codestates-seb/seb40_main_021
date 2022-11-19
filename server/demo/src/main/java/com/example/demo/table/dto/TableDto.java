@@ -27,7 +27,16 @@ public class TableDto {
     @Getter
     @Setter
     @NoArgsConstructor
+    public static class patchList {
+        private Long memberId;
+        private List<TableDto.Patch> tableList;
+    }
+
+    @Getter
+    @Setter
+    @NoArgsConstructor
     public static class Patch {
+        private String qrUrl;
         private int beforeTableNumber;
         private int afterTableNumber;
     }

@@ -56,6 +56,27 @@ public class TableService {
         }
     }
 
+    public void updateTableNumber(TableDto.patchList requestBody) {
+
+        Optional<Member> member = memberRepository.findById(requestBody.getMemberId());
+
+        for(int i = 0; i < requestBody.getTableList().size(); i++) {
+            Table beforeTable = new Table();
+            Table afterTable = new Table();
+            afterTable.setMember(member.get());
+            beforeTable.setTableNumber(requestBody.getTableList().get(i).getBeforeTableNumber());
+            afterTable.setTableNumber(requestBody.getTableList().get(i).getAfterTableNumber());
+            afterTable.setQrUrl(requestBody.getTableList().get(i).getQrUrl());
+            verifyTableNumber(afterTable);
+            List<Table> tableList = tableRepository.findAllByMember(member.get())
+                    .stream().filter(findTable -> findTable.getTableNumber() == beforeTable.getTableNumber())
+                    .collect(Collectors.toList());
+            tableList.get(0).setTableNumber(afterTable.getTableNumber());
+            tableList.get(0).setQrUrl(afterTable.getQrUrl());
+            tableRepository.save(tableList.get(0));
+        }
+    }
+
     public List<Table> getTables(Long memberId) {
 
         Optional<Member> member = memberRepository.findById(memberId);
