@@ -12,12 +12,14 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/menu")
@@ -74,4 +76,18 @@ public class MenuController {
         menuService.deleteMenu(menuId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+    @GetMapping("/search/{member-id}")
+    public ResponseEntity searchMenu(@PathVariable("member-id") @Positive long memberId, String keyword){
+        List<Menu> searchList = menuService.search(memberId, keyword);
+//        model.addAttribute("searchList", searchList);
+        return new ResponseEntity<>(new SingleResponseDto<>(searchList), HttpStatus.OK);
+
+    }
+//    @GetMapping("/search")
+//    public ResponseEntity searchMenu(String keyword, Model model){
+//        List<Menu> searchList = menuService.search(keyword);
+//        model.addAttribute("searchList", searchList);
+//        return new ResponseEntity<>(searchList, HttpStatus.OK);
+//
+//    }
 }

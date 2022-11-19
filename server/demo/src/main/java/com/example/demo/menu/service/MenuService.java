@@ -7,6 +7,8 @@ import com.example.demo.menu.entity.Menu;
 import com.example.demo.menu.repository.MenuRepository;
 import com.example.demo.user.entity.Member;
 import com.example.demo.user.repository.MemberRepository;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +16,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-
 public class MenuService {
     private final MenuRepository menuRepository;
     private final CategoryRepository categoryRepository;
@@ -62,6 +63,18 @@ public class MenuService {
         findMenu.setVote(vote);
         return menuRepository.save(findMenu);
     }
+    //검색 서비스
+    public List<Menu> search(Long memberId, String keyword){
+        Optional<Member> member = memberRepository.findById(memberId);
+        List<Menu> menuList = menuRepository.findAllByMember(member.get()).stream()
+                .filter(menu -> menu.getMenuName().contains(keyword) == true)
+                .collect(Collectors.toList());
+        return menuList;
+    }
+//    public List<Menu> search(String keyword){
+//        List<Menu> menuList = menuRepository.findByMenuNameContaining(keyword);
+//        return menuList;
+//    }
     public Menu findVerifiedMenu(long menuId){
         Optional<Menu> optionalMenu = menuRepository.findById(menuId);
         Menu findMenu = optionalMenu.orElseThrow(() -> new BusinessLogicException(ExceptionCode.MENU_NOT_FOUND));
