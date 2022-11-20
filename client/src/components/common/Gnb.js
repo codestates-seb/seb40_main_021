@@ -1,27 +1,29 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import styled from "styled-components";
 import BellIcon from "./../../assets/img/bell_icon.png";
-import IconTable from "./../../assets/img/icon_table.png";
-import IconMenu from "./../../assets/img/icon_menu.png";
-import IconPlus from "./../../assets/img/icon_plus.png";
-import IconQR from "./../../assets/img/icon_QR.png";
+import { gnbToggleOpen } from "../../redux/action/action";
 import IconClose from "./../../assets/img/icon_close_white.png";
 import * as S from "./Gnb.style";
 
 const Gnb = () => {
-    const [gnbToggleOpen, setGnbToggleOpen] = useState(false);
-    //기능구현 아직입니다~ (open state redux로 관리예정)
+
+    const dispatch = useDispatch();
+    const gnbState = useSelector((store) => store.gnbReducer);
+
+    function isActive(path) {
+        return window.location.pathname.startsWith(path);
+    }
     return (
-        <S.GnbContainer active={gnbToggleOpen}>
-            <S.CloseBtn onClick={() => setGnbToggleOpen(false)}>
+        <S.GnbContainer active={gnbState}>
+            <S.CloseBtn onClick={() => dispatch(gnbToggleOpen(false))}>
                 <img src={IconClose} alt="close_btn" />
             </S.CloseBtn>
             <S.GnbList>
                 <S.TopLi>
-                    <NavLink>
+                    <NavLink onClick={() => dispatch(gnbToggleOpen(false))} to='/user/'>
                         <div>
-                            <S.Bell bell={true}>
+                            <S.Bell bell >
                                 <span>1</span>
                                 <img src={BellIcon} alt="벨알람" />
                             </S.Bell>
@@ -30,26 +32,26 @@ const Gnb = () => {
                     </NavLink>
                 </S.TopLi>
                 <S.Li>
-                    <NavLink to="table">
-                        <S.TableImg src={IconTable} alt="table icon" />
+                    <NavLink onClick={() => dispatch(gnbToggleOpen(false))} to="table">
+                        <S.TableImg className="tableImg" alt="table icon" />
                         테이블 현황
                     </NavLink>
                 </S.Li>
                 <S.Li>
-                    <NavLink to="table">
-                        <S.MenuImg src={IconMenu} alt="menu icon" />
+                    <NavLink onClick={() => dispatch(gnbToggleOpen(false))} to="menu">
+                        <S.MenuImg className="menuImg" alt="menu icon" />
                         메뉴 목록
                     </NavLink>
                 </S.Li>
                 <S.Li>
-                    <NavLink to="table">
-                        <S.PlusImg src={IconPlus} alt="plus icon" />
+                    <NavLink onClick={() => dispatch(gnbToggleOpen(false))} to="/user/menusetting">
+                        <S.PlusImg className="plusImg" alt="plus icon" />
                         메뉴판 제작
                     </NavLink>
                 </S.Li>
                 <S.Li>
-                    <NavLink to="table">
-                        <S.QrImg src={IconQR} alt="qr icon" />
+                    <NavLink onClick={() => dispatch(gnbToggleOpen(false))} to="qr">
+                        <S.QrImg className="qrImg" active={isActive('/user/qr')} alt="qr icon" />
                         QR Table
                     </NavLink>
                 </S.Li>

@@ -1,3 +1,4 @@
+
 import {
    CLICK_TO_StoreInfoUpdate,
    CREATE_QR,
@@ -16,7 +17,7 @@ const adminState = {
    modifyingSavedTableNum: false,
 };
 
-const adminReducer = (state = adminState, action) => {
+export const adminReducer = (state = adminState, action) => {
    switch (action.type) {
       case CLICK_TO_StoreInfoUpdate:
          const currenState = state.storeInfoUpdateState;
@@ -57,4 +58,3 @@ const adminReducer = (state = adminState, action) => {
    }
 };
 
-export default adminReducer;
