@@ -1,16 +1,63 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 import { Active, BtnFill, CompanyNum, Container, DivideLine, FormControl, InfoForm, InfoFormAuthComplete, InfoFormError, MemberPanel, MemberReg, PageTitle, PanelTitle, Wrapper } from './MemberInfo.Style';
+import { BtnArea, BtnDefault } from './SignupTos.Style';
+
 
 
 const MemberInfo = () => {
+   
+   const postBusinessNumber = async () => {
+         const token = 'Infuser e4ljz5QijI7ihKnKQFr3PfVxrppJxAQtNP4cqbykOX2d+nPayV9d8rkbaFEAi/v8JekzxSiy1uDD8cs1buEtSg=='
+      try {
+         await axios.post(
+               'api.odcloud.kr/api/nts-businessman/v1/status',
+               {
+                headers: {
+               "Content-Type": "application/json",
+               Authorization: `Bearer ${token}`,
+                }
+               },
+               {
+                  body:{ b_no:[]
+                  }
+               },
+            )
+            .then((res) => navigate(`/status/${res.data.tax_type}`));
+         } catch (err) {
+           console.log(err);
+         }
+       };
 
+
+   const postMemberInfo = async () => {
+     try {
+       await axios.post(
+           `${process.env.REACT_APP_API_URL}/StoreInfo`,
+           {
+            id: id,
+            password: password,
+            businessNumber: businessNumber,
+           },
+         )
+         .then((res) => navigate(`/StoreInfo/${res.data.id}`));
+     } catch (err) {
+       console.log(err);
+     }
+   };
+
+   const navigate = useNavigate();
    const [id, setId] = React.useState('');
    const [password, setPassword] = React.useState('');
+   const [businessNumber, setBusinessNumber] = useState('');
 
    const [idError, setIdError] = React.useState(false);
    const [passwordError, setPasswordError] = React.useState(false);
-   const [passwordConfirmError, setPasswordConfirmError] = React.useState('');
+   const [passwordConfirmError, setPasswordConfirmError] = React.useState(false);
+   // const [businessNumberError, setBusinessNumberError] = React.useState(false);
   
       
    const handleId = e => {
@@ -31,13 +78,32 @@ const MemberInfo = () => {
 
       if (passwordRegex.test(e.target.value) || e.target.value === '') {
          setPasswordError(false);
-         setPasswordConfirmError(false);
+        
       } else {
          setPasswordError(true);
-         setPasswordConfirmError(true);
+         
       }
    };
 
+   const handlePasswordConfirm = e => {
+      
+      if (password !== e.target.value){
+         setPasswordConfirmError(true);
+      }
+      else {
+         setPasswordConfirmError(false);
+      }
+   }
+
+   // const handleBusinessNumberError =e => {
+
+   // if (businessNumber !== e.target.value){
+   //    setBusinessNumberError(true);
+   // }
+   // else{
+   // setBusinessNumberError(false);
+   //    }
+   // }
 
    return (
       <Wrapper>
@@ -74,7 +140,7 @@ const MemberInfo = () => {
                      type="password"
                      placeholder="비밀번호를 입력해주세요"
                      name="password"
-                     onChange={handlePassword} />
+                     onChange={handlePassword}/>
                   </InfoForm>
                   {passwordError && <span>영문, 숫자,특수문자 포함 8자리 이상</span>}
                   <InfoFormError>
@@ -83,18 +149,24 @@ const MemberInfo = () => {
                      type="password"
                      placeholder="비밀번호를 재입력해주세요"
                      name="password"
+                     onChange={handlePasswordConfirm}
                         />
                   </InfoFormError>
                   {passwordConfirmError && <span>확인 비밀번호가 다릅니다.</span>}
                   <InfoFormAuthComplete>
                      <label>사업자번호 입력</label>
                      <CompanyNum>
-                        <FormControl type="text" placeholder="'-'제외 입력'" />
+                        <FormControl type="text" placeholder="'-'제외 입력" onChange={postBusinessNumber}/>
                         <BtnFill>
-                           <Link to="/storeInfo">인증하기</Link>
+                           <Link onClick={postBusinessNumber} >인증하기</Link>
                         </BtnFill>
                      </CompanyNum>
-                     {/* <span>인증이 완료되었습니다.</span> */}
+                     {/* {businessNumberError && <span>없는 사업자 번호입니다.</span>} */}
+                     <BtnArea>
+                     <BtnDefault>
+                     <Link to="/storeInfo" onClick={postMemberInfo} >다음</Link>
+                     </BtnDefault>
+                     </BtnArea>
                   </InfoFormAuthComplete>
                </MemberPanel>
             </MemberReg>
