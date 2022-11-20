@@ -10,7 +10,8 @@ public enum ExceptionCode {
     CALL_EXISTS(409, "Call exists"),
     EMAIL_AND_USER_EXISTS(409, "Email and User exist"),
     CATEGORY_NOT_FOUND(404, "Category not found"),
-    QUESTION_NOT_FOUND(404, "Question not found"),
+    MEMBER_NOT_FOUND(404, "Member not found"),
+    TABLE_NOT_FOUND(404, "Table not found"),
     MENU_NOT_FOUND(404, "Menu not found"),
     CANNOT_CHANGE_QUESTION(403, "Question can not change"),
     NOT_IMPLEMENTATION(501, "Not Implementation");
