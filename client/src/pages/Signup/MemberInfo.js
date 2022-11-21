@@ -36,14 +36,14 @@ const MemberInfo = () => {
    const postMemberInfo = async () => {
      try {
        await axios.post(
-           `${process.env.REACT_APP_API_URL}/StoreInfo`,
+           `${process.env.REACT_APP_API_URL}/MemberInfo`,
            {
             id: id,
             password: password,
             businessNumber: businessNumber,
            },
          )
-         .then((res) => navigate(`/StoreInfo/${res.data.id}`));
+         .then((res) => navigate(`/MemberInfo/${res.data.id}`));
      } catch (err) {
        console.log(err);
      }
@@ -73,7 +73,6 @@ const MemberInfo = () => {
 
    const handlePassword = e => {
       setPassword(e.target.value);
-
       const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,}$/;
 
       if (passwordRegex.test(e.target.value) || e.target.value === '') {
@@ -156,7 +155,7 @@ const MemberInfo = () => {
                   <InfoFormAuthComplete>
                      <label>사업자번호 입력</label>
                      <CompanyNum>
-                        <FormControl type="text" placeholder="'-'제외 입력" onChange={postBusinessNumber}/>
+                        <FormControl type="text" placeholder="'-'제외 입력" onChange={postBusinessNumber} handleValue={setBusinessNumber}/>
                         <BtnFill>
                            <Link onClick={postBusinessNumber} >인증하기</Link>
                         </BtnFill>
