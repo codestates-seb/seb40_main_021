@@ -1,17 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import {
-   BtnFill,
-   Container,
-   FormControl,
-   IdRemember,
-   InfoForm,
-   InfoFormError,
-   LoginBtn,
-   LoginPanel,
-   LoginTitle,
-   Wrapper,
-} from './Login.Style';
+   BtnFill, Container, FormControl, IdRemember, InfoForm, InfoFormError, LoginBtn, LoginPanel, LoginTitle, Wrapper, } from './Login.Style';
 
 const Login = () => {
    const [id, setId] = React.useState('');
@@ -19,6 +10,24 @@ const Login = () => {
 
    const [idError, setIdError] = React.useState(false);
    const [passwordError, setPasswordError] = React.useState(false);
+
+
+   const postLogin = async () => {
+      try {
+        await axios.post(
+            `${process.env.REACT_APP_API_URL}/Login`,
+            {
+             id: id,
+             password: password,
+            },
+          )
+          .then((res) => console.log(res));
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+
 
    const handleId = e => {
       setId(e.target.value);
@@ -84,7 +93,7 @@ const Login = () => {
 
                <LoginBtn>
                   <BtnFill href="./index.html">
-                  <Link to={!idError && !passwordError ? "/" : null}>로그인</Link>
+                  <Link to={!idError && !passwordError ? "/" : null}onClick={postLogin} >로그인</Link>
                   </BtnFill>
                </LoginBtn>
             </LoginPanel>
