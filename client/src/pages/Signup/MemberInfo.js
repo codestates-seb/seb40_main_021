@@ -18,7 +18,7 @@ const MemberInfo = () => {
                },{headers:{
                   Authorization: token,
                }})
-            console.log(res)
+               console.log(res)
          } catch (err) {
            console.log(err);
          }
