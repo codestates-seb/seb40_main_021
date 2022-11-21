@@ -7,9 +7,9 @@ import Printe from '../Print/Printe';
 const ButtonWrap = () => {
    const dispatch = useDispatch();
 
-   const savedTableListCheckBoxArrState = useSelector(state => state.savedTableListCheckBoxArr);
+   const savedTableListCheckBoxArrState = useSelector(state => state.adminReducer.savedTableListCheckBoxArr);
 
-   const printModalState = useSelector(state => state.printModal);
+   const printModalState = useSelector(state => state.adminReducer.printModal);
 
    const handleClickPrintBtn = () => {
       savedTableListCheckBoxArrState.length === 0 ? alert('선택된 QR Table이 없습니다.') : dispatch(printModal(true));

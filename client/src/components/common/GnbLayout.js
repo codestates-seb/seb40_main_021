@@ -14,13 +14,13 @@ const Container = styled.div`
    padding-top: 70px;
 `;
 
-const s = () => {
-   return (
-      <Container>
-         <Gnb />
-         <Outlet />
-      </Container>
-   );
+const GnbLayout = () => {
+    return (
+        <Container>
+            <Gnb />
+            <Outlet />
+        </Container>
+    );
 };
 
-export default s;
+export default GnbLayout;

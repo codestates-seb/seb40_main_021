@@ -35,7 +35,7 @@ const Printe = () => {
       ],
    };
    const dispatch = useDispatch();
-   const savedTableListCheckBoxArrState = useSelector(state => state.savedTableListCheckBoxArr);
+   const savedTableListCheckBoxArrState = useSelector(state => state.adminReducer.savedTableListCheckBoxArr);
    const filterQrList = dummyData.data.filter((qr, idx) => savedTableListCheckBoxArrState.includes(idx));
    const print = async () => {
       await setClickPrintBtn(true);

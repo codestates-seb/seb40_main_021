@@ -3,15 +3,15 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { savedTableListCheckBoxArr } from '../../../redux/action/action';
 const QrInfo = ({ data, idx }) => {
-   const modifyingSavedTableNumState = useSelector(state => state.modifyingSavedTableNum);
-   const savedTableListCheckBoxArrState = useSelector(state => state.savedTableListCheckBoxArr);
+   const modifyingSavedTableNumState = useSelector(state => state.adminReducer.modifyingSavedTableNum);
+   const savedTableListCheckBoxArrState = useSelector(state => state.adminReducer.savedTableListCheckBoxArr);
    const isIncludes = savedTableListCheckBoxArrState.includes(idx);
    const dispatch = useDispatch();
    const handleClickCheckBox = idx => {
       dispatch(savedTableListCheckBoxArr(idx));
    };
 
-   const qrListAllCheckState = useSelector(state => state.qrListAllCheck);
+   const qrListAllCheckState = useSelector(state => state.adminReducer.qrListAllCheck);
    const inputRef = useRef(null);
    useEffect(() => {
       if (qrListAllCheckState) {

@@ -16,7 +16,7 @@ import Complete from './pages/Signup/Complete';
 import Login from './pages/Signup/Login';
 import { useSelector } from 'react-redux';
 function App() {
-   const printModalState = useSelector(state => state.printModal);
+   const printModalState = useSelector(state => state.adminReducer.printModal);
    return (
       <div className="App">
          <Reset />

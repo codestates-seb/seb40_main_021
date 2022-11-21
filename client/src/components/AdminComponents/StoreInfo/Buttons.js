@@ -47,7 +47,7 @@ const OrangeBtn = styled.button`
 `;
 const ButtonWrap = ({ bottom }) => {
    const dispatch = useDispatch();
-   const UpdateState = useSelector(state => state.storeInfoUpdateState);
+   const UpdateState = useSelector(state => state.adminReducer.storeInfoUpdateState);
    const handleClickStorInfoUpdate = () => {
       dispatch(storeInfoUpdate());
    };

@@ -42,8 +42,8 @@ const CreateQR = () => {
    };
    const allChackBoxRef = useRef(null);
    const dispatch = useDispatch();
-   const modifyingSavedTableNumState = useSelector(state => state.modifyingSavedTableNum);
-   const savedTableListCheckBoxArrState = useSelector(state => state.savedTableListCheckBoxArr);
+   const modifyingSavedTableNumState = useSelector(state => state.adminReducer.modifyingSavedTableNum);
+   const savedTableListCheckBoxArrState = useSelector(state => state.adminReducer.savedTableListCheckBoxArr);
    const handleClcikModifyingSavedTableNum = () => {
       savedTableListCheckBoxArrState.length === 0
          ? alert('선택된 QR Table이 없습니다.')

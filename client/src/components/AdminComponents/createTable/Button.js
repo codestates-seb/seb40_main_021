@@ -25,8 +25,8 @@ const Btn = styled.button`
 // };
 
 const ButtonWrap = ({ text, num }) => {
-   const setOverlapNumState = useSelector(state => state.tableNumInputValueOverlap);
-   const setSavedTebleNum = useSelector(state => state.setSavedTebleNum);
+   const setOverlapNumState = useSelector(state => state.adminReducer.tableNumInputValueOverlap);
+   const setSavedTebleNum = useSelector(state => state.adminReducer.setSavedTebleNum);
    const dispatch = useDispatch();
    const hadleClickCreateQR = () => {
       if (num > 30) {

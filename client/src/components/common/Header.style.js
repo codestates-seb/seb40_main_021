@@ -58,6 +58,18 @@ export const IconBtn = styled.button`
     display: block;
   }
 `;
+export const PageName = styled.p`
+display: none;
+position: absolute;
+left: 50%; 
+top: 50%;
+font-size: 16px;
+font-weight: 700;
+transform: translate(-50%, -50%);
+@media screen and (max-width: 700px) {
+    display: block;
+  }
+`
 export const MListIcon = styled.img`
   width: 23px;
   height: 23px;

@@ -8,7 +8,7 @@ const QrInfo = ({ idx }) => {
    const [inputTextLengthCheck, setInputTextLengthCheck] = useState(true);
 
    const dummyData = [{ tableNum: 1 }, { tableNum: 2 }];
-   const qrDataList = useSelector(state => state.qrDate);
+   const qrDataList = useSelector(state => state.adminReducer.qrDate);
 
    const dispatch = useDispatch();
 
