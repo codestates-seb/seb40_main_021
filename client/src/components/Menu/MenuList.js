@@ -90,7 +90,7 @@ const MenuList = ({ el }) => {
         if (e.target.name === 'prices') {
             const number = /[^0-9]/
             const maxValue = 11
-            if (number.test(e.target.value.replace(/[^\d]+/g, ''))) {
+            if (number.test(e.target.value.replace(/,/gi, ''))) {
                 setIsError(false);
                 return setHelperText({ ...helperText, prices: '숫자만 입력해주세요.' });
             }
@@ -146,6 +146,13 @@ const MenuList = ({ el }) => {
     let number = pricesChange
     number = number.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
     console.log(pricesChange)
+
+
+    let menuNameError, pricesError, menuAboutError
+    menuNameError = el.errorMessage.menuName === undefined ? false : el.errorMessage.menuName !== ''
+    pricesError = el.errorMessage.prices === undefined ? false : el.errorMessage.prices !== ''
+    menuAboutError = el.errorMessage.menuAbout === undefined ? false : el.errorMessage.menuAbout !== ''
+    console.log(menuNameError)
     return (
         <S.List>
             <S.ListLi>
@@ -154,21 +161,21 @@ const MenuList = ({ el }) => {
                     <S.InputList>
                         <S.InputListWrap>
                             <p>메뉴이름
-                                <span>{el.errorMessage.menuName === '' ? null : el.errorMessage.menuName}</span>
+                                <span>{menuNameError ? el.errorMessage.menuName : null}</span>
                             </p>
-                            <Input value={menuNameChange} name={`menuName`} placeholder="메뉴 이름을 입력해주세요" type="text" idx={el.id} handleValue={handleValue} width={'100%'} placeholders="설명을 입력해주세요" />
+                            <Input value={menuNameChange} active={menuNameError} name={`menuName`} placeholder="메뉴 이름을 입력해주세요" type="text" idx={el.id} handleValue={handleValue} width={'100%'} placeholders="설명을 입력해주세요" />
                         </S.InputListWrap>
                         <S.InputListWrap>
-                            <p>가격  <span>{el.errorMessage.prices === '' ? null : el.errorMessage.prices}</span></p>
+                            <p>가격  <span>{pricesError ? el.errorMessage.prices : null}</span></p>
 
-                            <Input name={`prices`} value={number} placeholder="가격(숫자)을 입력해주세요" type="text" pattern="[0-9]*" handleValue={handleValue} width={'100%'} placeholders="설명을 입력해주세요" />
+                            <Input name={`prices`} active={pricesError} value={number} placeholder="가격(숫자)을 입력해주세요" type="text" pattern="[0-9]*" handleValue={handleValue} width={'100%'} placeholders="설명을 입력해주세요" />
                         </S.InputListWrap>
                     </S.InputList>
                     <S.InputList>
                         <S.InputListWrap>
-                            <p>설명 <span>{el.errorMessage.menuAbout === '' ? null : el.errorMessage.menuAbout}</span></p>
+                            <p>설명 <span>{menuAboutError ? el.errorMessage.menuAbout : null}</span></p>
 
-                            <Input name={`menuAbout`} value={menuAboutChange} placeholder="메뉴 설명을 입력해주세요" type='text' handleValue={handleValue} width={'100%'} placeholders="설명을 입력해주세요" />
+                            <Input active={menuAboutError} name={`menuAbout`} value={menuAboutChange} placeholder="메뉴 설명을 입력해주세요" type='text' handleValue={handleValue} width={'100%'} placeholders="설명을 입력해주세요" />
                         </S.InputListWrap>
                     </S.InputList>
                 </S.InputWrap>

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const InputBox = styled.input`
    width: 100%;
@@ -17,7 +17,7 @@ const InputBox = styled.input`
       font-size: 14px;
       height: 48px;
       :focus {
-         outline: none !important; border-color: black;
+         outline: none ; border-color: ${(p) => p.active ? '#FF6B00' : 'black'};
       }
       box-sizing: border-box;
       &[type="number"]::-webkit-inner-spin-button {
@@ -36,6 +36,14 @@ const InputBox = styled.input`
          border: none;
          border-bottom: 3px solid #666666;
       }
+
+      ${(p) =>
+
+      p.active &&
+      css`
+      border-bottom: 3px solid #FF6B00;
+`
+   }
 
       /* :active {
          border-bottom: 3px solid #FF6C01;

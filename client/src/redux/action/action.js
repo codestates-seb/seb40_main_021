@@ -10,6 +10,11 @@ export const SET_OVERLAP_NUM_STATE = 'SET_OVERLAP_NUM_STATE';
 export const SET_SEVED_TABLE_NUM = 'SET_SEVED_TABLE_NUM';
 export const MODIFYING_SAVED_TABLE_NUM = 'MODIFYING_SAVED_TABLE_NUM';
 export const SAVED_TABLE_LIST_CHECKBOX_ARR = 'SAVED_TABLE_LIST_CHECKBOX_ARR';
+export const SET_USER_ADD_CATEGORY = 'SET_USER_ADD_CATEGORY';
+export const SET_USER_MODIFY_CATEGORY = 'SET_USER_MODIFY_CATEGORY';
+export const CHANGE_INPUT = 'CHANGE_INPUT';
+export const CHANGE_NOW_INPUT = 'CHANGE_NOW_INPUT';
+export const DELETE_CATEGORY = 'DELETE_CATEGORY';
 
 export const storeInfoUpdate = () => {
    return {
@@ -112,3 +117,46 @@ export const savedTableListCheckBoxArr = idx => {
       },
    };
 };
+
+
+export const setUserAddCategory = res => {
+   return {
+      type: SET_USER_ADD_CATEGORY,
+      payload: {
+         res,
+      }
+   }
+}
+
+export const setUserCategoryNaming = res => {
+   return {
+      type: CHANGE_INPUT,
+      payload: res
+   }
+}
+export const setUserCategoryNowNaming = id => {
+   return {
+      type: CHANGE_NOW_INPUT,
+      payload: { id }
+   }
+}
+
+
+
+export const setUserModifyCategory = (id, res) => {
+   return {
+      type: SET_USER_MODIFY_CATEGORY,
+      payload: {
+         id,
+         res,
+      }
+   }
+}
+
+
+export const setUserDeleteCategory = (id) => {
+   return {
+      type: DELETE_CATEGORY,
+      payload: { id }
+   }
+}

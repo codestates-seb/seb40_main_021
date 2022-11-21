@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import ButtonWrap from '../../components/Menu/ButtonWrap';
 import CategoryLi from '../../components/Menu/Category/CategoryLi';
 import MenuViewList from '../../components/Menu/MenuViewList';
 import * as S from './SetMenu.style'
 
 const Menu = () => {
+    const categoryList = useSelector((store) => store.categoryUserItemReducer.data)
+    const [activeIndex, setActiveIndex] = useState(0);
     const menulist = [
         {
             id: 1,
@@ -30,8 +33,14 @@ const Menu = () => {
             <S.Head>메뉴판 제작</S.Head>
             <S.MenuLayout>
                 <S.CategoryWrap className='editFalse'>
-                    <CategoryLi active={true} edit={false} name={'기본 카테고리'} placeholder={'카테고리를 입력해주세요'} />
-                    <CategoryLi active={false} disabled={false} readOnly={false} name={'카테고리 2'} />
+                    {
+                        categoryList.map((el, idx) => {
+                            const active = idx === activeIndex;
+                            return <CategoryLi key={el.uuid} el={el} idx={idx} setActiveIndex={setActiveIndex} edit={false} active={active} name={'기본 카테고리'} placeholder={'카테고리를 입력해주세요'} />
+                        })
+                    }
+
+                    {/* <CategoryLi active={false} disabled={false} readOnly={false} name={'카테고리 2'} /> */}
                 </S.CategoryWrap>
 
                 <S.MenuContainerWarp>
