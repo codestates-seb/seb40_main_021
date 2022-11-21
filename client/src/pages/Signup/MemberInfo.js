@@ -8,21 +8,17 @@ import { BtnArea, BtnDefault } from './SignupTos.Style';
 
 
 const MemberInfo = () => {
-   
+
    const postBusinessNumber = async () => {
          const token = 'Infuser e4ljz5QijI7ihKnKQFr3PfVxrppJxAQtNP4cqbykOX2d+nPayV9d8rkbaFEAi/v8JekzxSiy1uDD8cs1buEtSg=='
       try {
-         await axios.post(
-               'https://api.odcloud.kr/api/nts-businessman/v1/status',
-               {
-               headers: {
-               Authorization: token,
-                },
-               id: id,
-               password: password,
-               businessNumber: businessNumber,
-               },
-            )
+        const res = await axios.post(
+               'https://api.odcloud.kr/api/nts-businessman/v1/status',{
+                  "b_no": [businessNumber],
+               },{headers:{
+                  Authorization: token,
+               }})
+            console.log(res)
          } catch (err) {
            console.log(err);
          }
@@ -88,6 +84,15 @@ const MemberInfo = () => {
       }
    }
 
+   const handleNumber = e => {
+      setBusinessNumber(e.target.value);
+   }
+
+console.log(businessNumber);
+
+
+
+
    // const handleBusinessNumberError =e => {
 
    // if (businessNumber !== e.target.value){
@@ -149,7 +154,7 @@ const MemberInfo = () => {
                   <InfoFormAuthComplete>
                      <label>사업자번호 입력</label>
                      <CompanyNum>
-                        <FormControl type="text" placeholder="'-'제외 입력" onChange={postBusinessNumber}/>
+                        <FormControl type="text" placeholder="'-'제외 입력" onChange={handleNumber}/>
                         <BtnFill>
                            <Link onClick={postBusinessNumber} >인증하기</Link>
                         </BtnFill>
