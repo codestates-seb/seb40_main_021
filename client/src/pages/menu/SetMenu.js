@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { menuUserAdd } from "../../redux/action/action";
+import { menuUserAdd, menuUserErrorMessageSubmit } from "../../redux/action/action";
 import CategoryLi from '../../components/Menu/Category/CategoryLi';
 import MenuList from '../../components/Menu/MenuList';
 import IconAdd from '../../assets/img/icon_add.png';
@@ -35,9 +35,28 @@ const SetMenu = () => {
     }
 
     const [activeIndex, setActiveIndex] = useState(0);
+    const [submit, setSubmit] = useState(false);
 
+    const menuClickSave = () => {
+        for (let i = 0; i < state.data.length; i++) {
+            if ((state.data[i].errorMessage.menuName === '20자까지 입력 가능합니다.') || (state.data[i].errorMessage.menuAbout === '50자까지 입력 가능합니다.') || state.data[i].errorMessage.prices === '백만자리까지 입력 가능합니다.') {
+                return alert('오류를 수정해주세요.')
+            } else {
 
-    console.log(activeIndex, 'dhodho왜')
+            }
+
+            if ((state.data[i].prices || state.data[i].prices.trim()) && (state.data[i].menuName || state.data[i].menuName.trim()) && (state.data[i].menuAbout || state.data[i].menuAbout.trim())) {
+                setSubmit(true)
+                //통신진행
+            } else {
+
+                dispatch(menuUserErrorMessageSubmit(i))
+                setSubmit('업데이트')
+                return alert('작성되지 않은 칸이 있습니다.')
+            }
+        }
+    }
+
     return (
         <S.SetMenuLayout>
             <S.Head>메뉴판 제작</S.Head>
@@ -62,12 +81,12 @@ const SetMenu = () => {
                 <S.MenuContainerWarp>
                     <S.SettingHead>메뉴등록</S.SettingHead>
                     <S.MenuListUl>
-                        {state.data.map((el, idx) => <MenuList el={el} key={el.id} />)}
+                        {state.data.map((el, idx) => <MenuList submit={submit} el={el} key={el.id} />)}
                     </S.MenuListUl>
                     <S.AddBtn onClick={menuCountPlus}><img src={IconAdd} alt='add' />추가</S.AddBtn>
                 </S.MenuContainerWarp>
 
-                <ButtonWrap name={'저장'} />
+                <ButtonWrap save={menuClickSave} name={'저장'} />
             </S.MenuLayout>
 
         </S.SetMenuLayout>

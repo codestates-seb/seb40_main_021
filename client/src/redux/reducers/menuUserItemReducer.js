@@ -1,4 +1,4 @@
-import { MENU_USER_ADD, MENU_USER_UPDATE, MENU_USER_DELETE, ERROR_CASE_HANDLE } from '../action/action';
+import { MENU_USER_ADD, MENU_USER_UPDATE, MENU_USER_DELETE, ERROR_CASE_HANDLE, EROOR_TO_SUBMIT } from '../action/action';
 import { v4 as uuidv4 } from 'uuid';
 
 const initialState = {
@@ -39,6 +39,12 @@ const menuUserItemReducer = (state = initialState, action) => {
         case ERROR_CASE_HANDLE:
             state.data.find(x => x.id === action.payload.id).errorMessage = action.payload.message
             return Object.assign({}, state);
+        case EROOR_TO_SUBMIT:
+            console.log(state.data[0])
+            if (state.data[action.payload.idx].menuName.length < 2) state.data[action.payload.idx].errorMessage.menuName = '메뉴 명을 작성해주세요.'
+            if (state.data[action.payload.idx].prices.length < 2) state.data[action.payload.idx].errorMessage.prices = '가격을 작성해주세요.'
+            if (state.data[action.payload.idx].menuAbout.length < 2) state.data[action.payload.idx].errorMessage.menuAbout = '메뉴 설명을 작성해주세요.'
+            return state
         default:
             return state;
     }

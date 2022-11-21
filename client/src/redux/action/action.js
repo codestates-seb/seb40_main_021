@@ -4,6 +4,7 @@ export const MENU_USER_UPDATE = 'MENU_USER_UPDATE'
 export const MENU_USER_ADD = 'MENU_USER_ADD'
 export const MENU_USER_DELETE = 'MENU_USER_DELETE'
 export const ERROR_CASE_HANDLE = 'ERROR_CASE_HANDLE'
+export const EROOR_TO_SUBMIT = 'EROOR_TO_SUBMIT'
 export const CREATE_QR = 'CREATE_QR';
 export const REGISTER_TABLE_NUM = 'REGISTER_TABLE_NUM';
 export const SET_OVERLAP_NUM_STATE = 'SET_OVERLAP_NUM_STATE';
@@ -67,6 +68,15 @@ export const menuUserErrorMessage = (id, message) => {
       payload: {
          id,
          message
+      }
+   }
+}
+
+export const menuUserErrorMessageSubmit = (idx) => {
+   return {
+      type: EROOR_TO_SUBMIT,
+      payload: {
+         idx
       }
    }
 }

@@ -50,7 +50,7 @@ cursor: pointer;
     display:  ${(p) => (p.background === '' ? 'block' : 'none')};
 }
 `
-const MenuList = ({ el }) => {
+const MenuList = ({ el, submit }) => {
 
     const dispatch = useDispatch()
     const [imgSrc, setImageSrc] = useState('')
@@ -118,8 +118,6 @@ const MenuList = ({ el }) => {
         }
     }
 
-    console.log(el.errorMessage)
-
     useEffect(() => {
         if (pricesChange[0] === '0') {
             const changePrice = pricesChange.substr(1);
@@ -129,7 +127,6 @@ const MenuList = ({ el }) => {
 
 
     useEffect(() => {
-        console.log('왜 분리?', pricesChange)
         dispatch(menuUserUpdate(el.id, menuAboutChange, menuNameChange, imgSrc, pricesChange, checkedChange))
     }, [menuNameChange, menuAboutChange, pricesChange, imgSrc, checkedChange])
 
@@ -145,14 +142,18 @@ const MenuList = ({ el }) => {
     //number , 쉼표처리
     let number = pricesChange
     number = number.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-    console.log(pricesChange)
 
 
     let menuNameError, pricesError, menuAboutError
     menuNameError = el.errorMessage.menuName === undefined ? false : el.errorMessage.menuName !== ''
     pricesError = el.errorMessage.prices === undefined ? false : el.errorMessage.prices !== ''
     menuAboutError = el.errorMessage.menuAbout === undefined ? false : el.errorMessage.menuAbout !== ''
-    console.log(menuNameError)
+
+    useEffect(() => {
+        menuNameError = el.errorMessage.menuName === undefined ? false : el.errorMessage.menuName !== ''
+        pricesError = el.errorMessage.prices === undefined ? false : el.errorMessage.prices !== ''
+        menuAboutError = el.errorMessage.menuAbout === undefined ? false : el.errorMessage.menuAbout !== ''
+    }, [submit])
     return (
         <S.List>
             <S.ListLi>

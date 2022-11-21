@@ -8,11 +8,8 @@ import { setUserCategoryNaming, setUserCategoryNowNaming, setUserDeleteCategory,
 const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex }) => {
     const { uuid, categoryName } = el
 
-    console.log(active)
-
     const state = useSelector((store) => store.categoryUserItemReducer)
     const categoryAddName = state.input.categoryName;
-    console.log(categoryAddName)
 
     const dispatch = useDispatch()
     const editCategoryName = (e) => {
@@ -30,13 +27,11 @@ const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex }) => {
             setTogglePatchCategory(!togglePatchCategory);
         } else {
             if (!categoryAddName || !categoryAddName.trim()) {
-                console.log(categoryAddName)
                 return alert('카테고리 이름을 작성하세요.');
 
             } else {
                 dispatch(setUserModifyCategory(uuid, categoryAddName))
                 dispatch(setUserCategoryNaming(''))
-                console.log('실행')
                 setTogglePatchCategory(!togglePatchCategory);
             }
         }
@@ -66,7 +61,6 @@ const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex }) => {
         dispatch(setUserDeleteCategory(uuid))
     }
     const onTitleClick = () => {
-        console.log('이게안뜸', idx)
         setActiveIndex(idx);
     };
     return (
