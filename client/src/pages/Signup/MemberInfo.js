@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { Active, BtnFill, CompanyNum, Container, DivideLine, FormControl, InfoForm, InfoFormAuthComplete, InfoFormError, MemberPanel, MemberReg, PageTitle, PanelTitle, Wrapper } from './MemberInfo.Style';
 import { BtnArea, BtnDefault } from './SignupTos.Style';
@@ -19,12 +18,11 @@ const MemberInfo = () => {
                 headers: {
                Authorization: token,
                 },
-                body:{ "b_no" : [""],
-               }
+                id: id,
+               password: password,
+               businessNumber: businessNumber,
                },
-               
             )
-
          } catch (err) {
            console.log(err);
          }
@@ -34,20 +32,17 @@ const MemberInfo = () => {
    const postMemberInfo = async () => {
      try {
        await axios.post(
-           `${process.env.REACT_APP_API_URL}/MemberInfo`,
+           `https://ff62-221-140-177-247.jp.ngrok.io/memberInfo`,
            {
             id: id,
             password: password,
             businessNumber: businessNumber,
            },
          )
-         .then((res) => navigate(`/MemberInfo/${res.data.id}`));
      } catch (err) {
        console.log(err);
      }
    };
-
-   const navigate = useNavigate();
    const [id, setId] = React.useState('');
    const [password, setPassword] = React.useState('');
    const [businessNumber, setBusinessNumber] = useState('');
