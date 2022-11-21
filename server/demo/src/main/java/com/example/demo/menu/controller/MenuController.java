@@ -2,7 +2,7 @@ package com.example.demo.menu.controller;
 
 import com.example.demo.category.service.CategoryService;
 import com.example.demo.dto.SingleResponseDto;
-import com.example.demo.menu.dto.MenuVoteDto;
+//import com.example.demo.menu.dto.MenuVoteDto;
 import com.example.demo.menu.dto.MenuPatchDto;
 import com.example.demo.menu.dto.MenuPostDto;
 import com.example.demo.menu.entity.Menu;
@@ -49,12 +49,12 @@ public class MenuController {
         return new ResponseEntity<>(menuMapper.menuToMenuResponseDto(response),HttpStatus.OK);
     }
     //좋아요 기능
-    @PatchMapping("/vote/{menu-id}")
-    public ResponseEntity voteMenu(@PathVariable("menu-id") @Positive @NotNull long menuId,
-                                   @Valid @RequestBody MenuVoteDto menuvoteDto){
-        Menu likeMenu = menuService.voteMenu(menuId, menuvoteDto.getVote());
-        return new ResponseEntity<>(new SingleResponseDto<>(menuMapper.menuToMenuResponseDto(likeMenu)), HttpStatus.OK);
-    }
+//    @PatchMapping("/vote/{menu-id}")
+//    public ResponseEntity voteMenu(@PathVariable("menu-id") @Positive @NotNull long menuId,
+//                                   @Valid @RequestBody MenuVoteDto menuvoteDto){
+//        Menu likeMenu = menuService.voteMenu(menuId, menuvoteDto.getVote());
+//        return new ResponseEntity<>(new SingleResponseDto<>(menuMapper.menuToMenuResponseDto(likeMenu)), HttpStatus.OK);
+//    }
     //특정 메뉴조회
     @GetMapping("/{menu-id}")
     public ResponseEntity getMenu(@PathVariable("menu-id")@Positive long menuId){

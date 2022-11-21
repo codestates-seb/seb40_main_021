@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-11-18T17:58:17+0900",
+    date = "2022-11-21T13:50:55+0900",
     comments = "version: 1.5.3.Final, compiler: javac, environment: Java 11.0.15 (Azul Systems, Inc.)"
 )
 @Component
@@ -30,6 +30,7 @@ public class MenuMapperImpl implements MenuMapper {
         if ( menuPatchDto.getPrice() != null ) {
             menu.setPrice( menuPatchDto.getPrice() );
         }
+        menu.setRecommendedMenu( menuPatchDto.getRecommendedMenu() );
 
         return menu;
     }

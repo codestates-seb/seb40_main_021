@@ -1,5 +1,6 @@
 package com.example.demo.menu.service;
 
+import com.example.demo.category.entity.Category;
 import com.example.demo.category.repository.CategoryRepository;
 import com.example.demo.exception.BusinessLogicException;
 import com.example.demo.exception.ExceptionCode;
@@ -49,8 +50,11 @@ public class MenuService {
         return findVerifiedMenu(menuId);
     }
     // 모든 메뉴 조회
-    public List<Menu> findMenus(){
-        return menuRepository.findAll();
+    public List<Menu> findMenus(Long categoryId){
+        Optional<Category> category = categoryRepository.findById(categoryId);
+        List<Menu> menus = menuRepository.findAllByCategory(category.get()).stream()
+                .collect(Collectors.toList());
+        return menus;
     }
    // 삭제 서비스
     public void deleteMenu(long menuId){
@@ -58,11 +62,11 @@ public class MenuService {
         menuRepository.delete(findMenu);
     }
     //좋아요 서비스
-    public Menu voteMenu(long menuId, int vote){
-        Menu findMenu = findVerifiedMenu(menuId);
-        findMenu.setVote(vote);
-        return menuRepository.save(findMenu);
-    }
+//    public Menu voteMenu(long menuId, int vote){
+//        Menu findMenu = findVerifiedMenu(menuId);
+//        findMenu.setVote(vote);
+//        return menuRepository.save(findMenu);
+//    }
     //검색 서비스
     public List<Menu> search(Long memberId, String keyword){
         Optional<Member> member = memberRepository.findById(memberId);
