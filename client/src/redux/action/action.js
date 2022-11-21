@@ -10,6 +10,9 @@ export const SET_OVERLAP_NUM_STATE = 'SET_OVERLAP_NUM_STATE';
 export const SET_SEVED_TABLE_NUM = 'SET_SEVED_TABLE_NUM';
 export const MODIFYING_SAVED_TABLE_NUM = 'MODIFYING_SAVED_TABLE_NUM';
 export const SAVED_TABLE_LIST_CHECKBOX_ARR = 'SAVED_TABLE_LIST_CHECKBOX_ARR';
+export const QR_LIST_ALL_CHECK = 'QR_LIST_ALL_CHECK';
+export const PRINT_MODAL = 'PRINT_MODAL';
+export const CLEAR_SAVED_TABLE_LIST_CHECKBOX_ARR = 'CLEAR_SAVED_TABLE_LIST_CHECKBOX_ARR';
 
 export const storeInfoUpdate = () => {
    return {
@@ -65,7 +68,7 @@ export const menuUserErrorMessage = (id, message) => {
 export const createQr = QrList => {
    return {
       type: CREATE_QR,
-      playload: {
+      payload: {
          QrList,
       },
    };
@@ -74,7 +77,7 @@ export const createQr = QrList => {
 export const registerTableNum = (tableNum, idx) => {
    return {
       type: REGISTER_TABLE_NUM,
-      playload: {
+      payload: {
          tableNum,
          idx,
       },
@@ -83,7 +86,7 @@ export const registerTableNum = (tableNum, idx) => {
 export const setOverlapNumState = chack => {
    return {
       type: SET_OVERLAP_NUM_STATE,
-      playload: {
+      payload: {
          chack,
       },
    };
@@ -91,7 +94,7 @@ export const setOverlapNumState = chack => {
 export const setSavedTebleNum = chack => {
    return {
       type: SET_SEVED_TABLE_NUM,
-      playload: {
+      payload: {
          chack,
       },
    };
@@ -99,7 +102,7 @@ export const setSavedTebleNum = chack => {
 export const modifyingSavedTableNum = chack => {
    return {
       type: MODIFYING_SAVED_TABLE_NUM,
-      playload: {
+      payload: {
          chack,
       },
    };
@@ -107,8 +110,29 @@ export const modifyingSavedTableNum = chack => {
 export const savedTableListCheckBoxArr = idx => {
    return {
       type: SAVED_TABLE_LIST_CHECKBOX_ARR,
-      playload: {
+      payload: {
          idx,
+      },
+   };
+};
+export const clearSavedTableListCheckBoxArr = () => {
+   return {
+      type: CLEAR_SAVED_TABLE_LIST_CHECKBOX_ARR,
+   };
+};
+export const qrListAllCheck = chack => {
+   return {
+      type: QR_LIST_ALL_CHECK,
+      payload: {
+         chack,
+      },
+   };
+};
+export const printModal = chack => {
+   return {
+      type: PRINT_MODAL,
+      payload: {
+         chack,
       },
    };
 };

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import QrInfo from './QrInfo';
 import { useSelector } from 'react-redux';
 const QrList = () => {
-   const qrDatas = useSelector(state => state.qrDate);
+   const qrDatas = useSelector(state => state.adminReducer.qrDate);
 
    return (
       <QrListBox>
