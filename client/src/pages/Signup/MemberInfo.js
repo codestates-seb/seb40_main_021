@@ -14,7 +14,7 @@ const MemberInfo = () => {
          const token = 'Infuser e4ljz5QijI7ihKnKQFr3PfVxrppJxAQtNP4cqbykOX2d+nPayV9d8rkbaFEAi/v8JekzxSiy1uDD8cs1buEtSg=='
       try {
          await axios.post(
-               'api.odcloud.kr/api/nts-businessman/v1/status',
+               'https://api.odcloud.kr/api/nts-businessman/v1/status',
                {
                 headers: {
                "Content-Type": "application/json",
@@ -26,7 +26,7 @@ const MemberInfo = () => {
                   }
                },
             )
-            .then((res) => navigate(`/status/${res.data.tax_type}`));
+            .then((res) => console.log(res));
          } catch (err) {
            console.log(err);
          }
