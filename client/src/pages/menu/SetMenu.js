@@ -65,7 +65,7 @@ const SetMenu = () => {
                     {
                         categoryList.map((el, idx) => {
                             const active = idx === activeIndex;
-                            return <CategoryLi key={el.uuid} el={el} active={active} setActiveIndex={setActiveIndex} edit={true} idx={idx} placeholder={'카테고리를 입력해주세요'} />
+                            return <CategoryLi key={el.uuid} el={el} length={categoryList.length} active={active} setActiveIndex={setActiveIndex} edit={true} idx={idx} placeholder={'카테고리를 입력해주세요'} />
                         })
                     }
 

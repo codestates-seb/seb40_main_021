@@ -5,7 +5,7 @@ import * as S from './CategoryLi.style'
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserCategoryNaming, setUserCategoryNowNaming, setUserDeleteCategory, setUserModifyCategory } from '../../../redux/action/action';
 
-const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex }) => {
+const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex, length }) => {
     const { uuid, categoryName } = el
 
     const state = useSelector((store) => store.categoryUserItemReducer)
@@ -58,7 +58,11 @@ const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex }) => {
         if (idx !== 0) {
             setActiveIndex(idx - 1)
         }
-        dispatch(setUserDeleteCategory(uuid))
+        if (length === 1) {
+            return alert('마지막 카테고리는 삭제가 불가능합니다.')
+        }
+        return dispatch(setUserDeleteCategory(uuid))
+
     }
     const onTitleClick = () => {
         setActiveIndex(idx);
