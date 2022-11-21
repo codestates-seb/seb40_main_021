@@ -50,9 +50,15 @@ const Gnb = () => {
                     </NavLink>
                 </S.Li>
                 <S.Li>
-                    <NavLink onClick={() => dispatch(gnbToggleOpen(false))} to="qr">
-                        <S.QrImg className="qrImg" active={isActive('/user/qr')} alt="qr icon" />
+                    <NavLink onClick={() => dispatch(gnbToggleOpen(false))} to="create">
+                        <S.QrImg className="qrImg" alt="qr icon" />
                         QR Table
+                    </NavLink>
+                </S.Li>
+                <S.Li>
+                    <NavLink onClick={() => dispatch(gnbToggleOpen(false))} to="/user/qr">
+                        <S.PlusImg className="plusImg" alt="plus icon" />
+                        테이블 목록
                     </NavLink>
                 </S.Li>
                 <S.MSpan>로그아웃</S.MSpan>

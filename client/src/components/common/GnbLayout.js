@@ -5,7 +5,7 @@ import Gnb from './Gnb';
 
 const Container = styled.div`
    width: 100%;
-   height: calc(100vh - 70px);
+   height: 100vh;
    @media screen and (max-width: 700px) {
       width: 100%;
       padding-top: 50px;
