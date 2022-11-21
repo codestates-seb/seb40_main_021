@@ -10,24 +10,24 @@ import { Active, BtnDefault, BtnDefaultActive, BtnDefaultMobile, CompanyNum, Con
 
 const StoreInfo = () => {
  
-   // const postAddress = async () => {
-   //    const token = ''
-   // try {
-   //    await axios.post(
-   //          '',
-   //          {
-   //           headers: {
-   //          "Content-Type": "application/json",
-   //          Authorization: `Bearer ${token}`,
-   //           }
-   //          },
+   const postAddress = async () => {
+      const token = ''
+   try {
+      await axios.post(
+            '',
+            {
+             headers: {
+            "Content-Type": "application/json",
+            Authorization: {token},
+             }
+            },
            
-   //       )
-   //       .then((res) => console.log(res));
-   //    } catch (err) {
-   //      console.log(err);
-   //    }
-   //  };
+         )
+         .then((res) => console.log(res));
+      } catch (err) {
+        console.log(err);
+      }
+    };
 
    const postStoreInfo = async () => {
      try {
@@ -55,6 +55,10 @@ const StoreInfo = () => {
    const [contactNumber, setContactNumber] = useState();
    const [businessHours, setBusinessHours] = useState();
    const [NumberError, setNumberError] = React.useState(false);
+
+
+   
+
 
 
    const handleNumber = e => {
@@ -165,7 +169,7 @@ const StoreInfo = () => {
                   <InfoForm>
                      <label>가게주소 *</label>
                      <CompanyNum>
-                        <BtnDefault>우편번호 검색</BtnDefault>
+                        <BtnDefault >우편번호 검색</BtnDefault>
                         <FormControl type="text" placeholder="도로명 주소 검색" />
                         <BtnDefaultMobile href="javascript:void(0)">
                            <img src="images/search.png" />
