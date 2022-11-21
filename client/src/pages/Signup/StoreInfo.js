@@ -7,13 +7,14 @@ import { Active, BtnDefault, BtnDefaultActive, BtnDefaultMobile, CompanyNum, Con
 
 
 //가게 사진, 가게 설명, 주소, 전화번호, 영업시간
+// 주소, 바디, 헤더
 
 const StoreInfo = () => {
  
    const postAddress = async () => {
       const token = ''
    try {
-      await axios.post(
+     const res = await axios.post(
             '',
             {
              headers: {
@@ -23,7 +24,7 @@ const StoreInfo = () => {
             },
            
          )
-         .then((res) => console.log(res));
+         console.log(res);
       } catch (err) {
         console.log(err);
       }
@@ -185,12 +186,12 @@ const StoreInfo = () => {
                   {NumberError && <span>숫자만 입력해주세요</span>}
                   <InfoForm>
                      <label>가게 영업시간</label>
-                     <FormControl type="text" placeholder="가게 영업시간을 작성해 주세요" handleValue={setBusinessHours} />
+                     <FormControl type="text" placeholder="가게 영업시간을 작성해 주세요" onChange={setBusinessHours} />
                   </InfoForm>
 
                   <ImgRegBtn>
                      <BtnDefaultActive>
-                        <Link to="/complete" handleSubmit={postStoreInfo}>완료</Link>
+                        <Link to="/complete" onClick={postStoreInfo}>완료</Link>
                      </BtnDefaultActive>
                   </ImgRegBtn>
                </MemberPanel>
