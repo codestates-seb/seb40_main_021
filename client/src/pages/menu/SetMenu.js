@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { menuUserAdd, menuUserErrorMessageSubmit } from "../../redux/action/action";
 import CategoryLi from '../../components/Menu/Category/CategoryLi';
@@ -37,10 +37,14 @@ const SetMenu = () => {
     const [activeIndex, setActiveIndex] = useState(0);
     const [submit, setSubmit] = useState(false);
 
+
     const menuClickSave = () => {
+        let noReadInput = false
+        let ErrorInput = false
         for (let i = 0; i < state.data.length; i++) {
+
             if ((state.data[i].errorMessage.menuName === '20자까지 입력 가능합니다.') || (state.data[i].errorMessage.menuAbout === '50자까지 입력 가능합니다.') || state.data[i].errorMessage.prices === '백만자리까지 입력 가능합니다.') {
-                return alert('오류를 수정해주세요.')
+                ErrorInput = true
             } else {
 
             }
@@ -49,11 +53,19 @@ const SetMenu = () => {
                 setSubmit(true)
                 //통신진행
             } else {
-
+                // setNoReadInput(true)
+                noReadInput = true
                 dispatch(menuUserErrorMessageSubmit(i))
                 setSubmit('업데이트')
-                return alert('작성되지 않은 칸이 있습니다.')
+
             }
+        }
+
+        if (noReadInput) {
+            alert('작성되지 않은 칸이 있습니다.')
+        }
+        if (ErrorInput) {
+            alert('오류 칸을 수정해주세요.')
         }
     }
 

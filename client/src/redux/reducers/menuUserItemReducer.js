@@ -22,7 +22,6 @@ const initialState = {
 const menuUserItemReducer = (state = initialState, action) => {
     switch (action.type) {
         case MENU_USER_ADD:
-            console.log('ction.payload.res', action.payload.res)
             let changeData = [...state.data, action.payload.res]
             return Object.assign({}, state, { data: changeData });
         case MENU_USER_UPDATE:
@@ -40,7 +39,6 @@ const menuUserItemReducer = (state = initialState, action) => {
             state.data.find(x => x.id === action.payload.id).errorMessage = action.payload.message
             return Object.assign({}, state);
         case EROOR_TO_SUBMIT:
-            console.log(state.data[0])
             if (state.data[action.payload.idx].menuName.length < 2) state.data[action.payload.idx].errorMessage.menuName = '메뉴 명을 작성해주세요.'
             if (state.data[action.payload.idx].prices.length < 2) state.data[action.payload.idx].errorMessage.prices = '가격을 작성해주세요.'
             if (state.data[action.payload.idx].menuAbout.length < 2) state.data[action.payload.idx].errorMessage.menuAbout = '메뉴 설명을 작성해주세요.'
