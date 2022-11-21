@@ -22,6 +22,12 @@ const QrList = () => {
             date: new Date().toLocaleDateString().slice(0, -1),
             qrURL: `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/3`,
          },
+         {
+            id: 2,
+            tableNum: 4,
+            date: new Date().toLocaleDateString().slice(0, -1),
+            qrURL: `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/4`,
+         },
       ],
    };
 

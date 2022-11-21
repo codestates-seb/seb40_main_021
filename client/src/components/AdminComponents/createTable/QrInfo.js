@@ -7,8 +7,9 @@ const QrInfo = ({ idx }) => {
    const [savedNumChack, setSavedNumChack] = useState(false);
    const [inputTextLengthCheck, setInputTextLengthCheck] = useState(true);
 
-   const dummyData = [{ tableNum: 1 }, { tableNum: 2 }, { tableNum: 3 }];
-   const qrDataList = useSelector(state => state.qrDate);
+   const dummyData = [{ tableNum: 1 }, { tableNum: 2 }];
+   const qrDataList = useSelector(state => state.adminReducer.qrDate);
+
    const dispatch = useDispatch();
 
    const onChangeTableNumDispatch = e => {

@@ -16,7 +16,7 @@ const StoreInfo = () => {
             '매일 깨끗하고 신선한재료로 맛있는 퓨전요리와 경양식. 고급원두를 사용한 다양한 커피 분위기좋고 경치좋고 맛있기까지하는 맛나요 가게로 놀러오세요~^^',
       },
    };
-   const UpdateState = useSelector(state => state.storeInfoUpdateState);
+   const UpdateState = useSelector(state => state.adminReducer.storeInfoUpdateState);
    console.log(UpdateState);
    return (
       <MainContants>

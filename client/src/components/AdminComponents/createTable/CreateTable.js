@@ -6,7 +6,7 @@ import Button from './Button';
 import { useSelector } from 'react-redux';
 
 const CreateQR = () => {
-   const tableNumInputValueOverlap = useSelector(state => state.tableNumInputValueOverlap);
+   const tableNumInputValueOverlap = useSelector(state => state.adminReducer.tableNumInputValueOverlap);
    return (
       <MainContants>
          <div className="title">

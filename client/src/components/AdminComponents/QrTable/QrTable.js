@@ -1,21 +1,70 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import QrList from './QrList';
 import Button from './Button';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { CiEdit } from 'react-icons/ci';
 import { useDispatch, useSelector } from 'react-redux';
-import { modifyingSavedTableNum } from '../../../redux/action/action';
+import {
+   modifyingSavedTableNum,
+   qrListAllCheck,
+   savedTableListCheckBoxArr,
+   clearSavedTableListCheckBoxArr,
+} from '../../../redux/action/action';
 const CreateQR = () => {
+   const dummyData = {
+      data: [
+         {
+            id: 0,
+            tableNum: 1,
+            date: new Date().toLocaleDateString().slice(0, -1),
+            qrURL: `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/1`,
+         },
+         {
+            id: 1,
+            tableNum: 2,
+            date: new Date().toLocaleDateString().slice(0, -1),
+            qrURL: `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/2`,
+         },
+         {
+            id: 2,
+            tableNum: 3,
+            date: new Date().toLocaleDateString().slice(0, -1),
+            qrURL: `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/3`,
+         },
+         {
+            id: 3,
+            tableNum: 4,
+            date: new Date().toLocaleDateString().slice(0, -1),
+            qrURL: `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/4`,
+         },
+      ],
+   };
+   const allChackBoxRef = useRef(null);
    const dispatch = useDispatch();
-   const modifyingSavedTableNumState = useSelector(state => state.modifyingSavedTableNum);
-
+   const modifyingSavedTableNumState = useSelector(state => state.adminReducer.modifyingSavedTableNum);
+   const savedTableListCheckBoxArrState = useSelector(state => state.adminReducer.savedTableListCheckBoxArr);
    const handleClcikModifyingSavedTableNum = () => {
-      dispatch(modifyingSavedTableNum(!modifyingSavedTableNumState));
+      savedTableListCheckBoxArrState.length === 0
+         ? alert('선택된 QR Table이 없습니다.')
+         : dispatch(modifyingSavedTableNum(!modifyingSavedTableNumState));
    };
    const handleClcikSubmitNewTableNum = () => {
       alert('전송');
       handleClcikModifyingSavedTableNum();
+   };
+
+   const allCheck = () => {
+      if (allChackBoxRef.current.checked) {
+         dispatch(clearSavedTableListCheckBoxArr());
+         dispatch(qrListAllCheck(true));
+         for (let idx = 0; idx < dummyData.data.length; idx++) {
+            dispatch(savedTableListCheckBoxArr(idx));
+         }
+      } else {
+         dispatch(qrListAllCheck(false));
+         dispatch(clearSavedTableListCheckBoxArr());
+      }
    };
    return (
       <MainContants>
@@ -47,7 +96,10 @@ const CreateQR = () => {
 
             <div className="flex">
                <div className="th">
-                  <div>선택</div>
+                  <div className="allCheck">
+                     <input ref={allChackBoxRef} type="checkbox" onClick={allCheck}></input>
+                     전체선택
+                  </div>
                   <div>No.</div>
                   <div>테이블 번호</div>
                   <div>생성 날짜</div>
@@ -56,7 +108,7 @@ const CreateQR = () => {
             </div>
             <QrList></QrList>
             <div className="printBtn">
-               <Button text1={'전체 인쇄'} text2={'선택 인쇄'}></Button>
+               <Button></Button>
             </div>
          </main>
       </MainContants>
@@ -69,6 +121,14 @@ const MainContants = styled.div`
    height: 90%;
    width: 100%;
    margin-top: 50px;
+   .allCheck {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      > :first-child {
+         margin-right: 10px;
+      }
+   }
    .u_d_btn {
       display: flex;
       align-items: center;
