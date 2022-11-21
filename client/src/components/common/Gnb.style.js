@@ -23,8 +23,8 @@ export const GnbContainer = styled.div`
     left: -100%;
     transition: left 0.3s;
     ${(position) =>
-        position.active &&
-        css`
+    position.active &&
+    css`
         left: 0%;
       `}
   }
@@ -126,7 +126,9 @@ export const Bell = styled.div`
 `;
 export const Li = styled.li`
   list-style: none;
-
+  :hover{
+    color: white;
+  }
   & a {
     height: 70px;
     display: flex;
