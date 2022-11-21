@@ -15,10 +15,10 @@ const MemberInfo = () => {
          await axios.post(
                'https://api.odcloud.kr/api/nts-businessman/v1/status',
                {
-                headers: {
+               headers: {
                Authorization: token,
                 },
-                id: id,
+               id: id,
                password: password,
                businessNumber: businessNumber,
                },
@@ -32,7 +32,7 @@ const MemberInfo = () => {
    const postMemberInfo = async () => {
      try {
        await axios.post(
-           `https://8017-221-140-177-247.jp.ngrok.io/member/join`,
+           `https://5fcb-221-140-177-247.jp.ngrok.io/member/join`,
            {
             id: id,
             password: password,
@@ -43,6 +43,7 @@ const MemberInfo = () => {
        console.log(err);
      }
    };
+
    const [id, setId] = React.useState('');
    const [password, setPassword] = React.useState('');
    const [businessNumber, setBusinessNumber] = useState('');
@@ -156,7 +157,7 @@ const MemberInfo = () => {
                      {/* {businessNumberError && <span>없는 사업자 번호입니다.</span>} */}
                      <BtnArea>
                      <BtnDefault>
-                     <Link to="/storeInfo" >다음</Link>
+                     <Link to="/storeInfo">다음</Link>
                      </BtnDefault>
                      </BtnArea>
                   </InfoFormAuthComplete>
