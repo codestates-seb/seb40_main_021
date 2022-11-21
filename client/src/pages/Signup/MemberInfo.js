@@ -32,7 +32,7 @@ const MemberInfo = () => {
    const postMemberInfo = async () => {
      try {
        await axios.post(
-           `https://ff62-221-140-177-247.jp.ngrok.io/memberInfo`,
+           `https://8017-221-140-177-247.jp.ngrok.io/member/join`,
            {
             id: id,
             password: password,
@@ -156,7 +156,7 @@ const MemberInfo = () => {
                      {/* {businessNumberError && <span>없는 사업자 번호입니다.</span>} */}
                      <BtnArea>
                      <BtnDefault>
-                     <Link to="/storeInfo" onClick={postMemberInfo} >다음</Link>
+                     <Link to="/storeInfo" >다음</Link>
                      </BtnDefault>
                      </BtnArea>
                   </InfoFormAuthComplete>
