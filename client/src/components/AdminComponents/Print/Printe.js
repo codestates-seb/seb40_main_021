@@ -120,7 +120,7 @@ const PrintContainer = styled.main`
 
    .qrImg {
       display: grid;
-      grid-template-columns: repeat(4, 23%);
+      grid-template-columns: repeat(4, 25%);
       justify-content: center;
    }
 
