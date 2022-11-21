@@ -14,6 +14,7 @@ public class MenuResponseDto {
     private String menuName;
     private String menuContent;
     private int price;
-    private int vote;
+    private Boolean recommendedMenu;
+//    private int vote;
     private long categoryId;
 }

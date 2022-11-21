@@ -30,4 +30,5 @@ public class MenuPostDto {
 
     @NotNull
     private Integer price;
+    private Boolean  recommendedMenu;
 }

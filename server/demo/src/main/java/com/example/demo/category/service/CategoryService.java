@@ -7,6 +7,8 @@ import com.example.demo.exception.ExceptionCode;
 import com.example.demo.user.entity.Member;
 import com.example.demo.user.repository.MemberRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

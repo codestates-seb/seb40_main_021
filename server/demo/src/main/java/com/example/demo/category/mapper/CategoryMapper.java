@@ -53,7 +53,7 @@ public interface CategoryMapper {
         CategoryAndMenuResponseDto categoryAndMenuResponseDto = new CategoryAndMenuResponseDto();
         categoryAndMenuResponseDto.setCategoryId(category.getCategoryId());
         categoryAndMenuResponseDto.setCategoryName(category.getCategoryName());
-        categoryAndMenuResponseDto.setMenus(menuService.findMenus());
+        categoryAndMenuResponseDto.setMenus(menuService.findMenus(category.getCategoryId()));
         return categoryAndMenuResponseDto;
     }
     List<CategoryResponseDto> categoriesToCategoryResponseDtos(List<Category> categories);

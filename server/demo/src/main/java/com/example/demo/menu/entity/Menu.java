@@ -31,8 +31,11 @@ public class Menu {
     @Column(nullable = false, columnDefinition = "BIGINT")
     private int price;
 
+//    @Column(nullable = false)
+//    private Integer vote = 0;
+
     @Column(nullable = false)
-    private Integer vote = 0;
+    private Boolean recommendedMenu;
 
     @JsonBackReference
     @ManyToOne

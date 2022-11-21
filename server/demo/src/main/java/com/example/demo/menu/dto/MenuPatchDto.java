@@ -22,6 +22,8 @@ public class MenuPatchDto {
     @NotNull
     private Integer price;
 
+    private Boolean recommendedMenu;
+
     public void setMenuId(long menuId){
         this.menuId = menuId;
     }
