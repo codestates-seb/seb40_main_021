@@ -17,14 +17,10 @@ const MemberInfo = () => {
                'https://api.odcloud.kr/api/nts-businessman/v1/status',
                {
                 headers: {
-               "Content-Type": "application/json",
-               Authorization: `Bearer ${token}`,
+               Authorization: token,
                 }
                },
-               {
-                  body:{ b_no:[]
-                  }
-               },
+               
             )
             .then((res) => console.log(res));
          } catch (err) {
@@ -155,7 +151,7 @@ const MemberInfo = () => {
                   <InfoFormAuthComplete>
                      <label>사업자번호 입력</label>
                      <CompanyNum>
-                        <FormControl type="text" placeholder="'-'제외 입력" onChange={postBusinessNumber} handleValue={setBusinessNumber}/>
+                        <FormControl type="text" placeholder="'-'제외 입력" onChange={postBusinessNumber}/>
                         <BtnFill>
                            <Link onClick={postBusinessNumber} >인증하기</Link>
                         </BtnFill>
