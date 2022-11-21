@@ -18,11 +18,13 @@ const MemberInfo = () => {
                {
                 headers: {
                Authorization: token,
-                }
+                },
+                body:{ "b_no" : [""],
+               }
                },
                
             )
-            .then((res) => console.log(res));
+
          } catch (err) {
            console.log(err);
          }
