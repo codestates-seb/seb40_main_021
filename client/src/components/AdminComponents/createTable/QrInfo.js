@@ -3,6 +3,7 @@ import { registerTableNum } from '../../../redux/action/action';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { setOverlapNumState, setSavedTebleNum } from '../../../redux/action/action';
+import Input from '../../Input';
 const QrInfo = ({ idx }) => {
    const [savedNumChack, setSavedNumChack] = useState(false);
    const [inputTextLengthCheck, setInputTextLengthCheck] = useState(true);
@@ -72,6 +73,7 @@ const QrInfoBox = styled.div`
       background-color: rgb(244, 244, 244);
    }
    .qrInfos {
+      font-size: 1.3rem;
       display: grid;
       height: 100%;
       flex-direction: column;

@@ -178,6 +178,7 @@ const MainContants = styled.div`
       margin-bottom: 10px;
    }
    .th {
+      font-size: 15px;
       width: 100%;
       display: grid;
       align-items: center;

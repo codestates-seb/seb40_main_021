@@ -60,6 +60,7 @@ const QrInfoBox = styled.div`
 
    .qrInfos {
       display: grid;
+      font-size: 13px;
       height: 100%;
       flex-direction: column;
       grid-template-columns: repeat(5, 1fr);

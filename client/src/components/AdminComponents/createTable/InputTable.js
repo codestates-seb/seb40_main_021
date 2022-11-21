@@ -37,9 +37,10 @@ const InputTableBox = styled.div`
       .label {
          width: 150px;
          font-weight: bold;
-         font-size: 1.3rem;
+         font-size: 1.5rem;
       }
       .noMenu {
+         font-size: 1.3rem;
          color: gray;
          margin-right: 40px;
       }

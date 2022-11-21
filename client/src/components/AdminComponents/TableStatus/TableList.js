@@ -202,7 +202,7 @@ const TableList = () => {
 
 const Content = styled.div`
    height: calc(100vh - 70px);
-   width: calc(100% - 300px);
+   width: 100%;
    padding-left: 300px;
    overflow: scroll;
    .title {
