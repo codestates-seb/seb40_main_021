@@ -8,7 +8,7 @@ import { BtnArea, BtnDefault } from './SignupTos.Style';
 
 
 const MemberInfo = () => {
-
+// postBusinessNumber 이게 사업자 오픈 api
    const postBusinessNumber = async () => {
          const token = 'Infuser e4ljz5QijI7ihKnKQFr3PfVxrppJxAQtNP4cqbykOX2d+nPayV9d8rkbaFEAi/v8JekzxSiy1uDD8cs1buEtSg=='
       try {
