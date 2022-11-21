@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import MenuImg from '../../components/Menu/MenuImg';
@@ -10,14 +9,26 @@ import { Active, BtnDefault, BtnDefaultActive, BtnDefaultMobile, CompanyNum, Con
 //가게 사진, 가게 설명, 주소, 전화번호, 영업시간
 
 const StoreInfo = () => {
-    
-   const navigate = useNavigate();
-   const [img, setImg] = useState();
-   const [about, setAbout] = useState();
-   const [address, Address] = useState();
-   const [contactNumber, setContactNumber] = useState();
-   const [businessHours, setBusinessHours] = useState();
  
+   // const postAddress = async () => {
+   //    const token = ''
+   // try {
+   //    await axios.post(
+   //          '',
+   //          {
+   //           headers: {
+   //          "Content-Type": "application/json",
+   //          Authorization: `Bearer ${token}`,
+   //           }
+   //          },
+           
+   //       )
+   //       .then((res) => console.log(res));
+   //    } catch (err) {
+   //      console.log(err);
+   //    }
+   //  };
+
    const postStoreInfo = async () => {
      try {
        await axios
@@ -31,27 +42,34 @@ const StoreInfo = () => {
             businessHours: businessHours,
            },
          )
-         .then((res) => navigate(`/StoreInfo/${res.data.id}`));
+         .then((res) => console.log(res));
      } catch (err) {
        console.log(err);
      }
-   };
+   };   
 
 
-   const [Number, setNumber] = React.useState('');
-   const NumberError = e => {
-      Number(e.target.value);
+   const [img, setImg] = useState();
+   const [about, setAbout] = useState();
+   const [address, setAddress] = useState();
+   const [contactNumber, setContactNumber] = useState();
+   const [businessHours, setBusinessHours] = useState();
+   const [NumberError, setNumberError] = React.useState(false);
 
-      const NumberRegex = /^[0-9]+$/;
 
-      if (NumberRegex.test(e.target.value) || e.target.value === '') {
-         NumberRegex(false);
-         NumberError(false);
+   const handleNumber = e => {
+      setContactNumber(e.target.value);
+
+      const ContactNumberRegex = /[0-9]$/;
+
+      if (ContactNumberRegex.test(e.target.value) || e.target.value === '') {
+         setNumberError(false);
       } else {
-         NumberRegex(true);
-         setNumber(true)
+         setNumberError(true);
+         
       }
    };
+
 
    function getImageFiles(e) {
       const uploadFiles = [];
@@ -158,7 +176,7 @@ const StoreInfo = () => {
 
                   <InfoForm>
                      <label>가게 전화번호 *</label>
-                     <FormControl type="text" placeholder="전화번호를 입력해주세요"  handleValue={setContactNumber}/>
+                     <FormControl type="text" placeholder="전화번호를 입력해주세요" handleValue={setContactNumber} onChange={handleNumber} />
                   </InfoForm>
                   {NumberError && <span>숫자만 입력해주세요</span>}
                   <InfoForm>
