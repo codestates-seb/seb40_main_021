@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.Map;
 
+@CrossOrigin
 @RequiredArgsConstructor
 @RequestMapping("/member")
 @RestController
