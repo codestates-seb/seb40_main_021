@@ -162,6 +162,7 @@ const MemberInfo = () => {
               <BtnArea>
                 <BtnDefault>
                   <Link to={isCertification ? "/storeInfo" : null}>다음</Link>
+                  {/* 다 통과해야 다음으로 넘어감 */}
                 </BtnDefault>
               </BtnArea>
             </InfoFormAuthComplete>
