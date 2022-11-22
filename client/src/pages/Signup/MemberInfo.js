@@ -27,14 +27,15 @@ const MemberInfo = () => {
 
    const postMemberInfo = async () => {
      try {
-       await axios.post(
-           `https://5fcb-221-140-177-247.jp.ngrok.io/member/join`,
+      const res = await axios.post(
+           `https://757f-221-140-177-247.jp.ngrok.io/member/join`,
            {
             id: id,
             password: password,
             businessNumber: businessNumber,
            },
          )
+         console.log(res)
      } catch (err) {
        console.log(err);
      }
@@ -88,7 +89,7 @@ const MemberInfo = () => {
       setBusinessNumber(e.target.value);
    }
 
-console.log(businessNumber);
+   console.log(businessNumber);
 
 
 
