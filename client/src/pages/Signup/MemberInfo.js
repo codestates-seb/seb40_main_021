@@ -17,7 +17,7 @@ const MemberInfo = () => {
   const [passwordConfirmError, setPasswordConfirmError] = React.useState(false);
   const [businessNumberError, setBusinessNumberError] = React.useState("");
 
-  const [isCertification, setIsCertification] = React.useState(false);
+  const [Certification, setCertification] = React.useState(false);
 
   const handleId = (e) => {
     setId(e.target.value);
@@ -53,7 +53,7 @@ const MemberInfo = () => {
     setBusinessNumber(e.target.value);
   };
 
-  // postBusinessNumber 이게 사업자 오픈 api
+  // postBusinessNumber 사업자 오픈 api
   const postBusinessNumber = async () => {
     const token =
       "Infuser e4ljz5QijI7ihKnKQFr3PfVxrppJxAQtNP4cqbykOX2d+nPayV9d8rkbaFEAi/v8JekzxSiy1uDD8cs1buEtSg==";
@@ -72,7 +72,7 @@ const MemberInfo = () => {
       setBusinessNumberError(res?.data);
 
       if (res?.data?.data[0].tax_type_cd !== "") {
-        setIsCertification(true);
+        setCertification(true);
       }
     } catch (err) {
       console.log(err);
@@ -161,7 +161,7 @@ const MemberInfo = () => {
               </span>
               <BtnArea>
                 <BtnDefault>
-                  <Link to={isCertification ? "/storeInfo" : null}>다음</Link>
+                  <Link to={Certification ? "/storeInfo" : null}>다음</Link>
                   {/* 다 통과해야 다음으로 넘어감 */}
                 </BtnDefault>
               </BtnArea>
