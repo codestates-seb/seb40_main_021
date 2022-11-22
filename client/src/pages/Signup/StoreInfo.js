@@ -7,6 +7,7 @@ import Postcode from "../../components/PostCode/Postcode";
 import { Active, BtnDefaultActive, BtnDefaultMobile, CompanyNum, Container, DivideLine, FormControl, ImagePreview, ImgRegBtn, InfoForm, MemberPanel, MemberReg, PageTitle, PanelTitle, RealUpload, Upload, Wrapper, } from "./StoreInfo.Style";
 
 
+// npm install react-daum-postcode 설치 해주세요!
 
 
 //가게 사진, 가게 설명, 주소, 전화번호, 영업시간
