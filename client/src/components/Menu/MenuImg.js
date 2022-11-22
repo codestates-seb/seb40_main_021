@@ -58,7 +58,7 @@ const MenuImg = (idx) => {
         });
     };
     return (
-        <PicWrap><p>사진</p><LabelPhoto background={imgSrc} htmlFor={`picture${idx}`}><img src={IconPhoto} alt='add' /></LabelPhoto><input onChange={(e) => encodeFileToBase64(e.target.files[0])} type='file' name={`picture${idx}`} id={`picture${idx}`} /></PicWrap>
+        <PicWrap><p></p><LabelPhoto background={imgSrc} htmlFor={`picture${idx}`}><img src={IconPhoto} alt='add' /></LabelPhoto><input onChange={(e) => encodeFileToBase64(e.target.files[0])} type='file' name={`picture${idx}`} id={`picture${idx}`} /></PicWrap>
     );
 };
 
