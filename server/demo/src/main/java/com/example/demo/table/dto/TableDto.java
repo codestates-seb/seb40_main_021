@@ -1,9 +1,12 @@
 package com.example.demo.table.dto;
 
+import com.example.demo.order.dto.OrderDto;
+import com.example.demo.order.dto.OrderMenuDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class TableDto {
@@ -80,5 +83,34 @@ public class TableDto {
         private int tableNumber;
         private String qrUrl;
         private String createdAt;
+    }
+
+    @Getter
+    @Setter
+    public static class getTableResponse {
+        private int tableNumber;
+        private List<OrderDto.getOrderMenuResponse> orderList;
+    }
+
+    @Getter
+    @Setter
+    public static class deleteList {
+        private List<TableDto.deleteTable> tableList;
+    }
+
+    @Getter
+    @Setter
+    public static class deleteTable {
+        private int tableNumber;
+    }
+
+    @Getter
+    @Setter
+    public static class getTableOrderList {
+        private Long orderId;
+        private int tableNumber;
+        private List<OrderMenuDto.postResponse> orderMenuList;
+        private LocalDateTime createdAt;
+        private String message;
     }
 }
