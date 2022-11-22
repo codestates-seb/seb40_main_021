@@ -7,9 +7,6 @@ import Postcode from "../../components/PostCode/Postcode";
 import { Active, BtnDefaultActive, BtnDefaultMobile, CompanyNum, Container, DivideLine, FormControl, ImagePreview, ImgRegBtn, InfoForm, MemberPanel, MemberReg, PageTitle, PanelTitle, RealUpload, Upload, Wrapper, } from "./StoreInfo.Style";
 
 
-// npm install react-daum-postcode 설치 해주세요!
-
-
 //가게 사진, 가게 설명, 주소, 전화번호, 영업시간
 // 주소, 바디, 헤더
 const StoreInfo = () => {
@@ -164,8 +161,7 @@ const StoreInfo = () => {
               <FormControl
                 type="text"
                 placeholder="전화번호를 입력해주세요"
-                onChange={setContactNumber}
-                handleValue={handleNumber}
+                onChange={handleNumber}
               />
             </InfoForm>
             {NumberError && <span>숫자만 입력해주세요</span>}
