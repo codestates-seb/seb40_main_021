@@ -44,7 +44,7 @@ const Gnb = () => {
                     </NavLink>
                 </S.Li>
                 <S.Li>
-                    <NavLink onClick={() => dispatch(gnbToggleOpen(false))} to="/user/menusetting">
+                    <NavLink onClick={() => dispatch(gnbToggleOpen(false))} to="menusetting">
                         <S.PlusImg className="plusImg" alt="plus icon" />
                         메뉴판 제작
                     </NavLink>
@@ -56,7 +56,7 @@ const Gnb = () => {
                     </NavLink>
                 </S.Li>
                 <S.Li>
-                    <NavLink onClick={() => dispatch(gnbToggleOpen(false))} to="/user/qr">
+                    <NavLink onClick={() => dispatch(gnbToggleOpen(false))} to="qr">
                         <S.PlusImg className="plusImg" alt="plus icon" />
                         테이블 목록
                     </NavLink>
