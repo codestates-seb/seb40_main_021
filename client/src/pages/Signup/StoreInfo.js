@@ -32,9 +32,8 @@ const StoreInfo = () => {
 
    const postStoreInfo = async () => {
      try {
-       await axios
-         .post(
-           `${process.env.REACT_APP_API_URL}/StoreInfo`,
+       const res = await axios.post(
+           `https://44b9-221-140-177-247.jp.ngrok.io/member/join`,
            {
             img: img,
             about: about,
@@ -43,7 +42,7 @@ const StoreInfo = () => {
             businessHours: businessHours,
            },
          )
-         .then((res) => console.log(res));
+      console.log(res);
      } catch (err) {
        console.log(err);
      }
