@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setUserAddCategory, setUserCategoryNaming } from '../../../redux/action/action';
 import * as S from './CategoryLi.style'
 import { v4 as uuidv4 } from 'uuid';
+import { useAxios } from '../../../util/useAxios';
 
-const CategoryAdd = ({ placeholder, active, setToggleCategoryAdd }) => {
+const CategoryAdd = ({ placeholder, active, setToggleCategoryAdd, userId }) => {
     const dispatch = useDispatch()
     const state = useSelector((store) => store.categoryUserItemReducer)
     const { categoryName } = state.input;
@@ -15,15 +16,29 @@ const CategoryAdd = ({ placeholder, active, setToggleCategoryAdd }) => {
             value
         ))
     }
+    //post 
+    const { response, loading, error, clickFetchFunc } = useAxios(
+        {
+        }, false
+    );
+
     const CategoryNameSave = () => {
         if (!categoryName || !categoryName.trim()) {
             return alert('카테고리 이름을 작성하세요.');
         }
-        dispatch(setUserAddCategory({
-            uuid: uuidv4(),
-            categoryName: categoryName,
-            active: false
-        }))
+        // dispatch(setUserAddCategory({
+        //     uuid: uuidv4(),
+        //     categoryName: categoryName,
+        //     active: false
+        // }))
+        clickFetchFunc({
+            method: 'POST',
+            url: `category/write`,
+            data: {
+                memberId: userId,
+                categoryName: categoryName
+            }
+        })
 
         dispatch(setUserCategoryNaming(
             ''

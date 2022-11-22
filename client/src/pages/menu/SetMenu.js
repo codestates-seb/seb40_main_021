@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { menuUserAdd, menuUserErrorMessageSubmit } from "../../redux/action/action";
+import { menuUserAdd, menuUserErrorMessageSubmit, setGetUserCategory } from "../../redux/action/action";
 import CategoryLi from '../../components/Menu/Category/CategoryLi';
 import MenuList from '../../components/Menu/MenuList';
 import IconAdd from '../../assets/img/icon_add.png';
@@ -9,6 +9,7 @@ import ButtonWrap from '../../components/Menu/ButtonWrap';
 import CategoryAdd from '../../components/Menu/Category/CategoryAdd';
 import * as S from './SetMenu.style'
 import { v4 as uuidv4 } from 'uuid';
+import { useAxios } from '../../util/useAxios';
 
 const SetMenu = () => {
 
@@ -33,6 +34,19 @@ const SetMenu = () => {
             }
         }))
     }
+
+    //get
+    let userId = 1
+    const { response, getloading, geterror } = useAxios(
+        {
+            method: 'GET',
+            url: `category/${userId}`,
+        },
+    );
+
+    response && dispatch(setGetUserCategory(response))
+
+
 
     const [activeIndex, setActiveIndex] = useState(0);
     const [submit, setSubmit] = useState(false);
@@ -77,12 +91,12 @@ const SetMenu = () => {
                     {
                         categoryList.map((el, idx) => {
                             const active = idx === activeIndex;
-                            return <CategoryLi key={el.uuid} el={el} length={categoryList.length} active={active} setActiveIndex={setActiveIndex} edit={true} idx={idx} placeholder={'카테고리를 입력해주세요'} />
+                            return <CategoryLi setSubmit={setSubmit} key={el.uuid} el={el} length={categoryList.length} active={active} setActiveIndex={setActiveIndex} edit={true} idx={idx} placeholder={'카테고리를 입력해주세요'} />
                         })
                     }
 
                     {
-                        toggleCategoryAdd ? <CategoryAdd setToggleCategoryAdd={setToggleCategoryAdd} active={false} placeholder={'카테고리 입력'} /> : null
+                        toggleCategoryAdd ? <CategoryAdd userId={userId} setToggleCategoryAdd={setToggleCategoryAdd} active={false} placeholder={'카테고리 입력'} /> : null
                     }
                 </S.CategoryWrap>
 

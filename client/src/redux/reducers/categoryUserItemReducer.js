@@ -1,28 +1,36 @@
-import { SET_USER_ADD_CATEGORY, CHANGE_INPUT, SET_USER_MODIFY_CATEGORY, CHANGE_NOW_INPUT, DELETE_CATEGORY } from '../action/action';
+import { SET_USER_ADD_CATEGORY, CHANGE_INPUT, SET_USER_MODIFY_CATEGORY, CHANGE_NOW_INPUT, DELETE_CATEGORY, GET_USER_POST_SUCCESS } from '../action/action';
 import { v4 as uuidv4 } from 'uuid';
+import axios from 'axios';
 
 const initialState = {
     input: {
         categoryName: ''
     },
     data: [{
-        uuid: uuidv4(),
-        categoryName: '기본 카테고리',
-        active: true
+        categoryName: '기본 카테고리'
     }]
 }
+
 const categoryUserItemReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_USER_ADD_CATEGORY:
+        case GET_USER_POST_SUCCESS:
+            console.log(action.payload)
+            if (action.payload.length !== 0) {
+                return {
+                    ...state,
+                    data: action.payload
+                }
+            }
+            return state
 
+        case SET_USER_ADD_CATEGORY:
             let changeData = [...state.data, action.payload.res]
             return Object.assign({}, state, { data: changeData });
         case SET_USER_MODIFY_CATEGORY:
             console.log('false', state)
-            state.data.find(x => x.uuid === action.payload.id).categoryName = action.payload.res
+            state.data[action.payload.idx].categoryName = action.payload.res
             return state
         case CHANGE_INPUT:
-            console.log(state)
             return {
                 ...state,
                 input: {
@@ -32,12 +40,12 @@ const categoryUserItemReducer = (state = initialState, action) => {
             };
         case CHANGE_NOW_INPUT:
             console.log('true', state)
-            console.log('true', action.payload.id)
+            console.log('true', action.payload.idx)
 
-            state.input.categoryName = state.data.find(x => x.uuid === action.payload.id).categoryName
+            state.input.categoryName = state.data[action.payload.idx].categoryName
             return state
         case DELETE_CATEGORY:
-            const deletMenu = state.data.filter((el) => el.uuid !== action.payload.id)
+            const deletMenu = state.data.filter((el, idx) => idx !== action.payload.idx)
             return Object.assign({}, state, { data: deletMenu });
         default:
             return state

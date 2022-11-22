@@ -13,6 +13,7 @@ export const MODIFYING_SAVED_TABLE_NUM = 'MODIFYING_SAVED_TABLE_NUM';
 export const SAVED_TABLE_LIST_CHECKBOX_ARR = 'SAVED_TABLE_LIST_CHECKBOX_ARR';
 export const SET_USER_ADD_CATEGORY = 'SET_USER_ADD_CATEGORY';
 export const SET_USER_MODIFY_CATEGORY = 'SET_USER_MODIFY_CATEGORY';
+export const GET_USER_POST_SUCCESS = 'GET_USER_POST_SUCCESS';
 export const CHANGE_INPUT = 'CHANGE_INPUT';
 export const CHANGE_NOW_INPUT = 'CHANGE_NOW_INPUT';
 export const DELETE_CATEGORY = 'DELETE_CATEGORY';
@@ -147,32 +148,40 @@ export const setUserCategoryNaming = res => {
       payload: res
    }
 }
-export const setUserCategoryNowNaming = id => {
+export const setUserCategoryNowNaming = idx => {
    return {
       type: CHANGE_NOW_INPUT,
-      payload: { id }
+      payload: { idx }
    }
 }
 
 
 
-export const setUserModifyCategory = (id, res) => {
+export const setUserModifyCategory = (idx, res) => {
    return {
       type: SET_USER_MODIFY_CATEGORY,
       payload: {
-         id,
+         idx,
          res,
       }
    }
 }
 
 
-export const setUserDeleteCategory = (id) => {
+export const setUserDeleteCategory = (idx) => {
    return {
       type: DELETE_CATEGORY,
-      payload: { id }
+      payload: { idx }
    }
 }
+
+export const setGetUserCategory = (res) => {
+   return {
+      type: GET_USER_POST_SUCCESS,
+      payload: res
+   }
+}
+
 export const clearSavedTableListCheckBoxArr = () => {
    return {
       type: CLEAR_SAVED_TABLE_LIST_CHECKBOX_ARR,

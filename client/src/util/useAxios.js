@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-axios.defaults.baseURL = '기본path';
+axios.defaults.baseURL = 'https://300c-118-103-212-116.jp.ngrok.io/';
 
 export const useAxios = (axiosParams, auto = true) => {
     const [response, setResponse] = useState(undefined);
