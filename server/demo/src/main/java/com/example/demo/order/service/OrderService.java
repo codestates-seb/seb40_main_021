@@ -13,6 +13,7 @@ import com.example.demo.user.repository.MemberRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -32,6 +33,7 @@ public class OrderService {
                 .stream().filter(table -> table.getTableNumber() == order.getTable().getTableNumber())
                 .collect(Collectors.toList());
         order.setTable(tableList.get(0));
+        order.setCreatedAt(LocalDateTime.now());
 
         for(int i = 0; i < order.getOrderMenuList().size(); i++) {
             Optional<Menu> menu = menuRepository.findById(order.getOrderMenuList().get(i).getMenu().getMenuId());

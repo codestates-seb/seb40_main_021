@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,8 +28,9 @@ public class Order {
     @JoinColumn(name = "TABLE_ID")
     private Table table;
 
+    @Column
+    private LocalDateTime createdAt;
+
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderMenu> orderMenuList = new ArrayList<>();
-    // PERSIST에서 REMOVE로 바꿔줘보았다. 이유는 ORDER를 삭제했을때 에러가 나기 때문이다. REMOVE로 바꿔주니 ORDER를
-    // post했을때 ORDERMENU가 DB에 저장이 안되었다. ALL로 바꿔주었더니 ORDERMENU도 잘 저장이 되고 DELETE도 잘 된다!
 }

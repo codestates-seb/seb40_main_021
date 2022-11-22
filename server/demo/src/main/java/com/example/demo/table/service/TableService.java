@@ -2,8 +2,10 @@ package com.example.demo.table.service;
 
 import com.example.demo.exception.BusinessLogicException;
 import com.example.demo.exception.ExceptionCode;
+import com.example.demo.order.dto.OrderMenuDto;
 import com.example.demo.order.entity.Order;
 import com.example.demo.order.repository.OrderRepository;
+import com.example.demo.order.service.OrderService;
 import com.example.demo.table.dto.TableDto;
 import com.example.demo.table.entity.Table;
 import com.example.demo.table.repository.TableRepository;
@@ -23,6 +25,7 @@ public class TableService {
     private final TableRepository tableRepository;
     private final MemberRepository memberRepository;
     private final OrderRepository orderRepository;
+    private final OrderService orderService;
 
     public List<Table> createTable(List<Table> tableList) {
 
@@ -77,24 +80,69 @@ public class TableService {
         }
     }
 
-    public List<Table> getTables(Long memberId) {
+    public List<TableDto.getTableResponse> getTables(Long memberId) {
 
+        List<TableDto.getTableResponse> getTableResponseList = new ArrayList<>();
         Optional<Member> member = memberRepository.findById(memberId);
         List<Table> tableList = tableRepository.findAllByMember(member.get())
                 .stream()
                 .filter(table -> orderRepository.findByTable(table).size() > 0)
                 .collect(Collectors.toList());
 
-        return tableList;
+        for(int i = 0; i < tableList.size(); i++) {
+            TableDto.getTableResponse response = new TableDto.getTableResponse();
+            response.setTableNumber(tableList.get(i).getTableNumber());
+            response.setOrderList(orderService.getOrderMenuResponseList(memberId, tableList.get(i).getTableNumber()));
+            getTableResponseList.add(response);
+        }
+
+        return getTableResponseList;
     }
 
-    public void deleteTable(Long memberId, int tableNumber) {
+    public List<TableDto.getTableOrderList> getTableOrders(Long memberId) {
 
+        List<TableDto.getTableOrderList> getTableOrderList = new ArrayList<>();
         Optional<Member> member = memberRepository.findById(memberId);
         List<Table> tableList = tableRepository.findAllByMember(member.get())
-                .stream().filter(table -> table.getTableNumber() == tableNumber)
+                .stream()
+                .filter(table -> orderRepository.findByTable(table).size() > 0)
                 .collect(Collectors.toList());
-        tableRepository.delete(tableList.get(0));
+
+        for(int i = 0; i < tableList.size(); i++) {
+            for(int j = 0; j < tableList.get(i).getOrderList().size(); j++) {
+                TableDto.getTableOrderList response = new TableDto.getTableOrderList();
+                response.setOrderId(tableList.get(i).getOrderList().get(j).getOrderId());
+                response.setTableNumber(tableList.get(i).getOrderList().get(j).getTable().getTableNumber());
+                response.setMessage(tableList.get(i).getOrderList().get(j).getMessage());
+                response.setCreatedAt(tableList.get(i).getOrderList().get(j).getCreatedAt());
+                List<OrderMenuDto.postResponse> orderMenuList = new ArrayList<>();
+                for(int k = 0; k < tableList.get(i).getOrderList().get(j).getOrderMenuList().size(); k++) {
+                    OrderMenuDto.postResponse menuResponse = new OrderMenuDto.postResponse();
+                    menuResponse.setMenuId(tableList.get(i).getOrderList().get(j).getOrderMenuList().get(k).getMenu().getMenuId());
+                    menuResponse.setMenuName(tableList.get(i).getOrderList().get(j).getOrderMenuList().get(k).getMenu().getMenuName());
+                    menuResponse.setPrice(tableList.get(i).getOrderList().get(j).getOrderMenuList().get(k).getMenu().getPrice());
+                    menuResponse.setQuantity(tableList.get(i).getOrderList().get(j).getOrderMenuList().get(k).getQuantity());
+                    orderMenuList.add(menuResponse);
+                }
+                response.setOrderMenuList(orderMenuList);
+                getTableOrderList.add(response);
+            }
+        }
+
+        return getTableOrderList;
+    }
+
+    public void deleteTable(Long memberId, TableDto.deleteList requestBody) {
+
+        Optional<Member> member = memberRepository.findById(memberId);
+        List<Table> tableList = tableRepository.findAllByMember(member.get());
+        for(int i = 0; i < tableList.size(); i++) {
+            for(int j = 0; j < requestBody.getTableList().size(); j++) {
+                if(tableList.get(i).getTableNumber() == requestBody.getTableList().get(j).getTableNumber()) {
+                    tableRepository.delete(tableList.get(i));
+                }
+            }
+        }
     }
 
     public List<Table> getAllQr(Long memberId) {

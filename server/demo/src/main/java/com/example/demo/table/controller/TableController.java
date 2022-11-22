@@ -55,16 +55,24 @@ public class TableController {
 
     @GetMapping("/{member-id}")
     public ResponseEntity getTable(@PathVariable("member-id") @Positive Long memberId) {
-        List<Table> tableList = tableService.getTables(memberId);
+        List<TableDto.getTableResponse> getTableResponseList = tableService.getTables(memberId);
 
         return new ResponseEntity<>(
-                new SingleResponseDto<>(mapper.tablesToTableGetResponseDto(tableList)), HttpStatus.OK);
+                new SingleResponseDto<>(getTableResponseList), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{member-id}/{tableNumber}")
+    @GetMapping("/{member-id}/order")
+    public ResponseEntity getTableOrder(@PathVariable("member-id") @Positive Long memberId) {
+        List<TableDto.getTableOrderList> getTableResponseList = tableService.getTableOrders(memberId);
+
+        return new ResponseEntity<>(
+                new SingleResponseDto<>(getTableResponseList), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{member-id}")
     public ResponseEntity deleteTable(@PathVariable("member-id") @Positive Long memberId,
-                                      @PathVariable("tableNumber") @Positive int tableNumber) {
-        tableService.deleteTable(memberId, tableNumber);
+                                      @RequestBody TableDto.deleteList requestBody) {
+        tableService.deleteTable(memberId, requestBody);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
