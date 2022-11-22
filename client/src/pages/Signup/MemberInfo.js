@@ -30,7 +30,7 @@ const MemberInfo = () => {
       const res = await axios.post(
            `https://757f-221-140-177-247.jp.ngrok.io/member/join`,
            {
-            id: id,
+            loginId: id,
             password: password,
             businessNumber: businessNumber,
            },
