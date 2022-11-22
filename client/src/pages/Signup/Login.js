@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import {
-   BtnFill, Container, FormControl, IdRemember, InfoForm, InfoFormError, LoginBtn, LoginPanel, LoginTitle, Wrapper, } from './Login.Style';
+import { BtnFill, Container, FormControl, IdRemember, InfoForm, InfoFormError, LoginBtn, LoginPanel, LoginTitle, Wrapper, } from './Login.Style';
 
 const Login = () => {
    const [id, setId] = React.useState('');
@@ -14,14 +13,14 @@ const Login = () => {
 
    const postLogin = async () => {
       try {
-        await axios.post(
-            `${process.env.REACT_APP_API_URL}/Login`,
+        const res = await axios.post(
+            `https://70a8-221-140-177-247.jp.ngrok.io/member/login`,
             {
-             id: id,
+             loginId: id,
              password: password,
             },
           )
-          .then((res) => console.log(res));
+          console.log(res);
       } catch (err) {
         console.log(err);
       }
@@ -29,7 +28,7 @@ const Login = () => {
 
 
 
-   const handleId = e => {
+   const handleId = (e) => {
       setId(e.target.value);
 
       const idRegex = /^[a-z0-9]{1,11}$/;
@@ -40,7 +39,7 @@ const Login = () => {
       }
    };
 
-   const handlePassword = e => {
+   const handlePassword = (e) => {
       setPassword(e.target.value);
 
       const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,}$/;
