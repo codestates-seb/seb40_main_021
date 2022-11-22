@@ -53,10 +53,10 @@ font-weight: 700;
     width: 50%;
 }
 `
-const ButtonWrap = ({ name }) => {
+const ButtonWrap = ({ name, save }) => {
     return (
 
-        <BtnWrap><WhiteBtn>미리보기</WhiteBtn><OrangeBtn>{name}</OrangeBtn></BtnWrap>
+        <BtnWrap><WhiteBtn>미리보기</WhiteBtn><OrangeBtn onClick={save}>{name}</OrangeBtn></BtnWrap>
 
     );
 };

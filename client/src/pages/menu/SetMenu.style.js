@@ -33,6 +33,7 @@ export const CategoryWrap = styled.ul`
 width: calc(100% - 120px);
 overflow-y: scroll;
 display: flex;
+height: 53px;
 &.editFalse{
     width: 100%;
 }
