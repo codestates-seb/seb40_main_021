@@ -5,7 +5,7 @@ import { MenuList } from '../../components/menu/MenuList';
 import { NavMenu } from '../../components/menu/NavMenu';
 import { saveMenuId } from '../../redux/actions/menuAction';
 import { Wrapper } from '../../style/menu.style';
-// import { Search } from '../../components/menu/Search';
+import { motion } from 'framer-motion';
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -17,11 +17,20 @@ export const Home = () => {
   });
   return (
     <Wrapper>
-      <main className="no-padding">
+      <motion.main
+        className="no-padding"
+        initial={{
+          opacity: 0
+        }}
+        animate={{
+          opacity: 1,
+          transition: { duration: 0.3 }
+        }}
+      >
         <NavMenu />
         <MenuList />
         <MenuDetailed />
-      </main>
+      </motion.main>
     </Wrapper>
   );
 };

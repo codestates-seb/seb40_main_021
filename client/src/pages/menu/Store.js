@@ -1,46 +1,53 @@
 import { Wrapper } from '../../style/menu.style';
+import { motion } from 'framer-motion';
+import { useDispatch, useSelector } from 'react-redux';
+import { StoreInfo } from '../../components/menu/StoreInfo';
+import { useEffect } from 'react';
+import { setStoreInfo } from '../../redux/actions/menuAction';
+import axios from 'axios';
 
 export const Store = () => {
+  const store = useSelector((store) => store.menuReducer.store);
+  const dispatch = useDispatch();
+
+  // 가게 정보 불러오기
+  useEffect(() => {
+    axios
+      .get(`/member/1`)
+      .then((res) => {
+        console.log(res);
+        const storeInfo = res.data.data;
+        dispatch(setStoreInfo(storeInfo));
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <Wrapper>
-      <main className="no-padding">
+      <motion.main
+        className="no-padding"
+        initial={{
+          opacity: 0
+        }}
+        animate={{
+          opacity: 1,
+          transition: { duration: 0.3 }
+        }}
+      >
         <section className="store-wrapper">
           <div className="store-imgBox">
-            <img
-              src="https://cdn.vox-cdn.com/thumbor/OheW0CNYdNihux9eVpJ958_bVCE=/0x0:5996x4003/1200x900/filters:focal(1003x1633:1961x2591)/cdn.vox-cdn.com/uploads/chorus_image/image/51830567/2021_03_23_Merois_008.30.jpg"
-              alt="가게"
-            />
+            <img src={store.img} alt="가게" />
           </div>
-          <h1>맛나요 가게</h1>
+          <h1>{store.businessName}</h1>
           <ul>
-            <li>
-              <h2>주소</h2>
-              <p>월 - 토 12:00 - 23:00</p>
-              <p>일 12:00 - 23:00</p>
-            </li>
-            <li>
-              <h2>영업시간</h2>
-              <p>부산 부산진구 중앙대로 680번길</p>
-            </li>
-            <li>
-              <h2>연락처</h2>
-              <p>0501-1234-5678</p>
-            </li>
-            <li>
-              <h2>가게 설명</h2>
-              <p className="store-info">
-                매일 깨끗하고 신선한재료로 맛있는 퓨전요리와 경양식.고급원두를
-                사용한 다양한 커피 분위기좋고 경치좋고 맛있기까지하는 맛나요
-                가게로 놀러오세요~^^
-              </p>
-            </li>
-            <li>
-              <h2>사업자 번호</h2>
-              <p>123132131-456541</p>
-            </li>
+            <StoreInfo name="주소" data={store.address} />
+            <StoreInfo name="영업시간" data={store.businessHours} />
+            <StoreInfo name="연락처" data={store.contactNumber} />
+            <StoreInfo name="가게 설명" data={store.about} />
+            <StoreInfo name="사업자 번호" data={store.businessNumber} />
           </ul>
         </section>
-      </main>
+      </motion.main>
     </Wrapper>
   );
 };
