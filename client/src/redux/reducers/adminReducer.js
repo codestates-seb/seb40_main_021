@@ -1,4 +1,3 @@
-
 import {
    CLICK_TO_StoreInfoUpdate,
    CREATE_QR,
@@ -9,7 +8,7 @@ import {
    SAVED_TABLE_LIST_CHECKBOX_ARR,
    QR_LIST_ALL_CHECK,
    PRINT_MODAL,
-   CLEAR_SAVED_TABLE_LIST_CHECKBOX_ARR,
+   CLEAR_SAVED_TABLE_LIST_CHECKBOX_ARR
 } from '../action/action';
 const adminState = {
    printModal: false,
@@ -19,14 +18,15 @@ const adminState = {
    savedTableListCheckBoxArr: [],
    tableNumInputValueOverlap: false,
    setSavedTebleNum: false,
-   modifyingSavedTableNum: false,
+   modifyingSavedTableNum: false
 };
 
 export const adminReducer = (state = adminState, action) => {
    switch (action.type) {
-      case CLICK_TO_StoreInfoUpdate:
+      case CLICK_TO_StoreInfoUpdate: {
          const currenStoreInfoUpdateState = state.storeInfoUpdateState;
          return Object.assign({}, state, { storeInfoUpdateState: !currenStoreInfoUpdateState });
+      }
       case CREATE_QR:
          return Object.assign({}, state, { qrDate: action.payload.QrList });
 
@@ -43,7 +43,7 @@ export const adminReducer = (state = adminState, action) => {
          return Object.assign({}, state, { setSavedTebleNum: action.payload.chack });
       case MODIFYING_SAVED_TABLE_NUM:
          return Object.assign({}, state, { modifyingSavedTableNum: action.payload.chack });
-      case SAVED_TABLE_LIST_CHECKBOX_ARR:
+      case SAVED_TABLE_LIST_CHECKBOX_ARR: {
          let newSavedTableListCheckBoxArr = [];
          if (state.savedTableListCheckBoxArr.includes(action.payload.idx)) {
             for (let i = 0; i < state.savedTableListCheckBoxArr.length; i++) {
@@ -57,6 +57,7 @@ export const adminReducer = (state = adminState, action) => {
             newSavedTableListCheckBoxArr = [...state.savedTableListCheckBoxArr, action.payload.idx];
          }
          return Object.assign({}, state, { savedTableListCheckBoxArr: newSavedTableListCheckBoxArr });
+      }
       case QR_LIST_ALL_CHECK:
          return Object.assign({}, state, { qrListAllCheck: action.payload.chack });
       case PRINT_MODAL:
@@ -67,4 +68,3 @@ export const adminReducer = (state = adminState, action) => {
          return state;
    }
 };
-

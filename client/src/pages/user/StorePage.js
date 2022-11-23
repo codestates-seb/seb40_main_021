@@ -1,4 +1,3 @@
-import React from 'react';
 import StoreInfo from '../../components/AdminComponents/StoreInfo/StoreInfo';
 import styled from 'styled-components';
 import Buttons from '../../components/AdminComponents/StoreInfo/Buttons';

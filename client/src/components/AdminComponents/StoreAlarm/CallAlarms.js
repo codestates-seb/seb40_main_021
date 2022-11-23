@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import Callalram from './CallAlarm';
 
@@ -12,13 +11,13 @@ const CallAlarms = () => {
          { id: 4, tableNum: 1, calltime: '16:50' },
          { id: 4, tableNum: 1, calltime: '16:50' },
          { id: 4, tableNum: 1, calltime: '16:50' },
-         { id: 4, tableNum: 1, calltime: '16:50' },
-      ],
+         { id: 4, tableNum: 1, calltime: '16:50' }
+      ]
    };
    return (
       <CallAlarmContainer>
          <div className="subTitle">
-            <label>호출알람</label>
+            <p>호출알람</p>
             <div id="icon">
                <img width="50px" height="50px" src={require('../../../assets/callAlarmIcon.png')} alt=""></img>
             </div>

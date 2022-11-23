@@ -6,10 +6,10 @@ import categoryUserItemReducer from './categoryUserItemReducer';
 import { menuReducer } from './menuReducer';
 import { stateReducer } from './stateReducer';
 export const rootReducer = combineReducers({
-  menuReducer,
-  stateReducer,
-  gnbReducer,
-  adminReducer,
-  menuUserItemReducer,
-  categoryUserItemReducer
+   menuReducer,
+   stateReducer,
+   gnbReducer,
+   adminReducer,
+   menuUserItemReducer,
+   categoryUserItemReducer
 });

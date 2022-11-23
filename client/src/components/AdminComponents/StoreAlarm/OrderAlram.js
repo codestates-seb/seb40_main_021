@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Order, OrderListBox } from './OderAlarmStyle';
 import { MdExpandMore } from 'react-icons/md';
 const OrderAlram = ({ menu, idx }) => {

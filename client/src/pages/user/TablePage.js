@@ -1,4 +1,3 @@
-import React from 'react';
 import TableList from '../../components/AdminComponents/TableStatus/TableList';
 import styled from 'styled-components';
 const Table = () => {

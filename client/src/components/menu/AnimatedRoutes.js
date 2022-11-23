@@ -6,15 +6,15 @@ import { Store } from '../../pages/menu/Store';
 import { AnimatePresence } from 'framer-motion';
 
 export const AnimatedRoutes = () => {
-  const location = useLocation();
+   const location = useLocation();
 
-  return (
-    <AnimatePresence>
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Home />} />
-        <Route path="/store" element={<Store />} />
-        <Route path="/order/*" element={<Order />} />
-      </Routes>
-    </AnimatePresence>
-  );
+   return (
+      <AnimatePresence>
+         <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<Home />} />
+            <Route path="/store" element={<Store />} />
+            <Route path="/order/*" element={<Order />} />
+         </Routes>
+      </AnimatePresence>
+   );
 };
