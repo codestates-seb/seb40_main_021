@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faAngleDown,
   faPlus,
-  faMinus,
+  faMinus
 } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useRef, useState } from 'react';
@@ -11,19 +11,22 @@ import { activate, putItem } from '../../redux/actions/menuAction';
 
 export const MenuDetailed = () => {
   const modal = useRef();
-  const dispatch = useDispatch();
-  const isActive = useSelector((store) => store.activeReducer);
-  const menuId = useSelector((store) => store.menuIdReducer);
+  const isActive = useSelector((store) => store.stateReducer.bottomModal);
+  const menuId = useSelector((store) => store.stateReducer.menuId);
   const menu = useSelector(
-    (store) => store.menuReducer.menu.filter((menu) => menu.id === menuId)[0]
+    (store) =>
+      store.menuReducer.menu.filter((menu) => menu.menuId === menuId)[0]
   );
   const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
 
+  // 모달 닫기
   const closeModal = () => {
     modal.current.classList.remove('active');
     dispatch(activate(false));
   };
 
+  // 모달 초기화
   const initModal = () => {
     modal.current.classList.remove('active');
     setTimeout(() => {
@@ -42,16 +45,37 @@ export const MenuDetailed = () => {
     };
   }, [menuId]);
 
+  // 선택메뉴 카트에 담기
   const cartBtnHandler = () => {
+    // 추가 메뉴
     const data = {
-      id: menu.id,
-      name: menu.name,
+      menuId: menu.menuId,
+      menuName: menu.menuName,
       price: menu.price,
       quantity,
-      img: menu.img,
+      img: menu.img
     };
-    // 서버에 요청 -> 카트에 item 저장
-    console.log('menuDetail : ', data);
+
+    // 로컬 스토리지에 저장된 장바구니 리스트 불러오기
+    const getCartItem = JSON.parse(localStorage.getItem('cart'));
+    // 아무것도 없으면 추가
+    if (getCartItem === null) {
+      localStorage.setItem('cart', JSON.stringify([data]));
+
+      // 장바구니에 저장된 메뉴가 있는경우
+    } else {
+      const target = getCartItem.filter(
+        (menu) => menu.menuId === data.menuId
+      )[0];
+      // 같은 메뉴는 수량 합친후 저장
+      if (target) {
+        target.quantity += data.quantity;
+        localStorage.setItem('cart', JSON.stringify(getCartItem));
+        // 같은 메뉴가 아닌경우 배열에 추가한 후 저장
+      } else {
+        localStorage.setItem('cart', JSON.stringify([...getCartItem, data]));
+      }
+    }
 
     dispatch(putItem(data));
     closeModal();
@@ -64,10 +88,10 @@ export const MenuDetailed = () => {
       </button>
       <div className="menu">
         <div className="inline">
-          <h1>{menu && menu.name}</h1>
+          <h1>{menu && menu.menuName}</h1>
           <p>{menu && menu.price}원</p>
         </div>
-        <p>{menu && menu.infoText}</p>
+        <p>{menu && menu.menuContent}</p>
       </div>
       <div className="cart">
         <div className="quantity">

@@ -1,5 +1,4 @@
-import React from "react";
-import OrderAlarms from "../../components/AdminComponents/StoreAlarm/OrderAlarms";
+import OrderAlarms from '../../components/AdminComponents/StoreAlarm/OrderAlarms';
 
 const UserMain = () => {
   return (

@@ -4,38 +4,39 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   deleteMenu,
   minusQuantity,
-  plusQuantity,
+  plusQuantity
 } from '../../redux/actions/menuAction';
 
 export const CartItem = ({ data }) => {
   const cart = useSelector((store) => store.menuReducer.cart);
   const dispatch = useDispatch();
 
-  const deleteBtnHandler = () => {
-    const fetchData = cart.filter((menu) => menu.id !== data.id);
-    dispatch(deleteMenu(fetchData));
-  };
-
+  // 수량 빼기
   const minusBtnHandler = () => {
-    console.log(data.id);
     if (data.quantity > 1) {
-      dispatch(minusQuantity({ id: data.id }));
+      dispatch(minusQuantity({ menuId: data.menuId }));
     }
   };
 
+  // 수량 더하기
   const plusBtnHandler = () => {
-    console.log(data.id);
-
-    dispatch(plusQuantity({ id: data.id }));
+    dispatch(plusQuantity({ menuId: data.menuId }));
   };
+
+  // 메뉴 삭제
+  const deleteBtnHandler = () => {
+    const filtered = cart.filter((menu) => menu.menuId !== data.menuId);
+    dispatch(deleteMenu(filtered));
+  };
+
   return (
     <li className="stored-menu">
       <div className="left">
         <div className="imgBox">
-          <img src={data.img} alt={data.name} />
+          <img src={data.img} alt={data.menuName} />
         </div>
         <div className="menuTxt">
-          <h2>{data.name}</h2>
+          <h2>{data.menuName}</h2>
           <p>{data.price * data.quantity}원</p>
         </div>
       </div>

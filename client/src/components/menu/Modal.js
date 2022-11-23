@@ -2,12 +2,25 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-regular-svg-icons';
 import { useState } from 'react';
 import { ModalStyle } from '../../style/menu.style';
+import axios from 'axios';
 
 export const Modal = (modal) => {
   const [callStaff, setCallStaff] = useState(false);
 
+  const tableNumber = '12';
+
   const callStaffHandler = () => {
     setCallStaff(true);
+    axios({
+      method: 'POST',
+      url: `/call/1/${tableNumber}`,
+      body: { tableNumber }
+    }).then((res) => {
+      if (res.status === 200) {
+        alert('직원을 호출했습니다.');
+      }
+    });
+
     setTimeout(() => {
       modal.setIsModalOpen(false);
     }, 1000);

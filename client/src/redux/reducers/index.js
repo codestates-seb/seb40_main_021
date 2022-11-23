@@ -1,14 +1,8 @@
 import { combineReducers } from 'redux';
-import {
-  menuReducer,
-  menuIdReducer,
-  activeReducer,
-  categoryReducer,
-} from './rootReducer';
+import { menuReducer } from './menuReducer';
+import { stateReducer } from './stateReducer';
 
 export const rootReducer = combineReducers({
   menuReducer,
-  menuIdReducer,
-  activeReducer,
-  categoryReducer,
+  stateReducer
 });

@@ -3,7 +3,7 @@ import {
   faUtensils,
   faBell,
   faStore,
-  faCartShopping,
+  faCartShopping
 } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 import { BottomNavStyle } from '../../style/menu.style';
@@ -12,9 +12,11 @@ import { useSelector } from 'react-redux';
 export const BottomNav = (modal) => {
   const cart = useSelector((store) => store.menuReducer.cart);
 
+  // 팝업 보여주기
   const navHandler = () => {
     modal.setIsModalOpen(true);
   };
+
   return (
     <BottomNavStyle>
       <NavLink

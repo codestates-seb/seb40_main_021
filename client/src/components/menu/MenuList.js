@@ -9,7 +9,7 @@ export const MenuList = () => {
       <h1>대표 메뉴</h1>
       <ul className="grid-container">
         {menus.map((menu) => (
-          <Menu key={menu.id} menu={menu} />
+          <Menu key={menu.menuId} menu={menu} />
         ))}
       </ul>
     </section>
