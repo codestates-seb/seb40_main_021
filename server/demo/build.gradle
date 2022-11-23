@@ -2,6 +2,8 @@ plugins {
 	id 'org.springframework.boot' version '2.7.5'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 	id 'java'
+	id 'war' // 추가합니다.
+
 }
 
 group = 'com.example'
