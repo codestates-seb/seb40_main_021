@@ -1,23 +1,48 @@
-import { useState } from 'react';
-// import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
-import { BrowserRouter } from 'react-router-dom';
-import { AnimatedRoutes } from './components/menu/AnimatedRoutes';
-import { BottomNav } from './components/menu/BottomNav';
-import { Header } from './components/menu/Header';
-import { Modal } from './components/menu/Modal';
+import { Reset } from 'styled-reset';
+import './assets/font.css';
+import Header from './components/common/Header';
+import GnbLayout from './components/common/GnbLayout';
+import AlarmPage from './pages/user/AlarmsPage';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Table from './pages/user/TablePage';
+import Store from './pages/user/StorePage';
+import CreateTable from './pages/user/CreateTablePage';
+import QrTable from './pages/user/QrTablePage';
+import SetMenu from './pages/menu/SetMenu';
+import Menu from './pages/menu/Menu';
+import SignupTos from './pages/Signup/SignupTos';
+import MemberInfo from './pages/Signup/MemberInfo';
+import StoreInfo from './pages/Signup/StoreInfo';
+import Complete from './pages/Signup/Complete';
+import Login from './pages/Signup/Login';
+import { useSelector } from 'react-redux';
+import MenuApp from './pages/menuApp';
 function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const printModalState = useSelector((state) => state.adminReducer.printModal);
   return (
-    <>
+    <div className="App">
+      <Reset />
       <BrowserRouter>
-        <Header />
-        <AnimatedRoutes />
-        <BottomNav setIsModalOpen={setIsModalOpen} />
+        {printModalState ? null : <Header />}
+        <Routes>
+          <Route path="/user" element={<GnbLayout />}>
+            <Route path="/user" element={<AlarmPage />} />
+            <Route path="/user/table" element={<Table />} />
+            <Route path="/user/store" element={<Store />} />
+            <Route path="/user/create" element={<CreateTable />} />
+            <Route path="/user/qr" element={<QrTable />} />
+            <Route path="/user/menusetting" element={<SetMenu />} />
+            <Route path="/user/menu" element={<Menu />} />
+          </Route>
+          <Route exact path="/" element={<SignupTos />} />
+          <Route path="/MemberInfo" element={<MemberInfo />} />
+          <Route path="/StoreInfo" element={<StoreInfo />} />
+          <Route path="/Complete" element={<Complete />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/menu" element={<MenuApp />} />
+        </Routes>
       </BrowserRouter>
-      {isModalOpen && <Modal setIsModalOpen={setIsModalOpen} />}
-    </>
+    </div>
   );
 }
-
 export default App;
