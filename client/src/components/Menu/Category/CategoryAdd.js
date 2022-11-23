@@ -26,14 +26,26 @@ const CategoryAdd = ({ placeholder, active, setToggleCategoryAdd, userId }) => {
         if (!categoryName || !categoryName.trim()) {
             return alert('카테고리 이름을 작성하세요.');
         }
-        // dispatch(setUserAddCategory({
-        //     uuid: uuidv4(),
-        //     categoryName: categoryName,
-        //     active: false
-        // }))
+        dispatch(setUserAddCategory({
+            categoryName: categoryName,
+        }))
+        // clickFetchFunc({
+        //     method: 'POST',
+        //     url: `/member/join`,
+        //     data: {
+        //         loginId: 'hello', password: '1234', businessNumber: '123412341234', about: 'hello', address: '주소', contactNumber: '01012345678',
+        //         businessHours: '1~1'
+        //     }
+        // })
         clickFetchFunc({
             method: 'POST',
             url: `category/write`,
+            header: {
+                // "Access-Control-Allow-Headers": "*", // this will allow all CORS requests
+                // "Access-Control-Allow-Methods": 'POST', // this states the allowed methods
+                "Content-Type": "application/json" // this shows the expected content type
+
+            },
             data: {
                 memberId: userId,
                 categoryName: categoryName

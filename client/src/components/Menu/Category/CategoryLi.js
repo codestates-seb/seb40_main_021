@@ -7,7 +7,7 @@ import { setGetUserCategory, setUserCategoryNaming, setUserCategoryNowNaming, se
 import axios from 'axios';
 import { useAxios } from '../../../util/useAxios';
 
-const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex, length }) => {
+const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex, length, userId }) => {
     const { categoryId, categoryName } = el
 
     const state = useSelector((store) => store.categoryUserItemReducer)
@@ -15,6 +15,11 @@ const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex, length
 
     const dispatch = useDispatch()
 
+
+    const { response, loading, error, clickFetchFunc } = useAxios(
+        {
+        }, false
+    );
 
     const editCategoryName = (e) => {
         const value = e.target.value
@@ -36,6 +41,11 @@ const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex, length
             } else {
                 dispatch(setUserModifyCategory(idx, categoryAddName))
                 dispatch(setUserCategoryNaming(''))
+                clickFetchFunc({
+                    method: 'PATCH',
+                    url: `/category/update/${userId}`,
+                    data: { categoryName: categoryAddName }
+                })
                 setTogglePatchCategory(!togglePatchCategory);
             }
         }
@@ -57,10 +67,6 @@ const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex, length
         };
     }, [CategorytRef]);
 
-    const { response, loading, error, clickFetchFunc, setSubmit } = useAxios(
-        {
-        }, false
-    );
 
     const DeleteCategory = (e) => {
         e.stopPropagation();
@@ -70,13 +76,13 @@ const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex, length
         if (length === 1) {
             return alert('마지막 카테고리는 삭제가 불가능합니다.')
         }
-        // let categoryId = e.target.categoryId
+        dispatch(setUserDeleteCategory(idx))
         console.log(categoryId)
         clickFetchFunc({
             method: 'DELETE',
             url: `category/${categoryId}`,
         })
-        setSubmit('업데이트 2')
+
     }
     const onTitleClick = () => {
         setActiveIndex(idx);

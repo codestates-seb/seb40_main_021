@@ -6,15 +6,13 @@ const initialState = {
     input: {
         categoryName: ''
     },
-    data: [{
-        categoryName: '기본 카테고리'
-    }]
+    data: []
 }
 
 const categoryUserItemReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_USER_POST_SUCCESS:
-            console.log(action.payload)
+            // console.log(action.payload)
             if (action.payload.length !== 0) {
                 return {
                     ...state,
@@ -45,9 +43,11 @@ const categoryUserItemReducer = (state = initialState, action) => {
             state.input.categoryName = state.data[action.payload.idx].categoryName
             return state
         case DELETE_CATEGORY:
+            console.log(state, 'state')
             const deletMenu = state.data.filter((el, idx) => idx !== action.payload.idx)
             return Object.assign({}, state, { data: deletMenu });
         default:
+
             return state
     }
 };

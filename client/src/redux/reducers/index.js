@@ -4,6 +4,7 @@ import { gnbReducer } from './gnbReducer';
 import { adminReducer } from './adminReducer';
 import menuUserItemReducer from './menuUserItemReducer';
 import categoryUserItemReducer from './categoryUserItemReducer';
+import menuSaveItemReducer from './menuSaveItemReducer';
 export const rootReducer = combineReducers({
     // menuReducer,
     // menuIdReducer,
@@ -11,5 +12,6 @@ export const rootReducer = combineReducers({
     gnbReducer,
     adminReducer,
     menuUserItemReducer,
-    categoryUserItemReducer
+    categoryUserItemReducer,
+    menuSaveItemReducer
 });

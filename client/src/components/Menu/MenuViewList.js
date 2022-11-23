@@ -55,20 +55,20 @@ const MenuViewList = ({ el }) => {
                         </S.InputListWrap>
                         <S.InputListWrap>
                             <p>가격</p>
-                            <p className='menuListPrice'>{el.prices}</p>
+                            <p className='menuListPrice'>{el.price}</p>
                         </S.InputListWrap>
                     </S.InputList>
                     <S.InputList>
                         <S.InputListWrap>
                             <p>설명</p>
-                            <p className='menuListAbout'>{el.menuAbout}</p>
+                            <p className='menuListAbout'>{el.menuContent}</p>
                         </S.InputListWrap>
                     </S.InputList>
                 </S.InputWrap>
             </S.ListLi>
             <S.BottomListWarp>
                 {
-                    el.recommend ?
+                    el.recommendedMenu ?
                         <S.CheckboxWrap>
                             <img src={IconCheck} alt='recommendMenu' /><S.LabelBox className='list' >추천메뉴 설정 <span>* 설정시 추천메뉴 표기가 활성화 됩니다.</span></S.LabelBox>
                         </S.CheckboxWrap>
