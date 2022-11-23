@@ -52,4 +52,11 @@ public class OrderController {
         return new ResponseEntity<>(
                 new SingleResponseDto<>(orderMenuResponseList), HttpStatus.OK);
     }
+
+    @PatchMapping("/{order-id}")
+    public ResponseEntity patchOrder(@PathVariable("order-id") @Positive Long orderId) {
+        orderService.updateOrder(orderId);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

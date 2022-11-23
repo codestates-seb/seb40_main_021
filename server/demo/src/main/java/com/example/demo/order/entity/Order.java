@@ -29,7 +29,10 @@ public class Order {
     private Table table;
 
     @Column
-    private LocalDateTime createdAt;
+    private String createdAt;
+
+    @Column
+    private boolean checkBox = true;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderMenu> orderMenuList = new ArrayList<>();

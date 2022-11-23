@@ -110,7 +110,7 @@ public class TableDto {
         private Long orderId;
         private int tableNumber;
         private List<OrderMenuDto.postResponse> orderMenuList;
-        private LocalDateTime createdAt;
+        private String createdAt;
         private String message;
     }
 }

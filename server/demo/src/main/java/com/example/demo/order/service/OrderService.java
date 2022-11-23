@@ -14,6 +14,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -28,12 +29,14 @@ public class OrderService {
     private final OrderMenuRepository orderMenuRepository;
 
     public Order createOrder(Order order, Long memberId) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH시 mm분 ss초");
         Optional<Member> member = memberRepository.findById(memberId);
         List<Table> tableList = tableRepository.findAllByMember(member.get())
                 .stream().filter(table -> table.getTableNumber() == order.getTable().getTableNumber())
                 .collect(Collectors.toList());
         order.setTable(tableList.get(0));
-        order.setCreatedAt(LocalDateTime.now());
+        String formatedNow = LocalDateTime.now().format(formatter);
+        order.setCreatedAt(formatedNow);
 
         for(int i = 0; i < order.getOrderMenuList().size(); i++) {
             Optional<Menu> menu = menuRepository.findById(order.getOrderMenuList().get(i).getMenu().getMenuId());
@@ -91,5 +94,11 @@ public class OrderService {
             }
         }
         return findList;
+    }
+
+    public void updateOrder(Long orderId) {
+        Optional<Order> order = orderRepository.findById(orderId);
+        order.get().setCheckBox(false);
+        orderRepository.save(order.get());
     }
 }

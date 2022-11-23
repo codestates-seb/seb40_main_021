@@ -109,6 +109,12 @@ public class TableService {
                 .collect(Collectors.toList());
 
         for(int i = 0; i < tableList.size(); i++) {
+            List<Order> list = tableList.get(i).getOrderList().stream().filter(order -> order.isCheckBox())
+                    .collect(Collectors.toList());
+            tableList.get(i).setOrderList(list);
+        }
+
+        for(int i = 0; i < tableList.size(); i++) {
             for(int j = 0; j < tableList.get(i).getOrderList().size(); j++) {
                 TableDto.getTableOrderList response = new TableDto.getTableOrderList();
                 response.setOrderId(tableList.get(i).getOrderList().get(j).getOrderId());
