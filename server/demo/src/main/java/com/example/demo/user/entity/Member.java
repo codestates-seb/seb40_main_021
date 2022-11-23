@@ -39,6 +39,8 @@ public class Member extends BaseTimeEntity {
     private String about;
     private String address;
     private String contactNumber;
+    private String businessName;
+    private String businessHours;
 
 
 
@@ -63,4 +65,5 @@ public class Member extends BaseTimeEntity {
         this.password = passwordEncoder.encode(password);
 
     }
+
 }

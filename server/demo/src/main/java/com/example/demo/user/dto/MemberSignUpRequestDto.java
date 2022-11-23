@@ -29,7 +29,8 @@ public class MemberSignUpRequestDto {
     private String about;
     private String address;
     private String contactNumber;
-
+    private String businessName;
+    private String businessHours;
 
     @Builder
     public Member toEntity(){
@@ -40,7 +41,10 @@ public class MemberSignUpRequestDto {
                 .about(about)
                 .address(address)
                 .contactNumber(contactNumber)
+                .businessName(businessName)
+                .businessHours(businessHours)
                 .role(Role.ADMIN)
+
                 .build();
     }
 }
