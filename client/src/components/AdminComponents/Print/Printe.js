@@ -7,37 +7,10 @@ import { AiOutlinePrinter } from 'react-icons/ai';
 
 const Printe = () => {
    const [clickPrintBtn, setClickPrintBtn] = useState(false);
-   const dummyData = {
-      data: [
-         {
-            id: 0,
-            tableNum: 1,
-            date: new Date().toLocaleDateString().slice(0, -1),
-            qrURL: `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/1`,
-         },
-         {
-            id: 1,
-            tableNum: 2,
-            date: new Date().toLocaleDateString().slice(0, -1),
-            qrURL: `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/2`,
-         },
-         {
-            id: 2,
-            tableNum: 3,
-            date: new Date().toLocaleDateString().slice(0, -1),
-            qrURL: `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/3`,
-         },
-         {
-            id: 3,
-            tableNum: 4,
-            date: new Date().toLocaleDateString().slice(0, -1),
-            qrURL: `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/4`,
-         },
-      ],
-   };
-   const dispatch = useDispatch();
    const savedTableListCheckBoxArrState = useSelector(state => state.adminReducer.savedTableListCheckBoxArr);
-   const filterQrList = dummyData.data.filter((qr, idx) => savedTableListCheckBoxArrState.includes(idx));
+   const qrData = useSelector(state => state.adminReducer.qrDate);
+   const filterQrList = qrData.filter((qr, idx) => savedTableListCheckBoxArrState.includes(idx));
+   const dispatch = useDispatch();
    const print = async () => {
       await setClickPrintBtn(true);
       await window.print();
@@ -64,7 +37,7 @@ const Printe = () => {
          <div className="imgs">
             <div className="qrImg">
                {filterQrList.map(Qr => {
-                  return <Qrimg key={Qr.id} data={Qr}></Qrimg>;
+                  return <Qrimg key={Qr.tableId} data={Qr}></Qrimg>;
                })}
             </div>
          </div>

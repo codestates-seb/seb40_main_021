@@ -2,15 +2,37 @@ import React, { useEffect, useState } from 'react';
 import OrderAlram from './OrderAlram';
 import styled from 'styled-components';
 import axios from 'axios';
+import useInterval from '../../../util/useInterval';
+import { useSelector } from 'react-redux';
 
 const OrderAlarms = () => {
+   const url = useSelector(state => state.adminReducer.apiUrl);
    const [allOrderList, setAllorderList] = useState([]);
    useEffect(() => {
-      axios.get('https://c424-221-140-177-247.jp.ngrok.io/table/1').then(res => {
-         setAllorderList(res.data.data);
+      console.log('a');
+
+      axios.get(`${url}/table/1/order`).then(res => {
+         const reverse = res.data.data
+            .slice(0)
+            .reverse()
+            .map(num => num);
+
+         setAllorderList(reverse);
       });
    }, []);
-   console.log(allOrderList);
+
+   useInterval(() => {
+      console.log('요청');
+      axios.get(`${url}/table/1/order`).then(res => {
+         const reverse = res.data.data
+            .slice(0)
+            .reverse()
+            .map(num => num);
+
+         setAllorderList(reverse);
+      });
+   }, 3000);
+
    return (
       <MainContents>
          <div className="subTitle">
@@ -18,9 +40,13 @@ const OrderAlarms = () => {
          </div>
          <div className="orderAlrams">
             <>
-               {allOrderList.map((menu, idx) => {
-                  return <OrderAlram key={menu.tableid} menu={menu} idx={idx}></OrderAlram>;
-               })}
+               {allOrderList.length === 0 ? (
+                  <div className="orderEmpty">주문 알람이 없습니다.</div>
+               ) : (
+                  allOrderList.map((menu, idx) => {
+                     return <OrderAlram key={menu.orderId} menu={menu} idx={idx}></OrderAlram>;
+                  })
+               )}
             </>
          </div>
       </MainContents>
@@ -31,7 +57,12 @@ export default OrderAlarms;
 
 const MainContents = styled.main`
    width: 90%;
-
+   .orderEmpty {
+      text-align: center;
+      color: rgb(255, 107, 0);
+      font-size: 30px;
+      margin: 50px 0 30px 20px;
+   }
    .orderAlrams {
       width: 100%;
       height: 60vh;

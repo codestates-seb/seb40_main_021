@@ -14,28 +14,27 @@ const OrderAlram = ({ menu, idx }) => {
          <div id="oderInfo">
             <b>{`${menu.tableNumber} 번`}</b>
             <div>
-               총 <b>{menu.orderlist.length}</b>개
+               총 <b>{menu.orderMenuList.length}</b>개
             </div>
             <div id="orderTime">
-               <div>{`${menu.orderTime.date}`}</div>
-               <div>{`${menu.orderTime.time}`}</div>
+               <div>{`${menu.createdAt}`}</div>
             </div>
             <div className="detailedMenu">
                <MdExpandMore className="detailedMenuIcon"></MdExpandMore>
             </div>
          </div>
          <OrderListBox menuViewDetails={menuViewDetails}>
-            {menu.orderList.map(order => {
+            {menu.orderMenuList.map(order => {
                return (
-                  <div className="orderList" key={order.id}>
-                     <div> {order.menu}</div>
+                  <div className="orderList" key={order.menuId}>
+                     <div> {order.menuName}</div>
                      <div> {`${order.quantity}개`}</div>
                      <div> {`${order.price}원`}</div>
                   </div>
                );
             })}
             <div className="reqText">
-               <b>{`요청사항 : ${menu.reqText}`}</b>
+               <b>{`요청사항 : ${menu.message}`}</b>
             </div>
          </OrderListBox>
       </Order>

@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { registerTableNum } from '../../../redux/action/action';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { setOverlapNumState, setSavedTebleNum } from '../../../redux/action/action';
 
+import axios from 'axios';
 const QrInfo = ({ idx }) => {
    const [savedNumChack, setSavedNumChack] = useState(false);
    const [inputTextLengthCheck, setInputTextLengthCheck] = useState(true);
-   // const [qrData, setQrData] = useState([]);
+   const [qrData, setQrData] = useState([]);
    const qrDataList = useSelector(state => state.adminReducer.qrDate);
-   const qrData = useSelector(state => state.adminReducer.qrDate);
+   const url = useSelector(state => state.adminReducer.apiUrl);
    const dispatch = useDispatch();
 
    const onChangeTableNumDispatch = e => {
       const tableNum = e.target.value;
       tableNum.length === 0 ? setInputTextLengthCheck(true) : setInputTextLengthCheck(false);
-      console.log(inputTextLengthCheck);
       // tableNumber Input value 중복
       dispatch(registerTableNum(tableNum, idx));
       const inputedTableNums = qrDataList.filter(qrData => qrData.tableNum).map(qrData => qrData.tableNum);
@@ -39,6 +39,11 @@ const QrInfo = ({ idx }) => {
          setSavedNumChack(false);
       }
    };
+   useEffect(() => {
+      axios.get(`${url}/table/1/qr`).then(res => {
+         setQrData(res.data.data);
+      });
+   }, []);
    return (
       <QrInfoBox savedNumChack={savedNumChack}>
          <div className="qrInfos">

@@ -10,9 +10,9 @@ const CallAlarms = () => {
          { id: 2, tableNum: 5, calltime: '17:08' },
          { id: 3, tableNum: 10, calltime: '16:55' },
          { id: 4, tableNum: 1, calltime: '16:50' },
-         { id: 4, tableNum: 1, calltime: '16:50' },
-         { id: 4, tableNum: 1, calltime: '16:50' },
-         { id: 4, tableNum: 1, calltime: '16:50' },
+         { id: 5, tableNum: 1, calltime: '16:50' },
+         { id: 6, tableNum: 1, calltime: '16:50' },
+         { id: 7, tableNum: 1, calltime: '16:50' },
       ],
    };
    return (

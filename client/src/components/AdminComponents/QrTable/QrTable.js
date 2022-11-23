@@ -14,6 +14,7 @@ import {
    getQrData,
 } from '../../../redux/action/action';
 import axios from 'axios';
+
 const CreateQR = () => {
    const [qrData, setQrData] = useState([]);
    const [dummyState, setDummyState] = useState([]);
@@ -23,6 +24,7 @@ const CreateQR = () => {
    const modifyingSavedTableNumState = useSelector(state => state.adminReducer.modifyingSavedTableNum);
    const savedTableListCheckBoxArrState = useSelector(state => state.adminReducer.savedTableListCheckBoxArr);
    const url = useSelector(state => state.adminReducer.apiUrl);
+
    //수정버튼
    const handleClickModifyingSavedTableNum = () => {
       setDummyState(!dummyState);
@@ -55,7 +57,7 @@ const CreateQR = () => {
       const body = {
          tableList: filter,
       };
-      fetch(`/table/update/1`, {
+      fetch(`${url}/table/update/1`, {
          method: 'PATCH',
          headers: { 'Content-Type': 'application/json' },
          body: JSON.stringify(body),
@@ -71,6 +73,28 @@ const CreateQR = () => {
    const handleClickDeleteQr = () => {
       // eslint-disable-next-line no-restricted-globals
       if (confirm('정말 삭제하시겠습니까?')) {
+         const filter = qrData.filter((data, idx) => {
+            delete data.qrUrl;
+            delete data.tableId;
+            delete data.createdAt;
+            return savedTableListCheckBoxArrState.indexOf(idx) !== -1;
+         });
+
+         const body = {
+            tableList: filter,
+         };
+
+         fetch(`${url}/table/1`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body),
+         })
+            .then(() => {
+               axios.get(`${url}/table/1/qr`).then(res => {
+                  dispatch(getQrData(res.data.data));
+               });
+            })
+            .catch(err => console.log(err));
       }
    };
    const allCheck = () => {
@@ -87,17 +111,11 @@ const CreateQR = () => {
    };
 
    useEffect(() => {
-      console.log('A');
       axios.get(`${url}/table/1/qr`).then(res => {
          setQrData(res.data.data);
          dispatch(getQrData(res.data.data));
       });
    }, []);
-   // useEffect(() => {
-   //    axios.get(`${url}/table/1/qr`).then(res => {
-   //       setQrData(res.data.data);
-   //    });
-   // }, []);
    return (
       <MainContants>
          <div className="title">

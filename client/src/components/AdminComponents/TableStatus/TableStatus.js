@@ -2,23 +2,23 @@ import React from 'react';
 import styled from 'styled-components';
 
 const TableStatus = ({ data }) => {
-   const priceList = data.orders.map(menus => {
+   const priceList = data.orderList.map(menus => {
       return menus.price * menus.quantity;
    });
    const totalPrice = priceList.reduce((prev, current) => prev + current);
    return (
       <TableStatusBox>
          <div className="orderHead">
-            <div>{`${data.tableNum}번`}</div>
+            <div>{`${data.tableNumber}번`}</div>
             <div>
-               주문 <b>{data.orders.length}</b>개
+               주문 <b>{data.orderList.length}</b>개
             </div>
          </div>
          <div className="orderList">
-            {data.orders.map(menus => {
+            {data.orderList.map(menus => {
                return (
-                  <div className="order" key={menus.id}>
-                     <div>{menus.menu}</div>
+                  <div className="order" key={menus.menuId}>
+                     <div>{menus.menuName}</div>
                      <div>{`${menus.quantity}개`}</div>
                      <div>{`${menus.price * menus.quantity}원`}</div>
                   </div>
