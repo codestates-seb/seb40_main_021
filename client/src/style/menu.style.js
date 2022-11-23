@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   background-color: #ebebeb;
+
   /* box-shadow: 2px 0px 7px 3px rgb(0 0 0 / 25%); */
   main {
     width: 100%;
@@ -15,7 +16,6 @@ export const Wrapper = styled.div`
     padding: 0 20px 20px;
     background-color: white;
     box-shadow: 0px 1px 7px rgb(0 0 0 / 18%);
-
     .nav-wrapper {
       width: 100vw;
       max-width: 500px;
@@ -25,10 +25,7 @@ export const Wrapper = styled.div`
       left: 50%;
       transform: translate(-50%);
       display: flex;
-      /* flex-wrap: nowrap; */
       padding: 0 0 0 65px;
-      /* overflow-x: scroll; */
-      /* overflow-y: hidden; */
 
       /* box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15); */
 
@@ -38,6 +35,7 @@ export const Wrapper = styled.div`
         position: fixed;
         left: 0;
         padding-left: 65px;
+        background-color: white;
         /* position: absolute; */
         display: flex;
         overflow-x: scroll;
@@ -57,6 +55,7 @@ export const Wrapper = styled.div`
           box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.18);
           font-size: 14px;
           font-weight: 600;
+          background-color: white;
           &.active {
             background-color: #ffd6b8;
           }
@@ -67,7 +66,6 @@ export const Wrapper = styled.div`
       width: 40px;
       height: 50px;
       position: fixed;
-      /* top: 50px; */
       top: 2.5px;
       left: 20px;
       display: flex;
@@ -80,7 +78,7 @@ export const Wrapper = styled.div`
         height: 40px;
         border-radius: 30px;
         border: none;
-        box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
+        /* box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.18); */
         text-align: center;
         padding: 0 10px;
         position: absolute;
@@ -106,6 +104,7 @@ export const Wrapper = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
+        box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
       }
     }
     .search-wrapper.active {
@@ -115,6 +114,7 @@ export const Wrapper = styled.div`
       input {
         height: 45px;
         top: 2.5px;
+        box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
       }
 
       button {
@@ -122,6 +122,7 @@ export const Wrapper = styled.div`
         height: 45px;
         top: 2.5px;
         right: 0;
+        box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
       }
     }
     .menulist-wrapper {
@@ -255,6 +256,7 @@ export const Wrapper = styled.div`
       display: flex;
       flex-direction: column;
       padding: 20px;
+      width: 100%;
       li {
         margin-bottom: 15px;
       }
@@ -534,9 +536,6 @@ export const BottomNavStyle = styled.div`
     cursor: pointer;
     text-decoration: none;
     position: relative;
-    .cart {
-      position: relative;
-    }
     .cartCount {
       width: 18px;
       height: 18px;
@@ -581,6 +580,7 @@ export const HeaderStyle = styled.header`
   position: fixed;
   top: 0;
   left: 50%;
+  z-index: 9999;
   transform: translate(-50%);
   box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.15);
 
