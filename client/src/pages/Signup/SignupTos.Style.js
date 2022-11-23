@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
    margin: 5px;
@@ -22,7 +22,7 @@ export const Container = styled.div`
    justify-content: center;
    align-items: center;
    height: 100vh;
-   @media screen and (max-width: 600px) {
+   @media screen and (max-width: 700px) {
       display: flex;
       justify-content: center;
       align-items: flex-start;
@@ -31,7 +31,7 @@ export const Container = styled.div`
 `;
 export const MemberReg = styled.section`
    background: transparent;
-   @media screen and (max-width: 600px) {
+   @media screen and (max-width: 700px) {
       padding: 30px 0 0;
       width: 100%;
       height: 100vh;
@@ -46,7 +46,7 @@ export const PageTitle = styled.div`
       font-size: 2rem;
       margin: 0 0 0 1rem;
    }
-   @media screen and (max-width: 600px) {
+   @media screen and (max-width: 700px) {
       padding: 0 2.6rem;
       margin-top: 50px;
    }
@@ -62,7 +62,7 @@ export const DivideLine = styled.ul`
       height: 5px;
       background: #d9d9d9;
    }
-   @media screen and (max-width: 600px) {
+   @media screen and (max-width: 700px) {
       margin: 15px 0 14px;
       padding: 0 2.6rem;
    }
@@ -78,7 +78,7 @@ export const MemberPanel = styled.div`
    padding: 5.2rem 5.2rem 0;
    background: #fff;
    border-radius: 10px;
-   @media screen and (max-width: 600px) {
+   @media screen and (max-width: 700px) {
       width: 100%;
       height: auto;
       padding: 2.6rem 2.6rem 0;
@@ -177,7 +177,7 @@ export const BtnArea = styled.div`
          border-right: 0.15rem solid #ff6c01;
       }
    }
-   @media screen and (max-width: 600px) {
+   @media screen and (max-width: 700px) {
       display: flex;
       justify-content: center;
       margin: 135px 0 0;
@@ -227,7 +227,7 @@ export const BtnDefault = styled(Btn)`
    text-shadow: none;
    border: 2px solid #ff6c01;
    border-radius: 10px;
-   @media screen and (max-width: 600px) {
+   @media screen and (max-width: 700px) {
       background: #bababa;
       text-shadow: none;
       border: none;

@@ -1,8 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
    margin: 5px;
-   padding: 2%;
+   padding: 3%;
    height: 100vh;
    transition: all 0.5s ease-in;
    -webkit-transition: all 0.5s ease-in;
@@ -22,7 +22,7 @@ export const Container = styled.div`
    justify-content: center;
    align-items: center;
    height: 100vh;
-   @media screen and (max-width: 600px) {
+   @media screen and (max-width: 700px) {
       display: flex;
       justify-content: center;
       align-items: flex-start;
@@ -83,7 +83,7 @@ export const LoginPanel = styled.section`
    background: #fff;
    border-top: 5px solid #ff6b00;
    border-radius: 0 0 10px 10px;
-   @media screen and (max-width: 600px) {
+   @media screen and (max-width: 700px) {
       width: 100%;
       height: 100vh;
       padding: 5.2rem 2.6rem 0;
@@ -163,7 +163,7 @@ export const LoginBtn = styled.div`
    a {
       width: 100%;
    }
-   @media screen and (max-width: 600px) {
+   @media screen and (max-width: 700px) {
       display: flex;
       justify-content: center;
       margin: 39rem 0 0;

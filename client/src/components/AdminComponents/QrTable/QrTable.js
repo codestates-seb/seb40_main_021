@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import styled from 'styled-components';
 import QrList from './QrList';
 import Button from './Button';
@@ -9,7 +9,7 @@ import {
    modifyingSavedTableNum,
    qrListAllCheck,
    savedTableListCheckBoxArr,
-   clearSavedTableListCheckBoxArr,
+   clearSavedTableListCheckBoxArr
 } from '../../../redux/action/action';
 const CreateQR = () => {
    const dummyData = {
@@ -18,27 +18,27 @@ const CreateQR = () => {
             id: 0,
             tableNum: 1,
             date: new Date().toLocaleDateString().slice(0, -1),
-            qrURL: `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/1`,
+            qrURL: `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/1`
          },
          {
             id: 1,
             tableNum: 2,
             date: new Date().toLocaleDateString().slice(0, -1),
-            qrURL: `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/2`,
+            qrURL: `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/2`
          },
          {
             id: 2,
             tableNum: 3,
             date: new Date().toLocaleDateString().slice(0, -1),
-            qrURL: `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/3`,
+            qrURL: `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/3`
          },
          {
             id: 3,
             tableNum: 4,
             date: new Date().toLocaleDateString().slice(0, -1),
-            qrURL: `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/4`,
-         },
-      ],
+            qrURL: `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/4`
+         }
+      ]
    };
    const allChackBoxRef = useRef(null);
    const dispatch = useDispatch();
@@ -73,7 +73,7 @@ const CreateQR = () => {
          </div>
          <main className="mainContant">
             <div className="QrTable">
-               <label>생성 완료된 QR Table</label>
+               <p>생성 완료된 QR Table</p>
                <div className="u_d_btnBox">
                   {modifyingSavedTableNumState ? (
                      <button onClick={handleClcikSubmitNewTableNum} className="u_d_btn">
