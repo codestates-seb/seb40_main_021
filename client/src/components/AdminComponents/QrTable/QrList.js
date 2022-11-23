@@ -1,42 +1,15 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import QrInfo from './QrInfo';
 const QrList = () => {
-   const dummyData = {
-      data: [
-         {
-            id: 0,
-            tableNum: 1,
-            date: new Date().toLocaleDateString().slice(0, -1),
-            qrURL: `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/1`,
-         },
-         {
-            id: 1,
-            tableNum: 2,
-            date: new Date().toLocaleDateString().slice(0, -1),
-            qrURL: `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/2`,
-         },
-         {
-            id: 2,
-            tableNum: 3,
-            date: new Date().toLocaleDateString().slice(0, -1),
-            qrURL: `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/3`,
-         },
-         {
-            id: 2,
-            tableNum: 4,
-            date: new Date().toLocaleDateString().slice(0, -1),
-            qrURL: `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/4`,
-         },
-      ],
-   };
-
+   const qrData = useSelector(state => state.adminReducer.qrDate);
    return (
       <QrListBox>
-         {dummyData.data.length === 0 ? (
+         {qrData.length === 0 ? (
             <div className="emptyList">저장된 QR이 없습니다.</div>
          ) : (
-            dummyData.data.map((data, idx) => {
+            qrData.map((data, idx) => {
                return <QrInfo key={idx} data={data} idx={idx}></QrInfo>;
             })
          )}

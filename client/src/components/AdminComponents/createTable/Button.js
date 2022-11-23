@@ -25,8 +25,10 @@ const Btn = styled.button`
 // };
 
 const ButtonWrap = ({ text, num }) => {
+   const url = useSelector(state => state.adminReducer.apiUrl);
    const setOverlapNumState = useSelector(state => state.adminReducer.tableNumInputValueOverlap);
    const setSavedTebleNum = useSelector(state => state.adminReducer.setSavedTebleNum);
+   const qrData = useSelector(state => state.adminReducer.qrDate);
    const dispatch = useDispatch();
    const hadleClickCreateQR = () => {
       if (num > 30) {
@@ -46,6 +48,16 @@ const ButtonWrap = ({ text, num }) => {
 
       if (!setOverlapNumState && !setSavedTebleNum) {
          alert('데이터 전송');
+         const body = { tableList: qrData };
+         fetch(`/table/1`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body),
+         })
+            .then(res => {
+               console.log(res);
+            })
+            .catch(err => console.log(err));
       } else {
          //데이터 패치
 

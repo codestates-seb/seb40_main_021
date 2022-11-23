@@ -1,4 +1,3 @@
-
 import {
    CLICK_TO_StoreInfoUpdate,
    CREATE_QR,
@@ -10,8 +9,12 @@ import {
    QR_LIST_ALL_CHECK,
    PRINT_MODAL,
    CLEAR_SAVED_TABLE_LIST_CHECKBOX_ARR,
+   UPDATE_TABLE_NUMBER,
+   REGIST_UPDATE_TABLE_NUMBER,
+   GET_QR_DATA,
 } from '../action/action';
 const adminState = {
+   apiUrl: 'https://c8e8-221-140-177-247.jp.ngrok.io',
    printModal: false,
    qrListAllCheck: false,
    storeInfoUpdateState: false,
@@ -20,6 +23,7 @@ const adminState = {
    tableNumInputValueOverlap: false,
    setSavedTebleNum: false,
    modifyingSavedTableNum: false,
+   updateTableNumber: [],
 };
 
 export const adminReducer = (state = adminState, action) => {
@@ -63,8 +67,28 @@ export const adminReducer = (state = adminState, action) => {
          return Object.assign({}, state, { printModal: action.payload.chack });
       case CLEAR_SAVED_TABLE_LIST_CHECKBOX_ARR:
          return Object.assign({}, state, { savedTableListCheckBoxArr: [] });
+      case UPDATE_TABLE_NUMBER:
+         const newArr = state.updateTableNumber;
+
+         for (let i = 0; i < state.savedTableListCheckBoxArr.length; i++) {
+            const body = { idx: state.savedTableListCheckBoxArr[i], newTableNum: null };
+            // const body = { idx: action.payload.idx, newTableNum: action.payload.newNum };
+            newArr.push(body);
+         }
+         return Object.assign({}, state, { updateTableNumber: newArr });
+      case REGIST_UPDATE_TABLE_NUMBER:
+         const newUpateArr = state.updateTableNumber;
+         newUpateArr.forEach(data => {
+            if (data.idx === action.payload.idx) {
+               data.newTableNum = action.payload.num;
+            }
+         });
+         // newUpateArr[action.payload.idx].newTableNum = action.payload.num;
+         console.log(newUpateArr);
+         return Object.assign({}, state, { updateTableNumber: newUpateArr });
+      case GET_QR_DATA:
+         return Object.assign({}, state, { qrDate: action.payload.data });
       default:
          return state;
    }
 };
-

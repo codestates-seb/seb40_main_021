@@ -3,14 +3,13 @@ import { registerTableNum } from '../../../redux/action/action';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { setOverlapNumState, setSavedTebleNum } from '../../../redux/action/action';
-import Input from '../../Input';
+
 const QrInfo = ({ idx }) => {
    const [savedNumChack, setSavedNumChack] = useState(false);
    const [inputTextLengthCheck, setInputTextLengthCheck] = useState(true);
-
-   const dummyData = [{ tableNum: 1 }, { tableNum: 2 }];
+   // const [qrData, setQrData] = useState([]);
    const qrDataList = useSelector(state => state.adminReducer.qrDate);
-
+   const qrData = useSelector(state => state.adminReducer.qrDate);
    const dispatch = useDispatch();
 
    const onChangeTableNumDispatch = e => {
@@ -28,8 +27,8 @@ const QrInfo = ({ idx }) => {
       }
 
       // DB에 저정되어 있는 테이블과 tableNumber Input value 중복
-      let savedTableNum = dummyData.map(data => {
-         return String(data.tableNum);
+      let savedTableNum = qrData.map(data => {
+         return String(data.tableNumber);
       });
       const isIncludes = savedTableNum.includes(tableNum);
       if (isIncludes) {
@@ -40,7 +39,6 @@ const QrInfo = ({ idx }) => {
          setSavedNumChack(false);
       }
    };
-
    return (
       <QrInfoBox savedNumChack={savedNumChack}>
          <div className="qrInfos">

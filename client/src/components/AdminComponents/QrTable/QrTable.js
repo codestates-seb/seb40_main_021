@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import QrList from './QrList';
 import Button from './Button';
@@ -10,55 +10,74 @@ import {
    qrListAllCheck,
    savedTableListCheckBoxArr,
    clearSavedTableListCheckBoxArr,
+   updateTableNumber,
+   getQrData,
 } from '../../../redux/action/action';
+import axios from 'axios';
 const CreateQR = () => {
-   const dummyData = {
-      data: [
-         {
-            id: 0,
-            tableNum: 1,
-            date: new Date().toLocaleDateString().slice(0, -1),
-            qrURL: `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/1`,
-         },
-         {
-            id: 1,
-            tableNum: 2,
-            date: new Date().toLocaleDateString().slice(0, -1),
-            qrURL: `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/2`,
-         },
-         {
-            id: 2,
-            tableNum: 3,
-            date: new Date().toLocaleDateString().slice(0, -1),
-            qrURL: `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/3`,
-         },
-         {
-            id: 3,
-            tableNum: 4,
-            date: new Date().toLocaleDateString().slice(0, -1),
-            qrURL: `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/4`,
-         },
-      ],
-   };
+   const [qrData, setQrData] = useState([]);
+   const [dummyState, setDummyState] = useState([]);
    const allChackBoxRef = useRef(null);
    const dispatch = useDispatch();
+   const newTableNumArr = useSelector(state => state.adminReducer.updateTableNumber);
    const modifyingSavedTableNumState = useSelector(state => state.adminReducer.modifyingSavedTableNum);
    const savedTableListCheckBoxArrState = useSelector(state => state.adminReducer.savedTableListCheckBoxArr);
-   const handleClcikModifyingSavedTableNum = () => {
+   const url = useSelector(state => state.adminReducer.apiUrl);
+   //수정버튼
+   const handleClickModifyingSavedTableNum = () => {
+      setDummyState(!dummyState);
+      dispatch(updateTableNumber());
       savedTableListCheckBoxArrState.length === 0
          ? alert('선택된 QR Table이 없습니다.')
          : dispatch(modifyingSavedTableNum(!modifyingSavedTableNumState));
    };
-   const handleClcikSubmitNewTableNum = () => {
-      alert('전송');
-      handleClcikModifyingSavedTableNum();
+   //확인버튼
+   const handleClickSubmitNewTableNum = () => {
+      //handleClickModifyingSavedTableNum();
+      savedTableListCheckBoxArrState.length === 0
+         ? alert('선택된 QR Table이 없습니다.')
+         : dispatch(modifyingSavedTableNum(!modifyingSavedTableNumState));
+
+      const filter = qrData.filter((data, idx) => {
+         data.beforeTableNumber = data.tableNumber;
+         newTableNumArr.forEach(element => {
+            if (element.idx === idx) {
+               data.afterTableNumber = Number(element.newTableNum);
+               data.qrUrl = `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/${element.newTableNum}`;
+            }
+         });
+
+         delete data.tableNumber;
+         delete data.tableId;
+         delete data.createdAt;
+         return savedTableListCheckBoxArrState.indexOf(idx) !== -1;
+      });
+      const body = {
+         tableList: filter,
+      };
+      fetch(`/table/update/1`, {
+         method: 'PATCH',
+         headers: { 'Content-Type': 'application/json' },
+         body: JSON.stringify(body),
+      })
+         .then(() => {
+            axios.get(`${url}/table/1/qr`).then(res => {
+               dispatch(getQrData(res.data.data));
+            });
+         })
+         .catch(err => console.log(err));
    };
 
+   const handleClickDeleteQr = () => {
+      // eslint-disable-next-line no-restricted-globals
+      if (confirm('정말 삭제하시겠습니까?')) {
+      }
+   };
    const allCheck = () => {
       if (allChackBoxRef.current.checked) {
          dispatch(clearSavedTableListCheckBoxArr());
          dispatch(qrListAllCheck(true));
-         for (let idx = 0; idx < dummyData.data.length; idx++) {
+         for (let idx = 0; idx < qrData.length; idx++) {
             dispatch(savedTableListCheckBoxArr(idx));
          }
       } else {
@@ -66,6 +85,19 @@ const CreateQR = () => {
          dispatch(clearSavedTableListCheckBoxArr());
       }
    };
+
+   useEffect(() => {
+      console.log('A');
+      axios.get(`${url}/table/1/qr`).then(res => {
+         setQrData(res.data.data);
+         dispatch(getQrData(res.data.data));
+      });
+   }, []);
+   // useEffect(() => {
+   //    axios.get(`${url}/table/1/qr`).then(res => {
+   //       setQrData(res.data.data);
+   //    });
+   // }, []);
    return (
       <MainContants>
          <div className="title">
@@ -76,18 +108,18 @@ const CreateQR = () => {
                <label>생성 완료된 QR Table</label>
                <div className="u_d_btnBox">
                   {modifyingSavedTableNumState ? (
-                     <button onClick={handleClcikSubmitNewTableNum} className="u_d_btn">
+                     <button onClick={handleClickSubmitNewTableNum} className="u_d_btn">
                         확인
                         <CiEdit size="20"></CiEdit>
                      </button>
                   ) : (
-                     <button onClick={handleClcikModifyingSavedTableNum} className="u_d_btn">
+                     <button onClick={handleClickModifyingSavedTableNum} className="u_d_btn">
                         수정
                         <CiEdit size="20"></CiEdit>
                      </button>
                   )}
 
-                  <button className="u_d_btn">
+                  <button onClick={handleClickDeleteQr} className="u_d_btn">
                      삭제
                      <RiDeleteBinLine size="15"></RiDeleteBinLine>
                   </button>

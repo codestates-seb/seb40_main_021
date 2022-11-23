@@ -12,9 +12,9 @@ const OrderAlram = ({ menu, idx }) => {
             setMenuViewDetails(!menuViewDetails);
          }}>
          <div id="oderInfo">
-            <b>{`${menu.tableNum} 번`}</b>
+            <b>{`${menu.tableNumber} 번`}</b>
             <div>
-               총 <b>{menu.orders.length}</b>개
+               총 <b>{menu.orderlist.length}</b>개
             </div>
             <div id="orderTime">
                <div>{`${menu.orderTime.date}`}</div>
@@ -25,7 +25,7 @@ const OrderAlram = ({ menu, idx }) => {
             </div>
          </div>
          <OrderListBox menuViewDetails={menuViewDetails}>
-            {menu.orders.map(order => {
+            {menu.orderList.map(order => {
                return (
                   <div className="orderList" key={order.id}>
                      <div> {order.menu}</div>
