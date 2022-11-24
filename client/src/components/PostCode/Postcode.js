@@ -1,5 +1,6 @@
 import { useDaumPostcodePopup } from 'react-daum-postcode';
-import { BtnDefault } from '../../pages/Signup/StoreInfo.Style';
+import { BtnDefault, BtnDefaultMobile } from '../../pages/Signup/StoreInfo.Style';
+import search from '../../assets/img/search.png';
 
 const Postcode = ({ setAddress }) => {
    const CURRENT_URL = 'https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
@@ -27,9 +28,13 @@ const Postcode = ({ setAddress }) => {
    };
 
    return (
-      <button onClick={handleClick}>
-         <BtnDefault>우편번호 검색</BtnDefault>
-      </button>
+      <>
+         <BtnDefault onClick={handleClick}>우편번호 검색</BtnDefault>
+
+         <BtnDefaultMobile onClick={handleClick}>
+            <img src={search} alt="search" />
+         </BtnDefaultMobile>
+      </>
    );
 };
 
