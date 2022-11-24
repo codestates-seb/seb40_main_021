@@ -17,7 +17,6 @@ const initialState = {
 const categoryUserItemReducer = (state = initialState, action) => {
    switch (action.type) {
       case GET_USER_POST_SUCCESS:
-         // console.log(action.payload)
          if (action.payload.length !== 0) {
             return {
                ...state,
@@ -31,7 +30,6 @@ const categoryUserItemReducer = (state = initialState, action) => {
          let changeData = [...state.data, action.payload.res];
          return Object.assign({}, state, { data: changeData });
       case SET_USER_MODIFY_CATEGORY:
-         console.log('false', state);
          state.data[action.payload.idx].categoryName = action.payload.res;
          return state;
       case CHANGE_INPUT:
@@ -43,13 +41,9 @@ const categoryUserItemReducer = (state = initialState, action) => {
             }
          };
       case CHANGE_NOW_INPUT:
-         console.log('true', state);
-         console.log('true', action.payload.idx);
-
          state.input.categoryName = state.data[action.payload.idx].categoryName;
          return state;
       case DELETE_CATEGORY:
-         console.log(state, 'state');
          // eslint-disable-next-line no-case-declarations
          const deletMenu = state.data.filter((_el, idx) => idx !== action.payload.idx);
          return Object.assign({}, state, { data: deletMenu });

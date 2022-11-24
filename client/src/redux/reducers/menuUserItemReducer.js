@@ -26,14 +26,12 @@ const menuUserItemReducer = (state = initialState, action) => {
                }
             };
          });
-         console.log('메뉴유저아이템리듀서 실행', dataSet);
          state.data = dataSet;
 
          return state;
       case MENU_USER_ADD:
          // eslint-disable-next-line no-case-declarations
          let changeData = [...state.data, action.payload.res];
-         console.log(changeData);
          return Object.assign({}, state, { data: changeData });
       case MENU_USER_UPDATE:
          state.data.find(x => x.menuId === action.payload.id).menuName = action.payload.menuNameValue;

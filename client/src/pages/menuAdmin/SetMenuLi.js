@@ -21,13 +21,11 @@ const SetMenuLi = ({ submit, setSubmit, activeIndex }) => {
          method: 'GET',
          url: `category/read/${categoryId}`
       });
-      console.log(`category/read/${categoryId}`);
    }, [changeCategoryList, activeIndex]);
    const dispatch = useDispatch();
    const [, setUpdateState] = useState();
    const forceUpdate = useCallback(() => setUpdateState({}), []);
    useEffect(() => {
-      console.log('이게 실행안되나?', response);
       response && dispatch(menuSaveAndChangeAdd(response));
    }, [response, activeIndex]);
 
@@ -35,7 +33,6 @@ const SetMenuLi = ({ submit, setSubmit, activeIndex }) => {
       forceUpdate();
    }, [response]);
 
-   console.log('업데이트');
    return (
       <>
          {menuList.map(el => (

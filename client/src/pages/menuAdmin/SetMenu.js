@@ -16,8 +16,7 @@ const SetMenu = () => {
    const [toggleCategoryAdd, setToggleCategoryAdd] = useState(false);
    const dispatch = useDispatch();
    const state = useSelector(store => store.menuUserItemReducer);
-   const menuList = useSelector(store => store.menuUserItemReducer.data);
-   console.log(state, 'state');
+   // const menuList = useSelector(store => store.menuUserItemReducer.data);
    const menuCountPlus = () => {
       dispatch(
          menuUserAdd({
@@ -39,7 +38,7 @@ const SetMenu = () => {
 
    const [activeIndex, setActiveIndex] = useState(0);
    const [submit, setSubmit] = useState(false);
-   const categoryList = useSelector(store => store.categoryUserItemReducer.data);
+   // const categoryList = useSelector(store => store.categoryUserItemReducer.data);
    // const { response, loading, error, clickFetchFunc } = useAxios(
    //    {
    //    }, false
@@ -55,7 +54,6 @@ const SetMenu = () => {
          ) {
             ErrorInput = true;
          }
-         console.log('state.data[i].price', state.data[i].price);
          if (
             state.data[i].price &&
             (state.data[i].menuName || state.data[i].menuName.trim()) &&
@@ -64,14 +62,13 @@ const SetMenu = () => {
             setSubmit(true);
             //통신진행
             console.log('성공');
-            console.log(menuList, 'undifined???');
-            console.log(
-               menuList[0].menuName,
-               menuList[0].menuContent,
-               menuList[0].price,
-               menuList[0].recommnd,
-               categoryList[activeIndex].categoryId
-            );
+            // console.log(
+            //    menuList[0].menuName,
+            //    menuList[0].menuContent,
+            //    menuList[0].price,
+            //    menuList[0].recommnd,
+            //    categoryList[activeIndex].categoryId
+            // );
             // clickFetchFunc({
             //    method: 'POST',
             //    url: `/menu/write`,
@@ -101,7 +98,6 @@ const SetMenu = () => {
       }
    };
 
-   // console.log(error)
    return (
       <S.SetMenuLayout>
          <S.Head>메뉴판 제작</S.Head>

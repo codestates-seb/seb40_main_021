@@ -9,7 +9,6 @@ const MenuLi = ({ activeIndex }) => {
    const categoryList = useSelector(store => store.categoryUserItemReducer.data);
    const menuList = useSelector(store => store.menuSaveItemReducer.data);
    let categoryId;
-   console.log(menuList);
 
    if (categoryList.length !== 0) {
       categoryId = categoryList[activeIndex].categoryId;
@@ -24,7 +23,6 @@ const MenuLi = ({ activeIndex }) => {
             url: `category/read/${categoryId}`
          });
       }
-      console.log(`category/read/${categoryId}`);
    }, [categoryList, activeIndex]);
 
    const dispatch = useDispatch();
@@ -38,7 +36,6 @@ const MenuLi = ({ activeIndex }) => {
    useEffect(() => {
       forceUpdate();
    }, [response]);
-   // response && console.log(response)
    // menuSaveitemAdd
    return (
       <>
