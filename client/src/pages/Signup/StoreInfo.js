@@ -30,7 +30,7 @@ const StoreInfo = () => {
 
    const postStoreInfo = async () => {
       const test = {
-         id: inputValue.userMemberReducer.id,
+         loginId: inputValue.userMemberReducer.id,
          password: inputValue.userMemberReducer.password,
          businessNumber: inputValue.userMemberReducer.businessNumber,
          img: img,
@@ -122,7 +122,7 @@ const StoreInfo = () => {
 
                   <InfoForm>
                      <p>가게 설명 등록</p>
-                     <FormControl type="text" placeholder="가게 설명을 입력해주세요" onChange={e => setAbout(e.target.value)} />
+                     <FormControl type="text" placeholder="가게 설명을 입력해주세요" onChange={e =>setAbout(e.target.value)} />
                   </InfoForm>
 
                   <InfoForm>
