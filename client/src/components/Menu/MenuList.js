@@ -68,8 +68,7 @@ const MenuList = ({ el, submit, setSubmit }) => {
       });
    };
 
-   const [isError, setIsError] = useState(true);
-   console.log(isError);
+   const [, setIsError] = useState(true);
    const [helperText, setHelperText] = useState({});
    //get menu
    useEffect(() => {
@@ -89,8 +88,6 @@ const MenuList = ({ el, submit, setSubmit }) => {
          }
          setHelperText({ ...helperText, menuName: '' });
          setmenuNameChange(e.target.value);
-
-         console.log(e.target.value, 'e.target.value');
       }
 
       if (e.target.name === 'prices') {

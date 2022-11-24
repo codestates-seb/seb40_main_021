@@ -14,9 +14,7 @@ const CategoryAdd = ({ placeholder, active, setToggleCategoryAdd, userId }) => {
       dispatch(setUserCategoryNaming(value));
    };
    //post
-   const { response, loading, error, clickFetchFunc } = useAxios({}, false);
-
-   console.log(response, loading, error);
+   const { clickFetchFunc } = useAxios({}, false);
 
    const CategoryNameSave = () => {
       if (!categoryName || !categoryName.trim()) {
