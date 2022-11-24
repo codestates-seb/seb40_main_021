@@ -30,7 +30,7 @@ const StoreInfo = () => {
 
    const postStoreInfo = async () => {
       const test = {
-         id: inputValue.userMemberReducer.id,
+         loginId: inputValue.userMemberReducer.id,
          password: inputValue.userMemberReducer.password,
          businessNumber: inputValue.userMemberReducer.businessNumber,
          img: img,
@@ -122,7 +122,11 @@ const StoreInfo = () => {
 
                   <InfoForm>
                      <p>가게 설명 등록</p>
-                     <FormControl type="text" placeholder="가게 설명을 입력해주세요" onChange={e => setAbout(e.target.value)} />
+                     <FormControl
+                        type="text"
+                        placeholder="가게 설명을 입력해주세요"
+                        onChange={e => setAbout(e.target.value)}
+                     />
                   </InfoForm>
 
                   <InfoForm>
@@ -142,7 +146,11 @@ const StoreInfo = () => {
                   {NumberError && <span>숫자만 입력해주세요</span>}
                   <InfoForm>
                      <p>가게 영업시간</p>
-                     <FormControl type="text" placeholder="가게 영업시간을 작성해 주세요" onChange={e =>setBusinessHours(e.target.value)} />
+                     <FormControl
+                        type="text"
+                        placeholder="가게 영업시간을 작성해 주세요"
+                        onChange={e => setBusinessHours(e.target.value)}
+                     />
                   </InfoForm>
 
                   <ImgRegBtn>

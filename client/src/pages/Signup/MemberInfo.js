@@ -22,7 +22,7 @@ import { BtnArea, BtnDefault } from './SignupTos.Style';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { onChangeIdAction, onChangePasswordAction, onChangeBusunessNumberAction } from '../../redux/action/action';
+import { onChangeIdAction, onChangePasswordAction, onChangeBusinessNumberAction } from '../../redux/action/action';
 
 const MemberInfo = () => {
    const navigate = useNavigate();
@@ -73,7 +73,7 @@ const MemberInfo = () => {
    };
 
    const handleNumber = e => {
-      dispatch(onChangeBusunessNumberAction(e.target.value));
+      dispatch(onChangeBusinessNumberAction(e.target.value));
    };
 
    // postBusinessNumber 사업자 오픈 api
