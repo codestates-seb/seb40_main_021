@@ -12,6 +12,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.expression.spel.ast.OpAnd;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -25,6 +27,9 @@ public class CallService {
     private final TableRepository tableRepository;
 
     public Call createCall(Call call) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String formattedNow = LocalDateTime.now().format(formatter);
+        call.setCreatedAt(formattedNow);
         verifyCall(call);
 
         return callRepository.save(call);
