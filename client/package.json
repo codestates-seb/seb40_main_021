@@ -44,5 +44,13 @@
       "last 1 safari version"
     ]
   },
-  "proxy":"https://137c-221-140-177-247.jp.ngrok.io"
+  "proxy": "https://4ab0-221-154-200-138.jp.ngrok.io",
+  "devDependencies": {
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-react-hooks": "^4.6.0"
+  }
 }

@@ -25,21 +25,21 @@ export const GET_QR_DATA = 'GET_QR_DATA';
 
 export const storeInfoUpdate = () => {
    return {
-      type: CLICK_TO_StoreInfoUpdate,
+      type: CLICK_TO_StoreInfoUpdate
    };
 };
 
 export const gnbToggleOpen = res => {
    return {
       type: GNB_MOBILE,
-      payload: res,
+      payload: res
    };
 };
 
 export const menuUserAdd = res => {
    return {
       type: MENU_USER_ADD,
-      payload: { res },
+      payload: { res }
    };
 };
 export const menuUserUpdate = (id, menuAboutValue, menuNameValue, menuImgValue, pricesValue, checked) => {
@@ -51,8 +51,8 @@ export const menuUserUpdate = (id, menuAboutValue, menuNameValue, menuImgValue, 
          menuNameValue,
          menuImgValue,
          pricesValue,
-         checked,
-      },
+         checked
+      }
    };
 };
 
@@ -60,8 +60,8 @@ export const menuUserDelete = id => {
    return {
       type: MENU_USER_DELETE,
       payload: {
-         id,
-      },
+         id
+      }
    };
 };
 
@@ -70,8 +70,8 @@ export const menuUserErrorMessage = (id, message) => {
       type: ERROR_CASE_HANDLE,
       payload: {
          id,
-         message,
-      },
+         message
+      }
    };
 };
 
@@ -79,16 +79,16 @@ export const menuUserErrorMessageSubmit = idx => {
    return {
       type: EROOR_TO_SUBMIT,
       payload: {
-         idx,
-      },
+         idx
+      }
    };
 };
 export const createQr = QrList => {
    return {
       type: CREATE_QR,
       payload: {
-         QrList,
-      },
+         QrList
+      }
    };
 };
 
@@ -97,40 +97,40 @@ export const registerTableNum = (tableNum, idx) => {
       type: REGISTER_TABLE_NUM,
       payload: {
          tableNum,
-         idx,
-      },
+         idx
+      }
    };
 };
 export const setOverlapNumState = chack => {
    return {
       type: SET_OVERLAP_NUM_STATE,
       payload: {
-         chack,
-      },
+         chack
+      }
    };
 };
 export const setSavedTebleNum = chack => {
    return {
       type: SET_SEVED_TABLE_NUM,
       payload: {
-         chack,
-      },
+         chack
+      }
    };
 };
 export const modifyingSavedTableNum = chack => {
    return {
       type: MODIFYING_SAVED_TABLE_NUM,
       payload: {
-         chack,
-      },
+         chack
+      }
    };
 };
 export const savedTableListCheckBoxArr = idx => {
    return {
       type: SAVED_TABLE_LIST_CHECKBOX_ARR,
       payload: {
-         idx,
-      },
+         idx
+      }
    };
 };
 
@@ -138,21 +138,21 @@ export const setUserAddCategory = res => {
    return {
       type: SET_USER_ADD_CATEGORY,
       payload: {
-         res,
-      },
+         res
+      }
    };
 };
 
 export const setUserCategoryNaming = res => {
    return {
       type: CHANGE_INPUT,
-      payload: res,
+      payload: res
    };
 };
 export const setUserCategoryNowNaming = id => {
    return {
       type: CHANGE_NOW_INPUT,
-      payload: { id },
+      payload: { id }
    };
 };
 
@@ -161,41 +161,41 @@ export const setUserModifyCategory = (id, res) => {
       type: SET_USER_MODIFY_CATEGORY,
       payload: {
          id,
-         res,
-      },
+         res
+      }
    };
 };
 
 export const setUserDeleteCategory = id => {
    return {
       type: DELETE_CATEGORY,
-      payload: { id },
+      payload: { id }
    };
 };
 export const clearSavedTableListCheckBoxArr = () => {
    return {
-      type: CLEAR_SAVED_TABLE_LIST_CHECKBOX_ARR,
+      type: CLEAR_SAVED_TABLE_LIST_CHECKBOX_ARR
    };
 };
 export const qrListAllCheck = chack => {
    return {
       type: QR_LIST_ALL_CHECK,
       payload: {
-         chack,
-      },
+         chack
+      }
    };
 };
 export const printModal = chack => {
    return {
       type: PRINT_MODAL,
       payload: {
-         chack,
-      },
+         chack
+      }
    };
 };
 export const updateTableNumber = () => {
    return {
-      type: UPDATE_TABLE_NUMBER,
+      type: UPDATE_TABLE_NUMBER
    };
 };
 export const registUpdateTableNumber = (idx, num) => {
@@ -203,15 +203,15 @@ export const registUpdateTableNumber = (idx, num) => {
       type: REGIST_UPDATE_TABLE_NUMBER,
       payload: {
          idx,
-         num,
-      },
+         num
+      }
    };
 };
 export const getQrData = data => {
    return {
       type: GET_QR_DATA,
       payload: {
-         data,
-      },
+         data
+      }
    };
 };

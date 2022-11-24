@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import QrList from './QrList';
 import Button from './Button';
@@ -11,7 +11,7 @@ import {
    savedTableListCheckBoxArr,
    clearSavedTableListCheckBoxArr,
    updateTableNumber,
-   getQrData,
+   getQrData
 } from '../../../redux/action/action';
 import axios from 'axios';
 
@@ -55,12 +55,12 @@ const CreateQR = () => {
          return savedTableListCheckBoxArrState.indexOf(idx) !== -1;
       });
       const body = {
-         tableList: filter,
+         tableList: filter
       };
       fetch(`${url}/table/update/1`, {
          method: 'PATCH',
          headers: { 'Content-Type': 'application/json' },
-         body: JSON.stringify(body),
+         body: JSON.stringify(body)
       })
          .then(() => {
             axios.get(`${url}/table/1/qr`).then(res => {
@@ -81,13 +81,13 @@ const CreateQR = () => {
          });
 
          const body = {
-            tableList: filter,
+            tableList: filter
          };
 
          fetch(`${url}/table/1`, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(body),
+            body: JSON.stringify(body)
          })
             .then(() => {
                axios.get(`${url}/table/1/qr`).then(res => {
@@ -123,7 +123,7 @@ const CreateQR = () => {
          </div>
          <main className="mainContant">
             <div className="QrTable">
-               <label>생성 완료된 QR Table</label>
+               <p>생성 완료된 QR Table</p>
                <div className="u_d_btnBox">
                   {modifyingSavedTableNumState ? (
                      <button onClick={handleClickSubmitNewTableNum} className="u_d_btn">
@@ -242,7 +242,7 @@ const MainContants = styled.div`
       font-size: 16px;
       font-weight: bold;
       margin-bottom: 50px;
-      > label {
+      > p {
          width: 100%;
       }
    }
@@ -252,7 +252,7 @@ const MainContants = styled.div`
       justify-content: start;
       align-items: center;
       margin-bottom: 20px;
-      label {
+      p {
          font-size: 1rem;
       }
       > :first-child {

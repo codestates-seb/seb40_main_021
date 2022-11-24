@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import OrderAlram from './OrderAlram';
 import styled from 'styled-components';
 import axios from 'axios';
@@ -36,7 +36,7 @@ const OrderAlarms = () => {
    return (
       <MainContents>
          <div className="subTitle">
-            <label>주문 알람</label>
+            <p>주문 알람</p>
          </div>
          <div className="orderAlrams">
             <>

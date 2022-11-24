@@ -11,10 +11,10 @@ import {
    CLEAR_SAVED_TABLE_LIST_CHECKBOX_ARR,
    UPDATE_TABLE_NUMBER,
    REGIST_UPDATE_TABLE_NUMBER,
-   GET_QR_DATA,
+   GET_QR_DATA
 } from '../action/action';
 const adminState = {
-   apiUrl: 'https://4ab0-221-154-200-138.jp.ngrok.io',
+   apiUrl: 'https://ee77-221-140-177-247.jp.ngrok.io',
    printModal: false,
    qrListAllCheck: false,
    storeInfoUpdateState: false,
@@ -23,12 +23,13 @@ const adminState = {
    tableNumInputValueOverlap: false,
    setSavedTebleNum: false,
    modifyingSavedTableNum: false,
-   updateTableNumber: [],
+   updateTableNumber: []
 };
 
 export const adminReducer = (state = adminState, action) => {
    switch (action.type) {
       case CLICK_TO_StoreInfoUpdate:
+         // eslint-disable-next-line no-case-declarations
          const currenStoreInfoUpdateState = state.storeInfoUpdateState;
          return Object.assign({}, state, { storeInfoUpdateState: !currenStoreInfoUpdateState });
       case CREATE_QR:
@@ -48,6 +49,7 @@ export const adminReducer = (state = adminState, action) => {
       case MODIFYING_SAVED_TABLE_NUM:
          return Object.assign({}, state, { modifyingSavedTableNum: action.payload.chack });
       case SAVED_TABLE_LIST_CHECKBOX_ARR:
+         // eslint-disable-next-line no-case-declarations
          let newSavedTableListCheckBoxArr = [];
          if (state.savedTableListCheckBoxArr.includes(action.payload.idx)) {
             for (let i = 0; i < state.savedTableListCheckBoxArr.length; i++) {
@@ -68,6 +70,7 @@ export const adminReducer = (state = adminState, action) => {
       case CLEAR_SAVED_TABLE_LIST_CHECKBOX_ARR:
          return Object.assign({}, state, { savedTableListCheckBoxArr: [] });
       case UPDATE_TABLE_NUMBER:
+         // eslint-disable-next-line no-case-declarations
          const newArr = state.updateTableNumber;
 
          for (let i = 0; i < state.savedTableListCheckBoxArr.length; i++) {
@@ -77,6 +80,7 @@ export const adminReducer = (state = adminState, action) => {
          }
          return Object.assign({}, state, { updateTableNumber: newArr });
       case REGIST_UPDATE_TABLE_NUMBER:
+         // eslint-disable-next-line no-case-declarations
          const newUpateArr = state.updateTableNumber;
          newUpateArr.forEach(data => {
             if (data.idx === action.payload.idx) {

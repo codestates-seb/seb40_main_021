@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { createQr } from '../../../redux/action/action';
@@ -20,7 +19,7 @@ const Btn = styled.button`
 
 const ButtonWrap = ({ text, num }) => {
    const navigate = useNavigate();
-   const url = useSelector(state => state.adminReducer.apiUrl);
+   // const url = useSelector(state => state.adminReducer.apiUrl);
    const setOverlapNumState = useSelector(state => state.adminReducer.tableNumInputValueOverlap);
    const setSavedTebleNum = useSelector(state => state.adminReducer.setSavedTebleNum);
    const qrData = useSelector(state => state.adminReducer.qrDate);
@@ -48,7 +47,7 @@ const ButtonWrap = ({ text, num }) => {
          fetch(`/table/1`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(body),
+            body: JSON.stringify(body)
          })
             .then(res => {
                console.log(res);

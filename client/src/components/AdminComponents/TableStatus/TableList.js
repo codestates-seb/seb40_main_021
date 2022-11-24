@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import TableStatus from './TableStatus';
 import styled from 'styled-components';
 import axios from 'axios';
@@ -8,8 +8,8 @@ const TableList = () => {
    const [orderData, setOrderData] = useState([]);
    useEffect(() => {
       axios.get(`${url}/table/1`).then(res => {
-         console.log(res);
          setOrderData(res.data.data);
+         console.log(orderData);
       });
    }, []);
    return (
@@ -18,9 +18,13 @@ const TableList = () => {
             <h1>테이블 목록</h1>
          </div>
          <div className="table">
-            {orderData.map(order => {
-               return <TableStatus key={order.id} data={order}></TableStatus>;
-            })}
+            {orderData.length === 0 ? (
+               <div className="orderEmpty">주문 내역이 없습니다.</div>
+            ) : (
+               orderData.map(order => {
+                  return <TableStatus key={order.id} data={order}></TableStatus>;
+               })
+            )}
          </div>
       </Content>
    );
@@ -31,6 +35,12 @@ const Content = styled.div`
    width: 100%;
    padding-left: 300px;
    overflow: scroll;
+   .orderEmpty {
+      text-align: center;
+      color: rgb(255, 107, 0);
+      font-size: 30px;
+      margin: 50px 0 30px 20px;
+   }
    .title {
       margin-left: 0;
       padding-top: 50px;
