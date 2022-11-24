@@ -16,7 +16,6 @@ import StoreInfo from './pages/Signup/StoreInfo';
 import Complete from './pages/Signup/Complete';
 import Login from './pages/Signup/Login';
 import { useSelector } from 'react-redux';
-import { useAxios } from './util/useAxios';
 function App() {
   const printModalState = useSelector(state => state.adminReducer.printModal);
   return (

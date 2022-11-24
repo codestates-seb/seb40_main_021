@@ -10,13 +10,15 @@ import CategoryAdd from '../../components/Menu/Category/CategoryAdd';
 import * as S from './SetMenu.style'
 import { v4 as uuidv4 } from 'uuid';
 import { useAxios } from '../../util/useAxios';
+import SetMenuLi from './SetMenuLi';
+import CategoryMapLi from './CategoryMapLi';
 
 const SetMenu = () => {
 
     const [toggleCategoryAdd, setToggleCategoryAdd] = useState(false)
-    const categoryList = useSelector((store) => store.categoryUserItemReducer.data)
     const dispatch = useDispatch()
     const state = useSelector((store) => store.menuUserItemReducer)
+    console.log(state, 'state')
     const menuCountPlus = () => {
         dispatch(menuUserAdd({
             id: uuidv4(),
@@ -37,28 +39,6 @@ const SetMenu = () => {
 
     const [activeIndex, setActiveIndex] = useState(0);
     const [submit, setSubmit] = useState(false);
-
-    //get
-    let userId = 1
-    const { response, getloading, error } = useAxios(
-        {
-            method: 'GET',
-            url: `category/${userId}`,
-            header: {
-                "ngrok-skip-browser-warning": "skip"
-            }
-        },
-    );
-    const { clickFetchFunc } = useAxios(
-        {
-        }, false
-    );
-    response && console.log(response)
-    useEffect(() => {
-        response && dispatch(setGetUserCategory(response))
-    }, [response])
-
-
 
     const menuClickSave = () => {
         let noReadInput = false
@@ -96,22 +76,8 @@ const SetMenu = () => {
         <S.SetMenuLayout>
             <S.Head>메뉴판 제작</S.Head>
             <S.MenuLayout>
-                {
-                    error ? <p>{error.message}</p> :
-                        <S.CategoryWrap>
-                            {response &&
-                                categoryList.map((el, idx) => {
-                                    const active = idx === activeIndex;
-                                    return <CategoryLi setSubmit={setSubmit} key={el.uuid} el={el} userId={userId} length={categoryList.length} active={active} setActiveIndex={setActiveIndex} edit={true} idx={idx} placeholder={'카테고리를 입력해주세요'} />
-                                })
-                            }
-                            {
-                                toggleCategoryAdd ? <CategoryAdd userId={userId} setToggleCategoryAdd={setToggleCategoryAdd} active={false} placeholder={'카테고리 입력'} /> : null
-                            }
-                        </S.CategoryWrap>
-                }
 
-
+                <CategoryMapLi activeIndex={activeIndex} toggleCategoryAdd={toggleCategoryAdd} setActiveIndex={setActiveIndex} setToggleCategoryAdd={setToggleCategoryAdd} setSubmit={setSubmit} />
                 <S.CategoryAddBtn onClick={() => setToggleCategoryAdd(!toggleCategoryAdd)}>
                     {!toggleCategoryAdd ? <><img src={IconCategoryAdd} alt='categoryAdd' />카테고리 추가</> : '취소'}
                 </S.CategoryAddBtn>
@@ -119,7 +85,7 @@ const SetMenu = () => {
                 <S.MenuContainerWarp>
                     <S.SettingHead>메뉴등록</S.SettingHead>
                     <S.MenuListUl>
-                        {state.data.map((el, idx) => <MenuList submit={submit} el={el} key={el.id} />)}
+                        <SetMenuLi activeIndex={activeIndex} submit={submit} />
                     </S.MenuListUl>
                     <S.AddBtn onClick={menuCountPlus}><img src={IconAdd} alt='add' />추가</S.AddBtn>
                 </S.MenuContainerWarp>

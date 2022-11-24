@@ -53,6 +53,7 @@ cursor: pointer;
 const MenuList = ({ el, submit }) => {
 
     const dispatch = useDispatch()
+    // const preSetGetMenuData = useSelector((store) => store.menuUserItemReducer)
     const [imgSrc, setImageSrc] = useState('')
     const [menuNameChange, setmenuNameChange] = useState('')
     const [menuAboutChange, setmenuAboutChange] = useState('')
@@ -72,8 +73,14 @@ const MenuList = ({ el, submit }) => {
 
     const [isError, setIsError] = useState(true);
     const [helperText, setHelperText] = useState({});
+    //get menu 
+    useEffect(() => {
+        setmenuNameChange(el.menuName)
+        setpricesChange(el.price)
+        setmenuAboutChange(el.menuContent)
+    }, [el])
 
-
+    console.log(menuNameChange, 'menuName')
     //유효성
     const handleValue = (e) => {
         if (e.target.name === 'menuName') {
@@ -85,6 +92,8 @@ const MenuList = ({ el, submit }) => {
             }
             setHelperText({ ...helperText, menuName: '' });
             setmenuNameChange(e.target.value)
+
+            console.log(e.target.value, 'e.target.value')
         }
 
         if (e.target.name === 'prices') {
@@ -138,11 +147,14 @@ const MenuList = ({ el, submit }) => {
         dispatch(menuUserDelete(el.id))
     }
 
-
     //number , 쉼표처리
-    let number = pricesChange
-    number = number.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    // useEffect(() => {
+    //     number = pricesChange.toString()
+    //     number = number.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    //     // setpricesChange(String(pricesChange).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
+    // }, [pricesChange])
 
+    let number = pricesChange.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
 
     let menuNameError, pricesError, menuAboutError
     menuNameError = el.errorMessage.menuName === undefined ? false : el.errorMessage.menuName !== ''

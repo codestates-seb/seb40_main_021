@@ -7,10 +7,10 @@ const initialState = {
 const menuSaveItemReducer = (state = initialState, action) => {
     switch (action.type) {
         case MENU_VIEW_ITEM_ADD:
-            console.log(action.payload.res)
-            return {
-                data: action.payload.res.data
-            }
+
+            const dataSet = action.payload.res.data
+            state.data = dataSet
+            return state
         default:
             return state;
     }

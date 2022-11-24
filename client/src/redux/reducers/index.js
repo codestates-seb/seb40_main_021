@@ -13,5 +13,5 @@ export const rootReducer = combineReducers({
     adminReducer,
     menuUserItemReducer,
     categoryUserItemReducer,
-    menuSaveItemReducer
+    menuSaveItemReducer,
 });

@@ -40,12 +40,12 @@ const CategoryAdd = ({ placeholder, active, setToggleCategoryAdd, userId }) => {
         clickFetchFunc({
             method: 'POST',
             url: `category/write`,
-            header: {
-                // "Access-Control-Allow-Headers": "*", // this will allow all CORS requests
-                // "Access-Control-Allow-Methods": 'POST', // this states the allowed methods
-                "Content-Type": "application/json" // this shows the expected content type
+            // header: {
+            //     // "Access-Control-Allow-Headers": "*", // this will allow all CORS requests
+            //     // "Access-Control-Allow-Methods": 'POST', // this states the allowed methods
+            //     "Content-Type": "application/json" // this shows the expected content type
 
-            },
+            // },
             data: {
                 memberId: userId,
                 categoryName: categoryName
