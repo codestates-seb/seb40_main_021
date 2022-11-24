@@ -27,7 +27,7 @@ export const REGIST_UPDATE_TABLE_NUMBER = 'REGIST_UPDATE_TABLE_NUMBER';
 export const GET_QR_DATA = 'GET_QR_DATA';
 export const USER_MEMBER_ID = 'USER_MEMBER_ID';
 export const USER_MEMBER_PASSWORD = 'USER_MEMBER_PASSWORD';
-export const USER_MEMBER_BUSUNESSNUMBER = 'USER_MEMBER_BUSUNESSNUMBER';
+export const USER_MEMBER_BUSINESSNUMBER = 'USER_MEMBER_BUSINESSNUMBER';
 
 export const storeInfoUpdate = () => {
    return {
@@ -262,9 +262,9 @@ export const onChangePasswordAction = res => {
    };
 };
 
-export const onChangeBusunessNumberAction = res => {
+export const onChangeBusinessNumberAction = res => {
    return {
-      type: USER_MEMBER_BUSUNESSNUMBER,
+      type: USER_MEMBER_BUSINESSNUMBER,
       payload: res
    };
 };
