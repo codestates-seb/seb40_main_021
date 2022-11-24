@@ -1,3 +1,4 @@
+/* eslint-disable import/namespace */
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { MenuDetailed } from '../../components/Menu/MenuDetailed';

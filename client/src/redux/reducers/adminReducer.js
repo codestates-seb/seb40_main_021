@@ -14,7 +14,7 @@ import {
    GET_QR_DATA
 } from '../action/action';
 const adminState = {
-   apiUrl: 'https://ee77-221-140-177-247.jp.ngrok.io',
+   apiUrl: 'https://3784-118-103-212-116.jp.ngrok.io',
    printModal: false,
    qrListAllCheck: false,
    storeInfoUpdateState: false,

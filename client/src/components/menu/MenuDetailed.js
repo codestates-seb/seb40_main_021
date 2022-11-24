@@ -1,3 +1,4 @@
+/* eslint-disable import/namespace */
 import { DetailedWrapper } from '../../style/menu.style';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';

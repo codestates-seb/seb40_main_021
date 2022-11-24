@@ -22,7 +22,6 @@ const OrderAlarms = () => {
    }, []);
 
    useInterval(() => {
-      console.log('요청');
       axios.get(`${url}/table/1/order`).then(res => {
          const reverse = res.data.data
             .slice(0)
@@ -32,7 +31,6 @@ const OrderAlarms = () => {
          setAllorderList(reverse);
       });
    }, 3000);
-
    return (
       <MainContents>
          <div className="subTitle">
@@ -78,5 +76,12 @@ const MainContents = styled.main`
       font-weight: bold;
       font-size: 24px;
       margin: 0 0 30px 20px;
+   }
+   .reqText {
+      display: flex;
+      justify-content: space-between;
+      button {
+         margin-right: 80px;
+      }
    }
 `;

@@ -1,21 +1,18 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 const CallAlarm = ({ data }) => {
-   const [timeOver, setTimeOver] = useState(true);
-   // setTimeout(() => {
-   //   setTimeOver(false);
-   // }, 10000);
+   const [callCheck, setCallCheck] = useState(true);
+   const handelClickCallCheck = () => {
+      setCallCheck(!callCheck);
+   };
+
    return (
-      <CallAlarmContainer
-         timeOver={timeOver}
-         onClick={() => {
-            setTimeOver(!timeOver);
-         }}>
+      <CallAlarmContainer callCheck={callCheck} onClick={handelClickCallCheck}>
          <div className="onAlarm">
             <div></div>
          </div>
          <div className="CallAlarmBox">
-            <div className="tableNum">{`${data.tableNum}번`}</div>
+            <div className="tableNum">{`${data.tableNumber}번`}</div>
             <div className="callTime">{data.calltime}</div>
          </div>
       </CallAlarmContainer>
@@ -32,7 +29,7 @@ const CallAlarmContainer = styled.div`
       top: 15px;
       margin-left: 10px;
       > :first-child {
-         background-color: ${({ timeOver }) => (timeOver ? 'rgb(255, 107, 0)' : 'none')};
+         background-color: ${({ callCheck }) => (callCheck ? 'rgb(255, 107, 0)' : 'none')};
          border-radius: 50%;
          width: 25px;
          height: 25px;
@@ -45,7 +42,7 @@ const CallAlarmContainer = styled.div`
       justify-content: center;
       flex-direction: column;
       margin-right: 50px;
-      background-color: ${({ timeOver }) => (timeOver ? 'rgb(18, 13, 45)' : 'rgb(167,167,167)')};
+      background-color: ${({ callCheck }) => (callCheck ? 'rgb(18, 13, 45)' : 'rgb(167,167,167)')};
       width: 130px;
       height: 130px;
       border-radius: 10px;
