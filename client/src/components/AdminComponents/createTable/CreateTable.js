@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import InputTables from './InputTable';
 import QrList from './QrList';
@@ -11,12 +10,12 @@ const CreateQR = () => {
       <MainContants>
          <div className="title">
             <h1>테이블 생성</h1>
-            <label>* 메뉴판을 등록완료 하시면 테이블 수 별로 QR 코드를 제작하실 수 있습니다.</label>
+            <p>* 메뉴판을 등록완료 하시면 테이블 수 별로 QR 코드를 제작하실 수 있습니다.</p>
          </div>
          <main className="mainContant">
             <InputTables></InputTables>
             <div className="QrTable">
-               <label>생성 QR Table</label>
+               <p>생성 QR Table</p>
             </div>
             <div className="flex">
                <div className="th">
@@ -78,7 +77,7 @@ const MainContants = styled.div`
       justify-content: start;
       align-items: center;
       margin-bottom: 20px;
-      label {
+      p {
          font-size: 1rem;
       }
       > :first-child {

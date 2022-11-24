@@ -1,7 +1,21 @@
-import React from 'react';
+/* eslint-disable jsx-a11y/alt-text */
 import { Link } from 'react-router-dom';
-import { Active, BtnFill, CompanyNum, Container, DivideLine, FormControl, InfoForm, InfoFormAuthComplete, InfoFormError, MemberPanel, MemberReg, PageTitle, PanelTitle, Wrapper } from './MemberInfo.Style';
-
+import {
+   Active,
+   BtnFill,
+   CompanyNum,
+   Container,
+   DivideLine,
+   FormControl,
+   InfoForm,
+   InfoFormAuthComplete,
+   InfoFormError,
+   MemberPanel,
+   MemberReg,
+   PageTitle,
+   PanelTitle,
+   Wrapper
+} from './MemberInfo.Style';
 
 const MemberInfo = () => {
    return (
@@ -24,23 +38,23 @@ const MemberInfo = () => {
                   </PanelTitle>
 
                   <InfoForm>
-                     <label>아이디</label>
+                     <p>아이디</p>
                      <FormControl type="text" placeholder="아이디를 입력해주세요" />
                   </InfoForm>
 
                   <InfoForm>
-                     <label>비밀번호</label>
+                     <p>비밀번호</p>
                      <FormControl type="password" placeholder="비밀번호를 입력해주세요" />
                   </InfoForm>
 
                   <InfoFormError>
-                     <label>비밀번호 재확인</label>
+                     <p>비밀번호 재확인</p>
                      <FormControl type="password" placeholder="비밀번호를 재입력해주세요" />
                      <span>확인 비밀번호가 다릅니다.</span>
                   </InfoFormError>
 
                   <InfoFormAuthComplete>
-                     <label>사업자번호 입력</label>
+                     <p>사업자번호 입력</p>
                      <CompanyNum>
                         <FormControl type="text" placeholder="'-'제외 입력'" />
                         <BtnFill>

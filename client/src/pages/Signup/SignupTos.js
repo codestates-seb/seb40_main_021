@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable jsx-a11y/alt-text */
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
    Active,
@@ -14,13 +16,13 @@ import {
    MemberReg,
    PageTitle,
    PanelTitle,
-   Wrapper,
+   Wrapper
 } from './SignupTos.Style';
 
 const SignupTos = () => {
    const [isChecked, setIsChecked] = useState({
       agree1: false,
-      agree2: false,
+      agree2: false
    });
 
    const handleChange = e => {
@@ -28,7 +30,7 @@ const SignupTos = () => {
 
       setIsChecked({
          ...isChecked,
-         [name]: checked,
+         [name]: checked
       });
    };
 
@@ -57,9 +59,9 @@ const SignupTos = () => {
                         value={isChecked.agree1}
                         onChange={handleChange}
                      />
-                     <label for="check1">
+                     <p htmlFor="check1">
                         <h5>(필수)개인정보 이용 동의서</h5>
-                     </label>
+                     </p>
                   </AgreeTitle>
                   <AgreeDetailActive>
                      <h5>
@@ -92,9 +94,9 @@ const SignupTos = () => {
                         value={isChecked.agree2}
                         onChange={handleChange}
                      />
-                     <label for="check2">
+                     <p htmlFor="check2">
                         <h5>(필수)테스트정보 이용 동의서</h5>
-                     </label>
+                     </p>
                   </AgreeTitleAdd>
                   <AgreeDetail>
                      <h5>

@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const InfoTable = () => {
    const dummyData = {
       data: {
@@ -10,8 +8,8 @@ export const InfoTable = () => {
          businessNum: '12345351-135314',
          businessTime: '월~토 12:00 ~ 23:00 일 12:00 ~ 23:00',
          description:
-            '매일 깨끗하고 신선한재료로 맛있는 퓨전요리와 경양식. 고급원두를 사용한 다양한 커피 분위기좋고 경치좋고 맛있기까지하는 맛나요 가게로 놀러오세요~^^',
-      },
+            '매일 깨끗하고 신선한재료로 맛있는 퓨전요리와 경양식. 고급원두를 사용한 다양한 커피 분위기좋고 경치좋고 맛있기까지하는 맛나요 가게로 놀러오세요~^^'
+      }
    };
    return (
       <div>
