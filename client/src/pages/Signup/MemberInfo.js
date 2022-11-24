@@ -165,7 +165,7 @@ const MemberInfo = () => {
                      <CompanyNum>
                         <FormControl
                            type="text"
-                           name="bisinessNumber"
+                           name="businessNumber"
                            placeholder="'-'제외 입력"
                            onChange={handleNumber}
                            value={inputValue?.userMemberReducer?.businessNumber ?? ''}
