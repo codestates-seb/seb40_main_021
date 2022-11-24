@@ -43,6 +43,7 @@ const MainContants = styled.div`
    width: 100%;
    margin-top: 50px;
    .overlapNum {
+      font-size: 1.3rem;
       color: rgb(255, 107, 0);
       width: 80%;
       height: 40px;
@@ -76,7 +77,7 @@ const MainContants = styled.div`
       justify-content: start;
       align-items: center;
       margin-bottom: 20px;
-      label {
+      p {
          font-size: 1rem;
       }
       > :first-child {

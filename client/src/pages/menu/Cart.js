@@ -1,7 +1,7 @@
 // import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { CartItem } from '../../components/menu/CartItem';
+import { CartItem } from '../../components/usermenu/CartItem';
 import { emptyCart } from '../../redux/actions/menuAction';
 
 export const Cart = () => {

@@ -9,8 +9,7 @@ const Table = () => {
 };
 const MainContent = styled.main`
    width: 100%;
-   height: 90vh;
-   background-color: rgb(246, 246, 246);
+   height: 100%;
 `;
 
 export default Table;

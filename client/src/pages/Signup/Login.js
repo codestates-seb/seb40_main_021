@@ -76,9 +76,9 @@ const Login = () => {
                   {passwordError && <span>영문, 숫자,특수문자 포함 8자리 이상</span>}
                   <IdRemember>
                      <input type="checkbox" id="rememberCheck" name="checkbox" />
-                     <label htmlFor="rememberCheck">
+                     <p htmlFor="rememberCheck">
                         <h5>아이디 기억하기</h5>
-                     </label>
+                     </p>
                   </IdRemember>
                </InfoFormError>
 

@@ -19,6 +19,9 @@ export const DELETE_CATEGORY = 'DELETE_CATEGORY';
 export const QR_LIST_ALL_CHECK = 'QR_LIST_ALL_CHECK';
 export const PRINT_MODAL = 'PRINT_MODAL';
 export const CLEAR_SAVED_TABLE_LIST_CHECKBOX_ARR = 'CLEAR_SAVED_TABLE_LIST_CHECKBOX_ARR';
+export const UPDATE_TABLE_NUMBER = 'UPDATE_TABLE_NUMBER';
+export const REGIST_UPDATE_TABLE_NUMBER = 'REGIST_UPDATE_TABLE_NUMBER';
+export const GET_QR_DATA = 'GET_QR_DATA';
 
 export const storeInfoUpdate = () => {
    return {
@@ -187,6 +190,28 @@ export const printModal = chack => {
       type: PRINT_MODAL,
       payload: {
          chack
+      }
+   };
+};
+export const updateTableNumber = () => {
+   return {
+      type: UPDATE_TABLE_NUMBER
+   };
+};
+export const registUpdateTableNumber = (idx, num) => {
+   return {
+      type: REGIST_UPDATE_TABLE_NUMBER,
+      payload: {
+         idx,
+         num
+      }
+   };
+};
+export const getQrData = data => {
+   return {
+      type: GET_QR_DATA,
+      payload: {
+         data
       }
    };
 };

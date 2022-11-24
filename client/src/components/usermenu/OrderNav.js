@@ -1,3 +1,4 @@
+/* eslint-disable import/namespace */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUtensils, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
