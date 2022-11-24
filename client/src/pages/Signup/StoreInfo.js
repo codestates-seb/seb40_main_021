@@ -85,7 +85,7 @@ const StoreInfo = () => {
          <Container>
             <MemberReg>
                <PageTitle>
-                  <img src="images/notes.png" alt="notes" />
+                  <img src="images/notes.png" alt="img" />
                   <h4>회원가입</h4>
                </PageTitle>
                <DivideLine>
@@ -122,7 +122,7 @@ const StoreInfo = () => {
 
                   <InfoForm>
                      <p>가게 설명 등록</p>
-                     <FormControl type="text" placeholder="가게 설명을 입력해주세요" onChange={setAbout} />
+                     <FormControl type="text" placeholder="가게 설명을 입력해주세요" onChange={e => setAbout(e.target.value)} />
                   </InfoForm>
 
                   <InfoForm>
@@ -142,7 +142,7 @@ const StoreInfo = () => {
                   {NumberError && <span>숫자만 입력해주세요</span>}
                   <InfoForm>
                      <p>가게 영업시간</p>
-                     <FormControl type="text" placeholder="가게 영업시간을 작성해 주세요" onChange={setBusinessHours} />
+                     <FormControl type="text" placeholder="가게 영업시간을 작성해 주세요" onChange={e =>setBusinessHours(e.target.value)} />
                   </InfoForm>
 
                   <ImgRegBtn>
