@@ -20,4 +20,7 @@ public class Call {
 
     @Column
     private int tableNumber;
+
+    @Column
+    private String createdAt;
 }
