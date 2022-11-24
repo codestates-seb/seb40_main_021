@@ -8,9 +8,13 @@ import {
    SAVED_TABLE_LIST_CHECKBOX_ARR,
    QR_LIST_ALL_CHECK,
    PRINT_MODAL,
-   CLEAR_SAVED_TABLE_LIST_CHECKBOX_ARR
+   CLEAR_SAVED_TABLE_LIST_CHECKBOX_ARR,
+   UPDATE_TABLE_NUMBER,
+   REGIST_UPDATE_TABLE_NUMBER,
+   GET_QR_DATA
 } from '../action/action';
 const adminState = {
+   apiUrl: 'https://3784-118-103-212-116.jp.ngrok.io',
    printModal: false,
    qrListAllCheck: false,
    storeInfoUpdateState: false,
@@ -18,23 +22,25 @@ const adminState = {
    savedTableListCheckBoxArr: [],
    tableNumInputValueOverlap: false,
    setSavedTebleNum: false,
-   modifyingSavedTableNum: false
+   modifyingSavedTableNum: false,
+   updateTableNumber: []
 };
 
 export const adminReducer = (state = adminState, action) => {
    switch (action.type) {
-      case CLICK_TO_StoreInfoUpdate: {
+      case CLICK_TO_StoreInfoUpdate:
+         // eslint-disable-next-line no-case-declarations
          const currenStoreInfoUpdateState = state.storeInfoUpdateState;
          return Object.assign({}, state, { storeInfoUpdateState: !currenStoreInfoUpdateState });
-      }
+
       case CREATE_QR:
          return Object.assign({}, state, { qrDate: action.payload.QrList });
 
       case REGISTER_TABLE_NUM:
-         state.qrDate[action.payload.idx].tableNum = action.payload.tableNum;
+         state.qrDate[action.payload.idx].tableNumber = action.payload.tableNum;
          state.qrDate[
             action.payload.idx
-         ].qrURL = `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/${action.payload.tableNum}`;
+         ].qrUrl = `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/${action.payload.tableNum}`;
          return Object.assign({}, state, { state });
 
       case SET_OVERLAP_NUM_STATE:
@@ -43,7 +49,8 @@ export const adminReducer = (state = adminState, action) => {
          return Object.assign({}, state, { setSavedTebleNum: action.payload.chack });
       case MODIFYING_SAVED_TABLE_NUM:
          return Object.assign({}, state, { modifyingSavedTableNum: action.payload.chack });
-      case SAVED_TABLE_LIST_CHECKBOX_ARR: {
+      case SAVED_TABLE_LIST_CHECKBOX_ARR:
+         // eslint-disable-next-line no-case-declarations
          let newSavedTableListCheckBoxArr = [];
          if (state.savedTableListCheckBoxArr.includes(action.payload.idx)) {
             for (let i = 0; i < state.savedTableListCheckBoxArr.length; i++) {
@@ -57,13 +64,36 @@ export const adminReducer = (state = adminState, action) => {
             newSavedTableListCheckBoxArr = [...state.savedTableListCheckBoxArr, action.payload.idx];
          }
          return Object.assign({}, state, { savedTableListCheckBoxArr: newSavedTableListCheckBoxArr });
-      }
+
       case QR_LIST_ALL_CHECK:
          return Object.assign({}, state, { qrListAllCheck: action.payload.chack });
       case PRINT_MODAL:
          return Object.assign({}, state, { printModal: action.payload.chack });
       case CLEAR_SAVED_TABLE_LIST_CHECKBOX_ARR:
          return Object.assign({}, state, { savedTableListCheckBoxArr: [] });
+      case UPDATE_TABLE_NUMBER:
+         // eslint-disable-next-line no-case-declarations
+         const newArr = state.updateTableNumber;
+
+         for (let i = 0; i < state.savedTableListCheckBoxArr.length; i++) {
+            const body = { idx: state.savedTableListCheckBoxArr[i], newTableNum: null };
+            // const body = { idx: action.payload.idx, newTableNum: action.payload.newNum };
+            newArr.push(body);
+         }
+         return Object.assign({}, state, { updateTableNumber: newArr });
+      case REGIST_UPDATE_TABLE_NUMBER:
+         // eslint-disable-next-line no-case-declarations
+         const newUpateArr = state.updateTableNumber;
+         newUpateArr.forEach(data => {
+            if (data.idx === action.payload.idx) {
+               data.newTableNum = action.payload.num;
+            }
+         });
+         // newUpateArr[action.payload.idx].newTableNum = action.payload.num;
+         console.log(newUpateArr);
+         return Object.assign({}, state, { updateTableNumber: newUpateArr });
+      case GET_QR_DATA:
+         return Object.assign({}, state, { qrDate: action.payload.data });
       default:
          return state;
    }

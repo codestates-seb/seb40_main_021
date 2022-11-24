@@ -57,9 +57,9 @@ const SignupTos = () => {
                         value={isChecked.agree1}
                         onChange={handleChange}
                      />
-                     <label htmlFor="check1">
+                     <p htmlFor="check1">
                         <h5>(필수)개인정보 이용 동의서</h5>
-                     </label>
+                     </p>
                   </AgreeTitle>
                   <AgreeDetailActive>
                      <h5>
@@ -92,9 +92,9 @@ const SignupTos = () => {
                         value={isChecked.agree2}
                         onChange={handleChange}
                      />
-                     <label htmlFor="check2">
+                     <p htmlFor="check2">
                         <h5>(필수)테스트정보 이용 동의서</h5>
-                     </label>
+                     </p>
                   </AgreeTitleAdd>
                   <AgreeDetail>
                      <h5>

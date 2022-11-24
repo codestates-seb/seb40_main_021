@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { savedTableListCheckBoxArr } from '../../../redux/action/action';
+import { savedTableListCheckBoxArr, registUpdateTableNumber } from '../../../redux/action/action';
 const QrInfo = ({ data, idx }) => {
    const modifyingSavedTableNumState = useSelector(state => state.adminReducer.modifyingSavedTableNum);
    const savedTableListCheckBoxArrState = useSelector(state => state.adminReducer.savedTableListCheckBoxArr);
@@ -29,13 +29,16 @@ const QrInfo = ({ data, idx }) => {
             </div>
             <div>{idx + 1}</div>
             <div className="tableNumBox">
-               <div className={modifyingSavedTableNumState && isIncludes ? 'displayNone' : 'none'}>{data.tableNum}</div>
+               <div className={modifyingSavedTableNumState && isIncludes ? 'displayNone' : 'none'}>
+                  {data.tableNumber}
+               </div>
                <input
-                  defaultValue={data.tableNum}
+                  onChange={e => dispatch(registUpdateTableNumber(idx, e.target.value))}
+                  defaultValue={data.tableNumber}
                   className={modifyingSavedTableNumState && isIncludes ? 'tableNuminput' : 'displayNone'}
                   type="text"></input>
             </div>
-            <div>{data.date}</div>
+            <div>{data.createdAt}</div>
             <div></div>
          </div>
       </QrInfoBox>
@@ -60,6 +63,7 @@ const QrInfoBox = styled.div`
 
    .qrInfos {
       display: grid;
+      font-size: 13px;
       height: 100%;
       flex-direction: column;
       grid-template-columns: repeat(5, 1fr);

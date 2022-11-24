@@ -1,3 +1,4 @@
+/* eslint-disable import/namespace */
 import { Reset } from 'styled-reset';
 import './assets/font.css';
 import Header from './components/common/Header';
