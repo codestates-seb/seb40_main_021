@@ -1,17 +1,17 @@
 import { combineReducers } from 'redux';
-// import { menuReducer, menuIdReducer, activeReducer } from './menuReducer';
 import { gnbReducer } from './gnbReducer';
 import { adminReducer } from './adminReducer';
 import menuUserItemReducer from './menuUserItemReducer';
 import categoryUserItemReducer from './categoryUserItemReducer';
 import menuSaveItemReducer from './menuSaveItemReducer';
+import { menuReducer } from './menuReducer';
+import { stateReducer } from './stateReducer';
 export const rootReducer = combineReducers({
-    // menuReducer,
-    // menuIdReducer,
-    // activeReducer,
-    gnbReducer,
-    adminReducer,
-    menuUserItemReducer,
-    categoryUserItemReducer,
-    menuSaveItemReducer,
+   menuReducer,
+   stateReducer,
+   gnbReducer,
+   adminReducer,
+   menuUserItemReducer,
+   categoryUserItemReducer,
+   menuSaveItemReducer
 });

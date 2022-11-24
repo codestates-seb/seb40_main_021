@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
    Active,
@@ -14,13 +14,13 @@ import {
    MemberReg,
    PageTitle,
    PanelTitle,
-   Wrapper,
+   Wrapper
 } from './SignupTos.Style';
 
 const SignupTos = () => {
    const [isChecked, setIsChecked] = useState({
       agree1: false,
-      agree2: false,
+      agree2: false
    });
 
    const handleChange = e => {
@@ -28,7 +28,7 @@ const SignupTos = () => {
 
       setIsChecked({
          ...isChecked,
-         [name]: checked,
+         [name]: checked
       });
    };
 
@@ -37,7 +37,7 @@ const SignupTos = () => {
          <Container>
             <MemberReg>
                <PageTitle>
-                  <img src="images/notes.png" />
+                  <img src="images/notes.png" alt="img" />
                   <h4>회원가입</h4>
                </PageTitle>
                <DivideLine>
@@ -57,16 +57,16 @@ const SignupTos = () => {
                         value={isChecked.agree1}
                         onChange={handleChange}
                      />
-                     <label for="check1">
+                     <p htmlFor="check1">
                         <h5>(필수)개인정보 이용 동의서</h5>
-                     </label>
+                     </p>
                   </AgreeTitle>
                   <AgreeDetailActive>
                      <h5>
                         제 1 조 (목적) 본 약관은 통계청이 운영하는 국가통계포털(KOSIS), 마이크로데이터서비스(MDIS),
                         국가지표체계(e-나라지표/국가주요지표), 통계지리정보서비스(SGIS+plus), 통계데이터센터의 통계정보
-                        사이트 (이하 "당 사이트")에서 제공하는 모든 서비스(이하 “서비스”)의 이용조건 및 절차, 이용자와
-                        각 사이트의 권리, 의무, 책임사항과 기타 필요한 사항을 규정함을 목적으로 합니다. 제 2 조 (약관의
+                        사이트 (이하 당 사이트)에서 제공하는 모든 서비스(이하 “서비스”)의 이용조건 및 절차, 이용자와 각
+                        사이트의 권리, 의무, 책임사항과 기타 필요한 사항을 규정함을 목적으로 합니다. 제 2 조 (약관의
                         효력과 변경) 당 사이트는 이용자가 본 약관 내용에 동의하는 것을 조건으로 이용자에게 서비스를
                         제공하며, 당 사이트의 서비스 제공 행위 및 이용자의 서비스 사용 행위에는 본 약관을 우선적으로
                         적용하겠습니다. 당 사이트는 본 약관을 사전 고지 없이 변경할 수 있으며, 변경된 약관은 당 사이트
@@ -92,16 +92,16 @@ const SignupTos = () => {
                         value={isChecked.agree2}
                         onChange={handleChange}
                      />
-                     <label for="check2">
+                     <p htmlFor="check2">
                         <h5>(필수)테스트정보 이용 동의서</h5>
-                     </label>
+                     </p>
                   </AgreeTitleAdd>
                   <AgreeDetail>
                      <h5>
                         제 1 조 (목적) 본 약관은 통계청이 운영하는 국가통계포털(KOSIS), 마이크로데이터서비스(MDIS),
                         국가지표체계(e-나라지표/국가주요지표), 통계지리정보서비스(SGIS+plus), 통계데이터센터의 통계정보
-                        사이트 (이하 "당 사이트")에서 제공하는 모든 서비스(이하 “서비스”)의 이용조건 및 절차, 이용자와
-                        각 사이트의 권리, 의무, 책임사항과 기타 필요한 사항을 규정함을 목적으로 합니다. 제 2 조 (약관의
+                        사이트 (이하 당 사이트)에서 제공하는 모든 서비스(이하 “서비스”)의 이용조건 및 절차, 이용자와 각
+                        사이트의 권리, 의무, 책임사항과 기타 필요한 사항을 규정함을 목적으로 합니다. 제 2 조 (약관의
                         효력과 변경) 당 사이트는 이용자가 본 약관 내용에 동의하는 것을 조건으로 이용자에게 서비스를
                         제공하며, 당 사이트의 서비스 제공 행위 및 이용자의 서비스 사용 행위에는 본 약관을 우선적으로
                         적용하겠습니다. 당 사이트는 본 약관을 사전 고지 없이 변경할 수 있으며, 변경된 약관은 당 사이트

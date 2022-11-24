@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { registerTableNum } from '../../../redux/action/action';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { setOverlapNumState, setSavedTebleNum } from '../../../redux/action/action';
+
+import axios from 'axios';
 const QrInfo = ({ idx }) => {
    const [savedNumChack, setSavedNumChack] = useState(false);
    const [inputTextLengthCheck, setInputTextLengthCheck] = useState(true);
-
-   const dummyData = [{ tableNum: 1 }, { tableNum: 2 }];
+   const [qrData, setQrData] = useState([]);
    const qrDataList = useSelector(state => state.adminReducer.qrDate);
-
+   const url = useSelector(state => state.adminReducer.apiUrl);
    const dispatch = useDispatch();
 
    const onChangeTableNumDispatch = e => {
       const tableNum = e.target.value;
       tableNum.length === 0 ? setInputTextLengthCheck(true) : setInputTextLengthCheck(false);
-      console.log(inputTextLengthCheck);
       // tableNumber Input value 중복
       dispatch(registerTableNum(tableNum, idx));
       const inputedTableNums = qrDataList.filter(qrData => qrData.tableNum).map(qrData => qrData.tableNum);
@@ -27,8 +27,8 @@ const QrInfo = ({ idx }) => {
       }
 
       // DB에 저정되어 있는 테이블과 tableNumber Input value 중복
-      let savedTableNum = dummyData.map(data => {
-         return String(data.tableNum);
+      let savedTableNum = qrData.map(data => {
+         return String(data.tableNumber);
       });
       const isIncludes = savedTableNum.includes(tableNum);
       if (isIncludes) {
@@ -39,7 +39,11 @@ const QrInfo = ({ idx }) => {
          setSavedNumChack(false);
       }
    };
-
+   useEffect(() => {
+      axios.get(`${url}/table/1/qr`).then(res => {
+         setQrData(res.data.data);
+      });
+   }, []);
    return (
       <QrInfoBox savedNumChack={savedNumChack}>
          <div className="qrInfos">
@@ -72,6 +76,7 @@ const QrInfoBox = styled.div`
       background-color: rgb(244, 244, 244);
    }
    .qrInfos {
+      font-size: 1.3rem;
       display: grid;
       height: 100%;
       flex-direction: column;

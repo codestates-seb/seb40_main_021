@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
    "printWidth": 120,
    "tabWidth": 4,
    "useTabs": false,
@@ -11,3 +12,17 @@
    "vueIndentScriptAndStyle": false,
    "endOfLine": "auto"
 }
+=======
+  "printWidth": 120,
+  "tabWidth": 3,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "none",
+  "bracketSpacing": true,
+  "jsxBracketSameLine": true,
+  "arrowParens": "avoid",
+  "vueIndentScriptAndStyle": false,
+  "endOfLine": "auto"
+}
+>>>>>>> a8f0e6811b01e3d4d304520dba23f8171e9c0886

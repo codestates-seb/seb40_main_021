@@ -1,47 +1,60 @@
-import React from 'react';
+import axios from 'axios';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import useInterval from '../../../util/useInterval';
 import Callalram from './CallAlarm';
 
 const CallAlarms = () => {
-   const dummyData = {
-      data: [
-         { id: 0, tableNum: 7, calltime: '17:15' },
-         { id: 1, tableNum: 3, calltime: '17:11' },
-         { id: 2, tableNum: 5, calltime: '17:08' },
-         { id: 3, tableNum: 10, calltime: '16:55' },
-         { id: 4, tableNum: 1, calltime: '16:50' },
-         { id: 4, tableNum: 1, calltime: '16:50' },
-         { id: 4, tableNum: 1, calltime: '16:50' },
-         { id: 4, tableNum: 1, calltime: '16:50' },
-      ],
-   };
+   const url = useSelector(state => state.adminReducer.apiUrl);
+   const [callList, setCallList] = useState([]);
+   useInterval(() => {
+      axios.get(`${url}/call/1`).then(res => {
+         const reverse = res.data.data
+            .slice(0)
+            .reverse()
+            .map(num => num);
+
+         setCallList(reverse);
+      });
+   }, 3000);
    return (
       <CallAlarmContainer>
          <div className="subTitle">
-            <label>호출알람</label>
+            <p>호출알람</p>
             <div id="icon">
                <img width="50px" height="50px" src={require('../../../assets/callAlarmIcon.png')} alt=""></img>
             </div>
          </div>
 
          <div className="callAlarms">
-            {dummyData.data.map(call => {
-               return <Callalram key={call.id} data={call}></Callalram>;
-            })}
+            {callList.length === 0 ? (
+               <div className="callEmpty">호출 목록이 없습니다</div>
+            ) : (
+               callList.map(call => {
+                  return <Callalram key={call.callId} data={call}></Callalram>;
+               })
+            )}
          </div>
       </CallAlarmContainer>
    );
 };
 const CallAlarmContainer = styled.div`
    display: flex;
+
    width: 90%;
    margin-top: 10px;
    margin-bottom: 30px;
+   .callEmpty {
+      font-size: 24px;
+   }
    .callAlarms {
+      height: 100%;
       margin-bottom: 50px;
       width: 100%;
       display: flex;
       overflow-y: scroll;
+      align-items: center;
    }
    .subTitle {
       display: flex;
@@ -53,7 +66,7 @@ const CallAlarmContainer = styled.div`
       margin-right: 50px;
       font-size: 24px;
       font-weight: bold;
-      label {
+      p {
          width: max-content;
          margin-bottom: 10px;
       }
@@ -63,7 +76,7 @@ const CallAlarmContainer = styled.div`
       }
       @media screen and (max-width: 700px) {
          margin-right: 30px;
-         label {
+         p {
             margin-bottom: 0px;
          }
          #icon {

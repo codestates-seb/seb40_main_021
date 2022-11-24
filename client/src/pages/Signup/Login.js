@@ -10,7 +10,7 @@ import {
    LoginBtn,
    LoginPanel,
    LoginTitle,
-   Wrapper,
+   Wrapper
 } from './Login.Style';
 
 const Login = () => {
@@ -52,7 +52,7 @@ const Login = () => {
                </LoginTitle>
 
                <InfoForm>
-                  <label>아이디</label>
+                  <p>아이디</p>
                   <FormControl
                      maxLength={11}
                      type="text"
@@ -64,7 +64,7 @@ const Login = () => {
                </InfoForm>
                {idError && <span>영문(소문자), 숫자 포함해 주세요.</span>}
                <InfoFormError>
-                  <label>비밀번호</label>
+                  <p>비밀번호</p>
                   <FormControl
                      value={password}
                      type="password"
@@ -72,19 +72,19 @@ const Login = () => {
                      name="password"
                      onChange={handlePassword}
                   />
-                  
+
                   {passwordError && <span>영문, 숫자,특수문자 포함 8자리 이상</span>}
                   <IdRemember>
                      <input type="checkbox" id="rememberCheck" name="checkbox" />
-                     <label for="rememberCheck">
+                     <p htmlFor="rememberCheck">
                         <h5>아이디 기억하기</h5>
-                     </label>
+                     </p>
                   </IdRemember>
                </InfoFormError>
 
                <LoginBtn>
                   <BtnFill href="./index.html">
-                  <Link to={!idError && !passwordError ? "/" : null}>로그인</Link>
+                     <Link to={!idError && !passwordError ? '/' : null}>로그인</Link>
                   </BtnFill>
                </LoginBtn>
             </LoginPanel>

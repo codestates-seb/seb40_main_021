@@ -1,8 +1,7 @@
-import React from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { createQr } from '../../../redux/action/action';
-
+import { useNavigate } from 'react-router-dom';
 const Btn = styled.button`
    width: 120px;
    height: 47px;
@@ -17,16 +16,13 @@ const Btn = styled.button`
    @media screen and (max-width: 700px) {
    }
 `;
-// const hadleClickCreateQR = () => {
-//    const qrURL = 'https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/userid/tableNum';
-//    const qrImg = document.createElement('img');
-//    qrImg.setAttribute('id', 'qrCodeImg');
-//    qrImg.setAttribute('src', qrURL);
-// };
 
 const ButtonWrap = ({ text, num }) => {
+   const navigate = useNavigate();
+   // const url = useSelector(state => state.adminReducer.apiUrl);
    const setOverlapNumState = useSelector(state => state.adminReducer.tableNumInputValueOverlap);
    const setSavedTebleNum = useSelector(state => state.adminReducer.setSavedTebleNum);
+   const qrData = useSelector(state => state.adminReducer.qrDate);
    const dispatch = useDispatch();
    const hadleClickCreateQR = () => {
       if (num > 30) {
@@ -37,7 +33,7 @@ const ButtonWrap = ({ text, num }) => {
       }
       const QrList = [];
       for (let i = 0; i < num; i++) {
-         QrList.push({ qrURL: null, tableNum: null, date: new Date().toLocaleDateString().slice(0, -1) });
+         QrList.push({ qrUrl: null, tableNumber: null, createdAt: new Date().toLocaleDateString().slice(0, -1) });
       }
       dispatch(createQr(QrList));
    };
@@ -45,7 +41,19 @@ const ButtonWrap = ({ text, num }) => {
       //서버에 post 요청
 
       if (!setOverlapNumState && !setSavedTebleNum) {
-         alert('데이터 전송');
+         alert('테이블 등록');
+         const body = { tableList: qrData };
+         console.log(body);
+         fetch(`/table/1`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+         })
+            .then(res => {
+               console.log(res);
+               navigate('/user/qr');
+            })
+            .catch(err => console.log(err));
       } else {
          //데이터 패치
 

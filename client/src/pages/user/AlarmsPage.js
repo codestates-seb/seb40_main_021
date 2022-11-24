@@ -1,4 +1,3 @@
-import React from 'react';
 import CallAlarms from '../../components/AdminComponents/StoreAlarm/CallAlarms';
 import OrderAlarms from '../../components/AdminComponents/StoreAlarm/OrderAlarms';
 import styled from 'styled-components';

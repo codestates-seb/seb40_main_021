@@ -1,12 +1,11 @@
-import React from 'react';
 import styled from 'styled-components';
 const Qrimg = ({ data }) => {
    return (
       <Img>
          <div>
-            <img src={data.qrURL} alt=""></img>
+            <img src={data.qrUrl} alt=""></img>
          </div>
-         <div>{`테이블 번호 : ${data.tableNum}`}</div>
+         <div>{`테이블 번호 : ${data.tableNumber}`}</div>
       </Img>
    );
 };
