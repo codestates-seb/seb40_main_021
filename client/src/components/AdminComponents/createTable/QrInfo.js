@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import { registerTableNum } from '../../../redux/action/action';
+import { useState } from 'react';
+import { registerTableNum, setOverlapNumState, setSavedTebleNum } from '../../../redux/action/action';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
-import { setOverlapNumState, setSavedTebleNum } from '../../../redux/action/action';
 const QrInfo = ({ idx }) => {
    const [savedNumChack, setSavedNumChack] = useState(false);
    const [inputTextLengthCheck, setInputTextLengthCheck] = useState(true);

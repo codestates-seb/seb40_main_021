@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { createQr } from '../../../redux/action/action';
@@ -37,7 +36,11 @@ const ButtonWrap = ({ text, num }) => {
       }
       const QrList = [];
       for (let i = 0; i < num; i++) {
-         QrList.push({ qrURL: null, tableNum: null, date: new Date().toLocaleDateString().slice(0, -1) });
+         QrList.push({
+            qrURL: null,
+            tableNum: null,
+            date: new Date().toLocaleDateString().slice(0, -1)
+         });
       }
       dispatch(createQr(QrList));
    };
