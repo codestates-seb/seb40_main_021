@@ -1,9 +1,9 @@
 /* eslint-disable import/namespace */
 import { useEffect, useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import { Header } from './components/Menu/Header';
-import { BottomNav } from './components/Menu/BottomNav';
-import { Modal } from './components/Menu/Modal';
+import { Header } from './components/usermenu/Header';
+import { BottomNav } from './components/usermenu/BottomNav';
+import { Modal } from './components/usermenu/Modal';
 import { useDispatch } from 'react-redux';
 import { noHeader } from './redux/actions/menuAction';
 import { Home } from './pages/menu/Home';

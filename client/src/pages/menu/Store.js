@@ -1,7 +1,7 @@
 import { Wrapper } from '../../style/menu.style';
 import { motion } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
-import { StoreInfo } from '../../components/Menu/StoreInfo';
+import { StoreInfo } from '../../components/usermenu/StoreInfo';
 import { useEffect } from 'react';
 import { setStoreInfo } from '../../redux/actions/menuAction';
 import axios from 'axios';

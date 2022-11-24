@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { OrderedItem } from '../../components/Menu/OrderedItem';
+import { OrderedItem } from '../../components/usermenu/OrderedItem';
 import { orderedList } from '../../redux/actions/menuAction';
 
 export const OrderedList = () => {
