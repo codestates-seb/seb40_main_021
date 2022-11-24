@@ -2,10 +2,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
    Active,
-   AgreeDetail,
    AgreeDetailActive,
    AgreeTitle,
-   AgreeTitleAdd,
    BtnArea,
    BtnDefault,
    Container,
@@ -14,10 +12,15 @@ import {
    MemberReg,
    PageTitle,
    PanelTitle,
-   Wrapper
+   Wrapper,
+   ImgContainer
 } from './SignupTos.Style';
+import topArrow from './../../assets/img/topArrow.png';
+import bottomArrow from './../../assets/img/bottomArrow.png';
 
 const SignupTos = () => {
+   const [isToggleOpen, setIsToggleOpen] = useState(true);
+   const [isTestInfoToggleOpen, setIsTestInfoToggleOpen] = useState(true);
    const [isChecked, setIsChecked] = useState({
       agree1: false,
       agree2: false
@@ -30,6 +33,14 @@ const SignupTos = () => {
          ...isChecked,
          [name]: checked
       });
+   };
+
+   const onToggle = () => {
+      setIsToggleOpen(!isToggleOpen);
+   };
+
+   const onTestInfoToggle = () => {
+      setIsTestInfoToggleOpen(!isTestInfoToggleOpen);
    };
 
    return (
@@ -60,8 +71,18 @@ const SignupTos = () => {
                      <label htmlFor="check1">
                         <h5>(필수)개인정보 이용 동의서</h5>
                      </label>
+
+                     {isToggleOpen ? (
+                        <ImgContainer onClick={onToggle}>
+                           <img src={topArrow} alt="img" />
+                        </ImgContainer>
+                     ) : (
+                        <ImgContainer onClick={onToggle}>
+                           <img src={bottomArrow} alt="img" />
+                        </ImgContainer>
+                     )}
                   </AgreeTitle>
-                  <AgreeDetailActive>
+                  <AgreeDetailActive isToggleOpen={isToggleOpen}>
                      <h5>
                         제 1 조 (목적) 본 약관은 통계청이 운영하는 국가통계포털(KOSIS), 마이크로데이터서비스(MDIS),
                         국가지표체계(e-나라지표/국가주요지표), 통계지리정보서비스(SGIS+plus), 통계데이터센터의 통계정보
@@ -84,7 +105,7 @@ const SignupTos = () => {
                         않은 용어는 개별서비스에 대한 별도 약관 및 이용규정에서 정의합니다.
                      </h5>
                   </AgreeDetailActive>
-                  <AgreeTitleAdd>
+                  <AgreeTitle>
                      <input
                         type="checkbox"
                         id="check2"
@@ -95,8 +116,17 @@ const SignupTos = () => {
                      <label htmlFor="check2">
                         <h5>(필수)테스트정보 이용 동의서</h5>
                      </label>
-                  </AgreeTitleAdd>
-                  <AgreeDetail>
+                     {isTestInfoToggleOpen ? (
+                        <ImgContainer onClick={onTestInfoToggle}>
+                           <img src={topArrow} alt="img" />
+                        </ImgContainer>
+                     ) : (
+                        <ImgContainer onClick={onTestInfoToggle}>
+                           <img src={bottomArrow} alt="img" />
+                        </ImgContainer>
+                     )}
+                  </AgreeTitle>
+                  <AgreeDetailActive isToggleOpen={isTestInfoToggleOpen}>
                      <h5>
                         제 1 조 (목적) 본 약관은 통계청이 운영하는 국가통계포털(KOSIS), 마이크로데이터서비스(MDIS),
                         국가지표체계(e-나라지표/국가주요지표), 통계지리정보서비스(SGIS+plus), 통계데이터센터의 통계정보
@@ -118,7 +148,7 @@ const SignupTos = () => {
                         서비스 이용계약을 완료시키는 행위 탈퇴 : 회원이 이용계약을 종료시키는 행위 본 약관에서 정의하지
                         않은 용어는 개별서비스에 대한 별도 약관 및 이용규정에서 정의합니다.
                      </h5>
-                  </AgreeDetail>
+                  </AgreeDetailActive>
 
                   <BtnArea>
                      <BtnDefault>

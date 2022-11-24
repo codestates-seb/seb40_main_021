@@ -1,4 +1,3 @@
-import React from 'react';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 import Gnb from './Gnb';
@@ -15,12 +14,12 @@ const Container = styled.div`
 `;
 
 const GnbLayout = () => {
-    return (
-        <Container>
-            <Gnb />
-            <Outlet />
-        </Container>
-    );
+   return (
+      <Container>
+         <Gnb />
+         <Outlet />
+      </Container>
+   );
 };
 
 export default GnbLayout;

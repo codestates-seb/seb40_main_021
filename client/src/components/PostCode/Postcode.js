@@ -26,11 +26,7 @@ const Postcode = ({ setAddress }) => {
       open({ onComplete: handleComplete });
    };
 
-   return (
-      <button onClick={handleClick}>
-         <BtnDefault>우편번호 검색</BtnDefault>
-      </button>
-   );
+   return <BtnDefault onClick={handleClick}>우편번호 검색</BtnDefault>;
 };
 
 export default Postcode;
