@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import MenuViewList from '../../components/Menu/MenuViewList';
 import { menuSaveitemAdd } from '../../redux/action/action';
 import { useAxios } from '../../util/useAxios';
-import * as S from './SetMenu.style'
+import * as S from './SetMenu.style';
 
 const MenuLi = ({ activeIndex }) => {
     const categoryList = useSelector((store) => store.categoryUserItemReducer.data)
@@ -30,8 +30,9 @@ const MenuLi = ({ activeIndex }) => {
                 url: `category/read/${categoryId}`,
             })
         }
+        console.log(`category/read/${categoryId}`)
 
-    }, [categoryList])
+    }, [categoryList, activeIndex])
 
 
     const dispatch = useDispatch()
@@ -40,6 +41,11 @@ const MenuLi = ({ activeIndex }) => {
     // }, [response])
     response && dispatch(menuSaveitemAdd(response))
 
+    const [, setUpdateState] = useState()
+    const forceUpdate = useCallback(() => setUpdateState({}), [])
+    useEffect(() => {
+        forceUpdate()
+    }, [response])
     // response && console.log(response)
     // menuSaveitemAdd
     return (
