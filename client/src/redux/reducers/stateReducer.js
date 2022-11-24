@@ -20,7 +20,6 @@ export const stateReducer = (state = nonFuncState, action) => {
       case CATEGORY_SELECTED:
          return { ...state, category: action.payload };
       case NO_HEADER:
-         console.log('reducer : ', action.payload);
          return { ...state, header: action.payload };
 
       default:
