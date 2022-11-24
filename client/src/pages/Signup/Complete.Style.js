@@ -38,7 +38,7 @@ export const CompletePanel = styled.section`
    border-radius: 0 0 10px 10px;
    @media screen and (max-width: 700px) {
       width: 100%;
-      height: 100vh;
+      height: 100%;
       padding: 15.1rem 2.6rem 0;
       background: #fff;
       border-top: 0px solid #ff6b00;
@@ -87,7 +87,10 @@ export const CompleteBtn = styled.div`
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      margin: 60px 0 0;
+      position: absolute;
+      bottom: 10%;
+      left: 0;
+      right: 0;
    }
 `;
 export const Btn = styled.a`
@@ -120,11 +123,10 @@ export const Btn = styled.a`
    @media screen and (max-width: 700px) {
       &:first-child {
          width: 100%;
-         margin: 25rem 0 0 0;
+         margin-bottom: 2rem;
       }
       &:last-child {
          width: 100%;
-         margin: 1.5rem 0 0 0;
       }
    }
 `;

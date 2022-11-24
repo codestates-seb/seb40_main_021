@@ -34,7 +34,7 @@ export const MemberReg = styled.section`
    @media screen and (max-width: 700px) {
       padding: 30px 0 0;
       width: 100%;
-      height: 100vh;
+
       background: #fff;
    }
 `;
@@ -309,4 +309,5 @@ export const ImgRegBtn = styled(BtnArea)`
    display: flex;
    justify-content: flex-end;
    margin: 40px 0 0;
+   padding-bottom: 3rem;
 `;
