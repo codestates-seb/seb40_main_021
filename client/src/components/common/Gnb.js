@@ -9,9 +9,6 @@ const Gnb = () => {
    const dispatch = useDispatch();
    const gnbState = useSelector(store => store.gnbReducer);
 
-   //    function isActive(path) {
-   //       return window.location.pathname.startsWith(path);
-   //    }
    return (
       <S.GnbContainer active={gnbState}>
          <S.CloseBtn onClick={() => dispatch(gnbToggleOpen(false))}>

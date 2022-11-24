@@ -28,10 +28,10 @@ const initialState = {
 
 const menuUserItemReducer = (state = initialState, action) => {
    switch (action.type) {
-      case MENU_USER_ADD:
-         // eslint-disable-next-line no-case-declarations
+      case MENU_USER_ADD: {
          let changeData = [...state.data, action.payload.res];
          return Object.assign({}, state, { data: changeData });
+      }
       case MENU_USER_UPDATE:
          state.data.find(x => x.id === action.payload.id).menuName = action.payload.menuNameValue;
          state.data.find(x => x.id === action.payload.id).menuAbout = action.payload.menuAboutValue;
@@ -39,10 +39,10 @@ const menuUserItemReducer = (state = initialState, action) => {
          state.data.find(x => x.id === action.payload.id).prices = action.payload.pricesValue;
          state.data.find(x => x.id === action.payload.id).recommnd = action.payload.checked;
          return state;
-      case MENU_USER_DELETE:
-         // eslint-disable-next-line no-case-declarations
+      case MENU_USER_DELETE: {
          const deletMenu = state.data.filter(el => el.id !== action.payload.id);
          return Object.assign({}, state, { data: deletMenu });
+      }
       case ERROR_CASE_HANDLE:
          state.data.find(x => x.id === action.payload.id).errorMessage = action.payload.message;
          return Object.assign({}, state);

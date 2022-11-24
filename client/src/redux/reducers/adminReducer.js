@@ -32,6 +32,7 @@ export const adminReducer = (state = adminState, action) => {
          // eslint-disable-next-line no-case-declarations
          const currenStoreInfoUpdateState = state.storeInfoUpdateState;
          return Object.assign({}, state, { storeInfoUpdateState: !currenStoreInfoUpdateState });
+      
       case CREATE_QR:
          return Object.assign({}, state, { qrDate: action.payload.QrList });
 
@@ -63,6 +64,7 @@ export const adminReducer = (state = adminState, action) => {
             newSavedTableListCheckBoxArr = [...state.savedTableListCheckBoxArr, action.payload.idx];
          }
          return Object.assign({}, state, { savedTableListCheckBoxArr: newSavedTableListCheckBoxArr });
+      
       case QR_LIST_ALL_CHECK:
          return Object.assign({}, state, { qrListAllCheck: action.payload.chack });
       case PRINT_MODAL:

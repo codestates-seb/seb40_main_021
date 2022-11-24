@@ -1,11 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-    @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic);
-    * { box-sizing: border-box; }
-    /* ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.25); }
-    ::-webkit-scrollbar-thumb { background: #a0a0a0; border-radius: 1px; } */
     html, body { font-family:'Noto Sans KR', sans-serif; width:100%; margin:0; background:#f7f7f7; font-size:10px !important; color:#545454; -webkit-font-smoothing:antialiased;  overflow-x:hidden; /* word-wrap:break-word; word-break:keep-all; */ }
     section { position:relative; margin:0 0; padding:0 0; background-color:#F9F9F9; overflow: hidden; }
     a { text-decoration: none; color:#545454; }

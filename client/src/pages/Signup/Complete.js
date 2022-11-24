@@ -17,7 +17,7 @@ const Complete = () => {
          <Container>
             <CompletePanel>
                <CompleteImg>
-                  <img src="images/complete.png" />
+                  <img src="images/complete.png" alt="img" />
                </CompleteImg>
                <CompleteTxt>
                   <h4>가입을 환영합니다.</h4>
@@ -28,7 +28,7 @@ const Complete = () => {
                   </h5>
                </CompleteTxt>
                <CompleteBtn>
-                  <BtnDefaultActive href="javascript:void(0)">둘러보기</BtnDefaultActive>
+                  <BtnDefaultActive href="">둘러보기</BtnDefaultActive>
                   <BtnFill>
                      <Link to="/login">로그인</Link>
                   </BtnFill>

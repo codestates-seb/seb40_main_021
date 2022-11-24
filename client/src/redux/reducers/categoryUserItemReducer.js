@@ -21,10 +21,10 @@ const initialState = {
 };
 const categoryUserItemReducer = (state = initialState, action) => {
    switch (action.type) {
-      case SET_USER_ADD_CATEGORY:
-         // eslint-disable-next-line no-case-declarations
+      case SET_USER_ADD_CATEGORY: {
          let changeData = [...state.data, action.payload.res];
          return Object.assign({}, state, { data: changeData });
+      }
       case SET_USER_MODIFY_CATEGORY:
          console.log('false', state);
          state.data.find(x => x.uuid === action.payload.id).categoryName = action.payload.res;
@@ -44,10 +44,10 @@ const categoryUserItemReducer = (state = initialState, action) => {
 
          state.input.categoryName = state.data.find(x => x.uuid === action.payload.id).categoryName;
          return state;
-      case DELETE_CATEGORY:
-         // eslint-disable-next-line no-case-declarations
+      case DELETE_CATEGORY: {
          const deletMenu = state.data.filter(el => el.uuid !== action.payload.id);
          return Object.assign({}, state, { data: deletMenu });
+      }
       default:
          return state;
    }

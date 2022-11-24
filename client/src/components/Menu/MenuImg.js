@@ -59,7 +59,7 @@ const MenuImg = idx => {
    };
    return (
       <PicWrap>
-         <p>사진</p>
+         <p></p>
          <LabelPhoto background={imgSrc} htmlFor={`picture${idx}`}>
             <img src={IconPhoto} alt="add" />
          </LabelPhoto>

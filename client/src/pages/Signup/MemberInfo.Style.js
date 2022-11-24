@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-   margin: 0 0;
-   padding: 0;
+   margin: 5px;
+   padding: 7%;
    height: 100vh;
    transition: all 0.5s ease-in;
    -webkit-transition: all 0.5s ease-in;

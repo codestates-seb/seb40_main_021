@@ -67,10 +67,9 @@ const MenuList = ({ el, submit }) => {
       });
    };
 
-   // eslint-disable-next-line no-unused-vars
    const [isError, setIsError] = useState(true);
    const [helperText, setHelperText] = useState({});
-
+   console.log(isError);
    //유효성
    const handleValue = e => {
       if (e.target.name === 'menuName') {
@@ -78,7 +77,10 @@ const MenuList = ({ el, submit }) => {
          if (maxValue && maxValue < e.target.value.length) return;
          if (e.target.value.length === maxValue) {
             setIsError(false);
-            return setHelperText({ ...helperText, menuName: '20자까지 입력 가능합니다.' });
+            return setHelperText({
+               ...helperText,
+               menuName: '20자까지 입력 가능합니다.'
+            });
          }
          setHelperText({ ...helperText, menuName: '' });
          setmenuNameChange(e.target.value);
@@ -93,7 +95,10 @@ const MenuList = ({ el, submit }) => {
          }
          if (e.target.value.length === maxValue) {
             setIsError(false);
-            return setHelperText({ ...helperText, prices: '백만자리까지 입력 가능합니다.' });
+            return setHelperText({
+               ...helperText,
+               prices: '백만자리까지 입력 가능합니다.'
+            });
          }
          setHelperText({ ...helperText, prices: '' });
          setpricesChange(e.target.value.replace(/[^\d]+/g, ''));
@@ -104,7 +109,10 @@ const MenuList = ({ el, submit }) => {
          if (maxValue && maxValue < e.target.value.length) return;
          if (e.target.value.length === maxValue) {
             setIsError(false);
-            return setHelperText({ ...helperText, menuAbout: '50자까지 입력 가능합니다.' });
+            return setHelperText({
+               ...helperText,
+               menuAbout: '50자까지 입력 가능합니다.'
+            });
          }
          setHelperText({ ...helperText, menuAbout: '' });
          setmenuAboutChange(e.target.value);
