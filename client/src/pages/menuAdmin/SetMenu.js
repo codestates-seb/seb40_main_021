@@ -1,33 +1,35 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { menuUserAdd, menuUserErrorMessageSubmit } from '../../redux/action/action';
-import CategoryLi from '../../components/Menu/Category/CategoryLi';
-import MenuList from '../../components/Menu/MenuList';
 import IconAdd from '../../assets/img/icon_add.png';
 import IconCategoryAdd from '../../assets/img/icon_category_plus.png';
 import ButtonWrap from '../../components/Menu/ButtonWrap';
-import CategoryAdd from '../../components/Menu/Category/CategoryAdd';
 import * as S from './SetMenu.style';
 import { v4 as uuidv4 } from 'uuid';
+// import { useAxios } from '../../util/useAxios';
+import SetMenuLi from './SetMenuLi';
+import CategoryMapLi from './CategoryMapLi';
 
 const SetMenu = () => {
+   // const userId = 1;
+
    const [toggleCategoryAdd, setToggleCategoryAdd] = useState(false);
-   const categoryList = useSelector(store => store.categoryUserItemReducer.data);
    const dispatch = useDispatch();
    const state = useSelector(store => store.menuUserItemReducer);
+   // const menuList = useSelector(store => store.menuUserItemReducer.data);
    const menuCountPlus = () => {
       dispatch(
          menuUserAdd({
-            id: uuidv4(),
+            menuId: uuidv4(),
             menuImg: '',
-            prices: '',
+            price: '',
             menuName: '',
-            menuAbout: '',
+            menuContent: '',
             recommnd: false,
             errorMessage: {
                menuName: '',
-               menuAbout: '',
-               prices: '',
+               menuContent: '',
+               price: '',
                menuImg: ''
             }
          })
@@ -36,26 +38,50 @@ const SetMenu = () => {
 
    const [activeIndex, setActiveIndex] = useState(0);
    const [submit, setSubmit] = useState(false);
-
+   // const categoryList = useSelector(store => store.categoryUserItemReducer.data);
+   // const { response, loading, error, clickFetchFunc } = useAxios(
+   //    {
+   //    }, false
+   // );
    const menuClickSave = () => {
       let noReadInput = false;
       let ErrorInput = false;
       for (let i = 0; i < state.data.length; i++) {
          if (
             state.data[i].errorMessage.menuName === '20자까지 입력 가능합니다.' ||
-            state.data[i].errorMessage.menuAbout === '50자까지 입력 가능합니다.' ||
-            state.data[i].errorMessage.prices === '백만자리까지 입력 가능합니다.'
+            state.data[i].errorMessage.menuContent === '50자까지 입력 가능합니다.' ||
+            state.data[i].errorMessage.price === '백만자리까지 입력 가능합니다.'
          ) {
             ErrorInput = true;
          }
-
          if (
-            (state.data[i].prices || state.data[i].prices.trim()) &&
+            state.data[i].price &&
             (state.data[i].menuName || state.data[i].menuName.trim()) &&
-            (state.data[i].menuAbout || state.data[i].menuAbout.trim())
+            (state.data[i].menuContent || state.data[i].menuContent.trim())
          ) {
             setSubmit(true);
             //통신진행
+            console.log('성공');
+            // console.log(
+            //    menuList[0].menuName,
+            //    menuList[0].menuContent,
+            //    menuList[0].price,
+            //    menuList[0].recommnd,
+            //    categoryList[activeIndex].categoryId
+            // );
+            // clickFetchFunc({
+            //    method: 'POST',
+            //    url: `/menu/write`,
+
+            //    data: {
+            //       memberId: userId,
+            //       menuName: menuList[0].menuName,
+            //       menuContent: menuList[0].menuContent,
+            //       price: menuList[0].price,
+            //       recommendedMenu: menuList[0].recommnd,
+            //       categoryId: categoryList[activeIndex].categoryId
+            //    }
+            // })
          } else {
             // setNoReadInput(true)
             noReadInput = true;
@@ -76,32 +102,13 @@ const SetMenu = () => {
       <S.SetMenuLayout>
          <S.Head>메뉴판 제작</S.Head>
          <S.MenuLayout>
-            <S.CategoryWrap>
-               {categoryList.map((el, idx) => {
-                  const active = idx === activeIndex;
-                  return (
-                     <CategoryLi
-                        key={el.uuid}
-                        el={el}
-                        length={categoryList.length}
-                        active={active}
-                        setActiveIndex={setActiveIndex}
-                        edit={true}
-                        idx={idx}
-                        placeholder={'카테고리를 입력해주세요'}
-                     />
-                  );
-               })}
-
-               {toggleCategoryAdd ? (
-                  <CategoryAdd
-                     setToggleCategoryAdd={setToggleCategoryAdd}
-                     active={false}
-                     placeholder={'카테고리 입력'}
-                  />
-               ) : null}
-            </S.CategoryWrap>
-
+            <CategoryMapLi
+               activeIndex={activeIndex}
+               toggleCategoryAdd={toggleCategoryAdd}
+               setActiveIndex={setActiveIndex}
+               setToggleCategoryAdd={setToggleCategoryAdd}
+               setSubmit={setSubmit}
+            />
             <S.CategoryAddBtn onClick={() => setToggleCategoryAdd(!toggleCategoryAdd)}>
                {!toggleCategoryAdd ? (
                   <>
@@ -116,9 +123,7 @@ const SetMenu = () => {
             <S.MenuContainerWarp>
                <S.SettingHead>메뉴등록</S.SettingHead>
                <S.MenuListUl>
-                  {state.data.map(el => (
-                     <MenuList submit={submit} el={el} key={el.id} />
-                  ))}
+                  <SetMenuLi activeIndex={activeIndex} submit={submit} setSubmit={setSubmit} />
                </S.MenuListUl>
                <S.AddBtn onClick={menuCountPlus}>
                   <img src={IconAdd} alt="add" />

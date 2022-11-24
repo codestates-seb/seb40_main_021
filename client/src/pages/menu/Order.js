@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { OrderNav } from '../../components/usermenu/OrderNav';
 import { Wrapper } from '../../style/menu.style';
-import { Cart } from './Cart';
+import { Cart } from '../menu/Cart';
 import { OrderedList } from './OrderedList';
 import { motion } from 'framer-motion';
 
