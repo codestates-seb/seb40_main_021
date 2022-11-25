@@ -1,9 +1,10 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ButtonWrap from '../../components/Menu/ButtonWrap';
 import CategoryLi from '../../components/Menu/Category/CategoryLi';
 import { setGetUserCategory } from '../../redux/action/action';
-import { useAxios } from '../../util/useAxios';
+// import { useAxios } from '../../util/useAxios';
 import MenuLi from './MenuLi';
 import * as S from './SetMenu.style';
 
@@ -14,10 +15,17 @@ const Menu = () => {
    const dispatch = useDispatch();
    //get
    let userId = 1;
-   const { response, error } = useAxios({
-      method: 'GET',
-      url: `category/${userId}`
-   });
+
+   let error;
+   useEffect(() => {
+      axios
+         .get(`category/${userId}`)
+         .then(res => {
+            dispatch(setGetUserCategory(res));
+         })
+         .catch(err => (error = err));
+   }, []);
+
    // const { response, error, clickFetchFunc } = useAxios(
    //     {
    //     }, false
@@ -32,16 +40,16 @@ const Menu = () => {
    //     })
 
    // }
-   useEffect(() => {
-      response && dispatch(setGetUserCategory(response));
-   }, [response]);
+   // useEffect(() => {
+   //    response && dispatch(setGetUserCategory(response));
+   // }, [response]);
    return (
       <S.SetMenuLayout>
          <S.Head>메뉴판 제작</S.Head>
          <S.MenuLayout>
             {error ? (
                <p>{error.message}</p>
-            ) : response ? (
+            ) : (
                <>
                   <S.CategoryWrap className="editFalse">
                      {categoryList.map((el, idx) => {
@@ -69,7 +77,7 @@ const Menu = () => {
                   </S.MenuContainerWarp>
                   <ButtonWrap name={'메뉴판 수정'} />
                </>
-            ) : null}
+            )}
          </S.MenuLayout>
       </S.SetMenuLayout>
    );
