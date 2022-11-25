@@ -10,7 +10,7 @@ const InputTable = () => {
    const url = useSelector(state => state.adminReducer.apiUrl);
    const navigate = useNavigate();
    const [tableValue, setTableValue] = useState('');
-   const [thereIsMenu, setThereIsMenu] = useState(false);
+   const [thereIsMenu, setThereIsMenu] = useState(true);
    const hadleClickCreateQR = e => {
       setTableValue(e.target.value);
    };
