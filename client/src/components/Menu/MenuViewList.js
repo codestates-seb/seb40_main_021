@@ -38,7 +38,6 @@ const MenuViewList = ({ el }) => {
       <S.List>
          <S.ListLi>
             <PicWrap>
-               <p>사진</p>
                {el.menuImg === '' ? (
                   <ImgList backimg={Img} alt="menuImg" />
                ) : (
@@ -53,19 +52,19 @@ const MenuViewList = ({ el }) => {
                   </S.InputListWrap>
                   <S.InputListWrap>
                      <p>가격</p>
-                     <p className="menuListPrice">{el.prices}</p>
+                     <p className="menuListPrice">{el.price}</p>
                   </S.InputListWrap>
                </S.InputList>
                <S.InputList>
                   <S.InputListWrap>
                      <p>설명</p>
-                     <p className="menuListAbout">{el.menuAbout}</p>
+                     <p className="menuListAbout">{el.menuContent}</p>
                   </S.InputListWrap>
                </S.InputList>
             </S.InputWrap>
          </S.ListLi>
          <S.BottomListWarp>
-            {el.recommend ? (
+            {el.recommendedMenu ? (
                <S.CheckboxWrap>
                   <img src={IconCheck} alt="recommendMenu" />
                   <S.LabelBox className="list">

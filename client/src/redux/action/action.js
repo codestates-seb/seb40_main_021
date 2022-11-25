@@ -13,15 +13,21 @@ export const MODIFYING_SAVED_TABLE_NUM = 'MODIFYING_SAVED_TABLE_NUM';
 export const SAVED_TABLE_LIST_CHECKBOX_ARR = 'SAVED_TABLE_LIST_CHECKBOX_ARR';
 export const SET_USER_ADD_CATEGORY = 'SET_USER_ADD_CATEGORY';
 export const SET_USER_MODIFY_CATEGORY = 'SET_USER_MODIFY_CATEGORY';
+export const GET_USER_POST_SUCCESS = 'GET_USER_POST_SUCCESS';
 export const CHANGE_INPUT = 'CHANGE_INPUT';
 export const CHANGE_NOW_INPUT = 'CHANGE_NOW_INPUT';
 export const DELETE_CATEGORY = 'DELETE_CATEGORY';
 export const QR_LIST_ALL_CHECK = 'QR_LIST_ALL_CHECK';
 export const PRINT_MODAL = 'PRINT_MODAL';
 export const CLEAR_SAVED_TABLE_LIST_CHECKBOX_ARR = 'CLEAR_SAVED_TABLE_LIST_CHECKBOX_ARR';
+export const MENU_VIEW_ITEM_ADD = 'MENU_VIEW_ITEM_ADD';
+export const MENU_GET_ADD_USER = 'MENU_GET_ADD_USER';
 export const UPDATE_TABLE_NUMBER = 'UPDATE_TABLE_NUMBER';
 export const REGIST_UPDATE_TABLE_NUMBER = 'REGIST_UPDATE_TABLE_NUMBER';
 export const GET_QR_DATA = 'GET_QR_DATA';
+export const USER_MEMBER_ID = 'USER_MEMBER_ID';
+export const USER_MEMBER_PASSWORD = 'USER_MEMBER_PASSWORD';
+export const USER_MEMBER_BUSINESSNUMBER = 'USER_MEMBER_BUSINESSNUMBER';
 
 export const storeInfoUpdate = () => {
    return {
@@ -172,6 +178,14 @@ export const setUserDeleteCategory = id => {
       payload: { id }
    };
 };
+
+export const setGetUserCategory = res => {
+   return {
+      type: GET_USER_POST_SUCCESS,
+      payload: res
+   };
+};
+
 export const clearSavedTableListCheckBoxArr = () => {
    return {
       type: CLEAR_SAVED_TABLE_LIST_CHECKBOX_ARR
@@ -213,5 +227,44 @@ export const getQrData = data => {
       payload: {
          data
       }
+   };
+};
+
+export const menuSaveitemAdd = res => {
+   return {
+      type: MENU_VIEW_ITEM_ADD,
+      payload: {
+         res
+      }
+   };
+};
+
+export const menuSaveAndChangeAdd = res => {
+   return {
+      type: MENU_GET_ADD_USER,
+      payload: {
+         res
+      }
+   };
+};
+
+export const onChangeIdAction = res => {
+   return {
+      type: USER_MEMBER_ID,
+      payload: res
+   };
+};
+
+export const onChangePasswordAction = res => {
+   return {
+      type: USER_MEMBER_PASSWORD,
+      payload: res
+   };
+};
+
+export const onChangeBusinessNumberAction = res => {
+   return {
+      type: USER_MEMBER_BUSINESSNUMBER,
+      payload: res
    };
 };

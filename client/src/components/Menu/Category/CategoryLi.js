@@ -9,14 +9,18 @@ import {
    setUserDeleteCategory,
    setUserModifyCategory
 } from '../../../redux/action/action';
+import { useAxios } from '../../../util/useAxios';
 
-const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex, length }) => {
-   const { uuid, categoryName } = el;
+const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex, length, userId }) => {
+   const { categoryId, categoryName } = el;
 
    const state = useSelector(store => store.categoryUserItemReducer);
    const categoryAddName = state.input.categoryName;
 
    const dispatch = useDispatch();
+
+   const { clickFetchFunc } = useAxios({}, false);
+
    const editCategoryName = e => {
       const value = e.target.value;
       dispatch(setUserCategoryNaming(value));
@@ -25,14 +29,19 @@ const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex, length
 
    const setPatchCategory = () => {
       if (togglePatchCategory) {
-         dispatch(setUserCategoryNowNaming(uuid));
+         dispatch(setUserCategoryNowNaming(idx));
          setTogglePatchCategory(!togglePatchCategory);
       } else {
          if (!categoryAddName || !categoryAddName.trim()) {
             return alert('카테고리 이름을 작성하세요.');
          } else {
-            dispatch(setUserModifyCategory(uuid, categoryAddName));
+            dispatch(setUserModifyCategory(idx, categoryAddName));
             dispatch(setUserCategoryNaming(''));
+            clickFetchFunc({
+               method: 'PATCH',
+               url: `/category/update/${userId}`,
+               data: { categoryName: categoryAddName }
+            });
             setTogglePatchCategory(!togglePatchCategory);
          }
       }
@@ -67,7 +76,7 @@ const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex, length
       if (length === 1) {
          return alert('마지막 카테고리는 삭제가 불가능합니다.');
       }
-      return dispatch(setUserDeleteCategory(uuid));
+      return dispatch(setUserDeleteCategory(categoryId));
    };
    const onTitleClick = () => {
       setActiveIndex(idx);
@@ -85,7 +94,7 @@ const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex, length
                            type="text"
                            ref={CategorytRef}
                            value={categoryAddName}
-                           id={uuid}
+                           id={categoryId}
                            onChange={e => editCategoryName(e)}
                            readOnly={togglePatchCategory}
                            disabled={togglePatchCategory}
@@ -95,7 +104,7 @@ const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex, length
                      <button
                         htmlFor="category"
                         ref={CategorytModifyRef}
-                        id={uuid}
+                        id={categoryId}
                         value={categoryName}
                         onClick={e => {
                            setPatchCategory(e);

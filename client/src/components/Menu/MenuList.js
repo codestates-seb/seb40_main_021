@@ -48,8 +48,9 @@ const LabelPhoto = styled.label`
       display: ${p => (p.background === '' ? 'block' : 'none')};
    }
 `;
-const MenuList = ({ el, submit }) => {
+const MenuList = ({ el, submit, setSubmit }) => {
    const dispatch = useDispatch();
+
    const [imgSrc, setImageSrc] = useState('');
    const [menuNameChange, setmenuNameChange] = useState('');
    const [menuAboutChange, setmenuAboutChange] = useState('');
@@ -67,9 +68,15 @@ const MenuList = ({ el, submit }) => {
       });
    };
 
-   const [isError, setIsError] = useState(true);
+   const [, setIsError] = useState(true);
    const [helperText, setHelperText] = useState({});
-   console.log(isError);
+   //get menu
+   useEffect(() => {
+      setmenuNameChange(el.menuName);
+      setpricesChange(el.price);
+      setmenuAboutChange(el.menuContent);
+   }, [el]);
+
    //유효성
    const handleValue = e => {
       if (e.target.name === 'menuName') {
@@ -77,10 +84,7 @@ const MenuList = ({ el, submit }) => {
          if (maxValue && maxValue < e.target.value.length) return;
          if (e.target.value.length === maxValue) {
             setIsError(false);
-            return setHelperText({
-               ...helperText,
-               menuName: '20자까지 입력 가능합니다.'
-            });
+            return setHelperText({ ...helperText, menuName: '20자까지 입력 가능합니다.' });
          }
          setHelperText({ ...helperText, menuName: '' });
          setmenuNameChange(e.target.value);
@@ -91,16 +95,13 @@ const MenuList = ({ el, submit }) => {
          const maxValue = 11;
          if (number.test(e.target.value.replace(/,/gi, ''))) {
             setIsError(false);
-            return setHelperText({ ...helperText, prices: '숫자만 입력해주세요.' });
+            return setHelperText({ ...helperText, price: '숫자만 입력해주세요.' });
          }
          if (e.target.value.length === maxValue) {
             setIsError(false);
-            return setHelperText({
-               ...helperText,
-               prices: '백만자리까지 입력 가능합니다.'
-            });
+            return setHelperText({ ...helperText, price: '백만자리까지 입력 가능합니다.' });
          }
-         setHelperText({ ...helperText, prices: '' });
+         setHelperText({ ...helperText, price: '' });
          setpricesChange(e.target.value.replace(/[^\d]+/g, ''));
       }
 
@@ -109,12 +110,9 @@ const MenuList = ({ el, submit }) => {
          if (maxValue && maxValue < e.target.value.length) return;
          if (e.target.value.length === maxValue) {
             setIsError(false);
-            return setHelperText({
-               ...helperText,
-               menuAbout: '50자까지 입력 가능합니다.'
-            });
+            return setHelperText({ ...helperText, menuContent: '50자까지 입력 가능합니다.' });
          }
-         setHelperText({ ...helperText, menuAbout: '' });
+         setHelperText({ ...helperText, menuContent: '' });
          setmenuAboutChange(e.target.value);
       }
 
@@ -131,30 +129,39 @@ const MenuList = ({ el, submit }) => {
    }, [pricesChange]);
 
    useEffect(() => {
-      dispatch(menuUserUpdate(el.id, menuAboutChange, menuNameChange, imgSrc, pricesChange, checkedChange));
+      dispatch(menuUserUpdate(el.menuId, menuAboutChange, menuNameChange, imgSrc, pricesChange, checkedChange));
    }, [menuNameChange, menuAboutChange, pricesChange, imgSrc, checkedChange]);
 
    useEffect(() => {
-      dispatch(menuUserErrorMessage(el.id, helperText));
+      dispatch(menuUserErrorMessage(el.menuId, helperText));
    }, [helperText]);
 
    const DeleteMenu = () => {
-      dispatch(menuUserDelete(el.id));
+      dispatch(menuUserDelete(el.menuId));
    };
 
    //number , 쉼표처리
-   let number = pricesChange;
-   number = number.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
+   // useEffect(() => {
+   //     number = pricesChange.toString()
+   //     number = number.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+   //     // setpricesChange(String(pricesChange).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
+   // }, [pricesChange])
+
+   let number = pricesChange.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g);
 
    let menuNameError, pricesError, menuAboutError;
    menuNameError = el.errorMessage.menuName === undefined ? false : el.errorMessage.menuName !== '';
-   pricesError = el.errorMessage.prices === undefined ? false : el.errorMessage.prices !== '';
-   menuAboutError = el.errorMessage.menuAbout === undefined ? false : el.errorMessage.menuAbout !== '';
+   pricesError = el.errorMessage.price === undefined ? false : el.errorMessage.price !== '';
+   menuAboutError = el.errorMessage.menuContent === undefined ? false : el.errorMessage.menuContent !== '';
 
    useEffect(() => {
       menuNameError = el.errorMessage.menuName === undefined ? false : el.errorMessage.menuName !== '';
-      pricesError = el.errorMessage.prices === undefined ? false : el.errorMessage.prices !== '';
-      menuAboutError = el.errorMessage.menuAbout === undefined ? false : el.errorMessage.menuAbout !== '';
+      pricesError = el.errorMessage.price === undefined ? false : el.errorMessage.price !== '';
+      menuAboutError = el.errorMessage.menuContent === undefined ? false : el.errorMessage.menuContent !== '';
+
+      if (menuNameError || pricesError || menuAboutError) {
+         setSubmit('업데이트2');
+      }
    }, [submit]);
    return (
       <S.List>
@@ -196,7 +203,7 @@ const MenuList = ({ el, submit }) => {
                   </S.InputListWrap>
                   <S.InputListWrap>
                      <p>
-                        가격 <span>{pricesError ? el.errorMessage.prices : null}</span>
+                        가격 <span>{pricesError ? el.errorMessage.price : null}</span>
                      </p>
 
                      <Input
@@ -215,7 +222,7 @@ const MenuList = ({ el, submit }) => {
                <S.InputList>
                   <S.InputListWrap>
                      <p>
-                        설명 <span>{menuAboutError ? el.errorMessage.menuAbout : null}</span>
+                        설명 <span>{menuAboutError ? el.errorMessage.menuContent : null}</span>
                      </p>
 
                      <Input
