@@ -9,10 +9,11 @@ import { v4 as uuidv4 } from 'uuid';
 // import { useAxios } from '../../util/useAxios';
 import SetMenuLi from './SetMenuLi';
 import CategoryMapLi from './CategoryMapLi';
+import PreviewModal from '../../components/Preview/PreviewModal';
 
 const SetMenu = () => {
    // const userId = 1;
-
+   const [viewPreview, setViewPreview] = useState(false);
    const [toggleCategoryAdd, setToggleCategoryAdd] = useState(false);
    const dispatch = useDispatch();
    const state = useSelector(store => store.menuUserItemReducer);
@@ -100,6 +101,7 @@ const SetMenu = () => {
 
    return (
       <S.SetMenuLayout>
+         {viewPreview ? <PreviewModal /> : null}
          <S.Head>메뉴판 제작</S.Head>
          <S.MenuLayout>
             <CategoryMapLi
@@ -131,7 +133,7 @@ const SetMenu = () => {
                </S.AddBtn>
             </S.MenuContainerWarp>
 
-            <ButtonWrap save={menuClickSave} name={'저장'} />
+            <ButtonWrap setViewPreview={setViewPreview} viewPreview={viewPreview} save={menuClickSave} name={'저장'} />
          </S.MenuLayout>
       </S.SetMenuLayout>
    );

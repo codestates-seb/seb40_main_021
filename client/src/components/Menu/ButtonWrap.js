@@ -52,10 +52,10 @@ const OrangeBtn = styled.button`
       width: 50%;
    }
 `;
-const ButtonWrap = ({ name, save }) => {
+const ButtonWrap = ({ name, save, viewPreview, setViewPreview }) => {
    return (
       <BtnWrap>
-         <WhiteBtn>미리보기</WhiteBtn>
+         <WhiteBtn onClick={() => setViewPreview(!viewPreview)}>미리보기</WhiteBtn>
          <OrangeBtn onClick={save}>{name}</OrangeBtn>
       </BtnWrap>
    );
