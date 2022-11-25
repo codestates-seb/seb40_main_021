@@ -21,32 +21,30 @@ export const Container = styled.div`
    display: flex;
    justify-content: center;
    align-items: center;
-   height: 100vh;
-   @media screen and (max-width: 600px) {
+   @media screen and (max-width: 700px) {
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      height: 100vh;
    }
 `;
 export const MemberReg = styled.section`
    background: transparent;
-   @media screen and (max-width: 600px) {
+   @media screen and (max-width: 700px) {
       padding: 30px 0 0;
       width: 100%;
-      height: 100vh;
+
       background: #fff;
    }
 `;
 export const PageTitle = styled.div`
    display: flex;
    justify-content: center;
-   margin-top: 200px;
+   margin-top: 10rem;
    h4 {
       font-size: 2rem;
       margin: 0 0 0 1rem;
    }
-   @media screen and (max-width: 600px) {
+   @media screen and (max-width: 700px) {
       padding: 0 2.6rem;
       margin-top: 50px;
    }
@@ -62,7 +60,7 @@ export const DivideLine = styled.ul`
       height: 5px;
       background: #d9d9d9;
    }
-   @media screen and (max-width: 600px) {
+   @media screen and (max-width: 700px) {
       margin: 15px 0 14px;
       padding: 0 2.6rem;
    }
@@ -74,11 +72,10 @@ export const Active = styled.div`
 `;
 export const MemberPanel = styled.div`
    width: 600px;
-   height: 730px;
    padding: 5.2rem 5.2rem 0;
    background: #fff;
    border-radius: 10px;
-   @media screen and (max-width: 600px) {
+   @media screen and (max-width: 700px) {
       width: 100%;
       height: auto;
       padding: 2.6rem 2.6rem 0;
@@ -98,6 +95,8 @@ export const PanelTitle = styled.div`
    }
 `;
 export const AgreeTitle = styled.div`
+   display: flex;
+   justify-content: space-between;
    background: #fff;
    border: 1px solid #c5bebe;
    border-radius: 5px 5px 0 0;
@@ -105,6 +104,7 @@ export const AgreeTitle = styled.div`
    margin: 7px 0 0;
    input[type='checkbox'] {
       display: none;
+
       & + label {
          display: inline-block;
          position: relative;
@@ -148,17 +148,22 @@ export const AgreeDetail = styled.div`
    }
 `;
 export const AgreeDetailActive = styled(AgreeDetail)`
-   display: block;
+   display: ${props => (props.isToggleOpen ? 'block' : 'none')};
    height: 310px;
    background: #f0f0f0;
    overflow-y: scroll;
    border-radius: 0 0 5px 5px;
    padding: 30px;
+
+   @media screen and (min-width: 700px) {
+      display: block;
+   }
 `;
 export const BtnArea = styled.div`
    display: flex;
    justify-content: center;
-   margin: 107px 0 0;
+   padding-top: 10rem;
+   padding-bottom: 4rem;
    a {
       font-size: 1.6rem;
       font-weight: 700;
@@ -177,10 +182,9 @@ export const BtnArea = styled.div`
          border-right: 0.15rem solid #ff6c01;
       }
    }
-   @media screen and (max-width: 600px) {
+   @media screen and (max-width: 700px) {
       display: flex;
       justify-content: center;
-      margin: 135px 0 0;
 
       a {
          color: #fff;
@@ -227,11 +231,25 @@ export const BtnDefault = styled(Btn)`
    text-shadow: none;
    border: 2px solid #ff6c01;
    border-radius: 10px;
-   @media screen and (max-width: 600px) {
+   @media screen and (max-width: 700px) {
       background: #bababa;
       text-shadow: none;
       border: none;
       color: #fff;
       border-radius: 10px;
+   }
+`;
+
+export const ImgContainer = styled.span`
+   cursor: pointer;
+   img {
+      display: none;
+   }
+
+   @media screen and (max-width: 700px) {
+      img {
+         display: block;
+         width: 1.5rem;
+      }
    }
 `;

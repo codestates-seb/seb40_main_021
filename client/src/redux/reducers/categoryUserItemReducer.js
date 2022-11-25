@@ -3,34 +3,36 @@ import {
    CHANGE_INPUT,
    SET_USER_MODIFY_CATEGORY,
    CHANGE_NOW_INPUT,
-   DELETE_CATEGORY
+   DELETE_CATEGORY,
+   GET_USER_POST_SUCCESS
 } from '../action/action';
-import { v4 as uuidv4 } from 'uuid';
 
 const initialState = {
    input: {
       categoryName: ''
    },
-   data: [
-      {
-         uuid: uuidv4(),
-         categoryName: '기본 카테고리',
-         active: true
-      }
-   ]
+   data: []
 };
+
 const categoryUserItemReducer = (state = initialState, action) => {
    switch (action.type) {
-      case SET_USER_ADD_CATEGORY: {
+      case GET_USER_POST_SUCCESS:
+         if (action.payload.length !== 0) {
+            return {
+               ...state,
+               data: action.payload
+            };
+         }
+         return state;
+
+      case SET_USER_ADD_CATEGORY:
+         // eslint-disable-next-line no-case-declarations
          let changeData = [...state.data, action.payload.res];
          return Object.assign({}, state, { data: changeData });
-      }
       case SET_USER_MODIFY_CATEGORY:
-         console.log('false', state);
-         state.data.find(x => x.uuid === action.payload.id).categoryName = action.payload.res;
+         state.data[action.payload.idx].categoryName = action.payload.res;
          return state;
       case CHANGE_INPUT:
-         console.log(state);
          return {
             ...state,
             input: {
@@ -39,15 +41,12 @@ const categoryUserItemReducer = (state = initialState, action) => {
             }
          };
       case CHANGE_NOW_INPUT:
-         console.log('true', state);
-         console.log('true', action.payload.id);
-
-         state.input.categoryName = state.data.find(x => x.uuid === action.payload.id).categoryName;
+         state.input.categoryName = state.data[action.payload.idx].categoryName;
          return state;
-      case DELETE_CATEGORY: {
-         const deletMenu = state.data.filter(el => el.uuid !== action.payload.id);
+      case DELETE_CATEGORY:
+         // eslint-disable-next-line no-case-declarations
+         const deletMenu = state.data.filter((_el, idx) => idx !== action.payload.idx);
          return Object.assign({}, state, { data: deletMenu });
-      }
       default:
          return state;
    }

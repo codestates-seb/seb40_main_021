@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import {
    BtnFill,
@@ -14,6 +15,18 @@ import {
 } from './Login.Style';
 
 const Login = () => {
+   const postLogin = async () => {
+      try {
+         const res = await axios.post(`/member/login`, {
+            loginId: id,
+            password: password
+         });
+         console.log(res);
+      } catch (err) {
+         console.log(err);
+      }
+   };
+
    const [id, setId] = React.useState('');
    const [password, setPassword] = React.useState('');
 
@@ -76,15 +89,17 @@ const Login = () => {
                   {passwordError && <span>영문, 숫자,특수문자 포함 8자리 이상</span>}
                   <IdRemember>
                      <input type="checkbox" id="rememberCheck" name="checkbox" />
-                     <p htmlFor="rememberCheck">
+                     <label htmlFor="rememberCheck">
                         <h5>아이디 기억하기</h5>
-                     </p>
+                     </label>
                   </IdRemember>
                </InfoFormError>
 
                <LoginBtn>
-                  <BtnFill href="./index.html">
-                     <Link to={!idError && !passwordError ? '/' : null}>로그인</Link>
+                  <BtnFill>
+                     <Link to={!idError && !passwordError ? '/' : null} onClick={postLogin}>
+                        로그인
+                     </Link>
                   </BtnFill>
                </LoginBtn>
             </LoginPanel>
