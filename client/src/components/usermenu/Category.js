@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { activateCategory, setMenu } from '../../redux/actions/menuAction';
+import { activate, activateCategory, setMenu } from '../../redux/actions/menuAction';
 
 export const Category = ({ data }) => {
    const active = useSelector(store => store.stateReducer.category);
@@ -10,6 +10,7 @@ export const Category = ({ data }) => {
    // 클릭한 카테고리 저장
    const categoryHandler = async () => {
       dispatch(activateCategory(data.categoryId));
+      dispatch(activate(false));
    };
 
    // 카테고리별 메뉴목록 불러오기
