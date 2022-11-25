@@ -17,7 +17,7 @@ import StoreInfo from './pages/Signup/StoreInfo';
 import Complete from './pages/Signup/Complete';
 import Login from './pages/Signup/Login';
 import { useSelector } from 'react-redux';
-import MenuApp from './menuApp';
+import { AnimatedRoutes } from './components/usermenu/AnimatedRoutes';
 
 function App() {
    const printModalState = useSelector(state => state.adminReducer.printModal);
@@ -43,7 +43,8 @@ function App() {
                <Route path="/StoreInfo" element={<StoreInfo />} />
                <Route path="/Complete" element={<Complete />} />
                <Route path="/Login" element={<Login />} />
-               <Route path="/usermenu/*" element={<MenuApp />} />
+               {/* <Route path="/usermenu/*" element={<MenuApp />} /> */}
+               <Route path="/usermenu/*" element={<AnimatedRoutes />} />
             </Routes>
          </BrowserRouter>
       </div>

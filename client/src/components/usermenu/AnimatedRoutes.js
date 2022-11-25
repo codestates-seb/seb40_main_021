@@ -3,18 +3,36 @@ import { Home } from '../../pages/menu/Home';
 import { Order } from '../../pages/menu/Order';
 import { Store } from '../../pages/menu/Store';
 
-import { AnimatePresence } from 'framer-motion';
+import { Header } from './Header';
+import { BottomNav } from './BottomNav';
+import { Modal } from './Modal';
+import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { noHeader } from '../../redux/actions/menuAction';
 
 export const AnimatedRoutes = () => {
+   const [isModalOpen, setIsModalOpen] = useState(false);
    const location = useLocation();
+   const dispatch = useDispatch();
 
+   useEffect(() => {
+      dispatch(noHeader(true));
+
+      return () => {
+         dispatch(noHeader(false));
+      };
+   }, []);
    return (
-      <AnimatePresence>
+      <>
          <Routes location={location} key={location.pathname}>
-            <Route path="/" element={<Home />} />
-            <Route path="/store" element={<Store />} />
-            <Route path="/order/*" element={<Order />} />
+            <Route path=":userId/:tableNumber" element={<Home />} />
+            <Route path=":userId/:tableNumber/store" element={<Store />} />
+            <Route path=":userId/:tableNumber/order/*" element={<Order />} />
          </Routes>
-      </AnimatePresence>
+
+         <Header />
+         <BottomNav setIsModalOpen={setIsModalOpen} />
+         {isModalOpen && <Modal setIsModalOpen={setIsModalOpen} />}
+      </>
    );
 };
