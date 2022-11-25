@@ -14,8 +14,9 @@ const InputTable = () => {
    const hadleClickCreateQR = e => {
       setTableValue(e.target.value);
    };
-   axios.get(`${url}/table/1/qr`).then(res => {
-      if (res.data.data.length !== 0) {
+   axios.get(`${url}/category/1`).then(res => {
+      console.log(res);
+      if (res.data.length !== 0) {
          setThereIsMenu(true);
       }
    });
