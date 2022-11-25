@@ -45,7 +45,7 @@ const CreateQR = () => {
          newTableNumArr.forEach(element => {
             if (element.idx === idx) {
                data.afterTableNumber = Number(element.newTableNum);
-               data.qrUrl = `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/${element.newTableNum}`;
+               data.qrUrl = `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/usermenu/1/${element.newTableNum}`;
             }
          });
 
