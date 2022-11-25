@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-   margin: 0 0;
-   padding: 0;
+   margin: 5px;
+   padding: 3%;
    height: 100vh;
    transition: all 0.5s ease-in;
    -webkit-transition: all 0.5s ease-in;
@@ -22,7 +22,7 @@ export const Container = styled.div`
    justify-content: center;
    align-items: center;
    height: 100vh;
-   @media screen and (max-width: 600px) {
+   @media screen and (max-width: 700px) {
       display: flex;
       justify-content: center;
       align-items: flex-start;
@@ -36,9 +36,9 @@ export const CompletePanel = styled.section`
    background: #fff;
    border-top: 5px solid #ff6b00;
    border-radius: 0 0 10px 10px;
-   @media screen and (max-width: 600px) {
+   @media screen and (max-width: 700px) {
       width: 100%;
-      height: 100vh;
+      height: 100%;
       padding: 15.1rem 2.6rem 0;
       background: #fff;
       border-top: 0px solid #ff6b00;
@@ -48,7 +48,7 @@ export const CompletePanel = styled.section`
 export const CompleteImg = styled.div`
    display: flex;
    justify-content: center;
-   @media screen and (max-width: 600px) {
+   @media screen and (max-width: 700px) {
    }
 `;
 export const CompleteTxt = styled.div`
@@ -64,7 +64,7 @@ export const CompleteTxt = styled.div`
       line-height: 18.5px;
       margin: 10px 0 0;
    }
-   @media screen and (max-width: 600px) {
+   @media screen and (max-width: 700px) {
       margin: 30px 0 0;
       text-align: center;
       h4 {
@@ -83,11 +83,14 @@ export const CompleteBtn = styled.div`
       font-weight: 700;
       margin: 0 1.5rem;
    }
-   @media screen and (max-width: 600px) {
+   @media screen and (max-width: 700px) {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      margin: 60px 0 0;
+      position: absolute;
+      bottom: 10%;
+      left: 0;
+      right: 0;
    }
 `;
 export const Btn = styled.a`
@@ -117,14 +120,13 @@ export const Btn = styled.a`
    transition-duration: 0.4s;
    text-shadow: 0 -1px 0 rgb(0 0 0 / 20%);
    box-shadow: inset 0 1px 0 rgb(255 255 255 / 15%), 0 1px 1px rgb(0 0 0 / 8%);
-   @media screen and (max-width: 600px) {
+   @media screen and (max-width: 700px) {
       &:first-child {
          width: 100%;
-         margin: 25rem 0 0 0;
+         margin-bottom: 2rem;
       }
       &:last-child {
          width: 100%;
-         margin: 1.5rem 0 0 0;
       }
    }
 `;
@@ -152,7 +154,7 @@ export const BtnDefault = styled(Btn)`
    color: #000;
    font-size: 1.4rem;
    font-weight: 400;
-   @media screen and (max-width: 600px) {
+   @media screen and (max-width: 700px) {
       background: #bababa;
       text-shadow: none;
       border: none;
@@ -161,7 +163,7 @@ export const BtnDefault = styled(Btn)`
    }
 `;
 export const BtnDefaultActive = styled(BtnDefault)`
-   @media screen and (max-width: 600px) {
+   @media screen and (max-width: 700px) {
       background: #000;
       text-shadow: none;
       border: none;

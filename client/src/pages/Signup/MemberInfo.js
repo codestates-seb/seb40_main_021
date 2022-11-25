@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 import {
@@ -20,10 +20,17 @@ import {
 } from './MemberInfo.Style';
 import { BtnArea, BtnDefault } from './SignupTos.Style';
 
+import { useDispatch, useSelector } from 'react-redux';
+
+import { onChangeIdAction, onChangePasswordAction, onChangeBusinessNumberAction } from '../../redux/action/action';
+
 const MemberInfo = () => {
-   const [id, setId] = React.useState('');
+   const navigate = useNavigate();
+   const dispatch = useDispatch();
+   const inputValue = useSelector(state => state);
+
+   // eslint-disable-next-line no-unused-vars
    const [password, setPassword] = React.useState('');
-   const [businessNumber, setBusinessNumber] = useState('');
 
    const [idError, setIdError] = React.useState(false);
    const [passwordError, setPasswordError] = React.useState(false);
@@ -33,7 +40,8 @@ const MemberInfo = () => {
    const [Certification, setCertification] = React.useState(false);
 
    const handleId = e => {
-      setId(e.target.value);
+      dispatch(onChangeIdAction(e.target.value));
+      // setId(e.target.value);
 
       const idRegex = /^[a-z0-9]{1,11}$/;
       if (idRegex.test(e.target.value) || e.target.value === '') {
@@ -44,7 +52,9 @@ const MemberInfo = () => {
    };
 
    const handlePassword = e => {
-      setPassword(e.target.value);
+      dispatch(onChangePasswordAction(e.target.value));
+      // setPassword(e.target.value);
+
       const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,}$/;
 
       if (passwordRegex.test(e.target.value) || e.target.value === '') {
@@ -55,7 +65,7 @@ const MemberInfo = () => {
    };
 
    const handlePasswordConfirm = e => {
-      if (password !== e.target.value) {
+      if (inputValue?.userMemberReducer?.password !== e.target.value) {
          setPasswordConfirmError(true);
       } else {
          setPasswordConfirmError(false);
@@ -63,7 +73,7 @@ const MemberInfo = () => {
    };
 
    const handleNumber = e => {
-      setBusinessNumber(e.target.value);
+      dispatch(onChangeBusinessNumberAction(e.target.value));
    };
 
    // postBusinessNumber 사업자 오픈 api
@@ -73,7 +83,7 @@ const MemberInfo = () => {
          const res = await axios.post(
             'https://api.odcloud.kr/api/nts-businessman/v1/status',
             {
-               b_no: [businessNumber]
+               b_no: [inputValue.userMemberReducer.businessNumber]
             },
             {
                headers: {
@@ -91,18 +101,12 @@ const MemberInfo = () => {
       }
    };
 
-   //   리덕스로 가게 정보 완료 버튼에 포스트 보내기
-   // const postMemberInfo = async () => {
-   //    try {
-   //       await axios.post(`https://5fcb-221-140-177-247.jp.ngrok.io/member/join`, {
-   //          id: id,
-   //          password: password,
-   //          businessNumber: businessNumber
-   //       });
-   //    } catch (err) {
-   //       console.log(err);
-   //    }
-   // };
+   const postMemberDataNavi = () => {
+      if (Certification) {
+         navigate('/storeInfo');
+      }
+      return;
+   };
 
    return (
       <Wrapper>
@@ -130,7 +134,7 @@ const MemberInfo = () => {
                         type="text"
                         placeholder="아이디를 입력해주세요"
                         name="id"
-                        value={id}
+                        value={inputValue?.userMemberReducer?.id ?? ''}
                         onChange={handleId}
                      />
                   </InfoForm>
@@ -138,14 +142,14 @@ const MemberInfo = () => {
                   <InfoForm>
                      <p>비밀번호</p>
                      <FormControl
-                        value={password}
+                        value={inputValue?.userMemberReducer?.password ?? ''}
                         type="password"
                         placeholder="비밀번호를 입력해주세요"
                         name="password"
                         onChange={handlePassword}
                      />
                   </InfoForm>
-                  {passwordError && <span>영문, 숫자,특수문자 포함 8자리 이상</span>}
+                  {passwordError && <span>영문, 숫자, 특수문자 포함 8자리 이상</span>}
                   <InfoFormError>
                      <p>비밀번호 재확인</p>
                      <FormControl
@@ -159,16 +163,21 @@ const MemberInfo = () => {
                   <InfoFormAuthComplete>
                      <p>사업자번호 입력</p>
                      <CompanyNum>
-                        <FormControl type="text" placeholder="'-'제외 입력" onChange={handleNumber} />
+                        <FormControl
+                           type="text"
+                           name="bisinessNumber"
+                           placeholder="'-'제외 입력"
+                           onChange={handleNumber}
+                           value={inputValue?.userMemberReducer?.businessNumber ?? ''}
+                        />
                         <BtnFill>
                            <Link onClick={postBusinessNumber}>인증하기</Link>
                         </BtnFill>
                      </CompanyNum>
                      <span>{businessNumberError && businessNumberError?.data[0].tax_type}</span>
                      <BtnArea>
-                        <BtnDefault>
-                           <Link to={Certification ? '/storeInfo' : null}>다음</Link>
-                           {/* 다 통과해야 다음으로 넘어감 */}
+                        <BtnDefault onClick={postMemberDataNavi}>
+                           <Link to={null}>다음</Link>
                         </BtnDefault>
                      </BtnArea>
                   </InfoFormAuthComplete>
