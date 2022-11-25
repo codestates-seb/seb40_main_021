@@ -9,7 +9,7 @@ const CallAlarms = () => {
    const url = useSelector(state => state.adminReducer.apiUrl);
    const [callList, setCallList] = useState([]);
    useInterval(() => {
-      axios.get(`${url}/call/1`).then(res => {
+      axios.get(`${url}/call/${sessionStorage.getItem('userId')}`).then(res => {
          const reverse = res.data.data
             .slice(0)
             .reverse()

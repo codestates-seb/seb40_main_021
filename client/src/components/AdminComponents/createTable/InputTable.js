@@ -14,7 +14,7 @@ const InputTable = () => {
    const hadleClickCreateQR = e => {
       setTableValue(e.target.value);
    };
-   axios.get(`${url}/category/1`).then(res => {
+   axios.get(`${url}/category/${sessionStorage.getItem('userId')}`).then(res => {
       console.log(res);
       if (res.data.length !== 0) {
          setThereIsMenu(true);

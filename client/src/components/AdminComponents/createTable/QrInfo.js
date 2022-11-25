@@ -40,7 +40,7 @@ const QrInfo = ({ idx }) => {
       }
    };
    useEffect(() => {
-      axios.get(`${url}/table/1/qr`).then(res => {
+      axios.get(`${url}/table/${sessionStorage.getItem('userId')}/qr`).then(res => {
          setQrData(res.data.data);
       });
    }, []);
