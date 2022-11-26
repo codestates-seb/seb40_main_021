@@ -5,8 +5,8 @@ import styled from 'styled-components';
 const Alarms = () => {
    return (
       <Container>
-         <CallAlarms></CallAlarms>
-         <OrderAlarms></OrderAlarms>
+         <CallAlarms />
+         <OrderAlarms />
       </Container>
    );
 };
@@ -15,13 +15,15 @@ const Container = styled.div`
    flex-direction: column;
    align-items: center;
    flex-grow: 1;
-   width: calc(100% - 300px);
-   padding-left: 300px;
+   width: calc(100% - 250px);
+   margin-left: 250px;
    background-color: rgb(246, 246, 246);
+   padding: 30px 50px;
 
    @media screen and (max-width: 700px) {
       width: 100%;
-      padding-left: 0px;
+      margin-left: 0px;
+      padding: 30px;
    }
 `;
 export default Alarms;

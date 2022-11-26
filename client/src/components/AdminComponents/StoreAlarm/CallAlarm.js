@@ -19,7 +19,6 @@ const CallAlarm = ({ data }) => {
    );
 };
 const CallAlarmContainer = styled.div`
-   width: 100%;
    cursor: pointer;
    .onAlarm {
       display: flex;
@@ -27,7 +26,7 @@ const CallAlarmContainer = styled.div`
       justify-content: end;
       position: relative;
       top: 15px;
-      margin-left: 10px;
+      margin-left: -10px;
       > :first-child {
          background-color: ${({ callCheck }) => (callCheck ? 'rgb(255, 107, 0)' : 'none')};
          border-radius: 50%;
@@ -41,10 +40,10 @@ const CallAlarmContainer = styled.div`
       align-items: center;
       justify-content: center;
       flex-direction: column;
-      margin-right: 50px;
+      margin-right: 30px;
       background-color: ${({ callCheck }) => (callCheck ? 'rgb(18, 13, 45)' : 'rgb(167,167,167)')};
-      width: 130px;
-      height: 130px;
+      width: 110px;
+      height: 110px;
       border-radius: 10px;
       .tableNum {
          display: flex;
