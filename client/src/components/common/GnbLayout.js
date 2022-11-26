@@ -4,13 +4,13 @@ import Gnb from './Gnb';
 
 const Container = styled.div`
    width: 100%;
-   height: 100vh;
+   min-height: calc(100vh - 50px);
    @media screen and (max-width: 700px) {
       width: 100%;
-      padding-top: 50px;
+      margin-top: 50px;
    }
    display: flex;
-   padding-top: 70px;
+   margin-top: 50px;
 `;
 
 const GnbLayout = () => {
