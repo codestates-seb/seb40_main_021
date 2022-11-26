@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import useInterval from '../../../util/useInterval';
@@ -8,6 +8,17 @@ import Callalram from './CallAlarm';
 const CallAlarms = () => {
    const url = useSelector(state => state.adminReducer.apiUrl);
    const [callList, setCallList] = useState([]);
+   useEffect(() => {
+      axios.get(`${url}/call/${sessionStorage.getItem('userId')}`).then(res => {
+         const reverse = res.data.data
+            .slice(0)
+            .reverse()
+            .map(num => num);
+
+         setCallList(reverse);
+      });
+   }, []);
+
    useInterval(() => {
       axios.get(`${url}/call/${sessionStorage.getItem('userId')}`).then(res => {
          const reverse = res.data.data
@@ -41,10 +52,10 @@ const CallAlarms = () => {
 };
 const CallAlarmContainer = styled.div`
    display: flex;
-
-   width: 90%;
-   margin-top: 10px;
-   margin-bottom: 30px;
+   width: 100%;
+   margin-top: 50px;
+   margin-bottom: 100px;
+   padding-left: 80px;
    .callEmpty {
       font-size: 24px;
    }
@@ -62,7 +73,6 @@ const CallAlarmContainer = styled.div`
       align-items: center;
       justify-content: center;
       width: max-content;
-      margin-left: 20px;
       margin-right: 50px;
       font-size: 24px;
       font-weight: bold;

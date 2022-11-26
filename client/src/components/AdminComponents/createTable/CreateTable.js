@@ -38,6 +38,7 @@ const CreateQR = () => {
 const MainContants = styled.div`
    display: flex;
    flex-direction: column;
+   justify-content: center;
    align-items: center;
    height: 90%;
    width: 100%;
@@ -73,7 +74,7 @@ const MainContants = styled.div`
    }
    .title {
       display: flex;
-      width: 90%;
+      width: 100%;
       justify-content: start;
       align-items: center;
       margin-bottom: 20px;
@@ -82,8 +83,9 @@ const MainContants = styled.div`
       }
       > :first-child {
          //title
-         font-size: 2rem;
+         font-size: 24px;
          font-weight: bold;
+         margin-left: 80px;
          margin-right: 20px;
       }
    }

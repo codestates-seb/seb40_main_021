@@ -60,11 +60,10 @@ export const Order = styled.div`
    border: ${({ menuViewDetails }) => (menuViewDetails ? '3px solid rgb(255, 107, 0)' : 'none')};
    box-shadow: 0 4px 2px 0px lightgray;
    border-radius: 3px;
-   width: auto;
+   width: 100%;
    height: auto;
    font-size: 20px;
    margin-bottom: 40px;
-   margin-left: 20px;
    background-color: white;
    .reqText {
       display: flex;

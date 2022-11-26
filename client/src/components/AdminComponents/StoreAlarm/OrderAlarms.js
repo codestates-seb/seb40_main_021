@@ -40,6 +40,7 @@ const OrderAlarms = () => {
                   <div className="orderEmpty">주문 알람이 없습니다.</div>
                ) : (
                   allOrderList.map((menu, idx) => {
+                     console.log(menu);
                      return <OrderAlram key={menu.orderId} menu={menu} idx={idx}></OrderAlram>;
                   })
                )}
@@ -52,7 +53,10 @@ const OrderAlarms = () => {
 export default OrderAlarms;
 
 const MainContents = styled.main`
-   width: 90%;
+   width: 100%;
+   padding-left: 80px;
+   padding-right: 80px;
+   box-sizing: border-box;
    .orderEmpty {
       text-align: center;
       color: rgb(255, 107, 0);
@@ -71,9 +75,10 @@ const MainContents = styled.main`
       }
    }
    .subTitle {
+      width: 100%;
       font-weight: bold;
       font-size: 24px;
-      margin: 0 0 30px 20px;
+      margin-bottom: 50px;
    }
    .reqText {
       display: flex;

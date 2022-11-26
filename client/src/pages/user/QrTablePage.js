@@ -9,7 +9,7 @@ const QrTablePage = () => {
    );
 };
 const QrTablePageContainer = styled.div`
-   width: calc(100% - 300px);
+   width: 100%;
    padding-left: 300px;
    height: 100%;
    background-color: rgb(246, 246, 246);

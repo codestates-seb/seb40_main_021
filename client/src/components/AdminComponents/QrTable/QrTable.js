@@ -121,7 +121,7 @@ const CreateQR = () => {
    return (
       <MainContants>
          <div className="title">
-            <h1>QR Table</h1>
+            <h1>테이블 목록</h1>
          </div>
          <main className="mainContant">
             <div className="QrTable">
@@ -250,18 +250,16 @@ const MainContants = styled.div`
    }
    .title {
       display: flex;
-      width: 90%;
+      width: 100%;
       justify-content: start;
       align-items: center;
       margin-bottom: 20px;
-      p {
-         font-size: 1rem;
-      }
       > :first-child {
          //title
-         font-size: 2rem;
+         font-size: 24px;
          font-weight: bold;
          margin-right: 20px;
+         margin-left: 80px;
       }
    }
    .mainContant {

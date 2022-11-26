@@ -9,7 +9,7 @@ const QrTable = () => {
    );
 };
 const QrTableContainer = styled.div`
-   width: calc(100% - 300px);
+   width: 100%;
    padding-left: 300px;
    background-color: rgb(246, 246, 246);
    @media screen and (max-width: 700px) {
