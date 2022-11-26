@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useRef, useState } from 'react';
-import { setMenu } from '../../redux/actions/menuAction';
+import { activate, setMenu } from '../../redux/actions/menuAction';
 import { useDispatch } from 'react-redux';
 import IconSearch from './../../assets/image/search.svg';
 
@@ -12,6 +12,8 @@ export const Search = () => {
 
    // 검색하기
    const searchHandeler = () => {
+      dispatch(activate(false));
+
       if (searchTxt) {
          axios({
             method: 'GET',

@@ -14,7 +14,7 @@ import {
    GET_QR_DATA
 } from '../action/action';
 const adminState = {
-   apiUrl: 'https://e78d-118-103-212-116.jp.ngrok.io',
+   apiUrl: 'https://7f95-221-140-177-247.jp.ngrok.io',
    printModal: false,
    qrListAllCheck: false,
    storeInfoUpdateState: false,
@@ -40,7 +40,7 @@ export const adminReducer = (state = adminState, action) => {
          state.qrDate[action.payload.idx].tableNumber = action.payload.tableNum;
          state.qrDate[
             action.payload.idx
-         ].qrUrl = `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/${action.payload.tableNum}`;
+         ].qrUrl = `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/usermenu/1/${action.payload.tableNum}`;
          return Object.assign({}, state, { state });
 
       case SET_OVERLAP_NUM_STATE:
