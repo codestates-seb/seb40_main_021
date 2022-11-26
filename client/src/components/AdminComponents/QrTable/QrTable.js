@@ -113,6 +113,7 @@ const CreateQR = () => {
    };
 
    useEffect(() => {
+      dispatch(clearSavedTableListCheckBoxArr());
       axios.get(`${url}/table/${sessionStorage.getItem('userId')}/qr`).then(res => {
          setQrData(res.data.data);
          dispatch(getQrData(res.data.data));
