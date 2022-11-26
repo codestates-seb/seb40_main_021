@@ -1,34 +1,15 @@
 import styled from 'styled-components';
+import { CompletePanel } from './Complete.Style';
 
-export const Wrapper = styled.div`
-   margin: 5px;
-   padding: 3%;
-   height: 100vh;
-   transition: all 0.5s ease-in;
-   -webkit-transition: all 0.5s ease-in;
-   -moz-transition: all 0.5s ease-in;
-   -o-transition: all 0.5s ease-in;
-   &::before,
-   &::after {
-      display: table;
-      content: ' ';
-   }
-   &::after {
-      clear: both;
-   }
-`;
-export const Container = styled.div`
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   height: 100vh;
+export const LoginPanel = styled(CompletePanel)`
+   padding: 5.2rem 12rem 0;
+
    @media screen and (max-width: 700px) {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      height: 100vh;
+      width: 100%;
+      padding: 5.2rem 5.2rem 0;
    }
 `;
+
 export const Btn = styled.a`
    padding: 12px 12px;
    display: inline-block;
@@ -71,102 +52,48 @@ export const BtnFill = styled(Btn)`
       color: #fff;
    }
 `;
-export const FormControl = styled.input`
-   width: 100%;
-   padding: 0.6rem 1rem;
-   height: 4.8rem;
-`;
-export const LoginPanel = styled.section`
-   width: 600px;
-   height: 430px;
-   padding: 5.2rem 14rem 0;
-   background: #fff;
-   border-top: 5px solid #ff6b00;
-   border-radius: 0 0 10px 10px;
-   @media screen and (max-width: 700px) {
-      width: 100%;
-      height: 100vh;
-      padding: 5.2rem 2.6rem 0;
-      background: #fff;
-      border-top: 0px solid #ff6b00;
-      border-radius: 0 0;
-      margin-top: 30px;
-   }
-`;
+
 export const LoginTitle = styled.div`
    margin: 0 0 30px;
    text-align: center;
    h4 {
-      font-size: 2rem;
-      font-weight: 700;
+      font-size: 16px;
+      font-weight: 900;
    }
 `;
-export const InfoForm = styled.div`
-   width: 100%;
-   margin: 15px 0 0;
-   span {
-      display: none;
+
+export const IdRemember = styled.div`
+   display: flex;
+   align-items: center;
+   justify-content: flex-end;
+   position: relative;
+   float: right;
+   font-size: 13px;
+   input {
+      height: auto;
+      margin: 0 5px 0 0;
+      cursor: pointer;
    }
    label {
-      font-size: 1.4rem;
-      font-weight: 400;
-   }
-   input {
-      font-size: 1.4rem;
-      margin: 8px 0 0;
-      border-radius: 5px 5px 0 0;
-      &::placeholder {
-         color: #6d6d6d;
-      }
-      &[type='text'] {
-         background: #f4f4f4;
-         border: none;
-         border-bottom: 3px solid #b6b6b6;
-      }
-      &[type='password'] {
-         background: #f4f4f4;
-         border: none;
-         border-bottom: 3px solid #666666;
-      }
-   }
-`;
-export const InfoFormError = styled(InfoForm)`
-   input[type='password'] {
-      background: #f4f4f4;
-      border: none;
-      border-bottom: 3px solid #ff6c01;
-   }
-   span {
-      display: block;
-      font-size: 1.1rem;
-      font-weight: 400;
-      color: #ff6c01;
-      float: left;
-      width: 60%;
-   }
-`;
-export const IdRemember = styled.div`
-   position: relative;
-   width: 40%;
-   float: right;
-   input + label {
-      position: absolute;
-      top: 5px;
-      left: 15px;
+      cursor: pointer;
    }
 `;
 export const LoginBtn = styled.div`
-   display: flex;
-   justify-content: center;
-   margin: 10px 0 0;
-   width: 100%;
    a {
+      background: #ff6c01;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 100%;
+      color: #fff;
+      margin-top: 35px;
+      float: left;
    }
    @media screen and (max-width: 700px) {
-      display: flex;
-      justify-content: center;
       margin: 39rem 0 0;
-      width: 100%;
    }
 `;

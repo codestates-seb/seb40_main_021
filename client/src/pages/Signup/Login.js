@@ -1,18 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import {
-   BtnFill,
-   Container,
-   FormControl,
-   IdRemember,
-   InfoForm,
-   InfoFormError,
-   LoginBtn,
-   LoginPanel,
-   LoginTitle,
-   Wrapper
-} from './Login.Style';
+import { Wrapper } from './SignupTos.Style';
+import { IdRemember, LoginBtn, LoginPanel, LoginTitle } from './Login.Style';
+import { Container } from './Complete.Style';
+import { InfoForm, InfoFormError, FormControl } from './MemberInfo.Style';
 
 const Login = () => {
    const postLogin = async () => {
@@ -63,7 +55,6 @@ const Login = () => {
                <LoginTitle>
                   <h4>로그인</h4>
                </LoginTitle>
-
                <InfoForm>
                   <p>아이디</p>
                   <FormControl
@@ -89,18 +80,14 @@ const Login = () => {
                   {passwordError && <span>영문, 숫자,특수문자 포함 8자리 이상</span>}
                   <IdRemember>
                      <input type="checkbox" id="rememberCheck" name="checkbox" />
-                     <label htmlFor="rememberCheck">
-                        <h5>아이디 기억하기</h5>
-                     </label>
+                     <label htmlFor="rememberCheck">아이디 기억하기</label>
                   </IdRemember>
                </InfoFormError>
 
                <LoginBtn>
-                  <BtnFill>
-                     <Link to={!idError && !passwordError ? '/' : null} onClick={postLogin}>
-                        로그인
-                     </Link>
-                  </BtnFill>
+                  <Link to={!idError && !passwordError ? '/' : null} onClick={postLogin}>
+                     로그인
+                  </Link>
                </LoginBtn>
             </LoginPanel>
          </Container>
