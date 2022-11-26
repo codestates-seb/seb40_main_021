@@ -8,7 +8,7 @@ const TableStatus = ({ data }) => {
    return (
       <TableStatusBox>
          <div className="orderHead">
-            <div>{`${data.tableNumber}번`}</div>
+            <div>No. {data.tableNumber}</div>
             <div>
                주문 <b>{data.orderList.length}</b>개
             </div>
@@ -36,21 +36,24 @@ const TableStatusBox = styled.div`
    flex-direction: column;
    justify-content: start;
    align-items: center;
-   width: 70%;
+   width: 90%;
    height: 300px;
    box-shadow: 0 4px 2px 0px lightgray;
    font-size: 1.3rem;
-   padding: 0 20px 0 20px;
-   background-color: white;
-   border-radius: 3px;
+   padding: 20px;
+   background-color: #fdffde;
+   border-radius: 3px 3px 15px 3px;
+   margin-bottom: 25px;
    .orderHead {
       display: flex;
       align-items: center;
       width: 100%;
       height: 80px;
       border-bottom: 1px solid gray;
+      font-weight: 900;
       > :nth-child(1) {
-         font-size: 32px;
+         font-size: 30px;
+         color: #ff6c01;
          font-weight: bold;
          width: 70%;
          margin-left: 10px;
@@ -77,26 +80,14 @@ const TableStatusBox = styled.div`
       .order {
          display: flex;
          width: 100%;
-         margin: 10px 0 10px 0;
-         > :nth-child(1) {
-            font-size: 16px;
-            width: 35%;
-            font-weight: bold;
-         }
-         > :nth-child(2) {
-            font-size: 15px;
-            width: 30%;
-         }
-         > :nth-child(3) {
-            font-size: 15px;
-            font-weight: bold;
-         }
+         padding: 8px 0;
+         font-size: 16px;
+         font-weight: 900;
+         justify-content: space-between;
       }
    }
    .totalPrice {
       border-top: 1px solid gray;
-      position: static;
-      top: 10;
       width: 100%;
       height: 10%;
       > div {
@@ -104,13 +95,20 @@ const TableStatusBox = styled.div`
          height: 100%;
          align-items: flex-end;
          justify-content: end;
+         font-size: 16px;
          font-weight: bold;
-         margin-right: 10px;
+         margin: 5px 10px 0 0;
       }
    }
    @media screen and (max-width: 1400px) {
-      width: 60%;
+      width: 90%;
    }
+   @media screen and (max-width: 1200px) {
+      width: 90%;
+   }
+   /* @media screen and (max-width: 1400px) {
+      width: 60%;
+   } */
    @media screen and (max-width: 1000px) {
       margin-bottom: 30px;
    }

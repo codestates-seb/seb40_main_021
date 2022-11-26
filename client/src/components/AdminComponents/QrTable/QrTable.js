@@ -156,9 +156,9 @@ const CreateQR = () => {
                   <div></div>
                </div>
             </div>
-            <QrList></QrList>
+            <QrList />
             <div className="printBtn">
-               <Button></Button>
+               <Button />
             </div>
          </main>
       </MainContants>
@@ -170,7 +170,7 @@ const MainContants = styled.div`
    align-items: center;
    height: 90%;
    width: 100%;
-   margin-top: 50px;
+   padding: 30px 50px;
    .allCheck {
       display: flex;
       justify-content: center;
@@ -188,8 +188,10 @@ const MainContants = styled.div`
       height: auto;
       width: auto;
       border-radius: 5px;
+      font-weight: 900;
       :hover {
-         background-color: lightgray;
+         color: #ff6c01;
+         /* background-color: lightgray; */
       }
    }
    .u_d_btnBox {
@@ -225,10 +227,13 @@ const MainContants = styled.div`
    }
    .flex {
       display: flex;
-      margin-bottom: 10px;
+      padding: 12px 0;
+      background: #838f94;
+      color: white;
+      border-radius: 5px 5px 0 0;
    }
    .th {
-      font-size: 15px;
+      font-size: 16px;
       width: 100%;
       display: grid;
       align-items: center;
@@ -241,23 +246,23 @@ const MainContants = styled.div`
       align-items: center;
       font-size: 16px;
       font-weight: bold;
-      margin-bottom: 50px;
+      margin-bottom: 20px;
       > p {
          width: 100%;
       }
    }
    .title {
       display: flex;
-      width: 90%;
       justify-content: start;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
+      align-self: flex-start;
       p {
-         font-size: 1rem;
+         font-size: 14px;
       }
       > :first-child {
          //title
-         font-size: 2rem;
+         font-size: 20px;
          font-weight: bold;
          margin-right: 20px;
       }
@@ -266,15 +271,31 @@ const MainContants = styled.div`
       display: flex;
       flex-direction: column;
       box-sizing: border-box;
-      width: 90%;
-      height: 90%;
+      width: 100%;
+      /* height: 90%; */
       background-color: white;
-      box-shadow: 0 4px 2px 0px lightgray;
-      padding: 50px;
+      box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
+      border-radius: 5px;
+      padding: 30px;
       overflow: hidden;
    }
    @media screen and (max-width: 700px) {
+      padding: 30px;
       font-size: 13px;
+      .mainContant {
+         padding: 30px 0;
+         box-shadow: none;
+      }
+      .QrTable {
+         font-size: 16px;
+         margin-bottom: 15px;
+      }
+      .flex {
+         word-break: keep-all;
+         input {
+            margin-left: 10px;
+         }
+      }
    }
 `;
 export default CreateQR;
