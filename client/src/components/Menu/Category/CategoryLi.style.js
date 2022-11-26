@@ -21,8 +21,14 @@ export const CategorySettingWarp = styled.div`
    white-space: nowrap;
    align-items: center;
    & input {
-      padding: 5px 3px !important;
+      padding: 7px 10px !important;
       width: 100px;
+      border: none;
+      background: rgb(244, 244, 244);
+      border-radius: 5px;
+   }
+   & input:focus {
+      outline: none;
    }
    & input:disabled {
       background-color: transparent;
@@ -58,6 +64,9 @@ export const CategorySettingWarp = styled.div`
          color: #ffebdd;
          opacity: 0.5;
       }
+   }
+   img {
+      width: 16px;
    }
 `;
 export const DeleteBtn = styled.button`
