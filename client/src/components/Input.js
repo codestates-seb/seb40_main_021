@@ -38,6 +38,12 @@ const InputBox = styled.input`
       border-bottom: 3px solid #666666;
    }
 
+   ${props =>
+      props.value === '' &&
+      css`
+         border-bottom: 3px solid #ff6b00;
+      `}
+
    ${p =>
       p.active &&
       css`
