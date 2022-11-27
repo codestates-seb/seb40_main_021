@@ -107,8 +107,12 @@ export const PanelTitle = styled.div`
    }
 `;
 export const AgreeTitle = styled.div`
+   width: 100%;
    display: flex;
    justify-content: space-between;
+   align-items: center;
+   border: 1px solid #c5bebe;
+   border-radius: 5px;
    margin: 7px 0 0;
    cursor: pointer;
    input[type='checkbox'] {
@@ -142,17 +146,15 @@ export const AgreeTitle = styled.div`
          transform: translateY(-40%);
          color: #111f27;
       }
-      &:checked + label {
-         border: 1px solid #111f27;
-      }
    }
    label {
       width: 100%;
       padding: 20px;
       cursor: pointer;
-      border: 1px solid #c5bebe;
-      border-radius: 5px;
       background: #fff;
+      @media screen and (max-width: 700px) {
+         width: calc(100% - 40px);
+      }
    }
    h5 {
       font-size: 18px;
@@ -232,10 +234,16 @@ export const ImgContainer = styled.span`
       display: none;
    }
 
-   /* @media screen and (max-width: 700px) {
+   @media screen and (max-width: 700px) {
+      width: 40px;
+      height: 40px;
+      color: #ff6c01;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
       img {
          display: block;
          width: 1.5rem;
       }
-   } */
+   }
 `;

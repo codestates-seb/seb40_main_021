@@ -6,10 +6,12 @@ export const LoginPanel = styled(CompletePanel)`
 
    @media screen and (max-width: 700px) {
       width: 100%;
-      padding: 5.2rem 5.2rem 0;
+      padding: 5.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
    }
 `;
-
 export const Btn = styled.a`
    padding: 12px 12px;
    display: inline-block;
@@ -93,7 +95,10 @@ export const LoginBtn = styled.div`
       margin-top: 35px;
       float: left;
    }
+   a:hover {
+      color: #fff;
+   }
    @media screen and (max-width: 700px) {
-      margin: 39rem 0 0;
+      /* margin: 39rem 0 0; */
    }
 `;

@@ -119,6 +119,9 @@ export const BtnFill = styled.button`
    a {
       color: #fff;
    }
+   a:hover {
+      color: #fff;
+   }
    @media screen and (max-width: 700px) {
       position: absolute;
       top: 0;

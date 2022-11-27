@@ -124,6 +124,9 @@ export const BtnFill = styled.button`
       font-weight: 700;
       color: #fff;
    }
+   a:hover {
+      color: #fff;
+   }
 `;
 
 export const BtnDefaultActive = styled.button`
