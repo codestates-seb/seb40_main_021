@@ -1,11 +1,10 @@
 import StoreInfo from '../../components/AdminComponents/StoreInfo/StoreInfo';
 import styled from 'styled-components';
-import Buttons from '../../components/AdminComponents/StoreInfo/Buttons';
+
 const Store = () => {
    return (
       <StoreContainer>
          <StoreInfo></StoreInfo>
-         <Buttons></Buttons>
       </StoreContainer>
    );
 };
