@@ -1,13 +1,16 @@
 package com.example.demo.menu.mapper;
 
+import com.example.demo.category.entity.Category;
 import com.example.demo.category.service.CategoryService;
 import com.example.demo.menu.dto.MenuPatchDto;
+import com.example.demo.menu.dto.MenuPatchListDto;
 import com.example.demo.menu.dto.MenuPostDto;
 import com.example.demo.menu.dto.MenuResponseDto;
 import com.example.demo.menu.entity.Menu;
 import com.example.demo.user.entity.Member;
 import org.mapstruct.Mapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Mapper(componentModel = "spring")
@@ -40,4 +43,47 @@ public interface MenuMapper {
         return menuResponseDto;
     }
     List<MenuResponseDto> menusToMenuResponseDtos(List<Menu> menus);
+
+    default List<Menu> menuPatchDtoToMenu(MenuPatchListDto menuPatchListDto) {
+
+        List<Menu> menuList = new ArrayList<>();
+
+        for(int i = 0; i < menuPatchListDto.getMenuList().size(); i++) {
+            if(menuPatchListDto.getMenuList().get(i).getMenuId() != null) {
+                Menu menu = new Menu();
+                Category category = new Category();
+                category.setCategoryId(menuPatchListDto.getMenuList().get(i).getCategoryId());
+                Member member = new Member();
+                member.setId(menuPatchListDto.getMenuList().get(i).getMemberId());
+
+                menu.setMenuId(menuPatchListDto.getMenuList().get(i).getMenuId());
+                menu.setMenuName(menuPatchListDto.getMenuList().get(i).getMenuName());
+                menu.setMenuContent(menuPatchListDto.getMenuList().get(i).getMenuContent());
+                menu.setPrice(menuPatchListDto.getMenuList().get(i).getPrice());
+                menu.setRecommendedMenu(menuPatchListDto.getMenuList().get(i).getRecommendedMenu());
+                menu.setCategory(category);
+                menu.setMember(member);
+
+                menuList.add(menu);
+            }
+            else {
+                Menu menu = new Menu();
+                Category category = new Category();
+                category.setCategoryId(menuPatchListDto.getMenuList().get(i).getCategoryId());
+                Member member = new Member();
+                member.setId(menuPatchListDto.getMenuList().get(i).getMemberId());
+
+                menu.setMenuName(menuPatchListDto.getMenuList().get(i).getMenuName());
+                menu.setMenuContent(menuPatchListDto.getMenuList().get(i).getMenuContent());
+                menu.setPrice(menuPatchListDto.getMenuList().get(i).getPrice());
+                menu.setRecommendedMenu(menuPatchListDto.getMenuList().get(i).getRecommendedMenu());
+                menu.setCategory(category);
+                menu.setMember(member);
+
+                menuList.add(menu);
+            }
+        }
+
+        return menuList;
+    }
 }

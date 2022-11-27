@@ -4,6 +4,8 @@ import com.example.demo.category.entity.Category;
 import com.example.demo.category.repository.CategoryRepository;
 import com.example.demo.exception.BusinessLogicException;
 import com.example.demo.exception.ExceptionCode;
+import com.example.demo.menu.dto.MenuPatchDto;
+import com.example.demo.menu.dto.MenuPatchListDto;
 import com.example.demo.menu.entity.Menu;
 import com.example.demo.menu.repository.MenuRepository;
 import com.example.demo.user.entity.Member;
@@ -11,6 +13,7 @@ import com.example.demo.user.repository.MemberRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,6 +30,7 @@ public class MenuService {
         this.categoryRepository = categoryRepository;
         this.memberRepository = memberRepository;
     }
+
     //메뉴 생성
     public Menu createMenu(Menu menu){
         verifyExistsMenu(menu);
@@ -34,6 +38,7 @@ public class MenuService {
         menu.setMember(member.get());
         return menuRepository.save(menu);
     }
+
     // 메뉴 업데이트
     public Menu updateMenu(Menu menu){
         Menu findMenu = findVerifiedMenu(menu.getMenuId());
@@ -45,10 +50,12 @@ public class MenuService {
                 .ifPresent(price ->  findMenu.setPrice(price));
         return menuRepository.save(findMenu);
     }
+
     // 특정 메뉴조회
     public Menu findMenu(long menuId){
         return findVerifiedMenu(menuId);
     }
+
     // 모든 메뉴 조회
     public List<Menu> findMenus(Long categoryId){
         Optional<Category> category = categoryRepository.findById(categoryId);
@@ -56,17 +63,13 @@ public class MenuService {
                 .collect(Collectors.toList());
         return menus;
     }
+
    // 삭제 서비스
     public void deleteMenu(long menuId){
         Menu findMenu = findVerifiedMenu(menuId);
         menuRepository.delete(findMenu);
     }
-    //좋아요 서비스
-//    public Menu voteMenu(long menuId, int vote){
-//        Menu findMenu = findVerifiedMenu(menuId);
-//        findMenu.setVote(vote);
-//        return menuRepository.save(findMenu);
-//    }
+
     //검색 서비스
     public List<Menu> search(Long memberId, String keyword){
         Optional<Member> member = memberRepository.findById(memberId);
@@ -75,10 +78,7 @@ public class MenuService {
                 .collect(Collectors.toList());
         return menuList;
     }
-//    public List<Menu> search(String keyword){
-//        List<Menu> menuList = menuRepository.findByMenuNameContaining(keyword);
-//        return menuList;
-//    }
+
     public Menu findVerifiedMenu(long menuId){
         Optional<Menu> optionalMenu = menuRepository.findById(menuId);
         Menu findMenu = optionalMenu.orElseThrow(() -> new BusinessLogicException(ExceptionCode.MENU_NOT_FOUND));
@@ -91,5 +91,39 @@ public class MenuService {
 
         if (menuList.size() > 0)
             throw new BusinessLogicException(ExceptionCode.MENU_EXISTS);
+    }
+
+    // 메뉴 등록, 수정, 삭제
+    public void putMenu(Long categoryId, List<Menu> menuList) {
+
+        Optional<Category> category = categoryRepository.findById(categoryId);
+
+        if(menuList.size() == 0) {
+            List<Menu> menus = menuRepository.findAllByCategory(category.get());
+            menuRepository.deleteAll(menus);
+            return;
+        }
+
+        Optional<Member> member = memberRepository.findById(menuList.get(0).getMember().getId());
+        List<Menu> findMenuList = menuRepository.findAllByCategory(category.get());
+
+        for(int i = 0; i < findMenuList.size(); i++) {
+            int count = 0;
+            for(int j = 0; j < menuList.size(); j++) {
+                if(findMenuList.get(i).getMenuId() != menuList.get(j).getMenuId()) {
+                    count += 1;
+                }
+            }
+            if(count == menuList.size()) {
+                menuRepository.delete(findMenuList.get(i));
+            }
+        }
+
+        for(int i = 0; i < menuList.size(); i++) {
+            menuList.get(i).setCategory(category.get());
+            menuList.get(i).setMember(member.get());
+
+            menuRepository.save(menuList.get(i));
+        }
     }
 }

@@ -11,7 +11,9 @@ import javax.validation.constraints.NotNull;
 @Setter
 @NoArgsConstructor
 public class MenuPatchDto {
-    private long menuId;
+    private Long categoryId;
+    private Long memberId;
+    private Long menuId;
 
     @NotBlank(message = "The name must not be blank.")
     private String menuName;
