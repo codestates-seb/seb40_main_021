@@ -4,8 +4,6 @@ import {
    Active,
    AgreeDetailActive,
    AgreeTitle,
-   BtnArea,
-   BtnDefault,
    Container,
    DivideLine,
    MemberPanel,
@@ -13,7 +11,8 @@ import {
    PageTitle,
    PanelTitle,
    Wrapper,
-   ImgContainer
+   ImgContainer,
+   Btn
 } from './SignupTos.Style';
 import topArrow from './../../assets/img/topArrow.png';
 import bottomArrow from './../../assets/img/bottomArrow.png';
@@ -69,7 +68,7 @@ const SignupTos = () => {
                         onChange={handleChange}
                      />
                      <label htmlFor="check1">
-                        <h5>(필수)개인정보 이용 동의서</h5>
+                        <h5>(필수) 개인정보 이용 동의서</h5>
                      </label>
 
                      {isToggleOpen ? (
@@ -114,7 +113,7 @@ const SignupTos = () => {
                         onChange={handleChange}
                      />
                      <label htmlFor="check2">
-                        <h5>(필수)테스트정보 이용 동의서</h5>
+                        <h5>(필수) 테스트정보 이용 동의서</h5>
                      </label>
                      {isTestInfoToggleOpen ? (
                         <ImgContainer onClick={onTestInfoToggle}>
@@ -150,11 +149,9 @@ const SignupTos = () => {
                      </h5>
                   </AgreeDetailActive>
 
-                  <BtnArea>
-                     <BtnDefault>
-                        <Link to={!!isChecked.agree1 && !!isChecked.agree2 ? '/MemberInfo' : null}>다음</Link>
-                     </BtnDefault>
-                  </BtnArea>
+                  <Btn>
+                     <Link to={!!isChecked.agree1 && !!isChecked.agree2 ? '/MemberInfo' : null}>다음</Link>
+                  </Btn>
                </MemberPanel>
             </MemberReg>
          </Container>

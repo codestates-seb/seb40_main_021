@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import BellIcon from './../../assets/img/bell_icon.png';
 import { gnbToggleOpen } from '../../redux/action/action';
 import IconClose from './../../assets/img/icon_close_white.png';
@@ -16,7 +16,7 @@ const Gnb = () => {
          </S.CloseBtn>
          <S.GnbList>
             <S.TopLi>
-               <NavLink onClick={() => dispatch(gnbToggleOpen(false))} to="/user/">
+               <Link onClick={() => dispatch(gnbToggleOpen(false))} to="/user/">
                   <div>
                      <S.Bell bell>
                         <span>1</span>
@@ -24,7 +24,7 @@ const Gnb = () => {
                      </S.Bell>
                      매장알람
                   </div>
-               </NavLink>
+               </Link>
             </S.TopLi>
             <S.Li>
                <NavLink onClick={() => dispatch(gnbToggleOpen(false))} to="table">

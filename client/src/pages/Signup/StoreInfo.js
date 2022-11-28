@@ -4,25 +4,20 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import MenuImg from '../../components/Menu/MenuImg';
 import Postcode from '../../components/PostCode/Postcode';
+import { ImagePreview, RealUpload, Upload } from './StoreInfo.Style';
 import {
-   Active,
-   BtnDefaultActive,
-   CompanyNum,
+   Wrapper,
    Container,
-   DivideLine,
-   FormControl,
-   ImagePreview,
-   ImgRegBtn,
-   InfoForm,
-   MemberPanel,
    MemberReg,
    PageTitle,
+   DivideLine,
+   Active,
+   MemberPanel,
    PanelTitle,
-   RealUpload,
-   Upload,
-   Wrapper
-} from './StoreInfo.Style';
+   Btn
+} from './SignupTos.Style';
 import { useSelector } from 'react-redux';
+import { InfoForm, CompanyNum, FormControl } from './MemberInfo.Style';
 //가게 사진, 가게 설명, 주소, 전화번호, 영업시간
 // 주소, 바디, 헤더
 const StoreInfo = () => {
@@ -33,7 +28,7 @@ const StoreInfo = () => {
          loginId: inputValue.userMemberReducer.id,
          password: inputValue.userMemberReducer.password,
          businessNumber: inputValue.userMemberReducer.businessNumber,
-         img: img,
+         // img: img,
          businessName: businessName,
          about: about,
          address: address,
@@ -47,7 +42,7 @@ const StoreInfo = () => {
             loginId: inputValue.userMemberReducer.id,
             password: inputValue.userMemberReducer.password,
             businessNumber: inputValue.userMemberReducer.businessNumber,
-            img: img,
+            // img: img,
             businessName: businessName,
             about: about,
             address: address,
@@ -60,6 +55,7 @@ const StoreInfo = () => {
       }
    };
 
+   // eslint-disable-next-line no-unused-vars
    const [img, setImg] = useState();
    const [businessName, setBusinessName] = useState('');
    const [about, setAbout] = useState();
@@ -70,6 +66,8 @@ const StoreInfo = () => {
 
    const handleNumber = e => {
       setContactNumber(e.target.value);
+
+      console.log(contactNumber);
 
       const ContactNumberRegex = /[0-9]$/;
 
@@ -101,7 +99,6 @@ const StoreInfo = () => {
                         <span>* 고객에게 보여지는 페이지로 신중하게 입력해주세요.</span>
                      </h5>
                   </PanelTitle>
-
                   <InfoForm>
                      <p>프로필 사진 등록</p>
                   </InfoForm>
@@ -141,7 +138,18 @@ const StoreInfo = () => {
 
                   <InfoForm>
                      <p>가게 전화번호 *</p>
-                     <FormControl type="text" placeholder="전화번호를 입력해주세요" onChange={handleNumber} />
+                     <FormControl
+                        maxLength={13}
+                        type="text"
+                        name="number"
+                        placeholder="전화번호를 입력해주세요"
+                        onChange={handleNumber}
+                        onInput={e => {
+                           e.target.value = e.target.value
+                              .replace(/[^0-9]/g, '')
+                              .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+                        }}
+                     />
                   </InfoForm>
                   {NumberError && <span>숫자만 입력해주세요</span>}
                   <InfoForm>
@@ -153,13 +161,11 @@ const StoreInfo = () => {
                      />
                   </InfoForm>
 
-                  <ImgRegBtn>
-                     <BtnDefaultActive>
-                        <Link to="/complete" onClick={postStoreInfo}>
-                           완료
-                        </Link>
-                     </BtnDefaultActive>
-                  </ImgRegBtn>
+                  <Btn>
+                     <Link to="/complete" onClick={postStoreInfo}>
+                        완료
+                     </Link>
+                  </Btn>
                </MemberPanel>
             </MemberReg>
          </Container>

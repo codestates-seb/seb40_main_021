@@ -9,13 +9,13 @@ import IconQR from './../../assets/img/icon_QR.png';
 import IconQRActive from './../../assets/img/icon_qr_active.png';
 
 export const GnbContainer = styled.div`
-   position: absolute;
-   top: 70px;
+   position: fixed;
+   top: 50px;
    left: 0;
-   width: 300px;
-   height: calc(100vh - 70px);
+   width: 250px;
+   height: calc(100vh - 50px);
    background-color: #313e46;
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       height: 100vh;
       z-index: 11;
       width: 100%;

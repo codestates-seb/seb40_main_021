@@ -3,18 +3,22 @@ import { faBell } from '@fortawesome/free-regular-svg-icons';
 import { useState } from 'react';
 import { ModalStyle } from '../../style/menu.style';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 export const Modal = modal => {
    const [callStaff, setCallStaff] = useState(false);
-
-   const tableNumber = '12';
+   const userId = useParams().userId;
+   const tableNumber = useParams().tableNumber;
+   console.log(userId, tableNumber);
 
    const callStaffHandler = () => {
       setCallStaff(true);
       axios({
          method: 'POST',
-         url: `/call/1/${tableNumber}`,
+         url: `/call/${userId}/${tableNumber}`,
          body: { tableNumber }
+         // url: `/call/1/1`,
+         // body: { tableNumber : "1" }
       }).then(res => {
          if (res.status === 200) {
             alert('직원을 호출했습니다.');

@@ -3,22 +3,24 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 import {
-   Active,
    BtnFill,
    CompanyNum,
-   Container,
-   DivideLine,
    FormControl,
    InfoForm,
    InfoFormAuthComplete,
    InfoFormError,
-   MemberPanel,
+   Btn
+} from './MemberInfo.Style';
+import {
+   Wrapper,
+   Container,
    MemberReg,
    PageTitle,
-   PanelTitle,
-   Wrapper
-} from './MemberInfo.Style';
-import { BtnArea, BtnDefault } from './SignupTos.Style';
+   DivideLine,
+   Active,
+   MemberPanel,
+   PanelTitle
+} from './SignupTos.Style';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -165,7 +167,7 @@ const MemberInfo = () => {
                      <CompanyNum>
                         <FormControl
                            type="text"
-                           name="bisinessNumber"
+                           name="businessNumber"
                            placeholder="'-'제외 입력"
                            onChange={handleNumber}
                            value={inputValue?.userMemberReducer?.businessNumber ?? ''}
@@ -175,11 +177,7 @@ const MemberInfo = () => {
                         </BtnFill>
                      </CompanyNum>
                      <span>{businessNumberError && businessNumberError?.data[0].tax_type}</span>
-                     <BtnArea>
-                        <BtnDefault onClick={postMemberDataNavi}>
-                           <Link to={null}>다음</Link>
-                        </BtnDefault>
-                     </BtnArea>
+                     <Btn onClick={postMemberDataNavi}>다음</Btn>
                   </InfoFormAuthComplete>
                </MemberPanel>
             </MemberReg>

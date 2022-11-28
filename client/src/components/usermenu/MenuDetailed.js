@@ -22,9 +22,12 @@ export const MenuDetailed = () => {
 
    // 모달 초기화
    const initModal = () => {
-      modal.current.classList.remove('active');
+      dispatch(activate(false));
+      // modal.current.classList.remove('active');
       setTimeout(() => {
-         modal.current.classList.add('active');
+         dispatch(activate(true));
+
+         // modal.current.classList.add('active');
          setQuantity(1);
       }, 100);
    };
@@ -33,11 +36,12 @@ export const MenuDetailed = () => {
       if (menuId !== null) {
          initModal();
       }
-
       return () => {
          dispatch(activate(false));
       };
    }, [menuId]);
+
+   // useEffect(() => {}, [isActive]);
 
    // 선택메뉴 카트에 담기
    const cartBtnHandler = () => {
