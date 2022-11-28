@@ -42,12 +42,12 @@ const ButtonWrap = ({ bottom, isEmptyValue }) => {
 export default ButtonWrap;
 const BtnWrap = styled.div`
    display: flex;
-   /* width: 95%; */
-   /* justify-content: end; */
-   align-self: flex-end;
+   width: 100%;
+   justify-content: end;
    margin: 20px 10px 0 0;
    @media screen and (max-width: 700px) {
-      margin-top: 40px;
+      background-color: white;
+      margin: 0;
       width: 100%;
    }
 `;
@@ -68,7 +68,7 @@ export const WhiteBtn = styled.button`
       background-color: #313e46;
    }
    @media screen and (max-width: 700px) {
-      /* width: 50%; */
+      display: none;
    }
 `;
 const OrangeBtn = styled.button`
@@ -89,6 +89,6 @@ const OrangeBtn = styled.button`
       background-color: #313e46;
    }
    @media screen and (max-width: 700px) {
-      width: 50%;
+      width: 100%;
    }
 `;

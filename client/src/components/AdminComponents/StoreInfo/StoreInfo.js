@@ -3,11 +3,9 @@ import InfoTable from './InfoTable';
 import InfoUpdateInput from './InfoUpdateInput';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-
-import Buttons from '../../../components/AdminComponents/StoreInfo/Buttons';
 import axios from 'axios';
 
-const StoreInfo = () => {
+const StoreInfo = ({ setIsEmptyValue }) => {
    const url = useSelector(state => state.adminReducer.apiUrl);
    const [userInfo, setUserInfo] = useState({
       about: null,
@@ -17,7 +15,6 @@ const StoreInfo = () => {
       businessNumber: null,
       contactNumber: null
    });
-   const [isEmptyValue, setIsEmptyValue] = useState(true);
    const UpdateState = useSelector(state => state.adminReducer.storeInfoUpdateState);
 
    useEffect(() => {
@@ -46,7 +43,6 @@ const StoreInfo = () => {
                </div>
             </main>
          </MainContants>
-         <Buttons isEmptyValue={isEmptyValue} />
       </>
    );
 };
@@ -55,7 +51,7 @@ const MainContants = styled.div`
    flex-direction: column;
    align-items: center;
    width: 100%;
-   margin-top: 50px;
+
    .table {
       border-collapse: separate;
       border-spacing: 0 15px;
@@ -70,7 +66,7 @@ const MainContants = styled.div`
    .mainContant {
       display: flex;
       box-sizing: border-box;
-      width: 90%;
+      width: 100%;
       height: 100%;
       max-height: 500px;
       background-color: white;
@@ -79,10 +75,12 @@ const MainContants = styled.div`
    }
    > :first-child {
       //title
-      width: 90%;
-      font-size: 2rem;
-      font-weight: bold;
-      margin-bottom: 50px;
+      width: 100%;
+      margin-bottom: 30px;
+      h1 {
+         font-size: 20px;
+         font-weight: bold;
+      }
    }
    .storeImg {
       > Img {
@@ -136,10 +134,12 @@ const MainContants = styled.div`
          padding: 0;
          width: 100%;
          box-shadow: 0 0 0 0;
+         max-height: 100vh;
       }
       .storeInfoContainer {
          margin-top: 30px;
          margin-left: 0;
+         padding: 0 15px 0 15px;
          > :first-child {
             text-align: center;
             margin-bottom: 50px;
