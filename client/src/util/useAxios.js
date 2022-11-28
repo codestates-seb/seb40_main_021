@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-
 // axios.defaults.baseURL = 'https://cors-anywhere.herokuapp.com/https://218b-221-140-177-247.jp.ngrok.io/';
 //https://cors-anywhere.herokuapp.com/
 export const useAxios = (axiosParams, auto = true) => {

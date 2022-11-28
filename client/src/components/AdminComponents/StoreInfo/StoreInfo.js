@@ -176,4 +176,3 @@ const MainContants = styled.div`
    }
 `;
 export default StoreInfo;
-
