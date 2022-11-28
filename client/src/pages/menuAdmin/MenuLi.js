@@ -54,7 +54,13 @@ const MenuLi = ({ activeIndex }) => {
             ) : (
                menuList.menus.map((el, idx) => <MenuViewList key={idx} idx={idx} el={el} />)
             )
-         ) : null}
+         ) : (
+            <S.NoMenu>
+               {' '}
+               <span>메뉴가 없습니다. 메뉴를 등록해주세요.</span>{' '}
+               <S.OrangeBtn onClick={NavToSetMenu}>메뉴 등록</S.OrangeBtn>{' '}
+            </S.NoMenu>
+         )}
       </>
    );
 };
