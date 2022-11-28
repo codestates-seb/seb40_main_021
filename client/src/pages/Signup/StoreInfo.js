@@ -28,7 +28,7 @@ const StoreInfo = () => {
          loginId: inputValue.userMemberReducer.id,
          password: inputValue.userMemberReducer.password,
          businessNumber: inputValue.userMemberReducer.businessNumber,
-         img: img,
+         // img: img,
          businessName: businessName,
          about: about,
          address: address,
@@ -42,7 +42,7 @@ const StoreInfo = () => {
             loginId: inputValue.userMemberReducer.id,
             password: inputValue.userMemberReducer.password,
             businessNumber: inputValue.userMemberReducer.businessNumber,
-            img: img,
+            // img: img,
             businessName: businessName,
             about: about,
             address: address,
@@ -55,6 +55,7 @@ const StoreInfo = () => {
       }
    };
 
+   // eslint-disable-next-line no-unused-vars
    const [img, setImg] = useState();
    const [businessName, setBusinessName] = useState('');
    const [about, setAbout] = useState();

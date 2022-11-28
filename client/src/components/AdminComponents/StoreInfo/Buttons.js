@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import { storeInfoUpdate } from '../../../redux/action/action';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const BtnWrap = styled.div`
    display: flex;
@@ -54,16 +53,12 @@ const OrangeBtn = styled.button`
       width: 50%;
    }
 `;
-const ButtonWrap = ({ bottom }) => {
-   const dispatch = useDispatch();
+const ButtonWrap = ({ bottom, handleValid }) => {
    const UpdateState = useSelector(state => state.adminReducer.storeInfoUpdateState);
-   const handleClickStorInfoUpdate = () => {
-      dispatch(storeInfoUpdate());
-   };
    return (
       <BtnWrap bottom={bottom}>
          <WhiteBtn>미리보기</WhiteBtn>
-         <OrangeBtn onClick={handleClickStorInfoUpdate}>{UpdateState ? '확인' : '가게정보 수정'}</OrangeBtn>
+         <OrangeBtn onClick={handleValid}>{UpdateState ? '확인' : '가게정보 수정'}</OrangeBtn>
       </BtnWrap>
    );
 };

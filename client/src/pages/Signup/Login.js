@@ -13,6 +13,9 @@ const Login = () => {
             loginId: id,
             password: password
          });
+         // sessionStorage.setItem('access token', res.headers.get('key값 확인'));
+         // sessionStorage.setItem('refresh token', res.headers.get('key값 확인'));
+         //유저아이디
          console.log(res);
       } catch (err) {
          console.log(err);
