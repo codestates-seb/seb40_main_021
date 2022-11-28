@@ -10,11 +10,11 @@ const InputTable = () => {
    const url = useSelector(state => state.adminReducer.apiUrl);
    const navigate = useNavigate();
    const [tableValue, setTableValue] = useState('');
-   const [thereIsMenu, setThereIsMenu] = useState(false);
+   const [thereIsMenu, setThereIsMenu] = useState(true);
    const hadleClickCreateQR = e => {
       setTableValue(e.target.value);
    };
-   axios.get(`${url}/category/1`).then(res => {
+   axios.get(`${url}/category/${sessionStorage.getItem('userId')}`).then(res => {
       console.log(res);
       if (res.data.length !== 0) {
          setThereIsMenu(true);

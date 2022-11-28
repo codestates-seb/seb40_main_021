@@ -40,7 +40,9 @@ export const adminReducer = (state = adminState, action) => {
          state.qrDate[action.payload.idx].tableNumber = action.payload.tableNum;
          state.qrDate[
             action.payload.idx
-         ].qrUrl = `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/usermenu/1/${action.payload.tableNum}`;
+         ].qrUrl = `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/usermenu/${sessionStorage.getItem(
+            'userId'
+         )}/${action.payload.tableNum}`;
          return Object.assign({}, state, { state });
 
       case SET_OVERLAP_NUM_STATE:

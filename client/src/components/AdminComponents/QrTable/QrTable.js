@@ -45,7 +45,9 @@ const CreateQR = () => {
          newTableNumArr.forEach(element => {
             if (element.idx === idx) {
                data.afterTableNumber = Number(element.newTableNum);
-               data.qrUrl = `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/usermenu/1/${element.newTableNum}`;
+               data.qrUrl = `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/usermenu/${sessionStorage.getItem(
+                  'userId'
+               )}/${element.newTableNum}`;
             }
          });
 
@@ -57,13 +59,13 @@ const CreateQR = () => {
       const body = {
          tableList: filter
       };
-      fetch(`${url}/table/update/1`, {
+      fetch(`${url}/table/update/${sessionStorage.getItem('userId')}`, {
          method: 'PATCH',
          headers: { 'Content-Type': 'application/json' },
          body: JSON.stringify(body)
       })
          .then(() => {
-            axios.get(`${url}/table/1/qr`).then(res => {
+            axios.get(`${url}/table/${sessionStorage.getItem('userId')}/qr`).then(res => {
                dispatch(getQrData(res.data.data));
             });
          })
@@ -84,13 +86,13 @@ const CreateQR = () => {
             tableList: filter
          };
 
-         fetch(`${url}/table/1`, {
+         fetch(`${url}/table/${sessionStorage.getItem('userId')}`, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
          })
             .then(() => {
-               axios.get(`${url}/table/1/qr`).then(res => {
+               axios.get(`${url}/table/${sessionStorage.getItem('userId')}/qr`).then(res => {
                   dispatch(getQrData(res.data.data));
                });
             })
@@ -111,7 +113,7 @@ const CreateQR = () => {
    };
 
    useEffect(() => {
-      axios.get(`${url}/table/1/qr`).then(res => {
+      axios.get(`${url}/table/${sessionStorage.getItem('userId')}/qr`).then(res => {
          setQrData(res.data.data);
          dispatch(getQrData(res.data.data));
       });

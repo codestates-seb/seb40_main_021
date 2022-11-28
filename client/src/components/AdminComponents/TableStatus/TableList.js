@@ -7,7 +7,7 @@ const TableList = () => {
    const url = useSelector(state => state.adminReducer.apiUrl);
    const [orderData, setOrderData] = useState([]);
    useEffect(() => {
-      axios.get(`${url}/table/1`).then(res => {
+      axios.get(`${url}/table/${sessionStorage.getItem('userId')}`).then(res => {
          setOrderData(res.data.data);
          console.log(orderData);
       });
