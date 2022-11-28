@@ -54,6 +54,8 @@ public class MemberService {
                 .ifPresent(findMember::setBusinessName);
         Optional.ofNullable(member.getBusinessHours())
                 .ifPresent(findMember::setBusinessHours);
+        Optional.ofNullable(member.getBusinessNumber())
+                .ifPresent(findMember::setBusinessNumber);
 
         return memberRepository.save(findMember);
     }
