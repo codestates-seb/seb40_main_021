@@ -32,7 +32,7 @@ const CallAlarms = () => {
    return (
       <CallAlarmContainer>
          <div className="subTitle">
-            <p>호출알람</p>
+            <p>호출 알람</p>
             <div id="icon">
                <img width="50px" height="50px" src={require('../../../assets/callAlarmIcon.png')} alt=""></img>
             </div>
@@ -53,19 +53,26 @@ const CallAlarms = () => {
 const CallAlarmContainer = styled.div`
    display: flex;
    width: 100%;
-   margin-top: 50px;
-   margin-bottom: 100px;
-   padding-left: 80px;
+   height: auto;
+   margin-bottom: 50px;
    .callEmpty {
-      font-size: 24px;
+      font-size: 18px;
+      font-weight: 900;
    }
    .callAlarms {
       height: 100%;
-      margin-bottom: 50px;
       width: 100%;
       display: flex;
-      overflow-y: scroll;
+      overflow-x: scroll;
       align-items: center;
+   }
+   .callAlarms::-webkit-scrollbar {
+      height: 10px;
+      background: rgba(0, 0, 0, 0);
+   }
+   .callAlarms::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 30px;
    }
    .subTitle {
       display: flex;
@@ -74,7 +81,7 @@ const CallAlarmContainer = styled.div`
       justify-content: center;
       width: max-content;
       margin-right: 50px;
-      font-size: 24px;
+      font-size: 20px;
       font-weight: bold;
       p {
          width: max-content;

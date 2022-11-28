@@ -14,7 +14,10 @@ export const BottomNav = modal => {
 
    return (
       <BottomNavStyle>
-         <NavLink end to="/usermenu" className={({ isActive }) => (isActive ? 'active button' : 'button')}>
+         <NavLink
+            end
+            to="/usermenu/:userId/:tableNumber"
+            className={({ isActive }) => (isActive ? 'active button' : 'button')}>
             <FontAwesomeIcon icon={faUtensils} />
             <p>메뉴</p>
          </NavLink>
@@ -23,12 +26,16 @@ export const BottomNav = modal => {
             <FontAwesomeIcon icon={faBell} />
             <p>호출</p>
          </button>
-         <NavLink to="/usermenu/store" className={({ isActive }) => (isActive ? 'active button' : 'button')}>
+         <NavLink
+            to="/usermenu/:userId/:tableNumber/store"
+            className={({ isActive }) => (isActive ? 'active button' : 'button')}>
             <FontAwesomeIcon icon={faStore} />
             <p>가게정보</p>
          </NavLink>
 
-         <NavLink to="/usermenu/order" className={({ isActive }) => (isActive ? 'active button' : 'button')}>
+         <NavLink
+            to="/usermenu/:userId/:tableNumber/order"
+            className={({ isActive }) => (isActive ? 'active button' : 'button')}>
             <FontAwesomeIcon icon={faCartShopping} />
             {cart.length > 0 && <span className="cartCount">{cart.length}</span>}
             <p>주문목록</p>

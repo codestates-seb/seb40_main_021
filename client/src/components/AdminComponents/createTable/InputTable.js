@@ -55,17 +55,31 @@ const InputTableBox = styled.div`
       justify-content: start;
       margin-bottom: 20px;
       .label {
-         width: 150px;
+         min-width: 120px;
          font-weight: bold;
-         font-size: 1.5rem;
+         font-size: 16px;
+      }
+      input {
+         font-size: 14px;
+         border: none;
+         background: #f4f4f4;
+         padding: 10px 20px;
+         border-bottom: 2px solid #b6b6b6;
+         border-radius: 5px 5px 0 0;
+      }
+      input:focus {
+         outline: none;
+         border-bottom: 2px solid #666666;
       }
       .noMenu {
-         font-size: 1.3rem;
+         font-size: 14px;
          color: gray;
          margin-right: 40px;
       }
 
       a {
+         font-size: 14px;
+         font-weight: 700;
          color: rgb(255, 107, 0);
       }
    }

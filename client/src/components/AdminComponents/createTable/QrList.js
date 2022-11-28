@@ -18,16 +18,18 @@ const QrList = () => {
 };
 const QrListBox = styled.div`
    border: 1px solid lightgray;
+   border-radius: 5px;
    width: 100%;
-   height: 250px;
-   box-shadow: 0 4px 2px 0px lightgray;
+   max-height: 400px;
+   /* box-shadow: 0 4px 2px 0px lightgray; */
    overflow-y: scroll;
    .emptyList {
       display: flex;
       font-size: 16px;
-      height: 100%;
+      height: 150px;
       justify-content: center;
       align-items: center;
+      font-weight: 900;
    }
    ::-webkit-scrollbar {
       width: 8px;
@@ -36,7 +38,8 @@ const QrListBox = styled.div`
       background: #a9a9a9;
    }
    > :nth-child(even) {
-      background-color: rgb(246, 246, 246);
+      /* background-color: rgb(246, 246, 246); */
+      background-color: rgb(237 237 237);
    }
 `;
 export default QrList;

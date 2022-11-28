@@ -16,7 +16,7 @@ export const OrderListBox = styled.div`
    animation: ${dropMenuList} 0.3s;
 
    > :nth-child(odd) {
-      background-color: rgb(246, 246, 246);
+      background-color: rgb(237 237 237);
    }
    .orderList {
       display: flex;
@@ -57,13 +57,13 @@ export const OrderListBox = styled.div`
 `;
 export const Order = styled.div`
    cursor: pointer;
-   border: ${({ menuViewDetails }) => (menuViewDetails ? '3px solid rgb(255, 107, 0)' : 'none')};
-   box-shadow: 0 4px 2px 0px lightgray;
+   /* border: ${({ menuViewDetails }) => (menuViewDetails ? '3px solid rgb(255, 107, 0)' : 'none')}; */
+   box-shadow: 0 2px 10px 2px rgb(0 0 0 / 15%);
    border-radius: 3px;
    width: 100%;
    height: auto;
    font-size: 20px;
-   margin-bottom: 40px;
+   margin-bottom: 15px;
    background-color: white;
    .reqText {
       display: flex;
@@ -90,20 +90,25 @@ export const Order = styled.div`
       background-color: white;
       display: flex;
       align-items: center;
+      font-weight: 900;
       > :first-child {
-         font-size: 32px;
+         font-size: 30px;
          margin-left: 45px;
-         margin-right: 22px;
+         margin-right: 100px;
+         color: #ff6c01;
       }
       > div > b {
          font-size: 24px;
+      }
+      &:hover {
+         background-color: #fdffde;
       }
    }
    #orderTime {
       display: flex;
       align-items: center;
-      font-size: 15px;
-      margin-left: 30px;
+      font-size: 14px;
+      margin-left: 100px;
       > :first-child {
          font-weight: bold;
          margin-right: 9px;
@@ -136,18 +141,17 @@ export const Order = styled.div`
       .reqText {
          padding-left: 20px;
       }
-   }
+      #orderTime {
+         flex-grow: 0;
+         font-size: 0.8rem;
 
-   #orderTime {
-      flex-grow: 0;
-      font-size: 0.8rem;
+         margin-left: 10px;
 
-      margin-left: 10px;
-
-      margin-right: 10px;
-      > :first-child {
-         text-align: right;
-         margin-right: 25px;
+         margin-right: 10px;
+         > :first-child {
+            text-align: right;
+            margin-right: 25px;
+         }
       }
    }
 `;

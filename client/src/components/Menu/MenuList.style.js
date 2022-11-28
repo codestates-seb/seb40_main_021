@@ -5,6 +5,8 @@ export const List = styled.li`
    width: 100%;
    margin-bottom: 30px;
    color: black;
+   padding: 0 25px;
+   border-bottom: 1px solid #b8b8b8;
    @media screen and (max-width: 700px) {
    }
 `;
@@ -41,6 +43,7 @@ export const InputListWrap = styled.div`
 
    & p {
       font-size: 14px;
+      font-weight: 700;
       margin-bottom: 8px;
       display: flex;
       align-items: center;
@@ -83,15 +86,17 @@ export const Checkbox = styled.input`
    cursor: pointer;
 `;
 export const LabelBox = styled.label`
-   font-size: 13px;
+   font-size: 14px;
    margin-left: 5px;
+   font-weight: 700;
    cursor: pointer;
    &.list {
       cursor: default;
    }
    & span {
-      font-size: 10px;
+      font-size: 12px;
       color: #787878;
+      margin-left: 10px;
       @media screen and (max-width: 700px) {
          display: block;
       }
@@ -101,13 +106,17 @@ export const BottomListWarp = styled.div`
    display: flex;
    justify-content: space-between;
    align-items: center;
-   padding-bottom: 12px;
-   border-bottom: 1px solid #b8b8b8;
+   margin-bottom: 15px;
+   /* border-bottom: 1px solid #b8b8b8; */
 `;
 export const DeleteBtnWarp = styled.button`
    cursor: pointer;
-   text-decoration: underline;
+   /* text-decoration: underline; */
    font-size: 14px;
+   font-weight: 900;
    border: none;
    background-color: transparent;
+   &:hover {
+      color: #ff6c01;
+   }
 `;

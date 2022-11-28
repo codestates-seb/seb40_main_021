@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { OrderedItem } from '../../components/usermenu/OrderedItem';
 import { orderedList } from '../../redux/actions/menuAction';
 
@@ -9,11 +10,15 @@ export const OrderedList = () => {
    const [total, setTotal] = useState(0);
    const ordered = useSelector(store => store.menuReducer.ordered);
    let temp = 0;
+   const userId = useParams().userId;
+   const tableNumber = useParams().tableNumber;
+   console.log(userId, tableNumber);
 
    useEffect(() => {
       // 주문목록 불러오기
       axios
-         .get(`/order/1/12`)
+         .get(`/order/${userId}/${tableNumber}`)
+         // .get(`/order/1/1`)
          .then(res => {
             const data = res.data.data;
             dispatch(orderedList(data));

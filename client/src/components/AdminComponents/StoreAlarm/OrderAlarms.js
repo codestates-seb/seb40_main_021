@@ -31,9 +31,7 @@ const OrderAlarms = () => {
    }, 3000);
    return (
       <MainContents>
-         <div className="subTitle">
-            <p>주문 알람</p>
-         </div>
+         <div className="subTitle">주문 알람</div>
          <div className="orderAlrams">
             <>
                {allOrderList.length === 0 ? (
@@ -54,18 +52,18 @@ export default OrderAlarms;
 
 const MainContents = styled.main`
    width: 100%;
-   padding-left: 80px;
-   padding-right: 80px;
-   box-sizing: border-box;
    .orderEmpty {
       text-align: center;
       color: rgb(255, 107, 0);
-      font-size: 30px;
+      font-size: 20px;
+      font-weight: 900;
       margin: 50px 0 30px 20px;
    }
    .orderAlrams {
       width: 100%;
       height: 60vh;
+      padding: 10px;
+      border-radius: 5px;
       overflow-y: scroll;
       ::-webkit-scrollbar {
          width: 8px;
@@ -77,8 +75,8 @@ const MainContents = styled.main`
    .subTitle {
       width: 100%;
       font-weight: bold;
-      font-size: 24px;
-      margin-bottom: 50px;
+      font-size: 20px;
+      margin-bottom: 20px;
    }
    .reqText {
       display: flex;

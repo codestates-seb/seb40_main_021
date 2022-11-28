@@ -82,11 +82,18 @@ const QrInfoBox = styled.div`
       border: 0;
       border-bottom: ${({ savedNumChack }) => (savedNumChack ? '3px solid rgb(255,107,0);' : 'none')};
       height: 30px;
-      width: 50px;
+      width: 80px;
+      padding: 0 15px;
+      text-align: center;
       background-color: rgb(244, 244, 244);
+      border-bottom: 2px solid #b6b6b6;
+   }
+   .tableNuminput:focus {
+      outline: none;
+      border-bottom: 2px solid #666666;
    }
    .qrInfos {
-      font-size: 1.3rem;
+      font-size: 14px;
       display: grid;
       height: 100%;
       flex-direction: column;
@@ -94,6 +101,10 @@ const QrInfoBox = styled.div`
       width: 50%;
       align-items: center;
       justify-items: center;
+      div:first-child {
+         font-size: 16px;
+         font-weight: 900;
+      }
    }
    @media screen and (max-width: 1250px) {
       .qrInfos {

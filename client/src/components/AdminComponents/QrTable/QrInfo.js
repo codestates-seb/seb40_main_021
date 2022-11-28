@@ -55,8 +55,7 @@ const QrInfo = ({ data, idx }) => {
 };
 const QrInfoBox = styled.div`
    height: 50px;
-   margin-bottom: 5px;
-   border: ${({ isIncludes }) => (isIncludes ? '1px solid rgb(255, 107, 0);' : '1px solid rgb(200, 200, 200)')};
+   border: ${({ isIncludes }) => (isIncludes ? '1px solid #313e46;' : 'none')};
    .tableNuminput {
       border: 0;
       height: 30px;
@@ -68,11 +67,23 @@ const QrInfoBox = styled.div`
    }
    .tableNumBox {
       color: rgb(255, 107, 0);
+      font-weight: 900;
+      input {
+         width: 80px;
+         padding: 0 15px;
+         text-align: center;
+         background-color: rgb(244, 244, 244);
+         border-bottom: 2px solid #b6b6b6;
+      }
+      input:focus {
+         outline: none;
+         border-bottom: 2px solid #666666;
+      }
    }
 
    .qrInfos {
       display: grid;
-      font-size: 13px;
+      font-size: 14px;
       height: 100%;
       flex-direction: column;
       grid-template-columns: repeat(5, 1fr);
