@@ -25,13 +25,15 @@ const LabelPhoto = styled.label`
    width: 133px;
    height: 133px;
    background-color: #f4f4f4;
-   border-bottom: ${p => (p.background === '' ? '4px solid #B6B6B6' : `none`)};
+   border-bottom: ${p => (p.background === '' ? '2px solid #B6B6B6' : `none`)};
    background-image: ${p => (p.background === '' ? 'none' : `url(${p.background})`)};
    background-size: cover;
    background-position: center;
    display: block;
    position: relative;
    cursor: pointer;
+   border-radius: 5px;
+   overflow: hidden;
    @media screen and (max-width: 700px) {
       width: 100px;
       height: 100px;

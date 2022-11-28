@@ -26,6 +26,9 @@ export const UPDATE_TABLE_NUMBER = 'UPDATE_TABLE_NUMBER';
 export const REGIST_UPDATE_TABLE_NUMBER = 'REGIST_UPDATE_TABLE_NUMBER';
 export const GET_QR_DATA = 'GET_QR_DATA';
 export const PREVIEW_TOGGLE = 'PREVIEW_TOGGLE';
+export const USER_MEMBER_ID = 'USER_MEMBER_ID';
+export const USER_MEMBER_PASSWORD = 'USER_MEMBER_PASSWORD';
+export const USER_MEMBER_BUSINESSNUMBER = 'USER_MEMBER_BUSINESSNUMBER';
 
 export const storeInfoUpdate = () => {
    return {
@@ -248,6 +251,26 @@ export const menuSaveAndChangeAdd = res => {
 export const previewToggleState = res => {
    return {
       type: PREVIEW_TOGGLE,
+      payload: res
+   };
+};
+export const onChangeIdAction = res => {
+   return {
+      type: USER_MEMBER_ID,
+      payload: res
+   };
+};
+
+export const onChangePasswordAction = res => {
+   return {
+      type: USER_MEMBER_PASSWORD,
+      payload: res
+   };
+};
+
+export const onChangeBusinessNumberAction = res => {
+   return {
+      type: USER_MEMBER_BUSINESSNUMBER,
       payload: res
    };
 };

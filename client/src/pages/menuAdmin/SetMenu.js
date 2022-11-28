@@ -139,12 +139,11 @@ const SetMenu = () => {
                </S.MenuListUl>
                <S.AddBtn onClick={menuCountPlus}>
                   <img src={IconAdd} alt="add" />
-                  추가
+                  메뉴 추가
                </S.AddBtn>
             </S.MenuContainerWarp>
-
-            <ButtonWrap save={menuClickSave} name={'저장'} />
          </S.MenuLayout>
+         <ButtonWrap save={menuClickSave} name={'저장'} />
       </S.SetMenuLayout>
    );
 };

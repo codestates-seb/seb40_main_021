@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Table = () => {
    return (
       <MainContent>
-         <TableList></TableList>
+         <TableList />
       </MainContent>
    );
 };

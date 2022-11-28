@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import useInterval from '../../../util/useInterval';
@@ -8,8 +8,19 @@ import Callalram from './CallAlarm';
 const CallAlarms = () => {
    const url = useSelector(state => state.adminReducer.apiUrl);
    const [callList, setCallList] = useState([]);
+   useEffect(() => {
+      axios.get(`${url}/call/${sessionStorage.getItem('userId')}`).then(res => {
+         const reverse = res.data.data
+            .slice(0)
+            .reverse()
+            .map(num => num);
+
+         setCallList(reverse);
+      });
+   }, []);
+
    useInterval(() => {
-      axios.get(`${url}/call/1`).then(res => {
+      axios.get(`${url}/call/${sessionStorage.getItem('userId')}`).then(res => {
          const reverse = res.data.data
             .slice(0)
             .reverse()
@@ -21,7 +32,7 @@ const CallAlarms = () => {
    return (
       <CallAlarmContainer>
          <div className="subTitle">
-            <p>호출알람</p>
+            <p>호출 알람</p>
             <div id="icon">
                <img width="50px" height="50px" src={require('../../../assets/callAlarmIcon.png')} alt=""></img>
             </div>
@@ -41,20 +52,27 @@ const CallAlarms = () => {
 };
 const CallAlarmContainer = styled.div`
    display: flex;
-
-   width: 90%;
-   margin-top: 10px;
-   margin-bottom: 30px;
+   width: 100%;
+   height: auto;
+   margin-bottom: 50px;
    .callEmpty {
-      font-size: 24px;
+      font-size: 18px;
+      font-weight: 900;
    }
    .callAlarms {
       height: 100%;
-      margin-bottom: 50px;
       width: 100%;
       display: flex;
-      overflow-y: scroll;
+      overflow-x: scroll;
       align-items: center;
+   }
+   .callAlarms::-webkit-scrollbar {
+      height: 10px;
+      background: rgba(0, 0, 0, 0);
+   }
+   .callAlarms::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 30px;
    }
    .subTitle {
       display: flex;
@@ -62,9 +80,8 @@ const CallAlarmContainer = styled.div`
       align-items: center;
       justify-content: center;
       width: max-content;
-      margin-left: 20px;
       margin-right: 50px;
-      font-size: 24px;
+      font-size: 20px;
       font-weight: bold;
       p {
          width: max-content;

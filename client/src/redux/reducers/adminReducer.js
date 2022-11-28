@@ -14,7 +14,7 @@ import {
    GET_QR_DATA
 } from '../action/action';
 const adminState = {
-   apiUrl: 'https://3784-118-103-212-116.jp.ngrok.io',
+   apiUrl: 'https://7b43-221-140-177-247.jp.ngrok.io',
    printModal: false,
    qrListAllCheck: false,
    storeInfoUpdateState: false,
@@ -37,10 +37,14 @@ export const adminReducer = (state = adminState, action) => {
          return Object.assign({}, state, { qrDate: action.payload.QrList });
 
       case REGISTER_TABLE_NUM:
+         // eslint-disable-next-line no-case-declarations
+         const url = 'http://qr-order.s3-website.ap-northeast-2.amazonaws.com';
          state.qrDate[action.payload.idx].tableNumber = action.payload.tableNum;
          state.qrDate[
             action.payload.idx
-         ].qrUrl = `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/menu/1/${action.payload.tableNum}`;
+         ].qrUrl = `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=${url}/usermenu/${sessionStorage.getItem(
+            'userId'
+         )}/${action.payload.tableNum}`;
          return Object.assign({}, state, { state });
 
       case SET_OVERLAP_NUM_STATE:

@@ -1,6 +1,7 @@
 // import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { CartItem } from '../../components/usermenu/CartItem';
 import { emptyCart } from '../../redux/actions/menuAction';
 
@@ -9,6 +10,9 @@ export const Cart = () => {
    const cart = useSelector(store => store.menuReducer.cart);
    let temp = 0;
    const dispatch = useDispatch();
+   const userId = useParams().userId;
+   const tableNumber = useParams().tableNumber;
+   console.log(userId, tableNumber);
 
    useEffect(() => {
       cart.map(menu => (temp += menu.price * menu.quantity));
@@ -26,12 +30,13 @@ export const Cart = () => {
       });
 
       const data = {
-         tableNumber: '12',
+         tableNumber,
+         // tableNumber: '1',
          orderMenus: fetchData,
          message: '옵션메시지'
       };
 
-      fetch('/order/1', {
+      fetch(`/order/${userId}`, {
          method: 'POST',
          headers: { 'Content-Type': 'application/json' },
          body: JSON.stringify(data)

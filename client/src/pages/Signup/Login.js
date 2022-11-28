@@ -1,19 +1,27 @@
 import React from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
-import {
-   BtnFill,
-   Container,
-   FormControl,
-   IdRemember,
-   InfoForm,
-   InfoFormError,
-   LoginBtn,
-   LoginPanel,
-   LoginTitle,
-   Wrapper
-} from './Login.Style';
+import { Wrapper } from './SignupTos.Style';
+import { IdRemember, LoginBtn, LoginPanel, LoginTitle } from './Login.Style';
+import { Container } from './Complete.Style';
+import { InfoForm, InfoFormError, FormControl } from './MemberInfo.Style';
 
 const Login = () => {
+   const postLogin = async () => {
+      try {
+         const res = await axios.post(`/member/login`, {
+            loginId: id,
+            password: password
+         });
+         // sessionStorage.setItem('access token', res.headers.get('key값 확인'));
+         // sessionStorage.setItem('refresh token', res.headers.get('key값 확인'));
+         //유저아이디
+         console.log(res);
+      } catch (err) {
+         console.log(err);
+      }
+   };
+
    const [id, setId] = React.useState('');
    const [password, setPassword] = React.useState('');
 
@@ -47,45 +55,43 @@ const Login = () => {
       <Wrapper>
          <Container>
             <LoginPanel>
-               <LoginTitle>
-                  <h4>로그인</h4>
-               </LoginTitle>
+               <form>
+                  <LoginTitle>
+                     <h4>로그인</h4>
+                  </LoginTitle>
+                  <InfoForm>
+                     <p>아이디</p>
+                     <FormControl
+                        maxLength={11}
+                        type="text"
+                        placeholder="아이디를 입력해주세요"
+                        name="id"
+                        value={id}
+                        onChange={handleId}
+                     />
+                  </InfoForm>
+                  {idError && <span>영문(소문자), 숫자 포함해 주세요.</span>}
+                  <InfoFormError>
+                     <p>비밀번호</p>
+                     <FormControl
+                        value={password}
+                        type="password"
+                        placeholder="비밀번호를 입력해주세요"
+                        name="password"
+                        onChange={handlePassword}
+                     />
 
-               <InfoForm>
-                  <p>아이디</p>
-                  <FormControl
-                     maxLength={11}
-                     type="text"
-                     placeholder="아이디를 입력해주세요"
-                     name="id"
-                     value={id}
-                     onChange={handleId}
-                  />
-               </InfoForm>
-               {idError && <span>영문(소문자), 숫자 포함해 주세요.</span>}
-               <InfoFormError>
-                  <p>비밀번호</p>
-                  <FormControl
-                     value={password}
-                     type="password"
-                     placeholder="비밀번호를 입력해주세요"
-                     name="password"
-                     onChange={handlePassword}
-                  />
-
-                  {passwordError && <span>영문, 숫자,특수문자 포함 8자리 이상</span>}
-                  <IdRemember>
-                     <input type="checkbox" id="rememberCheck" name="checkbox" />
-                     <p htmlFor="rememberCheck">
-                        <h5>아이디 기억하기</h5>
-                     </p>
-                  </IdRemember>
-               </InfoFormError>
-
+                     {passwordError && <span>영문, 숫자,특수문자 포함 8자리 이상</span>}
+                     <IdRemember>
+                        <input type="checkbox" id="rememberCheck" name="checkbox" />
+                        <label htmlFor="rememberCheck">아이디 기억하기</label>
+                     </IdRemember>
+                  </InfoFormError>
+               </form>
                <LoginBtn>
-                  <BtnFill href="./index.html">
-                     <Link to={!idError && !passwordError ? '/' : null}>로그인</Link>
-                  </BtnFill>
+                  <Link to={!idError && !passwordError ? '/' : null} onClick={postLogin}>
+                     로그인
+                  </Link>
                </LoginBtn>
             </LoginPanel>
          </Container>

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Wrapper } from './SignupTos.Style';
 import {
    BtnDefaultActive,
    BtnFill,
@@ -6,8 +7,7 @@ import {
    CompleteImg,
    CompletePanel,
    CompleteTxt,
-   Container,
-   Wrapper
+   Container
 } from './Complete.Style';
 
 const Complete = () => {
@@ -27,7 +27,7 @@ const Complete = () => {
                   </h5>
                </CompleteTxt>
                <CompleteBtn>
-                  <BtnDefaultActive href="">둘러보기</BtnDefaultActive>
+                  <BtnDefaultActive>둘러보기</BtnDefaultActive>
                   <BtnFill>
                      <Link to="/login">로그인</Link>
                   </BtnFill>
