@@ -21,7 +21,6 @@ const CategoryMapLi = ({ activeIndex, setActiveIndex, setSubmit, toggleCategoryA
    useEffect(() => {
       response && dispatch(setGetUserCategory(response));
    }, [response]);
-   console.log(categoryList);
    return (
       <>
          {error ? (

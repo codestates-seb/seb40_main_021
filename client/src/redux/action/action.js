@@ -173,10 +173,10 @@ export const setUserModifyCategory = (idx, res) => {
    };
 };
 
-export const setUserDeleteCategory = id => {
+export const setUserDeleteCategory = idx => {
    return {
       type: DELETE_CATEGORY,
-      payload: { id }
+      payload: { idx }
    };
 };
 
