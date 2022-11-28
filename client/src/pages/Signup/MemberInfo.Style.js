@@ -1,5 +1,57 @@
 import styled, { css } from 'styled-components';
 
+export const Info = styled.div`
+   width: 100%;
+   margin: 15px 0 0;
+   span {
+      display: none;
+   }
+   p {
+      font-size: 14px;
+      font-weight: 900;
+   }
+   input {
+      height: 45px;
+      font-size: 14px;
+      margin: 8px 0;
+      border-radius: 5px 5px 0 0;
+      border: none;
+
+      border-bottom: 3px solid #b6b6b6;
+      background: #f4f4f4;
+
+      &::placeholder {
+         color: #6d6d6d;
+      }
+   }
+   input:focus {
+      outline: none;
+      ${props =>
+         props.idError
+            ? css`
+                 border-bottom: 3px solid #ff6c01;
+              `
+            : css`
+                 border-bottom: 3px solid #666666;
+              `}
+   }
+   span {
+      display: block;
+      font-size: 13px;
+      color: #ff6c01;
+      float: left;
+      width: 60%;
+   }
+
+   @media screen and (max-width: 700px) {
+      input {
+         background: #f4f4f4;
+         border: none;
+         border-bottom: 0px solid #b6b6b6;
+      }
+   }
+`;
+
 export const InfoForm = styled.div`
    width: 100%;
    margin: 15px 0 0;
@@ -45,6 +97,7 @@ export const InfoForm = styled.div`
       }
    }
 `;
+
 export const InfoFormError = styled(InfoForm)`
    input[type='password'] {
       background: #f4f4f4;
