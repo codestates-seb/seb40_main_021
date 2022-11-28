@@ -14,7 +14,7 @@ import {
    GET_QR_DATA
 } from '../action/action';
 const adminState = {
-   apiUrl: 'https://47a6-118-103-212-116.jp.ngrok.io',
+   apiUrl: 'https://7b43-221-140-177-247.jp.ngrok.io',
    printModal: false,
    qrListAllCheck: false,
    storeInfoUpdateState: false,
@@ -42,7 +42,7 @@ export const adminReducer = (state = adminState, action) => {
          state.qrDate[action.payload.idx].tableNumber = action.payload.tableNum;
          state.qrDate[
             action.payload.idx
-         ].qrUrl = `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=${url}/${sessionStorage.getItem(
+         ].qrUrl = `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=${url}/usermenu/${sessionStorage.getItem(
             'userId'
          )}/${action.payload.tableNum}`;
          return Object.assign({}, state, { state });

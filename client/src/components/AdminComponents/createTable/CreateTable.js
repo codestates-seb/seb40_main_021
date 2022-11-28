@@ -86,7 +86,6 @@ const MainContants = styled.div`
          //title
          font-size: 20px;
          font-weight: bold;
-         margin-left: 80px;
          margin-right: 20px;
       }
    }

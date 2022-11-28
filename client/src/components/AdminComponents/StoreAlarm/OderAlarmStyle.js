@@ -60,7 +60,7 @@ export const Order = styled.div`
    /* border: ${({ menuViewDetails }) => (menuViewDetails ? '3px solid rgb(255, 107, 0)' : 'none')}; */
    box-shadow: 0 2px 10px 2px rgb(0 0 0 / 15%);
    border-radius: 3px;
-   width: 100%;
+   width: auto;
    height: auto;
    font-size: 20px;
    margin-bottom: 15px;

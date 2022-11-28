@@ -73,7 +73,6 @@ const MainContents = styled.main`
       }
    }
    .subTitle {
-      width: 100%;
       font-weight: bold;
       font-size: 20px;
       margin-bottom: 20px;
