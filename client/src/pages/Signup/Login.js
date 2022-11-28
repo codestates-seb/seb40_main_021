@@ -21,8 +21,14 @@ const Login = () => {
             loginId: id,
             password: password
          });
-         sessionStorage.setItem('access token', res.headers.get('key값 확인'));
-         sessionStorage.setItem('refresh token', res.headers.get('key값 확인'));
+         sessionStorage.setItem('access token', res.headers.get('authorization'));
+         sessionStorage.setItem('refresh token', res.headers.get('authorization'));
+
+         const base64Payload = sessionStorage.getItem('accessToken').split('.')[1];
+         const payload = Buffer.from(base64Payload, 'userId');
+         const result = payload.toString();
+         const userId = JSON.parse(result).userId;
+         sessionStorage.setItem('user', userId);
 
          console.log(res);
       } catch (err) {
