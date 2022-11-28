@@ -1,4 +1,6 @@
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { previewToggleState } from '../../redux/action/action';
 import { WhiteBtn } from '../AdminComponents/StoreInfo/Buttons';
 
 const BtnWrap = styled.div`
@@ -64,11 +66,16 @@ const BtnWrap = styled.div`
 //       width: 50%;
 //    }
 // `;
-const ButtonWrap = () => {
+const ButtonWrap = ({ name, save }) => {
+   const dispatch = useDispatch();
+   const viewPreview = useSelector(state => state.previewToggleReducer);
+   const PreviewFunc = () => {
+      dispatch(previewToggleState(!viewPreview));
+   };
    return (
       <BtnWrap>
-         <WhiteBtn>미리보기</WhiteBtn>
-         <WhiteBtn>메뉴판 수정</WhiteBtn>
+         <WhiteBtn onClick={PreviewFunc}>미리보기</WhiteBtn>
+         <WhiteBtn onClick={save}>{name}</WhiteBtn>
          {/* <WhiteBtn>미리보기</WhiteBtn> */}
          {/* <OrangeBtn onClick={save}>{name}</OrangeBtn> */}
       </BtnWrap>

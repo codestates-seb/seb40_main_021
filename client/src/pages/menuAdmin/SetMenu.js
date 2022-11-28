@@ -9,31 +9,35 @@ import { v4 as uuidv4 } from 'uuid';
 // import { useAxios } from '../../util/useAxios';
 import SetMenuLi from './SetMenuLi';
 import CategoryMapLi from './CategoryMapLi';
+import PreviewModal from '../../components/Preview/PreviewModal';
 
 const SetMenu = () => {
-   // const userId = 1;
-
    const [toggleCategoryAdd, setToggleCategoryAdd] = useState(false);
    const dispatch = useDispatch();
    const state = useSelector(store => store.menuUserItemReducer);
+   const categoryList = useSelector(store => store.categoryUserItemReducer.data);
    // const menuList = useSelector(store => store.menuUserItemReducer.data);
    const menuCountPlus = () => {
-      dispatch(
-         menuUserAdd({
-            menuId: uuidv4(),
-            menuImg: '',
-            price: '',
-            menuName: '',
-            menuContent: '',
-            recommnd: false,
-            errorMessage: {
+      if (categoryList.length === 0) {
+         alert('카테고리를 먼저 추가해주세요.');
+      } else {
+         dispatch(
+            menuUserAdd({
+               menuId: uuidv4(),
+               menuImg: '',
+               price: '',
                menuName: '',
                menuContent: '',
-               price: '',
-               menuImg: ''
-            }
-         })
-      );
+               recommnd: false,
+               errorMessage: {
+                  menuName: '',
+                  menuContent: '',
+                  price: '',
+                  menuImg: ''
+               }
+            })
+         );
+      }
    };
 
    const [activeIndex, setActiveIndex] = useState(0);
@@ -46,6 +50,7 @@ const SetMenu = () => {
    const menuClickSave = () => {
       let noReadInput = false;
       let ErrorInput = false;
+      let stateData = false;
       for (let i = 0; i < state.data.length; i++) {
          if (
             state.data[i].errorMessage.menuName === '20자까지 입력 가능합니다.' ||
@@ -55,13 +60,12 @@ const SetMenu = () => {
             ErrorInput = true;
          }
          if (
-            state.data[i].price &&
-            (state.data[i].menuName || state.data[i].menuName.trim()) &&
-            (state.data[i].menuContent || state.data[i].menuContent.trim())
+            state.data[i].price !== '' &&
+            (state.data[i].menuName.trim() !== '' || state.data[i].menuName !== '') &&
+            (state.data[i].menuContent.trim() !== '' || state.data[i].menuContent !== '')
          ) {
-            setSubmit(true);
+            // setSubmit(true);
             //통신진행
-            console.log('성공');
             // console.log(
             //    menuList[0].menuName,
             //    menuList[0].menuContent,
@@ -72,7 +76,6 @@ const SetMenu = () => {
             // clickFetchFunc({
             //    method: 'POST',
             //    url: `/menu/write`,
-
             //    data: {
             //       memberId: userId,
             //       menuName: menuList[0].menuName,
@@ -89,17 +92,26 @@ const SetMenu = () => {
             setSubmit('업데이트');
          }
       }
+      stateData = state.data.length === 0 ? false : true;
 
+      if (!stateData) {
+         return alert('메뉴를 1개 이상 등록해주세요.');
+      }
       if (noReadInput) {
-         alert('작성되지 않은 칸이 있습니다.');
+         return alert('작성되지 않은 칸이 있습니다.');
       }
       if (ErrorInput) {
-         alert('오류 칸을 수정해주세요.');
+         return alert('오류 칸을 수정해주세요.');
+      }
+      if (!noReadInput && !ErrorInput && stateData) {
+         console.log('성공');
       }
    };
 
+   const viewPreview = useSelector(state => state.previewToggleReducer);
    return (
       <S.SetMenuLayout>
+         {viewPreview ? <PreviewModal /> : null}
          <S.Head>메뉴판 제작</S.Head>
          <S.MenuLayout>
             <CategoryMapLi

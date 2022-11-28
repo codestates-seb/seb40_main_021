@@ -31,8 +31,8 @@ export const MenuLayout = styled.div`
    height: auto;
    display: flex;
    flex-direction: column;
-   /* filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.15)); */
-   box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
+   filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.15));
+   /* box-shadow: 0 2px 10px rgb(0 0 0 / 10%); */
 `;
 export const CategoryWrap = styled.ul`
    width: calc(100% - 120px);
