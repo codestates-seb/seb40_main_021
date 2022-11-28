@@ -32,7 +32,6 @@ const CallAlarms = () => {
             .slice(0)
             .reverse()
             .map(num => num);
-
          setCallList(reverse);
          if (callList.length !== callAlarmConut.current) {
             audio.play();
