@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Wrapper } from './SignupTos.Style';
 import {
    BtnDefaultActive,
    BtnFill,
@@ -6,8 +7,7 @@ import {
    CompleteImg,
    CompletePanel,
    CompleteTxt,
-   Container,
-   Wrapper
+   Container
 } from './Complete.Style';
 
 const Complete = () => {

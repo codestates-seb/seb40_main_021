@@ -4,27 +4,33 @@ import { useSelector, useDispatch } from 'react-redux';
 
 const BtnWrap = styled.div`
    display: flex;
-   width: 95%;
-   justify-content: end;
-   margin-top: 20px;
+   /* width: 95%; */
+   /* justify-content: end; */
+   align-self: flex-end;
+   margin: 20px 10px 0 0;
    @media screen and (max-width: 700px) {
-      margin-top: 0px;
+      margin-top: 40px;
       width: 100%;
    }
 `;
-const WhiteBtn = styled.button`
+export const WhiteBtn = styled.button`
    width: 120px;
    align-items: center;
    padding: 12px 0px;
    cursor: pointer;
    border-radius: 10px;
-   border: 2px solid #ff6c01;
-   background-color: white;
+   /* border: 2px solid #ff6c01; */
+   background-color: #687479;
+   color: white;
    font-size: 15px;
    font-weight: 700;
    margin-right: 10px;
+   box-shadow: 0 2px 3px rgb(0 0 0 / 15%);
+   &:hover {
+      background-color: #313e46;
+   }
    @media screen and (max-width: 700px) {
-      width: 50%;
+      /* width: 50%; */
    }
 `;
 const OrangeBtn = styled.button`
@@ -32,14 +38,18 @@ const OrangeBtn = styled.button`
    height: 47px;
    align-items: center;
    padding: 12px 0px;
-   border: 2px solid #ff6c01;
+   /* border: 2px solid #ff6c01; */
    cursor: pointer;
    color: white;
    border-radius: 10px;
    border: none;
-   background-color: #ff6c01;
+   background-color: #687479;
    font-size: 15px;
    font-weight: 700;
+   box-shadow: 0 2px 3px rgb(0 0 0 / 15%);
+   &:hover {
+      background-color: #313e46;
+   }
    @media screen and (max-width: 700px) {
       width: 50%;
    }

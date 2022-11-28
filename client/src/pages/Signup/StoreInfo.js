@@ -4,25 +4,20 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import MenuImg from '../../components/Menu/MenuImg';
 import Postcode from '../../components/PostCode/Postcode';
+import { ImagePreview, RealUpload, Upload } from './StoreInfo.Style';
 import {
-   Active,
-   BtnDefaultActive,
-   CompanyNum,
+   Wrapper,
    Container,
-   DivideLine,
-   FormControl,
-   ImagePreview,
-   ImgRegBtn,
-   InfoForm,
-   MemberPanel,
    MemberReg,
    PageTitle,
+   DivideLine,
+   Active,
+   MemberPanel,
    PanelTitle,
-   RealUpload,
-   Upload,
-   Wrapper
-} from './StoreInfo.Style';
+   Btn
+} from './SignupTos.Style';
 import { useSelector } from 'react-redux';
+import { InfoForm, CompanyNum, FormControl } from './MemberInfo.Style';
 //가게 사진, 가게 설명, 주소, 전화번호, 영업시간
 // 주소, 바디, 헤더
 const StoreInfo = () => {
@@ -101,7 +96,6 @@ const StoreInfo = () => {
                         <span>* 고객에게 보여지는 페이지로 신중하게 입력해주세요.</span>
                      </h5>
                   </PanelTitle>
-
                   <InfoForm>
                      <p>프로필 사진 등록</p>
                   </InfoForm>
@@ -153,13 +147,11 @@ const StoreInfo = () => {
                      />
                   </InfoForm>
 
-                  <ImgRegBtn>
-                     <BtnDefaultActive>
-                        <Link to="/complete" onClick={postStoreInfo}>
-                           완료
-                        </Link>
-                     </BtnDefaultActive>
-                  </ImgRegBtn>
+                  <Btn>
+                     <Link to="/complete" onClick={postStoreInfo}>
+                        완료
+                     </Link>
+                  </Btn>
                </MemberPanel>
             </MemberReg>
          </Container>

@@ -1,13 +1,15 @@
 import styled from 'styled-components';
 
 export const SetMenuLayout = styled.div`
-   width: calc(100% - 300px);
-   height: calc(100vh - 70px);
-   margin-left: 300px;
+   width: calc(100% - 250px);
+   min-height: calc(100vh - 50px);
+   margin-left: 250px;
    background-color: #f6f6f6;
-   padding: 50px 80px;
+   padding: 30px 50px;
    box-sizing: border-box;
-   @media screen and (max-width: 700px) {
+   display: flex;
+   flex-direction: column;
+   @media screen and (max-width: 900px) {
       width: 100%;
       height: calc(100vh - 50px);
       margin-left: 0;
@@ -15,10 +17,10 @@ export const SetMenuLayout = styled.div`
    }
 `;
 export const Head = styled.p`
-   font-size: 24px;
+   font-size: 20px;
    font-weight: 700;
    margin-bottom: 30px;
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       display: none;
    }
 `;
@@ -27,32 +29,43 @@ export const MenuLayout = styled.div`
    position: relative;
    width: 100%;
    height: auto;
-   filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.15));
+   display: flex;
+   flex-direction: column;
+   /* filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.15)); */
+   box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
 `;
 export const CategoryWrap = styled.ul`
    width: calc(100% - 120px);
-   overflow-y: scroll;
+   overflow-x: scroll;
    display: flex;
    height: 53px;
    &.editFalse {
       width: 100%;
    }
+   &::-webkit-scrollbar {
+      height: 10px;
+      background: rgba(0, 0, 0, 0);
+   }
+   &::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 30px;
+   }
 `;
 
 export const MenuContainerWarp = styled.div`
    background-color: white;
-   max-height: calc(100vh - 420px);
-   overflow-x: scroll;
-   padding: 30px 65px;
-   border-radius: 0 3px 3px 3px;
-   @media screen and (max-width: 700px) {
+   /* max-height: calc(100vh - 420px); */
+   /* overflow-x: scroll; */
+   padding: 30px;
+   border-radius: 5px;
+   @media screen and (max-width: 900px) {
       box-sizing: border-box;
       min-height: calc(100vh - 187px);
       padding: 24px 15px;
    }
 `;
 export const SettingHead = styled.p`
-   font-size: 15px;
+   font-size: 16px;
    font-weight: 700;
    margin-bottom: 26px;
 `;
@@ -72,11 +85,13 @@ export const NoMenu = styled.p`
 export const AddBtn = styled.button`
    display: flex;
    align-items: center;
-   padding: 12px 40px;
+   padding: 12px 30px;
+   /* padding: 12px 40px 12px 38px; */
    cursor: pointer;
    border-radius: 10px;
-   border: 2px solid #ff6c01;
-   background-color: transparent;
+   /* border: 2px solid #ff6c01; */
+   background-color: #ff6c01;
+   color: white;
    font-size: 15px;
    font-weight: 700;
    margin: 0 auto;
@@ -84,6 +99,7 @@ export const AddBtn = styled.button`
       width: 12px;
       height: 12px;
       margin-right: 5px;
+      display: none;
    }
 `;
 export const BtnWrap = styled.div`
@@ -92,7 +108,7 @@ export const BtnWrap = styled.div`
    position: absolute;
    bottom: 46px;
    right: 80px;
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       background-color: white;
       box-sizing: border-box;
       padding: 20px 15px;
@@ -116,7 +132,7 @@ export const WhiteBtn = styled.button`
    font-weight: 700;
    margin-right: 10px;
    filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.1));
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       width: 50%;
    }
 `;
@@ -136,7 +152,7 @@ export const OrangeBtn = styled.button`
    background-color: #ff6c01;
    font-size: 15px;
    font-weight: 700;
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       width: 50%;
    }
 `;
@@ -144,12 +160,19 @@ export const CategoryAddBtn = styled.button`
    cursor: pointer;
    border: none;
    background-color: transparent;
-   text-decoration: underline;
+   /* text-decoration: underline; */
    position: absolute;
    top: 14px;
    right: 5px;
+   /* top: 30px; */
+   /* right: 30px; */
    display: flex;
    align-items: center;
+   font-size: 14px;
+   font-weight: 900;
+   &:hover {
+      color: #ff6c01;
+   }
    & img {
       margin-right: 8px;
    }

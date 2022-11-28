@@ -30,18 +30,18 @@ const InputBox = styled.input`
    }
    background: #f4f4f4;
    border: none;
-   border-bottom: 3px solid #b6b6b6;
+   border-bottom: 2px solid #b6b6b6;
 
    &[type='password'] {
       background: #f4f4f4;
       border: none;
-      border-bottom: 3px solid #666666;
+      border-bottom: 2px solid #666666;
    }
 
    ${p =>
       p.active &&
       css`
-         border-bottom: 3px solid #ff6b00;
+         border-bottom: 2px solid #ff6b00;
       `}
 
    /* :active {

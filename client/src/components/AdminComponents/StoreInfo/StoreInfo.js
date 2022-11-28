@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import InfoTable from './InfoTable';
 import InfoUpdateInput from './InfoUpdateInput';
 import { useSelector } from 'react-redux';
+import Buttons from '../../../components/AdminComponents/StoreInfo/Buttons';
+
 const StoreInfo = () => {
    const dummyData = {
       data: {
@@ -19,9 +21,7 @@ const StoreInfo = () => {
    console.log(UpdateState);
    return (
       <MainContants>
-         <div className="title">
-            <h1>가게정보</h1>
-         </div>
+         <h1 className="title">가게정보</h1>
          <main className="mainContant">
             <div className="storeImg">
                <img src="https://ifh.cc/g/4v3A2t.png" alt=""></img>
@@ -31,6 +31,7 @@ const StoreInfo = () => {
                {UpdateState ? <InfoUpdateInput /> : <InfoTable />}
             </div>
          </main>
+         <Buttons />
       </MainContants>
    );
 };
@@ -39,7 +40,7 @@ const MainContants = styled.div`
    flex-direction: column;
    align-items: center;
    width: 100%;
-   margin-top: 50px;
+   padding: 30px 50px;
    .table {
       border-collapse: separate;
       border-spacing: 0 15px;
@@ -54,47 +55,56 @@ const MainContants = styled.div`
    .mainContant {
       display: flex;
       box-sizing: border-box;
-      width: 90%;
-      height: 100%;
-      max-height: 500px;
+      width: 100%;
+      height: auto;
+      /* max-height: 500px; */
       background-color: white;
-      box-shadow: 0 4px 2px 0px lightgray;
-      padding: 50px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      border-radius: 5px;
    }
-   > :first-child {
-      //title
-      width: 90%;
-      font-size: 2rem;
-      font-weight: bold;
-      margin-bottom: 50px;
+   .title {
+      width: auto;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 30px;
+      align-self: flex-start;
    }
 
    .storeImg {
       > Img {
          width: 100px;
          height: 100px;
+         border-radius: 3px;
       }
    }
    .storeInfoContainer {
       display: flex;
       flex-direction: column;
-      height: 100%;
+      height: auto;
       width: 100%;
       margin-left: 30px;
-      overflow-y: scroll;
+      font-size: 14px;
+      /* overflow-y: scroll; */
 
+      table {
+         border-spacing: 0;
+      }
       th {
-         height: 50px;
-         max-height: 50px;
+         height: 35px;
          text-align: left;
          font-weight: bold;
          width: 130px;
       }
+      td {
+         line-height: 22px;
+         word-break: keep-all;
+      }
       > :first-child {
          //storeName
-         font-size: 1.5rem;
+         font-size: 16px;
          font-weight: bold;
-         margin-bottom: 20px;
+         margin-bottom: 25px;
       }
    }
    @media screen and (max-width: 1100px) {
@@ -109,9 +119,10 @@ const MainContants = styled.div`
    @media screen and (max-width: 700px) {
       display: flex;
       align-items: center;
-      height: 100%;
+      min-height: calc(100vh - 50px);
       width: 100%;
       margin-top: 0;
+      padding: 30px;
       .title {
          display: none;
       }
@@ -128,7 +139,7 @@ const MainContants = styled.div`
          margin-left: 0;
          > :first-child {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 25px;
          }
       }
       .storeImg {
