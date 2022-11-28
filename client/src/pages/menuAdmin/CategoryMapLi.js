@@ -21,7 +21,6 @@ const CategoryMapLi = ({ activeIndex, setActiveIndex, setSubmit, toggleCategoryA
    useEffect(() => {
       response && dispatch(setGetUserCategory(response));
    }, [response]);
-
    return (
       <>
          {error ? (
@@ -34,7 +33,7 @@ const CategoryMapLi = ({ activeIndex, setActiveIndex, setSubmit, toggleCategoryA
                      return (
                         <CategoryLi
                            setSubmit={setSubmit}
-                           key={el.uuid}
+                           key={el.categoryId}
                            el={el}
                            userId={userId}
                            length={categoryList.length}

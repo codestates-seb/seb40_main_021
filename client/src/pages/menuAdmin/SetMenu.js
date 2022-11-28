@@ -56,13 +56,12 @@ const SetMenu = () => {
             ErrorInput = true;
          }
          if (
-            state.data[i].price &&
-            (state.data[i].menuName || state.data[i].menuName.trim()) &&
-            (state.data[i].menuContent || state.data[i].menuContent.trim())
+            state.data[i].price !== '' &&
+            (state.data[i].menuName.trim() !== '' || state.data[i].menuName !== '') &&
+            (state.data[i].menuContent.trim() !== '' || state.data[i].menuContent !== '')
          ) {
-            setSubmit(true);
+            // setSubmit(true);
             //통신진행
-            console.log('성공');
             // console.log(
             //    menuList[0].menuName,
             //    menuList[0].menuContent,
@@ -73,7 +72,6 @@ const SetMenu = () => {
             // clickFetchFunc({
             //    method: 'POST',
             //    url: `/menu/write`,
-
             //    data: {
             //       memberId: userId,
             //       menuName: menuList[0].menuName,
@@ -92,10 +90,13 @@ const SetMenu = () => {
       }
 
       if (noReadInput) {
-         alert('작성되지 않은 칸이 있습니다.');
+         return alert('작성되지 않은 칸이 있습니다.');
       }
       if (ErrorInput) {
-         alert('오류 칸을 수정해주세요.');
+         return alert('오류 칸을 수정해주세요.');
+      }
+      if (!noReadInput && !ErrorInput) {
+         console.log('성공');
       }
    };
 

@@ -21,7 +21,7 @@ const Menu = () => {
       axios
          .get(`category/${userId}`)
          .then(res => {
-            dispatch(setGetUserCategory(res));
+            dispatch(setGetUserCategory(res.data));
          })
          .catch(err => (error = err));
    }, []);
@@ -56,7 +56,7 @@ const Menu = () => {
                         const active = idx === activeIndex;
                         return (
                            <CategoryLi
-                              key={el.uuid}
+                              key={el.categoryId}
                               el={el}
                               idx={idx}
                               setActiveIndex={setActiveIndex}

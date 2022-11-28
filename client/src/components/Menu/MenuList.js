@@ -148,7 +148,7 @@ const MenuList = ({ el, submit, setSubmit }) => {
    //     // setpricesChange(String(pricesChange).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
    // }, [pricesChange])
 
-   let number = pricesChange.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, '');
+   let number = pricesChange.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
 
    let menuNameError, pricesError, menuAboutError;
    menuNameError = el.errorMessage.menuName === undefined ? false : el.errorMessage.menuName !== '';
@@ -191,7 +191,7 @@ const MenuList = ({ el, submit, setSubmit }) => {
                         <span>{menuNameError ? el.errorMessage.menuName : null}</span>
                      </p>
                      <Input
-                        value={menuNameChange}
+                        value={menuNameChange || ''}
                         active={menuNameError}
                         name={`menuName`}
                         placeholder="메뉴 이름을 입력해주세요"
@@ -210,7 +210,7 @@ const MenuList = ({ el, submit, setSubmit }) => {
                      <Input
                         name={`prices`}
                         active={pricesError}
-                        value={number}
+                        value={number || ''}
                         placeholder="가격(숫자)을 입력해주세요"
                         type="text"
                         pattern="[0-9]*"
@@ -229,7 +229,7 @@ const MenuList = ({ el, submit, setSubmit }) => {
                      <Input
                         active={menuAboutError}
                         name={`menuAbout`}
-                        value={menuAboutChange}
+                        value={menuAboutChange || ''}
                         placeholder="메뉴 설명을 입력해주세요"
                         type="text"
                         handleValue={handleValue}

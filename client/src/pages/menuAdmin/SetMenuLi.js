@@ -6,7 +6,6 @@ import { useAxios } from '../../util/useAxios';
 
 const SetMenuLi = ({ submit, setSubmit, activeIndex }) => {
    const changeCategoryList = useSelector(store => store.categoryUserItemReducer.data);
-   let menuList = useSelector(store => store.menuUserItemReducer.data);
 
    let categoryId;
 
@@ -17,10 +16,12 @@ const SetMenuLi = ({ submit, setSubmit, activeIndex }) => {
    const { response, clickFetchFunc } = useAxios({}, false);
    // menuSaveAndChangeAdd
    useEffect(() => {
-      clickFetchFunc({
-         method: 'GET',
-         url: `category/read/${categoryId}`
-      });
+      if (categoryId) {
+         clickFetchFunc({
+            method: 'GET',
+            url: `category/read/${categoryId}`
+         });
+      }
    }, [changeCategoryList, activeIndex]);
    const dispatch = useDispatch();
    const [, setUpdateState] = useState();
@@ -28,15 +29,14 @@ const SetMenuLi = ({ submit, setSubmit, activeIndex }) => {
    useEffect(() => {
       response && dispatch(menuSaveAndChangeAdd(response));
    }, [response, activeIndex]);
-
+   let menuList = useSelector(store => store.menuUserItemReducer.data);
    useEffect(() => {
       forceUpdate();
-   }, [response]);
-
+   }, [menuList, activeIndex]);
    return (
       <>
          {menuList.map(el => (
-            <MenuList submit={submit} setSubmit={setSubmit} el={el} key={el.id} />
+            <MenuList submit={submit} setSubmit={setSubmit} el={el} key={el.menuId} />
          ))}
       </>
    );

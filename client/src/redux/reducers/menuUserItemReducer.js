@@ -26,9 +26,8 @@ const menuUserItemReducer = (state = initialState, action) => {
                }
             };
          });
-         state.data = dataSet;
-
-         return state;
+         // state.data = dataSet;
+         return Object.assign({}, state, { data: dataSet });
       case MENU_USER_ADD:
          // eslint-disable-next-line no-case-declarations
          let changeData = [...state.data, action.payload.res];
@@ -38,7 +37,7 @@ const menuUserItemReducer = (state = initialState, action) => {
          state.data.find(x => x.menuId === action.payload.id).menuContent = action.payload.menuAboutValue;
          state.data.find(x => x.menuId === action.payload.id).menuImg = action.payload.menuImgValue;
          state.data.find(x => x.menuId === action.payload.id).price = action.payload.pricesValue;
-         state.data.find(x => x.menuId === action.payload.id).recommnd = action.payload.checked;
+         state.data.find(x => x.menuId === action.payload.id).recommendedMenu = action.payload.checked;
          return state;
       case MENU_USER_DELETE:
          // eslint-disable-next-line no-case-declarations

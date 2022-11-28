@@ -16,7 +16,6 @@ const MenuLi = ({ activeIndex }) => {
    const { response, clickFetchFunc } = useAxios({}, false);
 
    useEffect(() => {
-      console.log(categoryId);
       if (categoryId) {
          clickFetchFunc({
             method: 'GET',
@@ -30,7 +29,6 @@ const MenuLi = ({ activeIndex }) => {
    //     if (!error) { ) }
    // }, [response])
    response && dispatch(menuSaveitemAdd(response));
-   console.log(menuList, 'menulist');
 
    const [, setUpdateState] = useState();
    const forceUpdate = useCallback(() => setUpdateState({}), []);
