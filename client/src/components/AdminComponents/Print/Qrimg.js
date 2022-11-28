@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 const Qrimg = ({ data }) => {
+   console.log(data);
    return (
       <Img>
          <div>

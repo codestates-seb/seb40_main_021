@@ -45,7 +45,7 @@ const CreateQR = () => {
          newTableNumArr.forEach(element => {
             if (element.idx === idx) {
                data.afterTableNumber = Number(element.newTableNum);
-               data.qrUrl = `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://localhost:3000/usermenu/${sessionStorage.getItem(
+               data.qrUrl = `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://qr-order.s3-website.ap-northeast-2.amazonaws.com/usermenu/${sessionStorage.getItem(
                   'userId'
                )}/${element.newTableNum}`;
             }
@@ -113,6 +113,8 @@ const CreateQR = () => {
    };
 
    useEffect(() => {
+      dispatch(clearSavedTableListCheckBoxArr());
+      dispatch(qrListAllCheck(false));
       axios.get(`${url}/table/${sessionStorage.getItem('userId')}/qr`).then(res => {
          setQrData(res.data.data);
          dispatch(getQrData(res.data.data));
@@ -121,7 +123,7 @@ const CreateQR = () => {
    return (
       <MainContants>
          <div className="title">
-            <h1>QR Table</h1>
+            <h1>테이블 목록</h1>
          </div>
          <main className="mainContant">
             <div className="QrTable">
@@ -267,6 +269,7 @@ const MainContants = styled.div`
          font-size: 20px;
          font-weight: bold;
          margin-right: 20px;
+         margin-left: 80px;
       }
    }
    .mainContant {

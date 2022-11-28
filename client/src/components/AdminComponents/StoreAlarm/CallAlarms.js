@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import useInterval from '../../../util/useInterval';
@@ -8,6 +8,17 @@ import Callalram from './CallAlarm';
 const CallAlarms = () => {
    const url = useSelector(state => state.adminReducer.apiUrl);
    const [callList, setCallList] = useState([]);
+   useEffect(() => {
+      axios.get(`${url}/call/${sessionStorage.getItem('userId')}`).then(res => {
+         const reverse = res.data.data
+            .slice(0)
+            .reverse()
+            .map(num => num);
+
+         setCallList(reverse);
+      });
+   }, []);
+
    useInterval(() => {
       axios.get(`${url}/call/${sessionStorage.getItem('userId')}`).then(res => {
          const reverse = res.data.data
