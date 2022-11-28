@@ -9,7 +9,6 @@ const TableList = () => {
    useEffect(() => {
       axios.get(`${url}/table/${sessionStorage.getItem('userId')}`).then(res => {
          setOrderData(res.data.data);
-         console.log(orderData);
       });
    }, []);
    return (
@@ -22,7 +21,7 @@ const TableList = () => {
                <div className="orderEmpty">주문 내역이 없습니다.</div>
             ) : (
                orderData.map(order => {
-                  return <TableStatus key={order.id} data={order}></TableStatus>;
+                  return <TableStatus key={order.tableNumber} data={order}></TableStatus>;
                })
             )}
          </div>

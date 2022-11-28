@@ -17,6 +17,7 @@ const QrInfo = ({ idx }) => {
       let tableNum = e.target.value;
       if (isNaN(tableNum)) {
          alert('숫자를 입력해주세요');
+         setSavedNumChack(true);
          inputRef.current.value = '';
       } else {
          if (tableNum) tableNum.length === 0 ? setInputTextLengthCheck(true) : setInputTextLengthCheck(false);
