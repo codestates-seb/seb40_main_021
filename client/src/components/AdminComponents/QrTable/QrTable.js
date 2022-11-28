@@ -269,7 +269,6 @@ const MainContants = styled.div`
          font-size: 20px;
          font-weight: bold;
          margin-right: 20px;
-         margin-left: 80px;
       }
    }
    .mainContant {
@@ -284,9 +283,18 @@ const MainContants = styled.div`
       padding: 30px;
       overflow: hidden;
    }
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       padding: 30px;
-      font-size: 13px;
+      p {
+         font-size: 14px;
+      }
+      .u_d_btn {
+         font-size: 12px;
+      }
+      .th {
+         font-size: 10px;
+      }
+
       .mainContant {
          padding: 30px 0;
          box-shadow: none;

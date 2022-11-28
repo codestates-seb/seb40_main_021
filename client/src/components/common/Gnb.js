@@ -1,14 +1,41 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import BellIcon from './../../assets/img/bell_icon.png';
-import { gnbToggleOpen } from '../../redux/action/action';
+import { gnbToggleOpen, updateAlarmData } from '../../redux/action/action';
 import IconClose from './../../assets/img/icon_close_white.png';
 import * as S from './Gnb.style';
+import { useEffect } from 'react';
+import axios from 'axios';
+import useInterval from '../../util/useInterval';
 
 const Gnb = () => {
    const dispatch = useDispatch();
    const gnbState = useSelector(store => store.gnbReducer);
+   const url = useSelector(state => state.adminReducer.apiUrl);
+   const alarmData = useSelector(state => state.adminReducer.alarmData);
+   const getAlarm = url => {
+      let variable;
+      axios.get(url).then(res => {
+         variable = res.data.data
+            .slice(0)
+            .reverse()
+            .map(num => num);
+      });
+      return variable;
+   };
+   const getAlarms = () => {
+      const orderAlarmReverse = getAlarm(`${url}/table/${sessionStorage.getItem('userId')}/order`);
+      const callAlarmReverse = getAlarm(`${url}/call/${sessionStorage.getItem('userId')}`);
+      dispatch(updateAlarmData(callAlarmReverse, orderAlarmReverse));
+   };
+   useEffect(() => {
+      getAlarms();
+   }, []);
 
+   useInterval(() => {
+      getAlarms();
+   }, 3000);
+   const count = alarmData.orderAlarmReverse.length + alarmData.callAlarmReverse.length;
    return (
       <S.GnbContainer active={gnbState}>
          <S.CloseBtn onClick={() => dispatch(gnbToggleOpen(false))}>
@@ -19,7 +46,7 @@ const Gnb = () => {
                <Link onClick={() => dispatch(gnbToggleOpen(false))} to="/user/">
                   <div>
                      <S.Bell bell>
-                        <span>1</span>
+                        <span>{count}</span>
                         <img src={BellIcon} alt="벨알람" />
                      </S.Bell>
                      매장알람

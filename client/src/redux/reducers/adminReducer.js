@@ -12,10 +12,11 @@ import {
    UPDATE_TABLE_NUMBER,
    REGIST_UPDATE_TABLE_NUMBER,
    GET_QR_DATA,
-   STORE_INFO_DATA
+   STORE_INFO_DATA,
+   ALARMDATA_UPDATE
 } from '../action/action';
 const adminState = {
-   apiUrl: 'https://7829-221-140-177-247.jp.ngrok.io',
+   apiUrl: 'https://f23e-211-222-84-39.jp.ngrok.io',
    printModal: false,
    qrListAllCheck: false,
    storeInfoUpdateState: false,
@@ -25,7 +26,8 @@ const adminState = {
    setSavedTebleNum: false,
    modifyingSavedTableNum: false,
    storeInfoData: null,
-   updateTableNumber: []
+   updateTableNumber: [],
+   alarmData: { orderAlarmReverse: [], callAlarmReverse: [] }
 };
 
 export const adminReducer = (state = adminState, action) => {
@@ -101,6 +103,8 @@ export const adminReducer = (state = adminState, action) => {
       case GET_QR_DATA:
          return Object.assign({}, state, { qrDate: action.payload.data });
       case STORE_INFO_DATA:
+         return Object.assign({}, state, { storeInfoData: action.payload });
+      case ALARMDATA_UPDATE:
          return Object.assign({}, state, { storeInfoData: action.payload });
       default:
          return state;
