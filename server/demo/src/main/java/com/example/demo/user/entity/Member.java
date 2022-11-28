@@ -1,39 +1,34 @@
 package com.example.demo.user.entity;
 
-import com.example.demo.category.entity.Category;
-import com.example.demo.menu.entity.Menu;
-import com.example.demo.table.entity.Table;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableLoadTimeWeaving;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
-import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.example.demo.auth.audit.Auditable;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-public class Member extends BaseTimeEntity {
+public class Member extends Auditable {
     @Id @Column(name = "member_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long Id;
 
-    @Column(length = 45, unique = true)
-    private String loginId;
+    @Column(nullable = false, updatable = false, unique = true)
+    private String email;
 
-    @Column(length = 100)
+    @Column(length = 100, nullable = false)
+    private String name;
+
+    @Column(length = 13, nullable = false)
+    private String phone;
+    @Column(length = 100, nullable = false)
     private String password;
-
-
-    //businessNumber, image, storeDescription, storeAddress, storePhoneNumber,
-    //storeOpeningHours
 
     private String businessNumber;
     private String about;
@@ -42,28 +37,37 @@ public class Member extends BaseTimeEntity {
     private String businessName;
     private String businessHours;
 
+    @Enumerated(value = EnumType.STRING)
+    @Column(length = 20, nullable = false)
+    private MemberStatus memberStatus = MemberStatus.MEMBER_ACTIVE;
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> roles = new ArrayList<>();
 
 
 
 
-
-
-        @Enumerated(EnumType.STRING)
-    private Role role;
-
-    @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
-    private List<Category> categoryList = new ArrayList<>();
-
-    @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
-    private List<Table> tableList = new ArrayList<>();
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "member", cascade =  CascadeType.REMOVE)
-    private List<Menu> menuList = new ArrayList<>();
-
-    public void encodePassword(PasswordEncoder passwordEncoder) {
-        this.password = passwordEncoder.encode(password);
-
+    public Member(String email) {
+        this.email = email;
     }
 
+    public Member(String email, String name, String phone) {
+        this.email = email;
+        this.name = name;
+        this.phone = phone;
+    }
+
+
+
+    public enum MemberStatus {
+        MEMBER_ACTIVE("활동중"),
+        MEMBER_SLEEP("휴면 상태"),
+        MEMBER_QUIT("탈퇴 상태");
+
+        @Getter
+        private String status;
+
+        MemberStatus(String status) {
+           this.status = status;
+        }
+    }
 }
