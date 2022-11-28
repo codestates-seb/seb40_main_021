@@ -1,33 +1,38 @@
 package com.example.demo.service;
 
+import com.example.demo.auth.CustomAuthorityUtils;
 import com.example.demo.entity.Member;
 import com.example.demo.exception.BusinessLogicException;
 import com.example.demo.exception.ExceptionCode;
 import com.example.demo.repository.MemberRepository;
-import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class MemberService {
     private final MemberRepository memberRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final CustomAuthorityUtils authorityUtils;
 
-    public MemberService(MemberRepository memberRepository) {
+    public MemberService(MemberRepository memberRepository, PasswordEncoder passwordEncoder, CustomAuthorityUtils authorityUtils) {
         this.memberRepository = memberRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.authorityUtils = authorityUtils;
     }
 
     public Member createMember(Member member) {
 
         verifyMemberByLoginId(member.getLoginId());
+
+        String encryptedPassword = passwordEncoder.encode(member.getPassword());
+        member.setPassword(encryptedPassword);
+
+        List<String> roles = authorityUtils.createRoles(member.getLoginId());
+        member.setRoles(roles);
+
         Member savedMember = memberRepository.save(member);
         return savedMember;
     }
