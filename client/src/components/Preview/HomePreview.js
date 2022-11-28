@@ -17,9 +17,9 @@ export const HomePreview = () => {
       };
    });
    return (
-      <Wrapper>
+      <Wrapper className="preview">
          <motion.main
-            className="no-padding"
+            className="no-padding preview"
             initial={{
                opacity: 0
             }}
