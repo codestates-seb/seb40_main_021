@@ -11,7 +11,7 @@ import {
 } from '../../../redux/action/action';
 import { useAxios } from '../../../util/useAxios';
 
-const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex, length, userId }) => {
+const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex, userId }) => {
    const { categoryId, categoryName } = el;
 
    const state = useSelector(store => store.categoryUserItemReducer);
@@ -70,13 +70,20 @@ const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex, length
 
    const DeleteCategory = e => {
       e.stopPropagation();
-      if (idx !== 0) {
-         setActiveIndex(idx - 1);
+      if (window.confirm('카테고리 삭제시 해당하는 메뉴들도 함께 삭제됩니다. 삭제하시겠습니까?')) {
+         if (idx !== 0) {
+            setActiveIndex(idx - 1);
+         }
+         clickFetchFunc({
+            method: 'DELETE',
+            url: `/category/${categoryId}`
+         });
+         return dispatch(setUserDeleteCategory(idx));
       }
-      if (length === 1) {
-         return alert('마지막 카테고리는 삭제가 불가능합니다.');
-      }
-      return dispatch(setUserDeleteCategory(categoryId));
+
+      // if (length === 1) {
+      //    return alert('마지막 카테고리는 삭제가 불가능합니다.');
+      // }
    };
    const onTitleClick = () => {
       setActiveIndex(idx);

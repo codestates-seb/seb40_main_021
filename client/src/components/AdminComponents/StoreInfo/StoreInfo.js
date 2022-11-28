@@ -1,41 +1,30 @@
 import styled from 'styled-components';
 import InfoTable from './InfoTable';
 import InfoUpdateInput from './InfoUpdateInput';
-import { useSelector, useDispatch } from 'react-redux';
-import { useState } from 'react';
-import { storeInfoUpdate } from '../../../redux/action/action';
+import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+
 import Buttons from '../../../components/AdminComponents/StoreInfo/Buttons';
+import axios from 'axios';
 
 const StoreInfo = () => {
-   const dispatch = useDispatch();
-
-   const [address, setAddress] = useState('서울시 서울구 서울동 서울빌딩 서울길 123-45 678호');
-   const [number, setNumber] = useState('010-1234-5678');
-   const [businessNum, setBusinessNum] = useState('12345351-135314');
-   const [businessTime, setBusinessTime] = useState('월~토 12:00 ~ 23:00 일 12:00 ~ 23:00');
-   const [description, setDescription] = useState(
-      '매일 깨끗하고 신선한재료로 맛있는 퓨전요리와 경양식. 고급원두를 사용한 다양한 커피 분위기좋고 경치좋고 맛있기까지하는 맛나요 가게로 놀러오세요~^^'
-   );
-
-   const dummyData = {
-      data: {
-         id: 0,
-         name: '(주)치킨빠스 서울점',
-         address: address,
-         number: number,
-         businessNum: businessNum,
-         businessTime: businessTime,
-         description: description
-      }
-   };
+   const url = useSelector(state => state.adminReducer.apiUrl);
+   const [userInfo, setUserInfo] = useState({
+      about: null,
+      address: null,
+      businessHours: null,
+      businessName: null,
+      businessNumber: null,
+      contactNumber: null
+   });
+   const [isEmptyValue, setIsEmptyValue] = useState(true);
    const UpdateState = useSelector(state => state.adminReducer.storeInfoUpdateState);
 
-   const handleValid = () => {
-      if (address === '' || number === '' || businessNum === '' || businessTime === '' || description === '') {
-         return false;
-      }
-      dispatch(storeInfoUpdate());
-   };
+   useEffect(() => {
+      axios.get(`${url}/member/${sessionStorage.getItem('userId')}`).then(res => {
+         setUserInfo(res.data.data);
+      });
+   }, []);
 
    return (
       <>
@@ -48,28 +37,16 @@ const StoreInfo = () => {
                   <img src="https://ifh.cc/g/4v3A2t.png" alt=""></img>
                </div>
                <div className="storeInfoContainer">
-                  <div>{dummyData.data.name}</div>
+                  <div>{userInfo.businessName}</div>
                   {UpdateState ? (
-                     <InfoUpdateInput
-                        data={dummyData.data}
-                        setAddress={setAddress}
-                        setNumber={setNumber}
-                        setBusinessNum={setBusinessNum}
-                        setBusinessTime={setBusinessTime}
-                        setDescription={setDescription}
-                        address={address}
-                        number={number}
-                        businessNum={businessNum}
-                        businessTime={businessTime}
-                        description={description}
-                     />
+                     <InfoUpdateInput data={userInfo} setIsEmptyValue={setIsEmptyValue} />
                   ) : (
-                     <InfoTable />
+                     <InfoTable data={userInfo} />
                   )}
                </div>
             </main>
          </MainContants>
-         <Buttons handleValid={handleValid} />
+         <Buttons isEmptyValue={isEmptyValue} />
       </>
    );
 };
@@ -107,7 +84,6 @@ const MainContants = styled.div`
       font-weight: bold;
       margin-bottom: 50px;
    }
-
    .storeImg {
       > Img {
          width: 100px;
@@ -121,7 +97,6 @@ const MainContants = styled.div`
       width: 100%;
       margin-left: 30px;
       overflow-y: scroll;
-
       th {
          height: 50px;
          max-height: 50px;

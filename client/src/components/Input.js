@@ -31,25 +31,21 @@ const InputBox = styled.input`
    background: #f4f4f4;
    border: none;
    border-bottom: 2px solid #b6b6b6;
-
    &[type='password'] {
       background: #f4f4f4;
       border: none;
       border-bottom: 2px solid #666666;
    }
-
    ${props =>
       props.value === '' &&
       css`
          border-bottom: 3px solid #ff6b00;
       `}
-
    ${p =>
       p.active &&
       css`
          border-bottom: 2px solid #ff6b00;
       `}
-
    /* :active {
          border-bottom: 3px solid #FF6C01;
       } */
@@ -57,7 +53,6 @@ const InputBox = styled.input`
       background: #f4f4f4;
       border: none;
       border-bottom: 0px solid #b6b6b6;
-
       &[type='password'] {
          background: #f4f4f4;
          border: none;

@@ -31,8 +31,8 @@ export const MenuLayout = styled.div`
    height: auto;
    display: flex;
    flex-direction: column;
-   /* filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.15)); */
-   box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
+   filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.15));
+   /* box-shadow: 0 2px 10px rgb(0 0 0 / 10%); */
 `;
 export const CategoryWrap = styled.ul`
    width: calc(100% - 120px);
@@ -101,6 +101,31 @@ export const AddBtn = styled.button`
       margin-right: 5px;
       display: none;
    }
+`;
+
+export const ButtonWarp = styled.div`
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+`;
+export const NonePlace = styled.div`
+   width: 130px;
+`;
+export const SaveBtn = styled.button`
+   display: flex;
+   align-items: center;
+   margin: 0;
+   justify-content: center;
+   width: 130px;
+   /* padding: 12px 40px 12px 38px; */
+   cursor: pointer;
+   border-radius: 10px;
+   /* border: 2px solid #ff6c01; */
+   background-color: #687479;
+   color: white;
+   font-size: 15px;
+   font-weight: 700;
+   margin: 0;
 `;
 export const BtnWrap = styled.div`
    margin-left: auto;

@@ -25,10 +25,11 @@ export const MENU_GET_ADD_USER = 'MENU_GET_ADD_USER';
 export const UPDATE_TABLE_NUMBER = 'UPDATE_TABLE_NUMBER';
 export const REGIST_UPDATE_TABLE_NUMBER = 'REGIST_UPDATE_TABLE_NUMBER';
 export const GET_QR_DATA = 'GET_QR_DATA';
+export const PREVIEW_TOGGLE = 'PREVIEW_TOGGLE';
 export const USER_MEMBER_ID = 'USER_MEMBER_ID';
 export const USER_MEMBER_PASSWORD = 'USER_MEMBER_PASSWORD';
 export const USER_MEMBER_BUSINESSNUMBER = 'USER_MEMBER_BUSINESSNUMBER';
-
+export const STORE_INFO_DATA = 'STORE_INFO_DATA';
 export const storeInfoUpdate = () => {
    return {
       type: CLICK_TO_StoreInfoUpdate
@@ -155,27 +156,27 @@ export const setUserCategoryNaming = res => {
       payload: res
    };
 };
-export const setUserCategoryNowNaming = id => {
+export const setUserCategoryNowNaming = idx => {
    return {
       type: CHANGE_NOW_INPUT,
-      payload: { id }
+      payload: { idx }
    };
 };
 
-export const setUserModifyCategory = (id, res) => {
+export const setUserModifyCategory = (idx, res) => {
    return {
       type: SET_USER_MODIFY_CATEGORY,
       payload: {
-         id,
+         idx,
          res
       }
    };
 };
 
-export const setUserDeleteCategory = id => {
+export const setUserDeleteCategory = idx => {
    return {
       type: DELETE_CATEGORY,
-      payload: { id }
+      payload: { idx }
    };
 };
 
@@ -247,7 +248,12 @@ export const menuSaveAndChangeAdd = res => {
       }
    };
 };
-
+export const previewToggleState = res => {
+   return {
+      type: PREVIEW_TOGGLE,
+      payload: res
+   };
+};
 export const onChangeIdAction = res => {
    return {
       type: USER_MEMBER_ID,
@@ -266,5 +272,11 @@ export const onChangeBusinessNumberAction = res => {
    return {
       type: USER_MEMBER_BUSINESSNUMBER,
       payload: res
+   };
+};
+export const changStoreInfoData = data => {
+   return {
+      type: STORE_INFO_DATA,
+      payload: data
    };
 };
