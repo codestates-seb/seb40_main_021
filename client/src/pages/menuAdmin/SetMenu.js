@@ -10,6 +10,7 @@ import SetMenuLi from './SetMenuLi';
 import CategoryMapLi from './CategoryMapLi';
 import PreviewModal from '../../components/Preview/PreviewModal';
 import { useNavigate } from 'react-router-dom';
+import { useAxios } from '../../util/useAxios';
 
 const SetMenu = () => {
    const [toggleCategoryAdd, setToggleCategoryAdd] = useState(false);
@@ -17,7 +18,7 @@ const SetMenu = () => {
    const state = useSelector(store => store.menuUserItemReducer);
    const saveState = useSelector(store => store.menuSaveItemReducer.data.menus);
    const categoryList = useSelector(store => store.categoryUserItemReducer.data);
-   // const menuList = useSelector(store => store.menuUserItemReducer.data);
+   const menuList = useSelector(store => store.menuUserItemReducer.data);
    const menuCountPlus = () => {
       if (categoryList.length === 0) {
          alert('카테고리를 먼저 추가해주세요.');
@@ -44,10 +45,7 @@ const SetMenu = () => {
    const [activeIndex, setActiveIndex] = useState(0);
    const [submit, setSubmit] = useState(false);
    // const categoryList = useSelector(store => store.categoryUserItemReducer.data);
-   // const { response, loading, error, clickFetchFunc } = useAxios(
-   //    {
-   //    }, false
-   // );
+   const { clickFetchFunc } = useAxios({}, false);
 
    console.log(state, 'state');
    console.log(saveState, 'saveState');
@@ -118,6 +116,18 @@ const SetMenu = () => {
          }
          if (!noReadInput && !ErrorInput && stateData) {
             console.log('성공');
+            clickFetchFunc({
+               method: 'POST',
+               url: `/menu/write`,
+               data: {
+                  memberId: sessionStorage.getItem('userId'),
+                  menuName: menuList[0].menuName,
+                  menuContent: menuList[0].menuContent,
+                  price: menuList[0].price,
+                  recommendedMenu: menuList[0].recommnd,
+                  categoryId: categoryList[activeIndex].categoryId
+               }
+            });
             alert('저장이 완료되었습니다.');
          }
       }
