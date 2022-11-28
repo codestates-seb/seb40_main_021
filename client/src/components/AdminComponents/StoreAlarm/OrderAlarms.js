@@ -9,9 +9,7 @@ const OrderAlarms = () => {
    const url = useSelector(state => state.adminReducer.apiUrl);
    const [allOrderList, setAllorderList] = useState([]);
    useEffect(() => {
-      console.log('a');
-
-      axios.get(`${url}/table/1/order`).then(res => {
+      axios.get(`${url}/table/${sessionStorage.getItem('userId')}/order`).then(res => {
          const reverse = res.data.data
             .slice(0)
             .reverse()
@@ -22,7 +20,7 @@ const OrderAlarms = () => {
    }, []);
 
    useInterval(() => {
-      axios.get(`${url}/table/1/order`).then(res => {
+      axios.get(`${url}/table/${sessionStorage.getItem('userId')}/order`).then(res => {
          const reverse = res.data.data
             .slice(0)
             .reverse()

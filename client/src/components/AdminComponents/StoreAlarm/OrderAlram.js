@@ -8,16 +8,11 @@ const OrderAlram = ({ menu, idx }) => {
    const handleClickOrderCheck = () => {
       alert('확인');
       const orderId = menu.orderId;
-      console.log('orderId', orderId);
       fetch(`${url}/order/${orderId}`, {
          method: 'PATCH',
          headers: { 'Content-Type': 'application/json' },
          body: JSON.stringify({ checkBox: false })
-      })
-         .then(res => {
-            console.log(res);
-         })
-         .catch(err => console.log(err));
+      }).catch(err => console.log(err));
    };
    return (
       <Order

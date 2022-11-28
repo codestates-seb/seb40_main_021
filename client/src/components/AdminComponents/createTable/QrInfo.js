@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
-import { registerTableNum } from '../../../redux/action/action';
+import { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
-import { setOverlapNumState, setSavedTebleNum } from '../../../redux/action/action';
+import { setOverlapNumState, setSavedTebleNum, registerTableNum } from '../../../redux/action/action';
 
 import axios from 'axios';
 const QrInfo = ({ idx }) => {
+   const inputRef = useRef(null);
    const [savedNumChack, setSavedNumChack] = useState(false);
    const [inputTextLengthCheck, setInputTextLengthCheck] = useState(true);
    const [qrData, setQrData] = useState([]);
@@ -14,33 +14,38 @@ const QrInfo = ({ idx }) => {
    const dispatch = useDispatch();
 
    const onChangeTableNumDispatch = e => {
-      const tableNum = e.target.value;
-      tableNum.length === 0 ? setInputTextLengthCheck(true) : setInputTextLengthCheck(false);
-      // tableNumber Input value 중복
-      dispatch(registerTableNum(tableNum, idx));
-      const inputedTableNums = qrDataList.filter(qrData => qrData.tableNum).map(qrData => qrData.tableNum);
-      const inputedTableNumsSet = new Set(inputedTableNums);
-      if (inputedTableNums.length !== inputedTableNumsSet.size) {
-         dispatch(setOverlapNumState(true));
+      let tableNum = e.target.value;
+      if (isNaN(tableNum)) {
+         alert('숫자를 입력해주세요');
+         inputRef.current.value = '';
       } else {
-         dispatch(setOverlapNumState(false));
-      }
+         if (tableNum) tableNum.length === 0 ? setInputTextLengthCheck(true) : setInputTextLengthCheck(false);
+         // tableNumber Input value 중복
+         dispatch(registerTableNum(tableNum, idx));
+         const inputedTableNums = qrDataList.filter(qrData => qrData.tableNum).map(qrData => qrData.tableNum);
+         const inputedTableNumsSet = new Set(inputedTableNums);
+         if (inputedTableNums.length !== inputedTableNumsSet.size) {
+            dispatch(setOverlapNumState(true));
+         } else {
+            dispatch(setOverlapNumState(false));
+         }
 
-      // DB에 저정되어 있는 테이블과 tableNumber Input value 중복
-      let savedTableNum = qrData.map(data => {
-         return String(data.tableNumber);
-      });
-      const isIncludes = savedTableNum.includes(tableNum);
-      if (isIncludes) {
-         dispatch(setSavedTebleNum(true));
-         setSavedNumChack(true);
-      } else {
-         dispatch(setSavedTebleNum(false));
-         setSavedNumChack(false);
+         // DB에 저정되어 있는 테이블과 tableNumber Input value 중복
+         let savedTableNum = qrData.map(data => {
+            return String(data.tableNumber);
+         });
+         const isIncludes = savedTableNum.includes(tableNum);
+         if (isIncludes) {
+            dispatch(setSavedTebleNum(true));
+            setSavedNumChack(true);
+         } else {
+            dispatch(setSavedTebleNum(false));
+            setSavedNumChack(false);
+         }
       }
    };
    useEffect(() => {
-      axios.get(`${url}/table/1/qr`).then(res => {
+      axios.get(`${url}/table/${sessionStorage.getItem('userId')}/qr`).then(res => {
          setQrData(res.data.data);
       });
    }, []);
@@ -49,7 +54,11 @@ const QrInfo = ({ idx }) => {
          <div className="qrInfos">
             <div>{idx + 1}</div>
             <div className="tableNumBox">
-               <input className="tableNuminput" type="text" onChange={e => onChangeTableNumDispatch(e)}></input>
+               <input
+                  ref={inputRef}
+                  className="tableNuminput"
+                  type="text"
+                  onChange={e => onChangeTableNumDispatch(e)}></input>
             </div>
             <div className="textBox">
                {inputTextLengthCheck ? '번호를 입력해주세요.' : savedNumChack ? '등록된 테이블입니다.' : 'Y'}

@@ -12,20 +12,28 @@ const QrInfo = ({ data, idx }) => {
    };
 
    const qrListAllCheckState = useSelector(state => state.adminReducer.qrListAllCheck);
+   const checkBoxRef = useRef(null);
    const inputRef = useRef(null);
    useEffect(() => {
       if (qrListAllCheckState) {
-         inputRef.current.checked = true;
+         checkBoxRef.current.checked = true;
       } else {
-         inputRef.current.checked = false;
+         checkBoxRef.current.checked = false;
       }
    }, [qrListAllCheckState]);
-
+   const handleChangeInput = e => {
+      if (isNaN(e.target.value)) {
+         alert('숫자를 입력해주세요.');
+         inputRef.current.value = '';
+      } else {
+         dispatch(registUpdateTableNumber(idx, e.target.value));
+      }
+   };
    return (
       <QrInfoBox isIncludes={isIncludes}>
          <div className="qrInfos">
             <div>
-               <input ref={inputRef} onClick={() => handleClickCheckBox(idx)} type="checkbox"></input>
+               <input ref={checkBoxRef} onClick={() => handleClickCheckBox(idx)} type="checkbox"></input>
             </div>
             <div>{idx + 1}</div>
             <div className="tableNumBox">
@@ -33,7 +41,8 @@ const QrInfo = ({ data, idx }) => {
                   {data.tableNumber}
                </div>
                <input
-                  onChange={e => dispatch(registUpdateTableNumber(idx, e.target.value))}
+                  ref={inputRef}
+                  onChange={handleChangeInput}
                   defaultValue={data.tableNumber}
                   className={modifyingSavedTableNumState && isIncludes ? 'tableNuminput' : 'displayNone'}
                   type="text"></input>
