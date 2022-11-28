@@ -2,10 +2,10 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.SingleResponseDto;
 import com.example.demo.dto.TableDto;
+import com.example.demo.entity.Member;
 import com.example.demo.entity.Table;
 import com.example.demo.mapper.TableMapper;
 import com.example.demo.service.TableService;
-import com.example.demo.user.entity.Member;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,7 +47,7 @@ public class TableController {
     public ResponseEntity patchTable(@PathVariable("member-id") @Positive Long memberId,
                                      @Valid @RequestBody TableDto.Patch requestBody) {
         Member member = new Member();
-        member.setId(memberId);
+        member.setMemberId(memberId);
         tableService.updateTable(member, requestBody);
 
         return new ResponseEntity<>(HttpStatus.OK);

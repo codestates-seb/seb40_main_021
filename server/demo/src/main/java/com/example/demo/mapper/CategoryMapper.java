@@ -2,8 +2,8 @@ package com.example.demo.mapper;
 
 import com.example.demo.dto.CategoryDto;
 import com.example.demo.entity.Category;
+import com.example.demo.entity.Member;
 import com.example.demo.service.MenuService;
-import com.example.demo.user.entity.Member;
 import org.mapstruct.Mapper;
 
 import java.util.List;
@@ -13,7 +13,7 @@ public interface CategoryMapper {
     default Category categoryPostDtoToCategory(CategoryDto.CategoryPostDto categoryPostDto){
         Category category = new Category();
         Member member = new Member();
-        member.setId(categoryPostDto.getMemberId());
+        member.setMemberId(categoryPostDto.getMemberId());
         category.setCategoryName(categoryPostDto.getCategoryName());
         category.setMember(member);
 

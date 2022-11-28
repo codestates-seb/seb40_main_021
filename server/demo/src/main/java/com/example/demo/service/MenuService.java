@@ -1,13 +1,13 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Category;
+import com.example.demo.entity.Member;
 import com.example.demo.repository.CategoryRepository;
 import com.example.demo.exception.BusinessLogicException;
 import com.example.demo.exception.ExceptionCode;
 import com.example.demo.entity.Menu;
+import com.example.demo.repository.MemberRepository;
 import com.example.demo.repository.MenuRepository;
-import com.example.demo.user.entity.Member;
-import com.example.demo.user.repository.MemberRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,7 +29,7 @@ public class MenuService {
     //메뉴 생성
     public Menu createMenu(Menu menu){
         verifyExistsMenu(menu);
-        Optional<Member> member = memberRepository.findById(menu.getMember().getId());
+        Optional<Member> member = memberRepository.findById(menu.getMember().getMemberId());
         menu.setMember(member.get());
         return menuRepository.save(menu);
     }
@@ -99,7 +99,7 @@ public class MenuService {
             return;
         }
 
-        Optional<Member> member = memberRepository.findById(menuList.get(0).getMember().getId());
+        Optional<Member> member = memberRepository.findById(menuList.get(0).getMember().getMemberId());
         List<Menu> findMenuList = menuRepository.findAllByCategory(category.get());
 
         for(int i = 0; i < findMenuList.size(); i++) {

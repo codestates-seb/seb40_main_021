@@ -1,11 +1,11 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Category;
+import com.example.demo.entity.Member;
 import com.example.demo.repository.CategoryRepository;
 import com.example.demo.exception.BusinessLogicException;
 import com.example.demo.exception.ExceptionCode;
-import com.example.demo.user.entity.Member;
-import com.example.demo.user.repository.MemberRepository;
+import com.example.demo.repository.MemberRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +23,7 @@ public class CategoryService{
     // 카테고리 생성 서비스
     public Category createCategory(Category category){
 
-        Optional<Member> member = memberRepository.findById(category.getMember().getId());
+        Optional<Member> member = memberRepository.findById(category.getMember().getMemberId());
         verifyExistsCategory(member.get(), category);
         category.setMember(member.get());
 

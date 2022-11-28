@@ -1,15 +1,15 @@
 package com.example.demo.service;
 
+import com.example.demo.entity.Member;
 import com.example.demo.exception.BusinessLogicException;
 import com.example.demo.exception.ExceptionCode;
 import com.example.demo.dto.OrderMenuDto;
 import com.example.demo.entity.Order;
+import com.example.demo.repository.MemberRepository;
 import com.example.demo.repository.OrderRepository;
 import com.example.demo.dto.TableDto;
 import com.example.demo.entity.Table;
 import com.example.demo.repository.TableRepository;
-import com.example.demo.user.entity.Member;
-import com.example.demo.user.repository.MemberRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +28,7 @@ public class TableService {
 
     public List<Table> createTable(List<Table> tableList) {
 
-        Optional<Member> member = memberRepository.findById(tableList.get(0).getMember().getId());
+        Optional<Member> member = memberRepository.findById(tableList.get(0).getMember().getMemberId());
         List<Table> findTableList = new ArrayList<>();
 
         for(int i = 0; i < tableList.size(); i++) {
@@ -44,7 +44,7 @@ public class TableService {
 
     public void updateTable(Member member, TableDto.Patch requestBody) {
 
-        Optional<Member> findMember = memberRepository.findById(member.getId());
+        Optional<Member> findMember = memberRepository.findById(member.getMemberId());
         List<Table> tableList = tableRepository.findAllByMember(findMember.get())
                 .stream().filter(table -> table.getTableNumber() == requestBody.getBeforeTableNumber())
                 .collect(Collectors.toList());
@@ -168,7 +168,7 @@ public class TableService {
 
     public void verifyTableNumber(Table table) {
 
-        Optional<Member> member = memberRepository.findById(table.getMember().getId());
+        Optional<Member> member = memberRepository.findById(table.getMember().getMemberId());
         List<Table> tableList = tableRepository.findAllByMember(member.get())
                 .stream().filter(findTable -> findTable.getTableNumber() == table.getTableNumber())
                 .collect(Collectors.toList());

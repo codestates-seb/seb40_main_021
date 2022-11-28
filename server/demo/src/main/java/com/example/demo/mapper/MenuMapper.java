@@ -2,9 +2,9 @@ package com.example.demo.mapper;
 
 import com.example.demo.entity.Category;
 import com.example.demo.dto.MenuDto;
+import com.example.demo.entity.Member;
 import com.example.demo.service.CategoryService;
 import com.example.demo.entity.Menu;
-import com.example.demo.user.entity.Member;
 import org.mapstruct.Mapper;
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public interface MenuMapper {
     default Menu menuPostDtoToMenu(CategoryService categoryService, MenuDto.MenuPostDto menuPostDto){
         Menu menu = new Menu();
         Member member = new Member();
-        member.setId(menuPostDto.getMemberId());
+        member.setMemberId(menuPostDto.getMemberId());
         menu.setMenuName(menuPostDto.getMenuName());
         menu.setMenuContent(menuPostDto.getMenuContent());
         menu.setPrice(menuPostDto.getPrice());
@@ -29,7 +29,7 @@ public interface MenuMapper {
     Menu menuPatchDtoToMenu(MenuDto.MenuPatchDto menuPatchDto);
     default MenuDto.MenuResponseDto menuToMenuResponseDto(Menu menu){
         MenuDto.MenuResponseDto menuResponseDto = new MenuDto.MenuResponseDto();
-        menuResponseDto.setMemberId(menu.getMember().getId());
+        menuResponseDto.setMemberId(menu.getMember().getMemberId());
         menuResponseDto.setMenuId(menu.getMenuId());
         menuResponseDto.setMenuName(menu.getMenuName());
         menuResponseDto.setMenuContent(menu.getMenuContent());
@@ -50,7 +50,7 @@ public interface MenuMapper {
                 Category category = new Category();
                 category.setCategoryId(menuPatchListDto.getMenuList().get(i).getCategoryId());
                 Member member = new Member();
-                member.setId(menuPatchListDto.getMenuList().get(i).getMemberId());
+                member.setMemberId(menuPatchListDto.getMenuList().get(i).getMemberId());
 
                 menu.setMenuId(menuPatchListDto.getMenuList().get(i).getMenuId());
                 menu.setMenuName(menuPatchListDto.getMenuList().get(i).getMenuName());
@@ -67,7 +67,7 @@ public interface MenuMapper {
                 Category category = new Category();
                 category.setCategoryId(menuPatchListDto.getMenuList().get(i).getCategoryId());
                 Member member = new Member();
-                member.setId(menuPatchListDto.getMenuList().get(i).getMemberId());
+                member.setMemberId(menuPatchListDto.getMenuList().get(i).getMemberId());
 
                 menu.setMenuName(menuPatchListDto.getMenuList().get(i).getMenuName());
                 menu.setMenuContent(menuPatchListDto.getMenuList().get(i).getMenuContent());

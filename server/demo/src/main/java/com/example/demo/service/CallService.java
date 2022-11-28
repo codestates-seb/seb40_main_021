@@ -1,13 +1,13 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Call;
+import com.example.demo.entity.Member;
 import com.example.demo.repository.CallRepository;
 import com.example.demo.exception.BusinessLogicException;
 import com.example.demo.exception.ExceptionCode;
 import com.example.demo.entity.Table;
+import com.example.demo.repository.MemberRepository;
 import com.example.demo.repository.TableRepository;
-import com.example.demo.user.entity.Member;
-import com.example.demo.user.repository.MemberRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

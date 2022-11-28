@@ -1,6 +1,5 @@
 package com.example.demo.entity;
 
-import com.example.demo.user.entity.Member;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
@@ -28,5 +27,4 @@ public class Category {
     @JsonManagedReference
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Menu> menus = new ArrayList<>();
-
 }

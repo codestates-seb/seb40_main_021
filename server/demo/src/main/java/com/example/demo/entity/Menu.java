@@ -1,7 +1,5 @@
 package com.example.demo.entity;
 
-import com.example.demo.entity.Category;
-import com.example.demo.user.entity.Member;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -29,9 +27,6 @@ public class Menu {
 
     @Column(nullable = false, columnDefinition = "BIGINT")
     private int price;
-
-//    @Column(nullable = false)
-//    private Integer vote = 0;
 
     @Column(nullable = false)
     private Boolean recommendedMenu;
