@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import MenuViewList from '../../components/Menu/MenuViewList';
 import { menuSaveitemAdd } from '../../redux/action/action';
 import { useAxios } from '../../util/useAxios';
@@ -36,13 +37,19 @@ const MenuLi = ({ activeIndex }) => {
       forceUpdate();
    }, [response]);
    // menuSaveitemAdd
+
+   const navigation = useNavigate();
+   const NavToSetMenu = () => {
+      navigation('/user/menusetting');
+   };
    return (
       <>
          {menuList.length !== 0 ? (
             menuList.menus.length === 0 ? (
                <S.NoMenu>
                   {' '}
-                  <span>메뉴가 없습니다. 메뉴를 등록해주세요.</span> <S.OrangeBtn>메뉴 등록</S.OrangeBtn>{' '}
+                  <span>메뉴가 없습니다. 메뉴를 등록해주세요.</span>{' '}
+                  <S.OrangeBtn onClick={NavToSetMenu}>메뉴 등록</S.OrangeBtn>{' '}
                </S.NoMenu>
             ) : (
                menuList.menus.map((el, idx) => <MenuViewList key={idx} idx={idx} el={el} />)

@@ -17,24 +17,29 @@ const SetMenu = () => {
    const [toggleCategoryAdd, setToggleCategoryAdd] = useState(false);
    const dispatch = useDispatch();
    const state = useSelector(store => store.menuUserItemReducer);
+   const categoryList = useSelector(store => store.categoryUserItemReducer.data);
    // const menuList = useSelector(store => store.menuUserItemReducer.data);
    const menuCountPlus = () => {
-      dispatch(
-         menuUserAdd({
-            menuId: uuidv4(),
-            menuImg: '',
-            price: '',
-            menuName: '',
-            menuContent: '',
-            recommnd: false,
-            errorMessage: {
+      if (categoryList.length === 0) {
+         alert('카테고리를 먼저 추가해주세요.');
+      } else {
+         dispatch(
+            menuUserAdd({
+               menuId: uuidv4(),
+               menuImg: '',
+               price: '',
                menuName: '',
                menuContent: '',
-               price: '',
-               menuImg: ''
-            }
-         })
-      );
+               recommnd: false,
+               errorMessage: {
+                  menuName: '',
+                  menuContent: '',
+                  price: '',
+                  menuImg: ''
+               }
+            })
+         );
+      }
    };
 
    const [activeIndex, setActiveIndex] = useState(0);
@@ -47,6 +52,7 @@ const SetMenu = () => {
    const menuClickSave = () => {
       let noReadInput = false;
       let ErrorInput = false;
+      let stateData = false;
       for (let i = 0; i < state.data.length; i++) {
          if (
             state.data[i].errorMessage.menuName === '20자까지 입력 가능합니다.' ||
@@ -88,14 +94,18 @@ const SetMenu = () => {
             setSubmit('업데이트');
          }
       }
+      stateData = state.data.length === 0 ? false : true;
 
+      if (!stateData) {
+         return alert('메뉴를 1개 이상 등록해주세요.');
+      }
       if (noReadInput) {
          return alert('작성되지 않은 칸이 있습니다.');
       }
       if (ErrorInput) {
          return alert('오류 칸을 수정해주세요.');
       }
-      if (!noReadInput && !ErrorInput) {
+      if (!noReadInput && !ErrorInput && stateData) {
          console.log('성공');
       }
    };

@@ -1,20 +1,24 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import ButtonWrap from '../../components/Menu/ButtonWrap';
 import CategoryLi from '../../components/Menu/Category/CategoryLi';
+import PreviewModal from '../../components/Preview/PreviewModal';
 import { setGetUserCategory } from '../../redux/action/action';
 // import { useAxios } from '../../util/useAxios';
 import MenuLi from './MenuLi';
 import * as S from './SetMenu.style';
 
 const Menu = () => {
+   const [viewPreview, setViewPreview] = useState(false);
+
    const categoryList = useSelector(store => store.categoryUserItemReducer.data);
    const [activeIndex, setActiveIndex] = useState(0);
 
    const dispatch = useDispatch();
    //get
-   let userId = 1;
+   let userId = 3;
 
    let error;
    useEffect(() => {
@@ -26,26 +30,14 @@ const Menu = () => {
          .catch(err => (error = err));
    }, []);
 
-   // const { response, error, clickFetchFunc } = useAxios(
-   //     {
-   //     }, false
-   // );
-   // if (categoryList.length === 0) {
-   //     clickFetchFunc({
-   //         method: 'GET',
-   //         url: `category/${userId}`,
-   //         header: {
-   //             "ngrok-skip-browser-warning": "skip"
-   //         }
-   //     })
-
-   // }
-   // useEffect(() => {
-   //    response && dispatch(setGetUserCategory(response));
-   // }, [response]);
+   const navigation = useNavigate();
+   const NavToSetMenu = () => {
+      navigation('/user/menusetting');
+   };
    return (
       <S.SetMenuLayout>
-         <S.Head>메뉴판 제작</S.Head>
+         {viewPreview ? <PreviewModal /> : null}
+         <S.Head>메뉴 목록</S.Head>
          <S.MenuLayout>
             {error ? (
                <p>{error.message}</p>
@@ -75,7 +67,12 @@ const Menu = () => {
                         <MenuLi activeIndex={activeIndex} />
                      </S.MenuListUl>
                   </S.MenuContainerWarp>
-                  <ButtonWrap name={'메뉴판 수정'} />
+                  <ButtonWrap
+                     setViewPreview={setViewPreview}
+                     viewPreview={viewPreview}
+                     save={NavToSetMenu}
+                     name={'메뉴판 수정'}
+                  />
                </>
             )}
          </S.MenuLayout>

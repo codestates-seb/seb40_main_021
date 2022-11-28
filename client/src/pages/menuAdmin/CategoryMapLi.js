@@ -10,7 +10,7 @@ const CategoryMapLi = ({ activeIndex, setActiveIndex, setSubmit, toggleCategoryA
    const categoryList = useSelector(store => store.categoryUserItemReducer.data);
 
    //get
-   let userId = 1;
+   let userId = 3;
    const { response, error } = useAxios({
       method: 'GET',
       url: `category/${userId}`
@@ -33,7 +33,7 @@ const CategoryMapLi = ({ activeIndex, setActiveIndex, setSubmit, toggleCategoryA
                      return (
                         <CategoryLi
                            setSubmit={setSubmit}
-                           key={el.categoryId}
+                           key={idx}
                            el={el}
                            userId={userId}
                            length={categoryList.length}
