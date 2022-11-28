@@ -12,20 +12,28 @@ const QrInfo = ({ data, idx }) => {
    };
 
    const qrListAllCheckState = useSelector(state => state.adminReducer.qrListAllCheck);
+   const checkBoxRef = useRef(null);
    const inputRef = useRef(null);
    useEffect(() => {
       if (qrListAllCheckState) {
-         inputRef.current.checked = true;
+         checkBoxRef.current.checked = true;
       } else {
-         inputRef.current.checked = false;
+         checkBoxRef.current.checked = false;
       }
    }, [qrListAllCheckState]);
-
+   const handleChangeInput = e => {
+      if (isNaN(e.target.value)) {
+         alert('숫자를 입력해주세요.');
+         inputRef.current.value = '';
+      } else {
+         dispatch(registUpdateTableNumber(idx, e.target.value));
+      }
+   };
    return (
       <QrInfoBox isIncludes={isIncludes}>
          <div className="qrInfos">
             <div>
-               <input ref={inputRef} onClick={() => handleClickCheckBox(idx)} type="checkbox"></input>
+               <input ref={checkBoxRef} onClick={() => handleClickCheckBox(idx)} type="checkbox"></input>
             </div>
             <div>{idx + 1}</div>
             <div className="tableNumBox">
@@ -33,7 +41,8 @@ const QrInfo = ({ data, idx }) => {
                   {data.tableNumber}
                </div>
                <input
-                  onChange={e => dispatch(registUpdateTableNumber(idx, e.target.value))}
+                  ref={inputRef}
+                  onChange={handleChangeInput}
                   defaultValue={data.tableNumber}
                   className={modifyingSavedTableNumState && isIncludes ? 'tableNuminput' : 'displayNone'}
                   type="text"></input>
@@ -46,8 +55,7 @@ const QrInfo = ({ data, idx }) => {
 };
 const QrInfoBox = styled.div`
    height: 50px;
-   margin-bottom: 5px;
-   border: ${({ isIncludes }) => (isIncludes ? '1px solid rgb(255, 107, 0);' : '1px solid rgb(200, 200, 200)')};
+   border: ${({ isIncludes }) => (isIncludes ? '1px solid #313e46;' : 'none')};
    .tableNuminput {
       border: 0;
       height: 30px;
@@ -59,11 +67,23 @@ const QrInfoBox = styled.div`
    }
    .tableNumBox {
       color: rgb(255, 107, 0);
+      font-weight: 900;
+      input {
+         width: 80px;
+         padding: 0 15px;
+         text-align: center;
+         background-color: rgb(244, 244, 244);
+         border-bottom: 2px solid #b6b6b6;
+      }
+      input:focus {
+         outline: none;
+         border-bottom: 2px solid #666666;
+      }
    }
 
    .qrInfos {
       display: grid;
-      font-size: 13px;
+      font-size: 14px;
       height: 100%;
       flex-direction: column;
       grid-template-columns: repeat(5, 1fr);

@@ -8,16 +8,11 @@ const OrderAlram = ({ menu, idx }) => {
    const handleClickOrderCheck = () => {
       alert('확인');
       const orderId = menu.orderId;
-      console.log('orderId', orderId);
       fetch(`${url}/order/${orderId}`, {
          method: 'PATCH',
          headers: { 'Content-Type': 'application/json' },
          body: JSON.stringify({ checkBox: false })
-      })
-         .then(res => {
-            console.log(res);
-         })
-         .catch(err => console.log(err));
+      }).catch(err => console.log(err));
    };
    return (
       <Order
@@ -27,15 +22,13 @@ const OrderAlram = ({ menu, idx }) => {
             setMenuViewDetails(!menuViewDetails);
          }}>
          <div id="oderInfo">
-            <b>{`${menu.tableNumber} 번`}</b>
+            <b>No. {menu.tableNumber}</b>
             <div>
-               총 <b>{menu.orderMenuList.length}</b>개
+               주문 메뉴 : <b>{menu.orderMenuList.length}</b>개
             </div>
-            <div id="orderTime">
-               <div>{`${menu.createdAt}`}</div>
-            </div>
+            <div id="orderTime">{menu.createdAt}</div>
             <div className="detailedMenu">
-               <MdExpandMore className="detailedMenuIcon"></MdExpandMore>
+               <MdExpandMore className="detailedMenuIcon" />
             </div>
          </div>
          <OrderListBox menuViewDetails={menuViewDetails}>
@@ -43,8 +36,8 @@ const OrderAlram = ({ menu, idx }) => {
                return (
                   <div className="orderList" key={order.menuId}>
                      <div> {order.menuName}</div>
-                     <div> {`${order.quantity}개`}</div>
-                     <div> {`${order.price}원`}</div>
+                     <div> {order.quantity}개</div>
+                     <div> {order.price}원</div>
                   </div>
                );
             })}

@@ -4,17 +4,17 @@ import QrTable from '../../components/AdminComponents/QrTable/QrTable';
 const QrTablePage = () => {
    return (
       <QrTablePageContainer>
-         <QrTable></QrTable>
+         <QrTable />
       </QrTablePageContainer>
    );
 };
 const QrTablePageContainer = styled.div`
-   width: calc(100% - 300px);
-   padding-left: 300px;
+   width: calc(100% - 250px);
+   margin-left: 250px;
    height: 100%;
    background-color: rgb(246, 246, 246);
-   @media screen and (max-width: 700px) {
-      padding-left: 0;
+   @media screen and (max-width: 900px) {
+      margin-left: 0;
       width: 100%;
       height: 100%;
       background-color: white;

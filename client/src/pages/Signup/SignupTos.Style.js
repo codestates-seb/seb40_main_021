@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-   margin: 5px;
-   padding: 7%;
-   height: 100vh;
+   margin-top: 50px;
+   min-height: calc(100vh - 50px);
+   display: flex;
+   justify-content: center;
+   align-items: flex-start;
    transition: all 0.5s ease-in;
    -webkit-transition: all 0.5s ease-in;
    -moz-transition: all 0.5s ease-in;
@@ -22,31 +24,30 @@ export const Container = styled.div`
    justify-content: center;
    align-items: center;
    @media screen and (max-width: 700px) {
+      width: 100%;
       display: flex;
       justify-content: center;
       align-items: flex-start;
    }
 `;
 export const MemberReg = styled.section`
-   background: transparent;
+   padding: 30px;
    @media screen and (max-width: 700px) {
-      padding: 30px 0 0;
       width: 100%;
-
       background: #fff;
    }
 `;
 export const PageTitle = styled.div`
    display: flex;
    justify-content: center;
-   margin-top: 10rem;
+   margin-top: 20px;
    h4 {
-      font-size: 2rem;
+      font-size: 20px;
+      font-weight: 900;
       margin: 0 0 0 1rem;
    }
    @media screen and (max-width: 700px) {
       padding: 0 2.6rem;
-      margin-top: 50px;
    }
 `;
 export const DivideLine = styled.ul`
@@ -54,7 +55,7 @@ export const DivideLine = styled.ul`
    justify-content: center;
    list-style: none;
    padding: 0;
-   margin: 38px 0 48px;
+   margin: 35px 0;
    li {
       width: 33.33%;
       height: 5px;
@@ -72,9 +73,19 @@ export const Active = styled.div`
 `;
 export const MemberPanel = styled.div`
    width: 600px;
-   padding: 5.2rem 5.2rem 0;
+   min-height: auto;
+   overflow: hidden;
+   padding: 30px 50px;
    background: #fff;
    border-radius: 10px;
+   box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   span {
+      font-size: 13px;
+      color: #ff6c01;
+   }
    @media screen and (max-width: 700px) {
       width: 100%;
       height: auto;
@@ -85,23 +96,25 @@ export const MemberPanel = styled.div`
 `;
 export const PanelTitle = styled.div`
    h5 {
-      font-size: 1.6rem;
+      font-size: 16px;
       font-weight: 700;
+      margin-bottom: 15px;
    }
    span {
-      font-size: 1.2rem;
+      font-size: 12px;
       font-weight: 400;
       float: right;
    }
 `;
 export const AgreeTitle = styled.div`
+   width: 100%;
    display: flex;
    justify-content: space-between;
-   background: #fff;
+   align-items: center;
    border: 1px solid #c5bebe;
-   border-radius: 5px 5px 0 0;
-   padding: 1.8rem;
+   border-radius: 5px;
    margin: 7px 0 0;
+   cursor: pointer;
    input[type='checkbox'] {
       display: none;
 
@@ -116,8 +129,9 @@ export const AgreeTitle = styled.div`
          height: 2.5rem;
          text-align: center;
          position: absolute;
-         left: 0rem;
-         top: -0.4rem;
+         left: 20px;
+         top: 50%;
+         transform: translateY(-40%);
          color: #c8c8c8;
       }
       &:checked + label::after {
@@ -127,13 +141,24 @@ export const AgreeTitle = styled.div`
          height: 2.5rem;
          text-align: center;
          position: absolute;
-         left: 0rem;
-         top: -0.4rem;
+         left: 20px;
+         top: 50%;
+         transform: translateY(-40%);
          color: #111f27;
       }
    }
+   label {
+      width: 100%;
+      padding: 20px;
+      cursor: pointer;
+      background: #fff;
+      @media screen and (max-width: 700px) {
+         width: calc(100% - 40px);
+      }
+   }
    h5 {
-      font-size: 1.6rem;
+      font-size: 18px;
+      font-weight: 900;
       margin: 0 0 0 30px;
    }
 `;
@@ -144,99 +169,62 @@ export const AgreeTitleAdd = styled(AgreeTitle)`
 export const AgreeDetail = styled.div`
    display: none;
    h5 {
-      font-size: 1.4rem;
+      font-size: 14px;
    }
 `;
 export const AgreeDetailActive = styled(AgreeDetail)`
    display: ${props => (props.isToggleOpen ? 'block' : 'none')};
-   height: 310px;
+   height: 250px;
    background: #f0f0f0;
    overflow-y: scroll;
    border-radius: 0 0 5px 5px;
-   padding: 30px;
+   padding: 20px;
+   line-height: 23px;
+   word-break: keep-all;
+   margin-bottom: 25px;
 
+   &::-webkit-scrollbar {
+      width: 10px;
+      background: rgba(0, 0, 0, 0);
+   }
+   &::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 30px;
+   }
    @media screen and (min-width: 700px) {
       display: block;
    }
 `;
-export const BtnArea = styled.div`
-   display: flex;
-   justify-content: center;
-   padding-top: 10rem;
-   padding-bottom: 4rem;
+export const Btn = styled.div`
+   align-self: center;
    a {
-      font-size: 1.6rem;
-      font-weight: 700;
-      a::after {
-         content: '';
-         display: inline-block;
-         width: 0.9rem;
-         height: 0.9rem;
-         margin-left: 0.5rem;
-         border-top: 0.15rem solid #333;
-         border-right: 0.15rem solid #333;
-         transform: rotate(45deg);
-      }
-      &:hover::after {
-         border-top: 0.15rem solid #ff6c01;
-         border-right: 0.15rem solid #ff6c01;
-      }
-   }
-   @media screen and (max-width: 700px) {
-      display: flex;
-      justify-content: center;
-
-      a {
-         color: #fff;
-         a::after {
-            border-top: 0.15rem solid #fff;
-            border-right: 0.15rem solid #fff;
-         }
-      }
-   }
-`;
-export const Btn = styled.a`
-   padding: 12px 12px;
-   display: inline-block;
-   width: 120px;
-   height: 48px;
-   margin-bottom: 0;
-   font-weight: normal;
-   text-align: center;
-   vertical-align: middle;
-   -ms-touch-action: manipulation;
-   touch-action: manipulation;
-   cursor: pointer;
-   background-image: none;
-   border: 1px solid #d9d9d9;
-   white-space: nowrap;
-   padding: 12px 12px;
-   font-size: 1.2rem;
-   line-height: 1.4;
-   border-radius: 30px;
-   -webkit-user-select: none;
-   -moz-user-select: none;
-   -ms-user-select: none;
-   user-select: none;
-   transition: background;
-   transition-duration: 0.4s;
-   text-shadow: 0 -1px 0 rgb(0 0 0 / 20%);
-   box-shadow: inset 0 1px 0 rgb(255 255 255 / 15%), 0 1px 1px rgb(0 0 0 / 8%);
-   @media screen and (max-width: 600px) {
-      width: 100%;
-   }
-`;
-export const BtnDefault = styled(Btn)`
-   background: #fff;
-   text-shadow: none;
-   border: 2px solid #ff6c01;
-   border-radius: 10px;
-   @media screen and (max-width: 700px) {
-      background: #bababa;
-      text-shadow: none;
-      border: none;
-      color: #fff;
+      max-width: 120px;
+      height: 45px;
+      background: #fff;
+      border: 2px solid #ff6c01;
       border-radius: 10px;
+      padding: 12px 35px;
+      font-size: 16px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 20px auto 0 auto;
+
+      @media screen and (max-width: 700px) {
+         max-width: none;
+         background: #bababa;
+         text-shadow: none;
+         border: none;
+         color: #fff;
+         border-radius: 10px;
+         width: 100%;
+         height: 50px;
+         margin: none;
+      }
+   }
+   @media screen and (max-width: 700px) {
+      width: 100%;
    }
 `;
 
@@ -247,6 +235,12 @@ export const ImgContainer = styled.span`
    }
 
    @media screen and (max-width: 700px) {
+      width: 40px;
+      height: 40px;
+      color: #ff6c01;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
       img {
          display: block;
          width: 1.5rem;

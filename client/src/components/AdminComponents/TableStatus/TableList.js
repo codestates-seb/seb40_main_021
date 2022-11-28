@@ -7,7 +7,7 @@ const TableList = () => {
    const url = useSelector(state => state.adminReducer.apiUrl);
    const [orderData, setOrderData] = useState([]);
    useEffect(() => {
-      axios.get(`${url}/table/1`).then(res => {
+      axios.get(`${url}/table/${sessionStorage.getItem('userId')}`).then(res => {
          setOrderData(res.data.data);
          console.log(orderData);
       });
@@ -31,48 +31,59 @@ const TableList = () => {
 };
 
 const Content = styled.div`
-   height: calc(100vh - 70px);
-   width: 100%;
-   padding-left: 300px;
-   overflow: scroll;
+   min-height: calc(100vh - 50px);
+   width: calc(100% - 250px);
+   margin-left: 250px;
+   padding: 30px 50px;
+   /* overflow: scroll; */
    .orderEmpty {
+      width: 100%;
       text-align: center;
       color: rgb(255, 107, 0);
-      font-size: 30px;
+      font-size: 20px;
+      font-weight: 900;
       margin: 50px 0 30px 20px;
    }
    .title {
-      margin-left: 0;
-      padding-top: 50px;
-      font-weight: bold;
-      font-size: 24px;
-      margin-left: 80px;
+      font-size: 20px;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 30px;
    }
    .table {
       display: grid;
       width: 100%;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      grid-template-rows: 500px;
+      grid-template-columns: repeat(5, 1fr);
       align-items: center;
       justify-items: center;
 
-      @media screen and (max-width: 1400px) {
-         grid-template-columns: 1fr 1fr;
+      @media screen and (max-width: 1700px) {
+         grid-template-columns: repeat(4, 1fr);
       }
-      @media screen and (max-width: 1000px) {
+
+      @media screen and (max-width: 1400px) {
+         grid-template-columns: repeat(3, 1fr);
+      }
+      @media screen and (max-width: 1100px) {
+         grid-template-columns: repeat(2, 1fr);
+      }
+      @media screen and (max-width: 900px) {
          grid-template-columns: 1fr;
          grid-template-rows: 1fr;
-
          flex-grow: 1;
       }
       @media screen and (max-width: 700px) {
-         grid-template-columns: 1fr;
+         grid-template-columns: repeat(2, 1fr);
          flex-grow: 1;
+      }
+      @media screen and (max-width: 500px) {
+         grid-template-columns: 1fr;
       }
    }
    @media screen and (max-width: 700px) {
       width: 100%;
-      padding-left: 0;
+      margin-left: 0;
+      padding: 30px;
       > :first-child {
          margin-left: 0px;
          text-align: center;
