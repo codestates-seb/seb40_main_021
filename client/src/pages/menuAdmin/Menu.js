@@ -11,14 +11,12 @@ import MenuLi from './MenuLi';
 import * as S from './SetMenu.style';
 
 const Menu = () => {
-   const [viewPreview, setViewPreview] = useState(false);
-
    const categoryList = useSelector(store => store.categoryUserItemReducer.data);
    const [activeIndex, setActiveIndex] = useState(0);
 
    const dispatch = useDispatch();
    //get
-   let userId = 3;
+   let userId = 1;
 
    let error;
    useEffect(() => {
@@ -34,6 +32,7 @@ const Menu = () => {
    const NavToSetMenu = () => {
       navigation('/user/menusetting');
    };
+   const viewPreview = useSelector(state => state.previewToggleReducer);
    return (
       <S.SetMenuLayout>
          {viewPreview ? <PreviewModal /> : null}
@@ -44,21 +43,22 @@ const Menu = () => {
             ) : (
                <>
                   <S.CategoryWrap className="editFalse">
-                     {categoryList.map((el, idx) => {
-                        const active = idx === activeIndex;
-                        return (
-                           <CategoryLi
-                              key={el.categoryId}
-                              el={el}
-                              idx={idx}
-                              setActiveIndex={setActiveIndex}
-                              edit={false}
-                              active={active}
-                              name={'기본 카테고리'}
-                              placeholder={'카테고리를 입력해주세요'}
-                           />
-                        );
-                     })}
+                     {Array.isArray(categoryList) &&
+                        categoryList.map((el, idx) => {
+                           const active = idx === activeIndex;
+                           return (
+                              <CategoryLi
+                                 key={el.categoryId}
+                                 el={el}
+                                 idx={idx}
+                                 setActiveIndex={setActiveIndex}
+                                 edit={false}
+                                 active={active}
+                                 name={'기본 카테고리'}
+                                 placeholder={'카테고리를 입력해주세요'}
+                              />
+                           );
+                        })}
                   </S.CategoryWrap>
 
                   <S.MenuContainerWarp>
@@ -67,12 +67,7 @@ const Menu = () => {
                         <MenuLi activeIndex={activeIndex} />
                      </S.MenuListUl>
                   </S.MenuContainerWarp>
-                  <ButtonWrap
-                     setViewPreview={setViewPreview}
-                     viewPreview={viewPreview}
-                     save={NavToSetMenu}
-                     name={'메뉴판 수정'}
-                  />
+                  <ButtonWrap save={NavToSetMenu} name={'메뉴판 수정'} />
                </>
             )}
          </S.MenuLayout>

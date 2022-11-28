@@ -6,6 +6,7 @@ import categoryUserItemReducer from './categoryUserItemReducer';
 import menuSaveItemReducer from './menuSaveItemReducer';
 import { menuReducer } from './menuReducer';
 import { stateReducer } from './stateReducer';
+import { previewToggleReducer } from './previewToggleReducer';
 export const rootReducer = combineReducers({
    menuReducer,
    stateReducer,
@@ -13,5 +14,6 @@ export const rootReducer = combineReducers({
    adminReducer,
    menuUserItemReducer,
    categoryUserItemReducer,
-   menuSaveItemReducer
+   menuSaveItemReducer,
+   previewToggleReducer
 });

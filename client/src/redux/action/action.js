@@ -25,6 +25,7 @@ export const MENU_GET_ADD_USER = 'MENU_GET_ADD_USER';
 export const UPDATE_TABLE_NUMBER = 'UPDATE_TABLE_NUMBER';
 export const REGIST_UPDATE_TABLE_NUMBER = 'REGIST_UPDATE_TABLE_NUMBER';
 export const GET_QR_DATA = 'GET_QR_DATA';
+export const PREVIEW_TOGGLE = 'PREVIEW_TOGGLE';
 
 export const storeInfoUpdate = () => {
    return {
@@ -242,5 +243,11 @@ export const menuSaveAndChangeAdd = res => {
       payload: {
          res
       }
+   };
+};
+export const previewToggleState = res => {
+   return {
+      type: PREVIEW_TOGGLE,
+      payload: res
    };
 };

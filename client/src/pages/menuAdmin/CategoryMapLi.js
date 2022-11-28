@@ -10,7 +10,7 @@ const CategoryMapLi = ({ activeIndex, setActiveIndex, setSubmit, toggleCategoryA
    const categoryList = useSelector(store => store.categoryUserItemReducer.data);
 
    //get
-   let userId = 3;
+   let userId = 1;
    const { response, error } = useAxios({
       method: 'GET',
       url: `category/${userId}`
@@ -21,6 +21,7 @@ const CategoryMapLi = ({ activeIndex, setActiveIndex, setSubmit, toggleCategoryA
    useEffect(() => {
       response && dispatch(setGetUserCategory(response));
    }, [response]);
+   console.log(categoryList);
    return (
       <>
          {error ? (
@@ -28,6 +29,7 @@ const CategoryMapLi = ({ activeIndex, setActiveIndex, setSubmit, toggleCategoryA
          ) : (
             <S.CategoryWrap>
                {response &&
+                  Array.isArray(categoryList) &&
                   categoryList.map((el, idx) => {
                      const active = idx === activeIndex;
                      return (

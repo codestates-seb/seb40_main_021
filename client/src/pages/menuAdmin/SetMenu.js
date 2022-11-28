@@ -12,8 +12,6 @@ import CategoryMapLi from './CategoryMapLi';
 import PreviewModal from '../../components/Preview/PreviewModal';
 
 const SetMenu = () => {
-   // const userId = 1;
-   const [viewPreview, setViewPreview] = useState(false);
    const [toggleCategoryAdd, setToggleCategoryAdd] = useState(false);
    const dispatch = useDispatch();
    const state = useSelector(store => store.menuUserItemReducer);
@@ -110,6 +108,7 @@ const SetMenu = () => {
       }
    };
 
+   const viewPreview = useSelector(state => state.previewToggleReducer);
    return (
       <S.SetMenuLayout>
          {viewPreview ? <PreviewModal /> : null}
@@ -144,7 +143,7 @@ const SetMenu = () => {
                </S.AddBtn>
             </S.MenuContainerWarp>
 
-            <ButtonWrap setViewPreview={setViewPreview} viewPreview={viewPreview} save={menuClickSave} name={'저장'} />
+            <ButtonWrap save={menuClickSave} name={'저장'} />
          </S.MenuLayout>
       </S.SetMenuLayout>
    );

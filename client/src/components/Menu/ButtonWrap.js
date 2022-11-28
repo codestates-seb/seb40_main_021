@@ -1,4 +1,6 @@
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { previewToggleState } from '../../redux/action/action';
 
 const BtnWrap = styled.div`
    margin-left: auto;
@@ -52,10 +54,15 @@ const OrangeBtn = styled.button`
       width: 50%;
    }
 `;
-const ButtonWrap = ({ name, save, viewPreview, setViewPreview }) => {
+const ButtonWrap = ({ name, save }) => {
+   const dispatch = useDispatch();
+   const viewPreview = useSelector(state => state.previewToggleReducer);
+   const PreviewFunc = () => {
+      dispatch(previewToggleState(!viewPreview));
+   };
    return (
       <BtnWrap>
-         <WhiteBtn onClick={() => setViewPreview(!viewPreview)}>미리보기</WhiteBtn>
+         <WhiteBtn onClick={PreviewFunc}>미리보기</WhiteBtn>
          <OrangeBtn onClick={save}>{name}</OrangeBtn>
       </BtnWrap>
    );
