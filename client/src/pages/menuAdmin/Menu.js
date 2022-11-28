@@ -37,38 +37,33 @@ const Menu = () => {
          {viewPreview ? <PreviewModal /> : null}
          <S.Head>메뉴 목록</S.Head>
          <S.MenuLayout>
-            {error ? (
-               <p>{error.message}</p>
-            ) : (
-               <>
-                  <S.CategoryWrap className="editFalse">
-                     {Array.isArray(categoryList) &&
-                        categoryList.map((el, idx) => {
-                           const active = idx === activeIndex;
-                           return (
-                              <CategoryLi
-                                 key={el.categoryId}
-                                 el={el}
-                                 idx={idx}
-                                 setActiveIndex={setActiveIndex}
-                                 edit={false}
-                                 active={active}
-                                 name={'기본 카테고리'}
-                                 placeholder={'카테고리를 입력해주세요'}
-                              />
-                           );
-                        })}
-                  </S.CategoryWrap>
+            <S.CategoryWrap className="editFalse">
+               {!error &&
+                  Array.isArray(categoryList) &&
+                  categoryList.map((el, idx) => {
+                     const active = idx === activeIndex;
+                     return (
+                        <CategoryLi
+                           key={el.categoryId}
+                           el={el}
+                           idx={idx}
+                           setActiveIndex={setActiveIndex}
+                           edit={false}
+                           active={active}
+                           name={'기본 카테고리'}
+                           placeholder={'카테고리를 입력해주세요'}
+                        />
+                     );
+                  })}
+            </S.CategoryWrap>
 
-                  <S.MenuContainerWarp>
-                     <S.SettingHead>메뉴목록</S.SettingHead>
-                     <S.MenuListUl>
-                        <MenuLi activeIndex={activeIndex} />
-                     </S.MenuListUl>
-                  </S.MenuContainerWarp>
-                  <ButtonWrap save={NavToSetMenu} name={'메뉴판 수정'} />
-               </>
-            )}
+            <S.MenuContainerWarp>
+               <S.SettingHead>메뉴목록</S.SettingHead>
+               <S.MenuListUl>
+                  <MenuLi activeIndex={activeIndex} />
+               </S.MenuListUl>
+            </S.MenuContainerWarp>
+            <ButtonWrap save={NavToSetMenu} name={'메뉴판 수정'} />
          </S.MenuLayout>
       </S.SetMenuLayout>
    );
