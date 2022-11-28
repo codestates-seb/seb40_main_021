@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const InfoForm = styled.div`
    width: 100%;
@@ -16,16 +16,27 @@ export const InfoForm = styled.div`
       margin: 8px 0;
       border-radius: 5px 5px 0 0;
       border: none;
+
       border-bottom: 3px solid #b6b6b6;
       background: #f4f4f4;
+
       &::placeholder {
          color: #6d6d6d;
       }
    }
    input:focus {
       outline: none;
-      border-bottom: 3px solid #666666;
+
+      ${props =>
+         props.passwordError
+            ? css`
+                 border-bottom: 3px solid #ff6c01;
+              `
+            : css`
+                 border-bottom: 3px solid #666666;
+              `}
    }
+
    @media screen and (max-width: 700px) {
       input {
          background: #f4f4f4;
@@ -38,7 +49,19 @@ export const InfoFormError = styled(InfoForm)`
    input[type='password'] {
       background: #f4f4f4;
       border: none;
-      border-bottom: 3px solid #ff6c01;
+      border-bottom: 3px solid #b6b6b6;
+   }
+
+   input:focus {
+      outline: none;
+      ${props =>
+         props.passwordConfirmError
+            ? css`
+                 border-bottom: 3px solid #ff6c01;
+              `
+            : css`
+                 border-bottom: 3px solid #666666;
+              `}
    }
 
    span {
