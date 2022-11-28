@@ -102,6 +102,31 @@ export const AddBtn = styled.button`
       display: none;
    }
 `;
+
+export const ButtonWarp = styled.div`
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+`;
+export const NonePlace = styled.div`
+   width: 130px;
+`;
+export const SaveBtn = styled.button`
+   display: flex;
+   align-items: center;
+   margin: 0;
+   justify-content: center;
+   width: 130px;
+   /* padding: 12px 40px 12px 38px; */
+   cursor: pointer;
+   border-radius: 10px;
+   /* border: 2px solid #ff6c01; */
+   background-color: #687479;
+   color: white;
+   font-size: 15px;
+   font-weight: 700;
+   margin: 0;
+`;
 export const BtnWrap = styled.div`
    margin-left: auto;
    display: block;

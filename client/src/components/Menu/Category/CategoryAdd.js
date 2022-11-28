@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserAddCategory, setUserCategoryNaming } from '../../../redux/action/action';
 import * as S from './CategoryLi.style';
-import { useAxios } from '../../../util/useAxios';
+// import { useAxios } from '../../../util/useAxios';
+import axios from 'axios';
 
 const CategoryAdd = ({ placeholder, active, setToggleCategoryAdd, userId }) => {
    const dispatch = useDispatch();
@@ -14,38 +15,34 @@ const CategoryAdd = ({ placeholder, active, setToggleCategoryAdd, userId }) => {
       dispatch(setUserCategoryNaming(value));
    };
    //post
-   const { clickFetchFunc } = useAxios({}, false);
-
+   // const { response, clickFetchFunc } = useAxios({}, false);
+   // response && console.log(response);
    const CategoryNameSave = () => {
       if (!categoryName || !categoryName.trim()) {
          return alert('카테고리 이름을 작성하세요.');
       }
-      dispatch(
-         setUserAddCategory({
-            categoryName: categoryName
-         })
-      );
       // clickFetchFunc({
-      //     method: 'POST',
-      //     url: `/member/join`,
-      //     data: {
-      //         loginId: 'hello', password: '1234', businessNumber: '123412341234', about: 'hello', address: '주소', contactNumber: '01012345678',
-      //         businessHours: '1~1'
-      //     }
-      // })
-      clickFetchFunc({
+      //    method: 'POST',
+      //    url: `category/write`,
+      //    data: {
+      //       memberId: userId,
+      //       categoryName: categoryName
+      //    }
+      // });
+      axios({
          method: 'POST',
          url: `category/write`,
-         // header: {
-         //     // "Access-Control-Allow-Headers": "*", // this will allow all CORS requests
-         //     // "Access-Control-Allow-Methods": 'POST', // this states the allowed methods
-         //     "Content-Type": "application/json" // this shows the expected content type
-
-         // },
          data: {
             memberId: userId,
             categoryName: categoryName
          }
+      }).then(res => {
+         dispatch(
+            setUserAddCategory({
+               categoryId: res.data.categoryId,
+               categoryName: res.data.categoryName
+            })
+         );
       });
 
       dispatch(setUserCategoryNaming(''));
