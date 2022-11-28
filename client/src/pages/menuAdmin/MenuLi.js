@@ -30,6 +30,7 @@ const MenuLi = ({ activeIndex }) => {
    //     if (!error) { ) }
    // }, [response])
    response && dispatch(menuSaveitemAdd(response));
+   console.log(menuList, 'menulist');
 
    const [, setUpdateState] = useState();
    const forceUpdate = useCallback(() => setUpdateState({}), []);

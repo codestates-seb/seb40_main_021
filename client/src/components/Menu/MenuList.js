@@ -75,6 +75,7 @@ const MenuList = ({ el, submit, setSubmit }) => {
       setmenuNameChange(el.menuName);
       setpricesChange(el.price);
       setmenuAboutChange(el.menuContent);
+      setcheckedChange(el.recommendedMenu);
    }, [el]);
 
    //유효성
@@ -147,7 +148,7 @@ const MenuList = ({ el, submit, setSubmit }) => {
    //     // setpricesChange(String(pricesChange).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
    // }, [pricesChange])
 
-   let number = pricesChange.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g);
+   let number = pricesChange.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, '');
 
    let menuNameError, pricesError, menuAboutError;
    menuNameError = el.errorMessage.menuName === undefined ? false : el.errorMessage.menuName !== '';
@@ -172,14 +173,14 @@ const MenuList = ({ el, submit, setSubmit }) => {
                   background={imgSrc}
                   name={'menuImg'}
                   onChange={e => handleValue(e)}
-                  htmlFor={`picture${el.id}`}>
+                  htmlFor={`picture${el.menuId}`}>
                   <img src={IconPhoto} alt="add" />
                </LabelPhoto>
                <input
                   onChange={e => encodeFileToBase64(e.target.files[0])}
                   type="file"
-                  name={`picture${el.id}`}
-                  id={`picture${el.id}`}
+                  name={`picture${el.menuId}`}
+                  id={`picture${el.menuId}`}
                />
             </PicWrap>
             <S.InputWrap>
@@ -195,7 +196,7 @@ const MenuList = ({ el, submit, setSubmit }) => {
                         name={`menuName`}
                         placeholder="메뉴 이름을 입력해주세요"
                         type="text"
-                        idx={el.id}
+                        idx={el.menuId}
                         handleValue={handleValue}
                         width={'100%'}
                         placeholders="설명을 입력해주세요"
@@ -241,8 +242,14 @@ const MenuList = ({ el, submit, setSubmit }) => {
          </S.ListLi>
          <S.BottomListWarp>
             <S.CheckboxWrap>
-               <S.Checkbox onChange={e => handleValue(e)} name="recommnd" type="checkbox" id={`recommnd${el.id}`} />
-               <S.LabelBox htmlFor={`recommnd${el.id}`}>
+               <S.Checkbox
+                  onChange={e => handleValue(e)}
+                  name="recommnd"
+                  type="checkbox"
+                  id={`recommnd${el.menuId}`}
+                  checked={checkedChange || false}
+               />
+               <S.LabelBox htmlFor={`recommnd${el.menuId}`}>
                   추천메뉴 설정 <span>* 설정시 추천메뉴 표기가 활성화 됩니다.</span>
                </S.LabelBox>
             </S.CheckboxWrap>

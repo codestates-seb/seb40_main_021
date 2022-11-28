@@ -6,7 +6,7 @@ import { useAxios } from '../../util/useAxios';
 
 const SetMenuLi = ({ submit, setSubmit, activeIndex }) => {
    const changeCategoryList = useSelector(store => store.categoryUserItemReducer.data);
-   const menuList = useSelector(store => store.menuUserItemReducer.data);
+   let menuList = useSelector(store => store.menuUserItemReducer.data);
 
    let categoryId;
 
