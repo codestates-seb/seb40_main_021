@@ -1,13 +1,16 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import useInterval from '../../../util/useInterval';
 import Callalram from './CallAlarm';
+import callAlramSound from '../../../assets/sound/callAlram.wav';
 
 const CallAlarms = () => {
+   const [audio] = useState(new Audio(callAlramSound));
    const url = useSelector(state => state.adminReducer.apiUrl);
    const [callList, setCallList] = useState([]);
+   const callAlarmConut = useRef(null);
    useEffect(() => {
       axios.get(`${url}/call/${sessionStorage.getItem('userId')}`).then(res => {
          const reverse = res.data.data
@@ -16,6 +19,10 @@ const CallAlarms = () => {
             .map(num => num);
 
          setCallList(reverse);
+         if (callList.length !== 0) {
+            audio.play();
+         }
+         callAlarmConut.current = callList.length;
       });
    }, []);
 
@@ -25,8 +32,11 @@ const CallAlarms = () => {
             .slice(0)
             .reverse()
             .map(num => num);
-
          setCallList(reverse);
+         if (callList.length !== callAlarmConut.current) {
+            audio.play();
+            callAlarmConut.current = callList.length;
+         }
       });
    }, 3000);
    return (
