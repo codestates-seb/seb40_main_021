@@ -156,18 +156,18 @@ export const setUserCategoryNaming = res => {
       payload: res
    };
 };
-export const setUserCategoryNowNaming = id => {
+export const setUserCategoryNowNaming = idx => {
    return {
       type: CHANGE_NOW_INPUT,
-      payload: { id }
+      payload: { idx }
    };
 };
 
-export const setUserModifyCategory = (id, res) => {
+export const setUserModifyCategory = (idx, res) => {
    return {
       type: SET_USER_MODIFY_CATEGORY,
       payload: {
-         id,
+         idx,
          res
       }
    };
