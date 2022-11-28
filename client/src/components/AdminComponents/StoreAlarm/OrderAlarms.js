@@ -8,6 +8,16 @@ import { useSelector } from 'react-redux';
 const OrderAlarms = () => {
    const url = useSelector(state => state.adminReducer.apiUrl);
    const [allOrderList, setAllorderList] = useState([]);
+   // const dummy = [
+   //    {
+   //       tableNumber: 1,
+   //       orderMenuList: [
+   //          { menuId: 1, menuName: '김치찌개', quantity: 2, price: 2000 },
+   //          { menuId: 2, menuName: '된장찌개', quantity: 2, price: 2000 }
+   //       ],
+   //       createdAt: '13:25'
+   //    }
+   // ];
    useEffect(() => {
       axios.get(`${url}/table/${sessionStorage.getItem('userId')}/order`).then(res => {
          const reverse = res.data.data
@@ -43,6 +53,16 @@ const OrderAlarms = () => {
                   })
                )}
             </>
+            {/* <>
+               {dummy.length === 0 ? (
+                  <div className="orderEmpty">주문 알람이 없습니다.</div>
+               ) : (
+                  dummy.map((menu, idx) => {
+                     console.log(menu);
+                     return <OrderAlram key={menu.orderId} menu={menu} idx={idx}></OrderAlram>;
+                  })
+               )}
+            </> */}
          </div>
       </MainContents>
    );
