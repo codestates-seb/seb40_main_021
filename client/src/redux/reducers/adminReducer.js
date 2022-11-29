@@ -16,7 +16,7 @@ import {
    ALARMDATA_UPDATE
 } from '../action/action';
 const adminState = {
-   apiUrl: 'https://f23e-211-222-84-39.jp.ngrok.io',
+   apiUrl: 'https://5225-221-140-177-247.jp.ngrok.io',
    printModal: false,
    qrListAllCheck: false,
    storeInfoUpdateState: false,

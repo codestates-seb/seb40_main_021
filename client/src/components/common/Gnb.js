@@ -13,19 +13,18 @@ const Gnb = () => {
    const gnbState = useSelector(store => store.gnbReducer);
    const url = useSelector(state => state.adminReducer.apiUrl);
    const alarmData = useSelector(state => state.adminReducer.alarmData);
-   const getAlarm = url => {
-      let variable;
-      axios.get(url).then(res => {
-         variable = res.data.data
+   const getAlarm = async url => {
+      let variable = await axios.get(url).then(res => {
+         return res.data.data
             .slice(0)
             .reverse()
             .map(num => num);
       });
       return variable;
    };
-   const getAlarms = () => {
-      const orderAlarmReverse = getAlarm(`${url}/table/${sessionStorage.getItem('userId')}/order`);
-      const callAlarmReverse = getAlarm(`${url}/call/${sessionStorage.getItem('userId')}`);
+   const getAlarms = async () => {
+      const orderAlarmReverse = await getAlarm(`${url}/table/${sessionStorage.getItem('userId')}/order`);
+      const callAlarmReverse = await getAlarm(`${url}/call/${sessionStorage.getItem('userId')}`);
       dispatch(updateAlarmData(callAlarmReverse, orderAlarmReverse));
    };
    useEffect(() => {
