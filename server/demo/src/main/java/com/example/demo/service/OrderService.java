@@ -1,15 +1,11 @@
 package com.example.demo.service;
 
+import com.example.demo.entity.Member;
 import com.example.demo.entity.Menu;
-import com.example.demo.repository.MenuRepository;
+import com.example.demo.repository.*;
 import com.example.demo.dto.OrderDto;
 import com.example.demo.entity.Order;
-import com.example.demo.repository.OrderMenuRepository;
-import com.example.demo.repository.OrderRepository;
 import com.example.demo.entity.Table;
-import com.example.demo.repository.TableRepository;
-import com.example.demo.user.entity.Member;
-import com.example.demo.user.repository.MemberRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

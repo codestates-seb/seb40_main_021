@@ -1,10 +1,10 @@
 package com.example.demo.mapper;
 
+import com.example.demo.entity.Member;
 import com.example.demo.entity.Order;
 import com.example.demo.entity.OrderMenu;
 import com.example.demo.dto.TableDto;
 import com.example.demo.entity.Table;
-import com.example.demo.user.entity.Member;
 import org.mapstruct.Mapper;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public interface TableMapper {
             Member member = new Member();
             Table table = new Table();
 
-            member.setId(requestBody.getMemberId());
+            member.setMemberId(requestBody.getMemberId());
             table.setTableNumber(requestBody.getTableList().get(i).getTableNumber());
             table.setQrUrl(requestBody.getTableList().get(i).getQrUrl());
             table.setCreatedAt(requestBody.getTableList().get(i).getCreatedAt());
