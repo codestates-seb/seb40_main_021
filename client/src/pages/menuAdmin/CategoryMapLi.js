@@ -8,11 +8,11 @@ import * as S from './SetMenu.style';
 
 const CategoryMapLi = ({ activeIndex, setActiveIndex, setSubmit, toggleCategoryAdd, setToggleCategoryAdd }) => {
    const categoryList = useSelector(store => store.categoryUserItemReducer.data);
-   const userId = 1;
+
    //get
    const { response, error } = useAxios({
       method: 'GET',
-      url: `category/${userId}`
+      url: `category/${sessionStorage.getItem('userId')}`
    });
    //  const { clickFetchFunc } = useAxios({}, false);
    // response && console.log(response)
@@ -33,7 +33,7 @@ const CategoryMapLi = ({ activeIndex, setActiveIndex, setSubmit, toggleCategoryA
                         setSubmit={setSubmit}
                         key={idx}
                         el={el}
-                        userId={userId}
+                        userId={sessionStorage.getItem('userId')}
                         length={categoryList.length}
                         active={active}
                         setActiveIndex={setActiveIndex}
@@ -45,7 +45,7 @@ const CategoryMapLi = ({ activeIndex, setActiveIndex, setSubmit, toggleCategoryA
                })}
             {toggleCategoryAdd ? (
                <CategoryAdd
-                  userId={userId}
+                  userId={sessionStorage.getItem('userId')}
                   setToggleCategoryAdd={setToggleCategoryAdd}
                   active={false}
                   placeholder={'카테고리 입력'}

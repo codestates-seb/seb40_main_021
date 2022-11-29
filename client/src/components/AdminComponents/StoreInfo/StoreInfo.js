@@ -4,6 +4,7 @@ import InfoUpdateInput from './InfoUpdateInput';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import PreviewModal from '../../Preview/PreviewModal';
 
 const StoreInfo = ({ setIsEmptyValue }) => {
    const url = useSelector(state => state.adminReducer.apiUrl);
@@ -23,9 +24,11 @@ const StoreInfo = ({ setIsEmptyValue }) => {
       });
    }, []);
 
+   const viewPreview = useSelector(state => state.previewToggleReducer);
    return (
       <>
          <MainContants>
+            {viewPreview ? <PreviewModal /> : null}
             <div className="title">
                <h1>가게정보</h1>
             </div>
