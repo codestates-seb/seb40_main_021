@@ -15,7 +15,7 @@ import {
    STORE_INFO_DATA
 } from '../action/action';
 const adminState = {
-   apiUrl: 'https://7829-221-140-177-247.jp.ngrok.io',
+   apiUrl: 'https://d033-221-140-177-247.jp.ngrok.io',
    printModal: false,
    qrListAllCheck: false,
    storeInfoUpdateState: false,
