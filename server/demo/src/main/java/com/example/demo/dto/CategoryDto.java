@@ -14,8 +14,11 @@ public class CategoryDto {
     @Setter
     public static class CategoryPostDto {
         private long memberId;
+
         @NotBlank(message = "The name must not be blank.")
         private String categoryName;
+
+        private String categoryImage;
     }
 
     @Getter
@@ -26,6 +29,7 @@ public class CategoryDto {
         @NotBlank(message = "The name must not be blank.")
         private String categoryName;
 
+        private String categoryImage;
         public void setCategoryId(long categoryId){
             this.categoryId = categoryId;
         }
@@ -36,6 +40,7 @@ public class CategoryDto {
     public static class CategoryResponseDto {
         private long categoryId;
         private String categoryName;
+        private String categoryImage;
     }
 
     @Setter
@@ -44,6 +49,7 @@ public class CategoryDto {
     public static class CategoryResponseDtos {
         private long categoryId;
         private String categoryName;
+        private String categoryImage;
     }
 
     @Getter
@@ -51,6 +57,7 @@ public class CategoryDto {
     public static class CategoryAndMenuResponseDto {
         private long categoryId;
         private String categoryName;
+        private String categoryImage;
         private List<Menu> menus;
     }
 }

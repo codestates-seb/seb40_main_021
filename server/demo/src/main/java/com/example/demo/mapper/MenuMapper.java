@@ -37,6 +37,7 @@ public interface MenuMapper {
 //        menuResponseDto.setVote(menu.getVote());
         menuResponseDto.setCategoryId(menu.getCategory().getCategoryId());
         menuResponseDto.setRecommendedMenu(menu.getRecommendedMenu());
+        menuResponseDto.setMenuImage(menu.getMenuImage());
         return menuResponseDto;
     }
 
@@ -57,6 +58,7 @@ public interface MenuMapper {
                 menu.setMenuContent(menuPatchListDto.getMenuList().get(i).getMenuContent());
                 menu.setPrice(menuPatchListDto.getMenuList().get(i).getPrice());
                 menu.setRecommendedMenu(menuPatchListDto.getMenuList().get(i).getRecommendedMenu());
+                menu.setMenuImage(menuPatchListDto.getMenuList().get(i).getMenuImage());
                 menu.setCategory(category);
                 menu.setMember(member);
 
@@ -73,6 +75,7 @@ public interface MenuMapper {
                 menu.setMenuContent(menuPatchListDto.getMenuList().get(i).getMenuContent());
                 menu.setPrice(menuPatchListDto.getMenuList().get(i).getPrice());
                 menu.setRecommendedMenu(menuPatchListDto.getMenuList().get(i).getRecommendedMenu());
+                menu.setMenuImage(menuPatchListDto.getMenuList().get(i).getMenuImage());
                 menu.setCategory(category);
                 menu.setMember(member);
 

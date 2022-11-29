@@ -15,6 +15,7 @@ public interface CategoryMapper {
         Member member = new Member();
         member.setMemberId(categoryPostDto.getMemberId());
         category.setCategoryName(categoryPostDto.getCategoryName());
+        category.setCategoryImage(categoryPostDto.getCategoryImage());
         category.setMember(member);
 
         return category;
@@ -29,6 +30,7 @@ public interface CategoryMapper {
         CategoryDto.CategoryResponseDto categoryResponseDto = new CategoryDto.CategoryResponseDto();
         categoryResponseDto.setCategoryId(category.getCategoryId());
         categoryResponseDto.setCategoryName(category.getCategoryName());
+        categoryResponseDto.setCategoryImage(category.getCategoryImage());
         return categoryResponseDto;
     }
     default CategoryDto.CategoryResponseDtos categoryToCategoryResponseDtos(Category category){
@@ -38,11 +40,13 @@ public interface CategoryMapper {
 
         long categoryId = 0L;
         String categoryName = null;
+        String categoryImage = null;
 
         categoryId = category.getCategoryId();
         categoryName = category.getCategoryName();
+        categoryImage = category.getCategoryImage();
 
-        CategoryDto.CategoryResponseDtos categoryResponseDto = new CategoryDto.CategoryResponseDtos( categoryId, categoryName);
+        CategoryDto.CategoryResponseDtos categoryResponseDto = new CategoryDto.CategoryResponseDtos( categoryId, categoryName, categoryImage);
 
         return categoryResponseDto;
     }
@@ -51,6 +55,7 @@ public interface CategoryMapper {
         CategoryDto.CategoryAndMenuResponseDto categoryAndMenuResponseDto = new CategoryDto.CategoryAndMenuResponseDto();
         categoryAndMenuResponseDto.setCategoryId(category.getCategoryId());
         categoryAndMenuResponseDto.setCategoryName(category.getCategoryName());
+        categoryAndMenuResponseDto.setCategoryImage(category.getCategoryImage());
         categoryAndMenuResponseDto.setMenus(menuService.findMenus(category.getCategoryId()));
         return categoryAndMenuResponseDto;
     }

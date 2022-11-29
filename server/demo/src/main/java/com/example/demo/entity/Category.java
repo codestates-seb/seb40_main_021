@@ -20,6 +20,9 @@ public class Category {
     @Column(nullable = false, columnDefinition = "VARCHAR(20)")
     private String categoryName;
 
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String categoryImage;
+
     @ManyToOne
     @JoinColumn(name = "MEMBER_ID")
     private Member member;

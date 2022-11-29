@@ -8,6 +8,7 @@ import lombok.Setter;
 public class MemberDto {
     @Getter
     @AllArgsConstructor
+    @NoArgsConstructor
     public static class Post {
 
         private String loginId;

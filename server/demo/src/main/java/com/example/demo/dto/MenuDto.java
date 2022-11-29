@@ -33,7 +33,11 @@ public class MenuDto {
 
         @NotNull
         private Integer price;
+
         private Boolean  recommendedMenu;
+
+        private String menuImage;
+
     }
 
     @Getter
@@ -54,6 +58,8 @@ public class MenuDto {
         private Integer price;
 
         private Boolean recommendedMenu;
+
+        private String menuImage;
     }
 
     @Getter
@@ -71,6 +77,7 @@ public class MenuDto {
         private String menuContent;
         private int price;
         private Boolean recommendedMenu;
+        private String menuImage;
         private long categoryId;
     }
 }
