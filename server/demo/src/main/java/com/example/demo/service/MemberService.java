@@ -56,6 +56,8 @@ public class MemberService {
                 .ifPresent(findMember::setBusinessHours);
         Optional.ofNullable(member.getBusinessNumber())
                 .ifPresent(findMember::setBusinessNumber);
+        Optional.ofNullable(member.getUserImage())
+                .ifPresent(findMember::setUserImage);
 
         return memberRepository.save(findMember);
     }

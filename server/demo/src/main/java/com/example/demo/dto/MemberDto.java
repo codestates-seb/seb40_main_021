@@ -18,6 +18,7 @@ public class MemberDto {
         private String contactNumber;
         private String businessName;
         private String businessHours;
+        private String userImage;
     }
 
     @Getter
@@ -35,6 +36,7 @@ public class MemberDto {
         private String contactNumber;
         private String businessName;
         private String businessHours;
+        private String userImage;
     }
 
     @AllArgsConstructor
@@ -52,5 +54,6 @@ public class MemberDto {
         private String contactNumber;
         private String businessName;
         private String businessHours;
+        private String userImage;
     }
 }
