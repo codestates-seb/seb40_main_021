@@ -34,7 +34,7 @@ const Menu = () => {
    const viewPreview = useSelector(state => state.previewToggleReducer);
    return (
       <S.SetMenuLayout>
-         {viewPreview ? <PreviewModal /> : null}
+         {viewPreview ? <PreviewModal now={'menu'} /> : null}
          <S.Head>메뉴 목록</S.Head>
          <S.MenuLayout>
             <S.CategoryWrap className="editFalse">

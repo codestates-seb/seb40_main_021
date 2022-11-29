@@ -16,7 +16,8 @@ const BtnWrap = styled.div`
       box-sizing: border-box;
       padding: 20px 15px;
       width: 100%;
-      bottom: -87px;
+      bottom: 0px;
+      margin: 0;
       position: fixed;
       right: 0;
       transform: translate(0);
