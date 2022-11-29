@@ -29,7 +29,7 @@ export const WhiteBtn = styled.button`
       background-color: #313e46;
    }
    @media screen and (max-width: 700px) {
-      /* width: 50%; */
+      width: 50%;
    }
 `;
 const OrangeBtn = styled.button`

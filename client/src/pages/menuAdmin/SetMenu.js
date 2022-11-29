@@ -5,12 +5,12 @@ import IconAdd from '../../assets/img/icon_add.png';
 import IconCategoryAdd from '../../assets/img/icon_category_plus.png';
 import ButtonWrap from '../../components/Menu/ButtonWrap';
 import * as S from './SetMenu.style';
-import { v4 as uuidv4 } from 'uuid';
 import SetMenuLi from './SetMenuLi';
 import CategoryMapLi from './CategoryMapLi';
 import PreviewModal from '../../components/Preview/PreviewModal';
 import { useNavigate } from 'react-router-dom';
 import { useAxios } from '../../util/useAxios';
+import { v4 as uuidv4 } from 'uuid';
 
 const SetMenu = () => {
    const [toggleCategoryAdd, setToggleCategoryAdd] = useState(false);
@@ -18,19 +18,19 @@ const SetMenu = () => {
    const state = useSelector(store => store.menuUserItemReducer);
    const saveState = useSelector(store => store.menuSaveItemReducer.data.menus);
    const categoryList = useSelector(store => store.categoryUserItemReducer.data);
-   const menuList = useSelector(store => store.menuUserItemReducer.data);
+   const menuListState = useSelector(store => store.menuUserItemReducer.data);
    const menuCountPlus = () => {
       if (categoryList.length === 0) {
          alert('카테고리를 먼저 추가해주세요.');
       } else {
          dispatch(
             menuUserAdd({
-               menuId: uuidv4(),
-               menuImg: '',
+               // menuImg: '',
                price: '',
                menuName: '',
                menuContent: '',
-               recommnd: false,
+               recommendedMenu: false,
+               uuid: uuidv4(),
                errorMessage: {
                   menuName: '',
                   menuContent: '',
@@ -44,9 +44,8 @@ const SetMenu = () => {
 
    const [activeIndex, setActiveIndex] = useState(0);
    const [submit, setSubmit] = useState(false);
-   // const categoryList = useSelector(store => store.categoryUserItemReducer.data);
+   console.log(categoryList);
    const { clickFetchFunc } = useAxios({}, false);
-
    console.log(state, 'state');
    console.log(saveState, 'saveState');
    const navigate = useNavigate();
@@ -115,17 +114,22 @@ const SetMenu = () => {
             return alert('오류 칸을 수정해주세요.');
          }
          if (!noReadInput && !ErrorInput && stateData) {
+            let menuList = [...menuListState];
+
+            // menuList = menuList.map(el => delete el.errorMessage);
+            for (let i = 0; i < menuList.length; i++) {
+               menuList[i] = { ...menuList[i], categoryId: categoryList[activeIndex].categoryId, memberId: 1 };
+               delete menuList[i].errorMessage;
+               delete menuList[i].menuImg;
+               delete menuList[i].uuid;
+            }
             console.log('성공');
+            console.log(menuList);
             clickFetchFunc({
-               method: 'POST',
-               url: `/menu/write`,
+               method: 'PATCH',
+               url: `/menu/${categoryList[activeIndex].categoryId}`,
                data: {
-                  memberId: sessionStorage.getItem('userId'),
-                  menuName: menuList[0].menuName,
-                  menuContent: menuList[0].menuContent,
-                  price: menuList[0].price,
-                  recommendedMenu: menuList[0].recommnd,
-                  categoryId: categoryList[activeIndex].categoryId
+                  menuList: menuList
                }
             });
             alert('저장이 완료되었습니다.');

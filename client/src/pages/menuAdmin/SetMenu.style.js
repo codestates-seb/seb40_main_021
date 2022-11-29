@@ -58,6 +58,7 @@ export const MenuContainerWarp = styled.div`
    /* overflow-x: scroll; */
    padding: 30px;
    border-radius: 5px;
+   margin-top: -10px;
    @media screen and (max-width: 900px) {
       box-sizing: border-box;
       min-height: calc(100vh - 187px);
