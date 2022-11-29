@@ -9,6 +9,12 @@ import { Info, InfoFormError, FormControl } from './MemberInfo.Style';
 const Login = () => {
    const postLogin = async () => {
       try {
+         setFinalCheck({
+            ...finalCheck,
+            idCheck: id === '' ? true : false,
+            pwCheck: !password || passwordError ? true : false
+         });
+
          const res = await axios.post(`/member/login`, {
             loginId: id,
             password: password
@@ -31,14 +37,21 @@ const Login = () => {
    const [idError, setIdError] = React.useState(false);
    const [passwordError, setPasswordError] = React.useState(false);
 
+   const [finalCheck, setFinalCheck] = React.useState({
+      idCheck: false,
+      pwCheck: false
+   });
+
    const handleId = e => {
       setId(e.target.value);
 
       const idRegex = /^[a-z0-9]{1,11}$/;
       if (idRegex.test(e.target.value) || e.target.value === '') {
          setIdError(false);
+         setFinalCheck({ ...finalCheck, idCheck: false });
       } else {
          setIdError(true);
+         setFinalCheck({ ...finalCheck, idCheck: false });
       }
    };
 
@@ -49,6 +62,7 @@ const Login = () => {
 
       if (passwordRegex.test(e.target.value) || e.target.value === '') {
          setPasswordError(false);
+         setFinalCheck({ ...finalCheck, pwCheck: false });
       } else {
          setPasswordError(true);
       }
@@ -64,7 +78,7 @@ const Login = () => {
                   <LoginTitle>
                      <h4>로그인</h4>
                   </LoginTitle>
-                  <Info idError={idError}>
+                  <Info buttonError={finalCheck.idCheck} idError={idError}>
                      <p>아이디</p>
                      <FormControl
                         maxLength={11}
@@ -77,7 +91,7 @@ const Login = () => {
                      {idError && <span>영문(소문자), 숫자 포함해 주세요</span>}
                   </Info>
 
-                  <InfoFormError passwordConfirmError={passwordError}>
+                  <InfoFormError buttonError={finalCheck.pwCheck} passwordConfirmError={passwordError}>
                      <p>비밀번호</p>
                      <FormControl
                         value={password}
