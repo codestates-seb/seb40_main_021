@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
 import axios from 'axios';
 import {
    BtnFill,
@@ -33,12 +32,19 @@ const MemberInfo = () => {
    const inputValue = useSelector(state => state);
 
    // eslint-disable-next-line no-unused-vars
-   const [password, setPassword] = React.useState('');
+   const [passwordConfirm, setPasswordConfirm] = React.useState('');
 
    const [idError, setIdError] = React.useState(false);
    const [passwordError, setPasswordError] = React.useState(false);
    const [passwordConfirmError, setPasswordConfirmError] = React.useState(false);
    const [businessNumberError, setBusinessNumberError] = React.useState('');
+
+   const [finalCheck, setFinalCheck] = useState({
+      idCheck: false,
+      pwCheck: false,
+      pwConfirmCheck: false,
+      businessNumCheck: false
+   });
 
    const [Certification, setCertification] = React.useState(false);
 
@@ -47,10 +53,13 @@ const MemberInfo = () => {
       // setId(e.target.value);
 
       const idRegex = /^[a-z0-9]{1,11}$/;
-      if (idRegex.test(e.target.value) || e.target.value === '') {
+
+      if (idRegex.test(e.target.value)) {
          setIdError(false);
+         setFinalCheck({ ...finalCheck, idCheck: false });
       } else {
          setIdError(true);
+         setFinalCheck({ ...finalCheck, idCheck: true });
       }
    };
 
@@ -60,18 +69,23 @@ const MemberInfo = () => {
 
       const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,}$/;
 
-      if (passwordRegex.test(e.target.value) || e.target.value === '') {
+      if (passwordRegex.test(e.target.value)) {
          setPasswordError(false);
+         setFinalCheck({ ...finalCheck, pwCheck: false });
       } else {
          setPasswordError(true);
+         setFinalCheck({ ...finalCheck, pwCheck: true });
       }
    };
 
    const handlePasswordConfirm = e => {
+      setPasswordConfirm(e.target.value);
       if (inputValue?.userMemberReducer?.password !== e.target.value) {
          setPasswordConfirmError(true);
+         setFinalCheck({ ...finalCheck, pwConfirmCheck: true });
       } else {
          setPasswordConfirmError(false);
+         setFinalCheck({ ...finalCheck, pwConfirmCheck: false });
       }
    };
 
@@ -96,8 +110,10 @@ const MemberInfo = () => {
          );
          setBusinessNumberError(res?.data);
 
-         if (res?.data?.data[0].tax_type_cd !== '') {
+         if (res?.data?.data[0].tax_type_cd === '') {
             setCertification(true);
+         } else {
+            setCertification(false);
          }
       } catch (err) {
          console.log(err);
@@ -105,10 +121,45 @@ const MemberInfo = () => {
    };
 
    const postMemberDataNavi = () => {
-      if (Certification) {
+      const navMoveReg =
+         !!inputValue?.userMemberReducer?.id &&
+         !idError &&
+         !!inputValue?.userMemberReducer?.password &&
+         !passwordError &&
+         !passwordConfirmError &&
+         !Certification;
+
+      console.log(
+         !!inputValue?.userMemberReducer?.id,
+         !idError,
+         !!inputValue?.userMemberReducer?.password,
+         !passwordError,
+         !passwordConfirmError,
+         Certification
+      );
+
+      if (navMoveReg) {
          navigate('/storeInfo');
+      } else {
+         postBusinessNumber();
+         isValidate();
       }
       return;
+   };
+
+   const isValidate = () => {
+      if (
+         (inputValue?.userMemberReducer?.id === '' && !idError) ||
+         (inputValue?.userMemberReducer?.password === '' && !passwordError)
+      ) {
+         setFinalCheck({
+            ...finalCheck,
+            idCheck: inputValue?.userMemberReducer?.id === '' ? true : false,
+            pwCheck: inputValue?.userMemberReducer?.password === '' ? true : false,
+            pwConfirmCheck: passwordConfirm === '' ? true : false,
+            businessNumCheck: false
+         });
+      }
    };
 
    return (
@@ -130,7 +181,7 @@ const MemberInfo = () => {
                      <h5>2. 회원 정보 입력</h5>
                   </PanelTitle>
 
-                  <Info idError={idError}>
+                  <Info buttonError={finalCheck.idCheck} idError={idError}>
                      <p>아이디</p>
                      <FormControl
                         maxLength={11}
@@ -142,7 +193,7 @@ const MemberInfo = () => {
                      />
                   </Info>
                   {idError && <span>영문(소문자), 숫자 포함해 주세요.</span>}
-                  <InfoForm passwordError={passwordError}>
+                  <InfoForm buttonError={finalCheck.pwCheck} passwordError={passwordError}>
                      <p>비밀번호</p>
                      <FormControl
                         value={inputValue?.userMemberReducer?.password ?? ''}
@@ -153,17 +204,18 @@ const MemberInfo = () => {
                      />
                   </InfoForm>
                   {passwordError && <span>영문, 숫자, 특수문자 포함 8자리 이상</span>}
-                  <InfoFormError passwordConfirmError={passwordConfirmError}>
+                  <InfoFormError buttonError={finalCheck.pwConfirmCheck} passwordConfirmError={passwordConfirmError}>
                      <p>비밀번호 재확인</p>
                      <FormControl
+                        value={passwordConfirm}
                         type="password"
                         placeholder="비밀번호를 재입력해주세요"
-                        name="password"
+                        name="passwordConfirm"
                         onChange={handlePasswordConfirm}
                      />
                   </InfoFormError>
                   {passwordConfirmError && <span>확인 비밀번호가 다릅니다.</span>}
-                  <InfoFormAuthComplete>
+                  <InfoFormAuthComplete businessNumberError={Certification}>
                      <p>사업자번호 입력</p>
                      <CompanyNum>
                         <FormControl

@@ -16,8 +16,20 @@ export const Info = styled.div`
       margin: 8px 0;
       border-radius: 5px 5px 0 0;
       border: none;
-
       border-bottom: 3px solid #b6b6b6;
+
+      ${props =>
+         props.idError &&
+         css`
+            border-bottom: 3px solid #ff6c01;
+         `}
+
+      ${props =>
+         props.buttonError &&
+         css`
+            border-bottom: 3px solid #ff6c01;
+         `}
+
       background: #f4f4f4;
 
       &::placeholder {
@@ -70,6 +82,13 @@ export const InfoForm = styled.div`
       border: none;
 
       border-bottom: 3px solid #b6b6b6;
+
+      ${props =>
+         props.buttonError &&
+         css`
+            border-bottom: 3px solid #ff6c01;
+         `}
+
       background: #f4f4f4;
 
       &::placeholder {
@@ -99,10 +118,22 @@ export const InfoForm = styled.div`
 `;
 
 export const InfoFormError = styled(InfoForm)`
-   input[type='password'] {
+   input[name='passwordConfirm'] {
       background: #f4f4f4;
       border: none;
       border-bottom: 3px solid #b6b6b6;
+
+      ${props =>
+         props.buttonError &&
+         css`
+            border-bottom: 3px solid #ff6c01;
+         `}
+
+      ${props =>
+         props.passwordConfirmError &&
+         css`
+            border-bottom: 3px solid #ff6c01;
+         `}
    }
 
    input:focus {
@@ -126,6 +157,17 @@ export const InfoFormError = styled(InfoForm)`
    }
 `;
 export const InfoFormAuthComplete = styled(InfoForm)`
+   input[name='businessNumber'] {
+      ${props =>
+         props.businessNumberError
+            ? css`
+                 border-bottom: 3px solid #ff6c01;
+              `
+            : css`
+                 border-bottom: 3px solid #b6b6b6;
+              `};
+   }
+
    span {
       display: block;
    }
@@ -162,6 +204,10 @@ export const Btn = styled.button`
    align-items: center;
    justify-content: center;
    margin: 20px auto 0 auto;
+
+   &:hover {
+      color: #ff6c01;
+   }
 
    @media screen and (max-width: 900px) {
       max-width: none;
