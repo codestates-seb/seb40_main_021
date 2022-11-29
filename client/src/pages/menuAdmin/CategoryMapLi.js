@@ -22,39 +22,36 @@ const CategoryMapLi = ({ activeIndex, setActiveIndex, setSubmit, toggleCategoryA
    }, [response]);
    return (
       <>
-         {error ? (
-            <p>{error.message}</p>
-         ) : (
-            <S.CategoryWrap>
-               {response &&
-                  Array.isArray(categoryList) &&
-                  categoryList.map((el, idx) => {
-                     const active = idx === activeIndex;
-                     return (
-                        <CategoryLi
-                           setSubmit={setSubmit}
-                           key={idx}
-                           el={el}
-                           userId={sessionStorage.getItem('userId')}
-                           length={categoryList.length}
-                           active={active}
-                           setActiveIndex={setActiveIndex}
-                           edit={true}
-                           idx={idx}
-                           placeholder={'카테고리를 입력해주세요'}
-                        />
-                     );
-                  })}
-               {toggleCategoryAdd ? (
-                  <CategoryAdd
-                     userId={sessionStorage.getItem('userId')}
-                     setToggleCategoryAdd={setToggleCategoryAdd}
-                     active={false}
-                     placeholder={'카테고리 입력'}
-                  />
-               ) : null}
-            </S.CategoryWrap>
-         )}
+         <S.CategoryWrap>
+            {!error &&
+               response &&
+               Array.isArray(categoryList) &&
+               categoryList.map((el, idx) => {
+                  const active = idx === activeIndex;
+                  return (
+                     <CategoryLi
+                        setSubmit={setSubmit}
+                        key={idx}
+                        el={el}
+                        userId={sessionStorage.getItem('userId')}
+                        length={categoryList.length}
+                        active={active}
+                        setActiveIndex={setActiveIndex}
+                        edit={true}
+                        idx={idx}
+                        placeholder={'카테고리를 입력해주세요'}
+                     />
+                  );
+               })}
+            {toggleCategoryAdd ? (
+               <CategoryAdd
+                  userId={sessionStorage.getItem('userId')}
+                  setToggleCategoryAdd={setToggleCategoryAdd}
+                  active={false}
+                  placeholder={'카테고리 입력'}
+               />
+            ) : null}
+         </S.CategoryWrap>
       </>
    );
 };

@@ -12,7 +12,6 @@ const QrInfo = ({ idx }) => {
    const qrDataList = useSelector(state => state.adminReducer.qrDate);
    const url = useSelector(state => state.adminReducer.apiUrl);
    const dispatch = useDispatch();
-
    const onChangeTableNumDispatch = e => {
       let tableNum = e.target.value;
       if (isNaN(tableNum)) {
@@ -23,7 +22,7 @@ const QrInfo = ({ idx }) => {
          if (tableNum) tableNum.length === 0 ? setInputTextLengthCheck(true) : setInputTextLengthCheck(false);
          // tableNumber Input value 중복
          dispatch(registerTableNum(tableNum, idx));
-         const inputedTableNums = qrDataList.filter(qrData => qrData.tableNum).map(qrData => qrData.tableNum);
+         const inputedTableNums = qrDataList.filter(qrData => qrData.tableNumber).map(qrData => qrData.tableNumber);
          const inputedTableNumsSet = new Set(inputedTableNums);
          if (inputedTableNums.length !== inputedTableNumsSet.size) {
             dispatch(setOverlapNumState(true));
@@ -111,7 +110,10 @@ const QrInfoBox = styled.div`
          grid-template-columns: repeat(3, 50%);
       }
    }
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
+      .textBox {
+         font-size: 10px;
+      }
       .qrInfos {
          grid-template-columns: repeat(3, 100px);
       }
