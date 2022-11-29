@@ -30,6 +30,7 @@ export const USER_MEMBER_ID = 'USER_MEMBER_ID';
 export const USER_MEMBER_PASSWORD = 'USER_MEMBER_PASSWORD';
 export const USER_MEMBER_BUSINESSNUMBER = 'USER_MEMBER_BUSINESSNUMBER';
 export const STORE_INFO_DATA = 'STORE_INFO_DATA';
+export const ALARMDATA_UPDATE = 'ALARMDATA_UPDATE';
 export const storeInfoUpdate = () => {
    return {
       type: CLICK_TO_StoreInfoUpdate
@@ -278,5 +279,11 @@ export const changStoreInfoData = data => {
    return {
       type: STORE_INFO_DATA,
       payload: data
+   };
+};
+export const updateAlarmData = (call, order) => {
+   return {
+      type: ALARMDATA_UPDATE,
+      payload: { call, order }
    };
 };
