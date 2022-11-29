@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Wrapper } from './SignupTos.Style';
@@ -9,7 +9,6 @@ import { Info, InfoFormError, FormControl } from './MemberInfo.Style';
 const Login = () => {
    const postLogin = async () => {
       try {
-         onCheckValues();
          const res = await axios.post(`/member/login`, {
             loginId: id,
             password: password
@@ -32,14 +31,9 @@ const Login = () => {
    const [idError, setIdError] = React.useState(false);
    const [passwordError, setPasswordError] = React.useState(false);
 
-   const [isCheck, setIsCheck] = useState({
-      id: false,
-      password: false
-   });
-
    const handleId = e => {
       setId(e.target.value);
-      setIsCheck({ ...isCheck, id: false });
+
       const idRegex = /^[a-z0-9]{1,11}$/;
       if (idRegex.test(e.target.value) || e.target.value === '') {
          setIdError(false);
@@ -50,7 +44,7 @@ const Login = () => {
 
    const handlePassword = e => {
       setPassword(e.target.value);
-      setIsCheck({ ...isCheck, password: false });
+
       const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,}$/;
 
       if (passwordRegex.test(e.target.value) || e.target.value === '') {
@@ -62,16 +56,6 @@ const Login = () => {
 
    const linkError = !idError && !passwordError && id !== '' && password !== '';
 
-   const onCheckValues = () => {
-      if (id === '' || password === '') {
-         setIsCheck({
-            ...isCheck,
-            idError: id === '' ? true : false,
-            passwordError: password === '' ? true : false
-         });
-      }
-   };
-
    return (
       <Wrapper>
          <Container>
@@ -80,7 +64,7 @@ const Login = () => {
                   <LoginTitle>
                      <h4>로그인</h4>
                   </LoginTitle>
-                  <Info buttonError={isCheck.idError} idError={idError}>
+                  <Info idError={idError}>
                      <p>아이디</p>
                      <FormControl
                         maxLength={11}
@@ -93,7 +77,7 @@ const Login = () => {
                      {idError && <span>영문(소문자), 숫자 포함해 주세요</span>}
                   </Info>
 
-                  <InfoFormError buttonError={isCheck.passwordError} passwordConfirmError={passwordError}>
+                  <InfoFormError passwordConfirmError={passwordError}>
                      <p>비밀번호</p>
                      <FormControl
                         value={password}
