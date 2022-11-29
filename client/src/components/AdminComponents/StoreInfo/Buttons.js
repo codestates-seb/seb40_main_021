@@ -69,7 +69,7 @@ export const WhiteBtn = styled.button`
    }
    @media screen and (max-width: 700px) {
       width: 50%;
-      display: none;
+      /* display: none; */
    }
 `;
 const OrangeBtn = styled.button`

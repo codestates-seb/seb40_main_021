@@ -16,7 +16,7 @@ const SetMenu = () => {
    const [toggleCategoryAdd, setToggleCategoryAdd] = useState(false);
    const dispatch = useDispatch();
    const state = useSelector(store => store.menuUserItemReducer);
-   const saveState = useSelector(store => store.menuSaveItemReducer.data.menus);
+   // const saveState = useSelector(store => store.menuSaveItemReducer.data.menus);
    const categoryList = useSelector(store => store.categoryUserItemReducer.data);
    const menuListState = useSelector(store => store.menuUserItemReducer.data);
    const menuCountPlus = () => {
@@ -44,10 +44,7 @@ const SetMenu = () => {
 
    const [activeIndex, setActiveIndex] = useState(0);
    const [submit, setSubmit] = useState(false);
-   console.log(categoryList);
    const { clickFetchFunc } = useAxios({}, false);
-   console.log(state, 'state');
-   console.log(saveState, 'saveState');
    const navigate = useNavigate();
    const menuClickSave = saveAll => {
       if (saveAll) {
@@ -74,27 +71,7 @@ const SetMenu = () => {
                (state.data[i].menuName.trim() !== '' || state.data[i].menuName !== '') &&
                (state.data[i].menuContent.trim() !== '' || state.data[i].menuContent !== '')
             ) {
-               // setSubmit(true);
-               //통신진행
-               // console.log(
-               //    menuList[0].menuName,
-               //    menuList[0].menuContent,
-               //    menuList[0].price,
-               //    menuList[0].recommnd,
-               //    categoryList[activeIndex].categoryId
-               // );
-               // clickFetchFunc({
-               //    method: 'POST',
-               //    url: `/menu/write`,
-               //    data: {
-               //       memberId: userId,
-               //       menuName: menuList[0].menuName,
-               //       menuContent: menuList[0].menuContent,
-               //       price: menuList[0].price,
-               //       recommendedMenu: menuList[0].recommnd,
-               //       categoryId: categoryList[activeIndex].categoryId
-               //    }
-               // })
+               //
             } else {
                // setNoReadInput(true)
                noReadInput = true;
