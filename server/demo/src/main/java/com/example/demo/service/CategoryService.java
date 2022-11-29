@@ -36,8 +36,6 @@ public class CategoryService{
 
         Optional.ofNullable(category.getCategoryName())
                 .ifPresent(categoryName -> findCategory.setCategoryName(categoryName));
-        Optional.ofNullable(category.getCategoryImage())
-                .ifPresent(categoryImage -> findCategory.setCategoryImage(categoryImage));
 
         return categoryRepository.save(findCategory);
     }
