@@ -13,16 +13,11 @@ const Login = () => {
             loginId: id,
             password: password
          });
-         // sessionStorage.setItem('access token', res.headers.get('authorization'));
-         // sessionStorage.setItem('refresh token', res.headers.get('authorization'));
 
-         // const base64Payload = sessionStorage.getItem('accessToken').split('.')[1];
-         // const payload = Buffer.from(base64Payload, 'base64');
-         // const result = payload.toString();
-         // const userId = JSON.parse(result).userId;
-         // sessionStorage.setItem('user', userId);
+         sessionStorage.setItem('access token', res.headers.get('authorization'));
+         sessionStorage.setItem('refresh token', res.headers.get('refresh'));
 
-         console.log(res);
+         sessionStorage.setItem('userId', res.data.memberId);
       } catch (err) {
          console.log(err);
       }
