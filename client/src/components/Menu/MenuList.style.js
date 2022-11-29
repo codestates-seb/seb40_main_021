@@ -7,20 +7,21 @@ export const List = styled.li`
    color: black;
    padding: 0 25px;
    border-bottom: 1px solid #b8b8b8;
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
+      padding: 0;
    }
 `;
 export const ListLi = styled.div`
    width: 100%;
    display: flex;
    margin-bottom: 17px;
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       display: block;
    }
 `;
 export const InputWrap = styled.div`
    width: calc(100% - 133px);
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       width: 100%;
    }
 `;
@@ -31,7 +32,7 @@ export const InputList = styled.div`
    &:first-child div:last-child {
       margin-left: 36px;
    }
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       display: block;
       &:first-child div:last-child {
          margin-left: 0;
@@ -51,7 +52,7 @@ export const InputListWrap = styled.div`
    & p.menuListItem {
       font-size: 25px;
       margin-top: 12px;
-      @media screen and (max-width: 700px) {
+      @media screen and (max-width: 900px) {
          font-size: 18px;
          font-weight: 700;
       }
@@ -59,7 +60,7 @@ export const InputListWrap = styled.div`
    & p.menuListPrice {
       font-size: 20px;
       margin-top: 12px;
-      @media screen and (max-width: 700px) {
+      @media screen and (max-width: 900px) {
          font-size: 15px;
       }
    }
@@ -71,8 +72,9 @@ export const InputListWrap = styled.div`
       font-size: 13px;
       color: #ff6b00;
       margin-left: 8px;
+      font-weight: 400;
    }
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       margin-bottom: 12px;
    }
 `;
@@ -97,9 +99,14 @@ export const LabelBox = styled.label`
       font-size: 12px;
       color: #787878;
       margin-left: 10px;
-      @media screen and (max-width: 700px) {
+      @media screen and (max-width: 900px) {
          display: block;
+         margin: 0;
+         margin-top: 6px;
       }
+   }
+   @media screen and (max-width: 900px) {
+      margin-left: 8px;
    }
 `;
 export const BottomListWarp = styled.div`

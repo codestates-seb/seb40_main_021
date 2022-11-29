@@ -132,15 +132,15 @@ const MenuList = ({ el, submit, setSubmit }) => {
    }, [pricesChange]);
 
    useEffect(() => {
-      dispatch(menuUserUpdate(el.menuId, menuAboutChange, menuNameChange, imgSrc, pricesChange, checkedChange));
+      dispatch(menuUserUpdate(el.uuid, menuAboutChange, menuNameChange, imgSrc, pricesChange, checkedChange));
    }, [menuNameChange, menuAboutChange, pricesChange, imgSrc, checkedChange]);
 
    useEffect(() => {
-      dispatch(menuUserErrorMessage(el.menuId, helperText));
+      dispatch(menuUserErrorMessage(el.uuid, helperText));
    }, [helperText]);
 
    const DeleteMenu = () => {
-      dispatch(menuUserDelete(el.menuId));
+      dispatch(menuUserDelete(el.uuid));
    };
 
    //number , 쉼표처리
@@ -175,14 +175,14 @@ const MenuList = ({ el, submit, setSubmit }) => {
                   background={imgSrc}
                   name={'menuImg'}
                   onChange={e => handleValue(e)}
-                  htmlFor={`picture${el.menuId}`}>
+                  htmlFor={`picture${el.uuid}`}>
                   <img src={IconPhoto} alt="add" />
                </LabelPhoto>
                <input
                   onChange={e => encodeFileToBase64(e.target.files[0])}
                   type="file"
-                  name={`picture${el.menuId}`}
-                  id={`picture${el.menuId}`}
+                  name={`picture${el.uuid}`}
+                  id={`picture${el.uuid}`}
                />
             </PicWrap>
             <S.InputWrap>
@@ -198,7 +198,7 @@ const MenuList = ({ el, submit, setSubmit }) => {
                         name={`menuName`}
                         placeholder="메뉴 이름을 입력해주세요"
                         type="text"
-                        idx={el.menuId}
+                        idx={el.uuid}
                         handleValue={handleValue}
                         width={'100%'}
                         placeholders="설명을 입력해주세요"
@@ -248,10 +248,10 @@ const MenuList = ({ el, submit, setSubmit }) => {
                   onChange={e => handleValue(e)}
                   name="recommnd"
                   type="checkbox"
-                  id={`recommnd${el.menuId}`}
+                  id={`recommnd${el.uuid}`}
                   checked={checkedChange || false}
                />
-               <S.LabelBox htmlFor={`recommnd${el.menuId}`}>
+               <S.LabelBox htmlFor={`recommnd${el.uuid}`}>
                   추천메뉴 설정 <span>* 설정시 추천메뉴 표기가 활성화 됩니다.</span>
                </S.LabelBox>
             </S.CheckboxWrap>

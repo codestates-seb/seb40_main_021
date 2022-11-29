@@ -58,10 +58,11 @@ export const MenuContainerWarp = styled.div`
    /* overflow-x: scroll; */
    padding: 30px;
    border-radius: 5px;
+   margin-top: -10px;
    @media screen and (max-width: 900px) {
       box-sizing: border-box;
       min-height: calc(100vh - 187px);
-      padding: 24px 15px;
+      padding: 24px 15px 80px;
    }
 `;
 export const SettingHead = styled.p`
@@ -78,7 +79,9 @@ export const NoMenu = styled.p`
       display: block;
       margin-bottom: 12px;
    }
-
+   @media screen and (max-width: 900px) {
+      padding: 50px 0;
+   }
    padding: 50px 40px;
 `;
 
@@ -107,6 +110,16 @@ export const ButtonWarp = styled.div`
    width: 100%;
    display: flex;
    justify-content: space-between;
+   @media screen and (max-width: 900px) {
+      background-color: white;
+      box-sizing: border-box;
+      padding: 20px 15px;
+      width: 100%;
+      bottom: 80px;
+      margin: 0;
+      position: sticky;
+      right: 0;
+   }
 `;
 export const NonePlace = styled.div`
    width: 130px;

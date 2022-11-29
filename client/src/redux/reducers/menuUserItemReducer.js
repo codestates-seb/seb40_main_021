@@ -7,6 +7,8 @@ import {
    MENU_GET_ADD_USER
 } from '../action/action';
 
+import { v4 as uuidv4 } from 'uuid';
+
 const initialState = {
    data: []
 };
@@ -23,7 +25,8 @@ const menuUserItemReducer = (state = initialState, action) => {
                   menuContent: '',
                   price: '',
                   menuImg: ''
-               }
+               },
+               uuid: uuidv4()
             };
          });
          // state.data = dataSet;
@@ -33,18 +36,18 @@ const menuUserItemReducer = (state = initialState, action) => {
          let changeData = [...state.data, action.payload.res];
          return Object.assign({}, state, { data: changeData });
       case MENU_USER_UPDATE:
-         state.data.find(x => x.menuId === action.payload.id).menuName = action.payload.menuNameValue;
-         state.data.find(x => x.menuId === action.payload.id).menuContent = action.payload.menuAboutValue;
-         state.data.find(x => x.menuId === action.payload.id).menuImg = action.payload.menuImgValue;
-         state.data.find(x => x.menuId === action.payload.id).price = action.payload.pricesValue;
-         state.data.find(x => x.menuId === action.payload.id).recommendedMenu = action.payload.checked;
+         state.data.find(x => x.uuid === action.payload.id).menuName = action.payload.menuNameValue;
+         state.data.find(x => x.uuid === action.payload.id).menuContent = action.payload.menuAboutValue;
+         state.data.find(x => x.uuid === action.payload.id).menuImg = action.payload.menuImgValue;
+         state.data.find(x => x.uuid === action.payload.id).price = action.payload.pricesValue;
+         state.data.find(x => x.uuid === action.payload.id).recommendedMenu = action.payload.checked;
          return state;
       case MENU_USER_DELETE:
          // eslint-disable-next-line no-case-declarations
-         const deletMenu = state.data.filter(el => el.menuId !== action.payload.id);
+         const deletMenu = state.data.filter(el => el.uuid !== action.payload.id);
          return Object.assign({}, state, { data: deletMenu });
       case ERROR_CASE_HANDLE:
-         state.data.find(x => x.menuId === action.payload.id).errorMessage = action.payload.message;
+         state.data.find(x => x.uuid === action.payload.id).errorMessage = action.payload.message;
          return Object.assign({}, state);
       case EROOR_TO_SUBMIT:
          // eslint-disable-next-line no-case-declarations

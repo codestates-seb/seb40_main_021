@@ -35,9 +35,10 @@ const SetMenuLi = ({ submit, setSubmit, activeIndex }) => {
    }, [menuList, activeIndex]);
    return (
       <>
-         {menuList.map(el => (
-            <MenuList submit={submit} setSubmit={setSubmit} el={el} key={el.menuId} />
-         ))}
+         {menuList &&
+            menuList.map((el, idx) => (
+               <MenuList submit={submit} idx={idx} setSubmit={setSubmit} el={el} key={el.menuId} />
+            ))}
       </>
    );
 };
