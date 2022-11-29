@@ -46,6 +46,10 @@ public class Member extends BaseTimeEntity {
     @Column
     private String businessHours;
 
+    public String getMember()
+    {
+        return loginId;
+    }
     @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
     private List<Category> categoryList = new ArrayList<>();
 

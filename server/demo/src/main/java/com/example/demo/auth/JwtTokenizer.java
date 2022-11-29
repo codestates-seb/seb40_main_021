@@ -1,5 +1,6 @@
 package com.example.demo.auth;
 
+import com.example.demo.entity.Member;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
@@ -19,6 +20,7 @@ import java.util.Map;
 @Component
 public class JwtTokenizer {
 
+    Member member = new Member();
     @Getter
     @Value("${jwt.secret-key}")
     private String secretKey;
@@ -46,6 +48,7 @@ public class JwtTokenizer {
                 .setSubject(subject)
                 .setIssuedAt(Calendar.getInstance().getTime())
                 .setExpiration(expiration)
+                .claim("userId", member.getLoginId())
                 .signWith(key)
                 .compact();
     }
