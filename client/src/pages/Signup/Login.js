@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Wrapper } from './SignupTos.Style';
 import { IdRemember, LoginBtn, LoginPanel, LoginTitle } from './Login.Style';
 import { Container } from './Complete.Style';
-import { InfoForm, InfoFormError, FormControl } from './MemberInfo.Style';
+import { Info, InfoFormError, FormControl } from './MemberInfo.Style';
 
 const Login = () => {
    const postLogin = async () => {
@@ -13,10 +13,11 @@ const Login = () => {
             loginId: id,
             password: password
          });
-         // sessionStorage.setItem('access token', res.headers.get('key값 확인'));
-         // sessionStorage.setItem('refresh token', res.headers.get('key값 확인'));
-         //유저아이디
-         console.log(res);
+
+         sessionStorage.setItem('access token', res.headers.get('authorization'));
+         sessionStorage.setItem('refresh token', res.headers.get('refresh'));
+
+         sessionStorage.setItem('userId', res.data.memberId);
       } catch (err) {
          console.log(err);
       }
@@ -59,7 +60,7 @@ const Login = () => {
                   <LoginTitle>
                      <h4>로그인</h4>
                   </LoginTitle>
-                  <InfoForm>
+                  <Info idError={idError}>
                      <p>아이디</p>
                      <FormControl
                         maxLength={11}
@@ -69,9 +70,10 @@ const Login = () => {
                         value={id}
                         onChange={handleId}
                      />
-                  </InfoForm>
-                  {idError && <span>영문(소문자), 숫자 포함해 주세요.</span>}
-                  <InfoFormError>
+                     {idError && <span>영문(소문자), 숫자 포함해 주세요</span>}
+                  </Info>
+
+                  <InfoFormError passwordConfirmError={passwordError}>
                      <p>비밀번호</p>
                      <FormControl
                         value={password}
@@ -81,7 +83,7 @@ const Login = () => {
                         onChange={handlePassword}
                      />
 
-                     {passwordError && <span>영문, 숫자,특수문자 포함 8자리 이상</span>}
+                     {passwordError && <span>영문, 숫자, 특수문자 포함 8자리 이상</span>}
                      <IdRemember>
                         <input type="checkbox" id="rememberCheck" name="checkbox" />
                         <label htmlFor="rememberCheck">아이디 기억하기</label>

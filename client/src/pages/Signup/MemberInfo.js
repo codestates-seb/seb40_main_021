@@ -9,7 +9,8 @@ import {
    InfoForm,
    InfoFormAuthComplete,
    InfoFormError,
-   Btn
+   Btn,
+   Info
 } from './MemberInfo.Style';
 import {
    Wrapper,
@@ -129,7 +130,7 @@ const MemberInfo = () => {
                      <h5>2. 회원 정보 입력</h5>
                   </PanelTitle>
 
-                  <InfoForm>
+                  <Info idError={idError}>
                      <p>아이디</p>
                      <FormControl
                         maxLength={11}
@@ -139,9 +140,9 @@ const MemberInfo = () => {
                         value={inputValue?.userMemberReducer?.id ?? ''}
                         onChange={handleId}
                      />
-                  </InfoForm>
+                  </Info>
                   {idError && <span>영문(소문자), 숫자 포함해 주세요.</span>}
-                  <InfoForm>
+                  <InfoForm passwordError={passwordError}>
                      <p>비밀번호</p>
                      <FormControl
                         value={inputValue?.userMemberReducer?.password ?? ''}
@@ -152,7 +153,7 @@ const MemberInfo = () => {
                      />
                   </InfoForm>
                   {passwordError && <span>영문, 숫자, 특수문자 포함 8자리 이상</span>}
-                  <InfoFormError>
+                  <InfoFormError passwordConfirmError={passwordConfirmError}>
                      <p>비밀번호 재확인</p>
                      <FormControl
                         type="password"

@@ -1,34 +1,18 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import useInterval from '../../../util/useInterval';
 import Callalram from './CallAlarm';
+import callAlramSound from '../../../assets/sound/callAlram.wav';
 
 const CallAlarms = () => {
-   const url = useSelector(state => state.adminReducer.apiUrl);
-   const [callList, setCallList] = useState([]);
+   const [audio] = useState(new Audio(callAlramSound));
+   const callAlarmList = useSelector(state => state.adminReducer.alarmData.callAlarmReverse);
+   sessionStorage.setItem('call', callAlarmList.length);
    useEffect(() => {
-      axios.get(`${url}/call/${sessionStorage.getItem('userId')}`).then(res => {
-         const reverse = res.data.data
-            .slice(0)
-            .reverse()
-            .map(num => num);
-
-         setCallList(reverse);
-      });
+      if (sessionStorage.getItem('call') < callAlarmList.length) {
+         audio.play();
+      }
    }, []);
-
-   useInterval(() => {
-      axios.get(`${url}/call/${sessionStorage.getItem('userId')}`).then(res => {
-         const reverse = res.data.data
-            .slice(0)
-            .reverse()
-            .map(num => num);
-
-         setCallList(reverse);
-      });
-   }, 3000);
    return (
       <CallAlarmContainer>
          <div className="subTitle">
@@ -39,10 +23,10 @@ const CallAlarms = () => {
          </div>
 
          <div className="callAlarms">
-            {callList.length === 0 ? (
+            {callAlarmList.length === 0 ? (
                <div className="callEmpty">호출 목록이 없습니다</div>
             ) : (
-               callList.map(call => {
+               callAlarmList.map(call => {
                   return <Callalram key={call.callId} data={call}></Callalram>;
                })
             )}
@@ -56,6 +40,7 @@ const CallAlarmContainer = styled.div`
    height: auto;
    margin-bottom: 50px;
    .callEmpty {
+      color: rgb(255, 107, 0);
       font-size: 18px;
       font-weight: 900;
    }

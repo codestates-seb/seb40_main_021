@@ -1,14 +1,53 @@
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { storeInfoUpdate } from '../../../redux/action/action';
+const ButtonWrap = ({ bottom, isEmptyValue }) => {
+   const dispatch = useDispatch();
+   const url = useSelector(state => state.adminReducer.apiUrl);
+   const UpdateState = useSelector(state => state.adminReducer.storeInfoUpdateState);
+   const storeInfoData = useSelector(state => state.adminReducer.storeInfoData);
+   console.log(isEmptyValue);
+   const handleClickInfoUpdate = () => {
+      if (!UpdateState) dispatch(storeInfoUpdate());
+      if (UpdateState && isEmptyValue) {
+         alert('전송');
+         dispatch(storeInfoUpdate());
+         const body = {
+            businessName: storeInfoData.businessName,
+            businessNumber: storeInfoData.businessNum,
+            contactNumber: storeInfoData.number,
+            about: storeInfoData.description
+         };
+         fetch(`${url}/member/${sessionStorage.getItem('userId')}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+         })
+            .then(res => {
+               console.log(res);
+            })
+            .catch(err => console.log(err));
+      } else if (UpdateState && !isEmptyValue) {
+         alert('모든 칸을 채워주세요');
+      }
+   };
+   return (
+      <BtnWrap bottom={bottom}>
+         <WhiteBtn>미리보기</WhiteBtn>
+         <OrangeBtn onClick={handleClickInfoUpdate}>{UpdateState ? '확인' : '가게정보 수정'}</OrangeBtn>
+      </BtnWrap>
+   );
+};
 
+export default ButtonWrap;
 const BtnWrap = styled.div`
    display: flex;
-   /* width: 95%; */
-   /* justify-content: end; */
-   align-self: flex-end;
+   width: 100%;
+   justify-content: end;
    margin: 20px 10px 0 0;
    @media screen and (max-width: 700px) {
-      margin-top: 40px;
+      background-color: white;
+      margin: 0;
       width: 100%;
    }
 `;
@@ -30,6 +69,7 @@ export const WhiteBtn = styled.button`
    }
    @media screen and (max-width: 700px) {
       width: 50%;
+      display: none;
    }
 `;
 const OrangeBtn = styled.button`
@@ -50,17 +90,6 @@ const OrangeBtn = styled.button`
       background-color: #313e46;
    }
    @media screen and (max-width: 700px) {
-      width: 50%;
+      width: 100%;
    }
 `;
-const ButtonWrap = ({ bottom, handleValid }) => {
-   const UpdateState = useSelector(state => state.adminReducer.storeInfoUpdateState);
-   return (
-      <BtnWrap bottom={bottom}>
-         <WhiteBtn>미리보기</WhiteBtn>
-         <OrangeBtn onClick={handleValid}>{UpdateState ? '확인' : '가게정보 수정'}</OrangeBtn>
-      </BtnWrap>
-   );
-};
-
-export default ButtonWrap;

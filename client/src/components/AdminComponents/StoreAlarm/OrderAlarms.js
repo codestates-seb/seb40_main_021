@@ -1,43 +1,26 @@
 import { useEffect, useState } from 'react';
 import OrderAlram from './OrderAlram';
 import styled from 'styled-components';
-import axios from 'axios';
-import useInterval from '../../../util/useInterval';
 import { useSelector } from 'react-redux';
-
+import callAlramSound from '../../../assets/sound/callAlram.wav';
 const OrderAlarms = () => {
-   const url = useSelector(state => state.adminReducer.apiUrl);
-   const [allOrderList, setAllorderList] = useState([]);
+   const [audio] = useState(new Audio(callAlramSound));
+   const orderAlarmList = useSelector(state => state.adminReducer.alarmData.orderAlarmReverse);
+   sessionStorage.setItem('order', orderAlarmList.length);
    useEffect(() => {
-      axios.get(`${url}/table/${sessionStorage.getItem('userId')}/order`).then(res => {
-         const reverse = res.data.data
-            .slice(0)
-            .reverse()
-            .map(num => num);
-
-         setAllorderList(reverse);
-      });
+      if (sessionStorage.getItem('order') < orderAlarmList.length) {
+         audio.play();
+      }
    }, []);
-
-   useInterval(() => {
-      axios.get(`${url}/table/${sessionStorage.getItem('userId')}/order`).then(res => {
-         const reverse = res.data.data
-            .slice(0)
-            .reverse()
-            .map(num => num);
-
-         setAllorderList(reverse);
-      });
-   }, 3000);
    return (
       <MainContents>
          <div className="subTitle">주문 알람</div>
          <div className="orderAlrams">
             <>
-               {allOrderList.length === 0 ? (
+               {orderAlarmList.length === 0 ? (
                   <div className="orderEmpty">주문 알람이 없습니다.</div>
                ) : (
-                  allOrderList.map((menu, idx) => {
+                  orderAlarmList.map((menu, idx) => {
                      console.log(menu);
                      return <OrderAlram key={menu.orderId} menu={menu} idx={idx}></OrderAlram>;
                   })

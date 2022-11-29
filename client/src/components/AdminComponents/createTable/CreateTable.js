@@ -111,9 +111,10 @@ const MainContants = styled.div`
          flex-direction: column-reverse;
       }
    }
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       padding: 30px;
       .th {
+         font-size: 10px;
          grid-template-columns: repeat(3, 100px);
       }
       .flex {

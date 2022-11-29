@@ -20,7 +20,7 @@ const QrListBox = styled.div`
    border: 1px solid lightgray;
    border-radius: 5px;
    width: 100%;
-   max-height: 400px;
+   height: 280px;
    /* box-shadow: 0 4px 2px 0px lightgray; */
    overflow-y: scroll;
    .emptyList {

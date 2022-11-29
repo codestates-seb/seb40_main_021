@@ -38,7 +38,7 @@ const StoreInfo = () => {
 
       console.log(test);
       try {
-         const res = await axios.post(`/member/join`, {
+         const res = await axios.post(`/member`, {
             loginId: inputValue.userMemberReducer.id,
             password: inputValue.userMemberReducer.password,
             businessNumber: inputValue.userMemberReducer.businessNumber,
@@ -66,6 +66,8 @@ const StoreInfo = () => {
 
    const handleNumber = e => {
       setContactNumber(e.target.value);
+
+      console.log(contactNumber);
 
       const ContactNumberRegex = /[0-9]$/;
 
@@ -136,7 +138,18 @@ const StoreInfo = () => {
 
                   <InfoForm>
                      <p>가게 전화번호 *</p>
-                     <FormControl type="text" placeholder="전화번호를 입력해주세요" onChange={handleNumber} />
+                     <FormControl
+                        maxLength={13}
+                        type="text"
+                        name="number"
+                        placeholder="전화번호를 입력해주세요"
+                        onChange={handleNumber}
+                        onInput={e => {
+                           e.target.value = e.target.value
+                              .replace(/[^0-9]/g, '')
+                              .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+                        }}
+                     />
                   </InfoForm>
                   {NumberError && <span>숫자만 입력해주세요</span>}
                   <InfoForm>

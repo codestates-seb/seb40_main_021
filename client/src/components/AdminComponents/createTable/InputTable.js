@@ -25,13 +25,19 @@ const InputTable = () => {
          {thereIsMenu ? (
             <div className="createQrBox">
                <h2 className="label">테이블 수</h2>
-               <input
-                  type="text"
-                  placeholder="테이블 수를 입력하세요"
-                  onChange={e => {
-                     hadleClickCreateQR(e);
-                  }}></input>
-               <Button text={'QR 등록'} num={tableValue}></Button>
+               <div className="input">
+                  <div>
+                     <input
+                        type="text"
+                        placeholder="테이블 수를 입력하세요"
+                        onChange={e => {
+                           hadleClickCreateQR(e);
+                        }}></input>
+                  </div>
+                  <div>
+                     <Button text={'QR 등록'} num={tableValue}></Button>
+                  </div>
+               </div>
             </div>
          ) : (
             <div className="createQrBox">
@@ -54,6 +60,9 @@ const InputTableBox = styled.div`
       align-items: center;
       justify-content: start;
       margin-bottom: 20px;
+      .input {
+         display: flex;
+      }
       .label {
          min-width: 120px;
          font-weight: bold;
@@ -81,6 +90,23 @@ const InputTableBox = styled.div`
          font-size: 14px;
          font-weight: 700;
          color: rgb(255, 107, 0);
+      }
+   }
+   @media screen and (max-width: 900px) {
+      .createQrBox {
+         flex-direction: column;
+         align-items: flex-start;
+      }
+      button {
+         margin: 0;
+         margin-top: 15px;
+      }
+      .input {
+         margin-top: 15px;
+         display: flex;
+         flex-direction: column;
+         justify-content: flex-start;
+         align-items: flex-start;
       }
    }
 `;
