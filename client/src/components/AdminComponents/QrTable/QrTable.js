@@ -16,6 +16,7 @@ import {
 import axios from 'axios';
 
 const CreateQR = () => {
+   const [isChack, setIscheack] = useState(true);
    const [qrData, setQrData] = useState([]);
    const [dummyState, setDummyState] = useState([]);
    const allChackBoxRef = useRef(null);
@@ -89,12 +90,14 @@ const CreateQR = () => {
    };
    const allCheck = () => {
       if (allChackBoxRef.current.checked) {
+         setIscheack(false);
          dispatch(clearSavedTableListCheckBoxArr());
          dispatch(qrListAllCheck(true));
          for (let idx = 0; idx < qrData.length; idx++) {
             dispatch(savedTableListCheckBoxArr(idx));
          }
       } else {
+         setIscheack(true);
          dispatch(qrListAllCheck(false));
          dispatch(clearSavedTableListCheckBoxArr());
       }
@@ -149,7 +152,7 @@ const CreateQR = () => {
                   <div></div>
                </div>
             </div>
-            <QrList />
+            <QrList isChack={isChack} setIscheack={setIscheack}></QrList>
             <div className="printBtn">
                <Button />
             </div>
