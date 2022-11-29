@@ -12,6 +12,7 @@ const Gnb = () => {
    const dispatch = useDispatch();
    const gnbState = useSelector(store => store.gnbReducer);
    const url = useSelector(state => state.adminReducer.apiUrl);
+   // eslint-disable-next-line no-unused-vars
    const alarmData = useSelector(state => state.adminReducer.alarmData);
    const getAlarm = async url => {
       let variable = await axios.get(url).then(res => {
@@ -25,14 +26,14 @@ const Gnb = () => {
    const getAlarms = async () => {
       const orderAlarmReverse = await getAlarm(`${url}/table/${sessionStorage.getItem('userId')}/order`);
       const callAlarmReverse = await getAlarm(`${url}/call/${sessionStorage.getItem('userId')}`);
-      dispatch(updateAlarmData(callAlarmReverse, orderAlarmReverse));
+      dispatch(updateAlarmData(orderAlarmReverse, callAlarmReverse));
    };
    useEffect(() => {
       getAlarms();
    }, []);
 
    useInterval(() => {
-      getAlarms();
+      // getAlarms();
    }, 3000);
    const count = alarmData.orderAlarmReverse.length + alarmData.callAlarmReverse.length;
    return (

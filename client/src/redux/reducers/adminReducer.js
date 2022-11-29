@@ -16,7 +16,7 @@ import {
    ALARMDATA_UPDATE
 } from '../action/action';
 const adminState = {
-   apiUrl: 'https://5225-221-140-177-247.jp.ngrok.io',
+   apiUrl: 'https://4d66-221-140-177-247.jp.ngrok.io',
    printModal: false,
    qrListAllCheck: false,
    storeInfoUpdateState: false,
@@ -105,7 +105,8 @@ export const adminReducer = (state = adminState, action) => {
       case STORE_INFO_DATA:
          return Object.assign({}, state, { storeInfoData: action.payload });
       case ALARMDATA_UPDATE:
-         return Object.assign({}, state, { storeInfoData: action.payload });
+         console.log(state.alarmData);
+         return Object.assign({}, state, { alarmData: action.payload });
       default:
          return state;
    }

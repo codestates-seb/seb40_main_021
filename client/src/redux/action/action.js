@@ -281,9 +281,9 @@ export const changStoreInfoData = data => {
       payload: data
    };
 };
-export const updateAlarmData = (call, order) => {
+export const updateAlarmData = (orderAlarmReverse, callAlarmReverse) => {
    return {
       type: ALARMDATA_UPDATE,
-      payload: { call, order }
+      payload: { orderAlarmReverse, callAlarmReverse }
    };
 };

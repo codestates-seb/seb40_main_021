@@ -19,6 +19,7 @@ const Btn = styled.button`
 
 const ButtonWrap = ({ text, num }) => {
    const navigate = useNavigate();
+   // eslint-disable-next-line no-unused-vars
    const url = useSelector(state => state.adminReducer.apiUrl);
    const setOverlapNumState = useSelector(state => state.adminReducer.tableNumInputValueOverlap);
    const setSavedTebleNum = useSelector(state => state.adminReducer.setSavedTebleNum);
@@ -44,12 +45,14 @@ const ButtonWrap = ({ text, num }) => {
          alert('테이블 등록');
          const body = { tableList: qrData };
          console.log(body);
-         fetch(`${url}/table/${sessionStorage.getItem('userId')}`, {
+         //${url}
+         fetch(`/table/${sessionStorage.getItem('userId')}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
          })
-            .then(() => {
+            .then(res => {
+               console.log(res);
                navigate('/user/qr');
             })
             .catch(err => console.log(err));

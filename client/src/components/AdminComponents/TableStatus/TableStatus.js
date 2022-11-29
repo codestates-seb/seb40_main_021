@@ -1,16 +1,31 @@
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 const TableStatus = ({ data }) => {
+   console.log(data);
    const priceList = data.orderList.map(menus => {
       return menus.price * menus.quantity;
    });
+   const url = useSelector(state => state.adminReducer.apiUrl);
    const totalPrice = priceList.reduce((prev, current) => prev + current);
+   const hadleClickDeleteOrder = () => {
+      fetch(`${url}/order/${sessionStorage.getItem('userId')}/${data.tableNumber}`, {
+         method: 'DELETE',
+         headers: { 'Content-Type': 'application/json' }
+      });
+   };
+
    return (
       <TableStatusBox>
          <div className="orderHead">
             <div>No. {data.tableNumber}</div>
             <div>
-               주문 <b>{data.orderList.length}</b>개
+               <div className="orderDelete">
+                  <button onClick={hadleClickDeleteOrder}>삭제</button>
+               </div>
+               <div>
+                  주문 <b>{data.orderList.length}</b>개
+               </div>
             </div>
          </div>
          <div className="orderList">
@@ -44,6 +59,15 @@ const TableStatusBox = styled.div`
    background-color: #fdffde;
    border-radius: 3px 3px 15px 3px;
    margin-bottom: 25px;
+   .orderDelete {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      justify-content: end;
+      > button {
+         font-size: 12px;
+      }
+   }
    .orderHead {
       display: flex;
       align-items: center;
@@ -55,10 +79,11 @@ const TableStatusBox = styled.div`
          font-size: 30px;
          color: #ff6c01;
          font-weight: bold;
-         width: 70%;
+         width: 50%;
          margin-left: 10px;
       }
       > :nth-child(2) {
+         width: 50%;
          b {
             font-size: 24px;
          }
