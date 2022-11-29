@@ -39,6 +39,7 @@ public class CategoryController {
 
         return new ResponseEntity<>(categoryMapper.categoryToCategoryResponseDto(response), HttpStatus.CREATED);
     }
+
     // 카테고리 수정
     @PatchMapping("/update/{category-id}")
     public ResponseEntity patchCategory(@PathVariable("category-id") @Positive long categoryId,
@@ -50,6 +51,7 @@ public class CategoryController {
 
         return new ResponseEntity<>(categoryMapper.categoryToCategoryResponseDto(response), HttpStatus.OK);
     }
+
     // 특정 카테고리 조회
     @GetMapping("/read/{category-id}")
     public ResponseEntity getCategory(@PathVariable("category-id") @Positive long categoryId){
@@ -60,6 +62,7 @@ public class CategoryController {
                         categoryMapper.categoryToCategoryAndMenuResponseDtos(menuService, category)),
                 HttpStatus.OK);
     }
+
     // 모든 카테고리 조회
     @GetMapping("/{member-id}")
     public ResponseEntity getCategories(@PathVariable("member-id") @Positive Long memberId){

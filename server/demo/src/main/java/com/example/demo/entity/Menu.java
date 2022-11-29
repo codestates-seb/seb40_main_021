@@ -31,6 +31,9 @@ public class Menu {
     @Column(nullable = false)
     private Boolean recommendedMenu;
 
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String menuImage;
+
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "CATEGORY_ID")
