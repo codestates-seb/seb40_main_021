@@ -10,10 +10,9 @@ const CategoryMapLi = ({ activeIndex, setActiveIndex, setSubmit, toggleCategoryA
    const categoryList = useSelector(store => store.categoryUserItemReducer.data);
 
    //get
-   let userId = 1;
    const { response, error } = useAxios({
       method: 'GET',
-      url: `category/${userId}`
+      url: `category/${sessionStorage.getItem('userId')}`
    });
    //  const { clickFetchFunc } = useAxios({}, false);
    // response && console.log(response)
@@ -21,7 +20,6 @@ const CategoryMapLi = ({ activeIndex, setActiveIndex, setSubmit, toggleCategoryA
    useEffect(() => {
       response && dispatch(setGetUserCategory(response));
    }, [response]);
-   console.log(categoryList);
    return (
       <>
          {error ? (
@@ -37,7 +35,7 @@ const CategoryMapLi = ({ activeIndex, setActiveIndex, setSubmit, toggleCategoryA
                            setSubmit={setSubmit}
                            key={idx}
                            el={el}
-                           userId={userId}
+                           userId={sessionStorage.getItem('userId')}
                            length={categoryList.length}
                            active={active}
                            setActiveIndex={setActiveIndex}
@@ -49,7 +47,7 @@ const CategoryMapLi = ({ activeIndex, setActiveIndex, setSubmit, toggleCategoryA
                   })}
                {toggleCategoryAdd ? (
                   <CategoryAdd
-                     userId={userId}
+                     userId={sessionStorage.getItem('userId')}
                      setToggleCategoryAdd={setToggleCategoryAdd}
                      active={false}
                      placeholder={'카테고리 입력'}

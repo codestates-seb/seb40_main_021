@@ -16,12 +16,11 @@ const Menu = () => {
 
    const dispatch = useDispatch();
    //get
-   let userId = 1;
 
    let error;
    useEffect(() => {
       axios
-         .get(`category/${userId}`)
+         .get(`category/${sessionStorage.getItem('userId')}`)
          .then(res => {
             dispatch(setGetUserCategory(res.data));
          })

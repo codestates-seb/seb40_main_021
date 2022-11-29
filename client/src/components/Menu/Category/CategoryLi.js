@@ -74,7 +74,11 @@ const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex, userId
          if (idx !== 0) {
             setActiveIndex(idx - 1);
          }
-         return dispatch(setUserDeleteCategory(categoryId));
+         clickFetchFunc({
+            method: 'DELETE',
+            url: `/category/${categoryId}`
+         });
+         return dispatch(setUserDeleteCategory(idx));
       }
 
       // if (length === 1) {
