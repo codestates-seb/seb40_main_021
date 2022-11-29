@@ -10,13 +10,13 @@ export const BtnDefault = styled.button`
    margin: 8px 0 0;
    font-size: 14px;
    font-weight: 600;
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       display: none;
    }
 `;
 export const BtnDefaultMobile = styled(BtnDefault)`
    display: none;
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       display: block;
       position: absolute;
       top: 0;

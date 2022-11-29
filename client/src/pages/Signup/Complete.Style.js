@@ -4,7 +4,7 @@ export const Container = styled.div`
    display: flex;
    justify-content: center;
    height: calc(100vh - 50px);
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       display: flex;
       justify-content: center;
       align-items: flex-start;
@@ -20,7 +20,7 @@ export const CompletePanel = styled.section`
    border-top: 5px solid #ff6b00;
    border-radius: 0 0 10px 10px;
    box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       margin-top: 0;
       min-height: calc(100vh - 50px);
       padding: 15.1rem 2.6rem 0;
@@ -32,7 +32,7 @@ export const CompletePanel = styled.section`
 export const CompleteImg = styled.div`
    display: flex;
    justify-content: center;
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
    }
 `;
 export const CompleteTxt = styled.div`
@@ -47,7 +47,7 @@ export const CompleteTxt = styled.div`
       line-height: 18.5px;
       margin-top: 15px;
    }
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       margin: 30px 0 0;
       text-align: center;
       h4 {
@@ -63,7 +63,7 @@ export const CompleteBtn = styled.div`
    align-items: center;
    margin-top: 35px;
 
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
@@ -100,7 +100,7 @@ export const Btn = styled.a`
    transition-duration: 0.4s;
    text-shadow: 0 -1px 0 rgb(0 0 0 / 20%);
    box-shadow: inset 0 1px 0 rgb(255 255 255 / 15%), 0 1px 1px rgb(0 0 0 / 8%);
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       &:first-child {
          width: 100%;
          margin-bottom: 2rem;
@@ -139,7 +139,7 @@ export const BtnDefaultActive = styled.button`
    font-size: 16px;
    font-weight: 700;
    margin-right: 15px;
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       background: #000;
       text-shadow: none;
       border: none;
