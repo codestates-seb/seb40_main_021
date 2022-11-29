@@ -38,7 +38,7 @@ const StoreInfo = () => {
 
       console.log(test);
       try {
-         const res = await axios.post(`/member/join`, {
+         const res = await axios.post(`/member`, {
             loginId: inputValue.userMemberReducer.id,
             password: inputValue.userMemberReducer.password,
             businessNumber: inputValue.userMemberReducer.businessNumber,
