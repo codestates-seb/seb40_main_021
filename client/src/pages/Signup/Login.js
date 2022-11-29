@@ -18,6 +18,8 @@ const Login = () => {
          sessionStorage.setItem('refresh token', res.headers.get('refresh'));
 
          sessionStorage.setItem('userId', res.data.memberId);
+
+         console.log(res);
       } catch (err) {
          console.log(err);
       }
@@ -51,6 +53,8 @@ const Login = () => {
          setPasswordError(true);
       }
    };
+
+   const linkError = !idError && !passwordError && id !== '' && password !== '';
 
    return (
       <Wrapper>
@@ -91,7 +95,7 @@ const Login = () => {
                   </InfoFormError>
                </form>
                <LoginBtn>
-                  <Link to={!idError && !passwordError ? '/' : null} onClick={postLogin}>
+                  <Link to={linkError ? '/user' : null} onClick={postLogin}>
                      로그인
                   </Link>
                </LoginBtn>
