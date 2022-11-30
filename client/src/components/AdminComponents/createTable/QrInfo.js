@@ -61,7 +61,11 @@ const QrInfo = ({ idx }) => {
                   onChange={e => onChangeTableNumDispatch(e)}></input>
             </div>
             <div className="textBox">
-               {inputTextLengthCheck ? '번호를 입력해주세요.' : savedNumChack ? '등록된 테이블입니다.' : 'Y'}
+               {inputTextLengthCheck
+                  ? '번호를 입력해주세요.'
+                  : savedNumChack
+                  ? '등록된 테이블입니다.'
+                  : '사용 가능한 번호 입니다.'}
             </div>
          </div>
       </QrInfoBox>

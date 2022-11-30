@@ -50,7 +50,6 @@ const StoreInfo = () => {
       contactNumber === '' ||
       NumberError
    );
-
    const postStoreInfo = async () => {
       try {
          onCheckValues();

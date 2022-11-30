@@ -21,7 +21,7 @@ const Login = () => {
             loginId: id,
             password: password
          });
-
+         console.log(res);
          sessionStorage.setItem('access token', res.headers.get('authorization'));
          sessionStorage.setItem('refresh token', res.headers.get('refresh'));
 

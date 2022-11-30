@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { savedTableListCheckBoxArr, registUpdateTableNumber } from '../../../redux/action/action';
-const QrInfo = ({ data, idx }) => {
+const QrInfo = ({ data, idx, dummyState }) => {
    const modifyingSavedTableNumState = useSelector(state => state.adminReducer.modifyingSavedTableNum);
    const savedTableListCheckBoxArrState = useSelector(state => state.adminReducer.savedTableListCheckBoxArr);
    const isIncludes = savedTableListCheckBoxArrState.includes(idx);
@@ -10,10 +10,13 @@ const QrInfo = ({ data, idx }) => {
    const handleClickCheckBox = idx => {
       dispatch(savedTableListCheckBoxArr(idx));
    };
-
    const qrListAllCheckState = useSelector(state => state.adminReducer.qrListAllCheck);
    const checkBoxRef = useRef(null);
    const inputRef = useRef(null);
+
+   useEffect(() => {
+      inputRef.current.value = data.tableNumber;
+   }, [dummyState]);
    useEffect(() => {
       if (qrListAllCheckState) {
          checkBoxRef.current.checked = true;
@@ -43,7 +46,6 @@ const QrInfo = ({ data, idx }) => {
                <input
                   ref={inputRef}
                   onChange={handleChangeInput}
-                  defaultValue={data.tableNumber}
                   className={modifyingSavedTableNumState && isIncludes ? 'tableNuminput' : 'displayNone'}
                   type="text"></input>
             </div>
@@ -55,7 +57,8 @@ const QrInfo = ({ data, idx }) => {
 };
 const QrInfoBox = styled.div`
    height: 50px;
-   border: ${({ isIncludes }) => (isIncludes ? '1px solid #313e46;' : 'none')};
+   background-color: ${({ isIncludes }) => (isIncludes ? '#FFEBDD' : 'white')};
+   border-bottom: 1px solid #ffebdd;
    .tableNuminput {
       border: 0;
       height: 30px;

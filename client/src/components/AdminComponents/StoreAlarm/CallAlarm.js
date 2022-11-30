@@ -1,9 +1,19 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 const CallAlarm = ({ data }) => {
+   const url = useSelector(state => state.adminReducer.apiUrl);
    const [callCheck, setCallCheck] = useState(true);
    const handelClickCallCheck = () => {
       setCallCheck(!callCheck);
+      if (callCheck) {
+         setTimeout(() => {
+            fetch(`${url}/call/${sessionStorage.getItem('userId')}/${data.tableNumber}`, {
+               method: 'DELETE',
+               headers: { 'Content-Type': 'application/json' }
+            });
+         }, 5000);
+      }
    };
 
    return (

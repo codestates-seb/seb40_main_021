@@ -15,6 +15,7 @@ const Gnb = () => {
    const alarmData = useSelector(state => state.adminReducer.alarmData);
    const getAlarm = async url => {
       let variable = await axios.get(url).then(res => {
+         console.log(res);
          return res.data.data
             .slice(0)
             .reverse()
@@ -32,7 +33,7 @@ const Gnb = () => {
    }, []);
 
    useInterval(() => {
-      getAlarms();
+      // getAlarms();
    }, 3000);
    const count = alarmData.orderAlarmReverse.length + alarmData.callAlarmReverse.length;
    return (

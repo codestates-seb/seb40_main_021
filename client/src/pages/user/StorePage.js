@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Buttons from '../../components/AdminComponents/StoreInfo/Buttons';
 import { useState } from 'react';
 const Store = () => {
-   const [isEmptyValue, setIsEmptyValue] = useState(true);
+   const [isEmptyValue, setIsEmptyValue] = useState(false);
    return (
       <StoreContainer>
          <StoreInfo setIsEmptyValue={setIsEmptyValue}></StoreInfo>

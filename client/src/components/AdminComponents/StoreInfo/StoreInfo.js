@@ -9,12 +9,13 @@ import PreviewModal from '../../Preview/PreviewModal';
 const StoreInfo = ({ setIsEmptyValue }) => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const [userInfo, setUserInfo] = useState({
-      about: null,
-      address: null,
-      businessHours: null,
-      businessName: null,
-      businessNumber: null,
-      contactNumber: null
+      userImage: '',
+      about: '',
+      address: '',
+      businessHours: '',
+      businessName: '',
+      businessNumber: '',
+      contactNumber: ''
    });
    const UpdateState = useSelector(state => state.adminReducer.storeInfoUpdateState);
 
@@ -23,7 +24,6 @@ const StoreInfo = ({ setIsEmptyValue }) => {
          setUserInfo(res.data.data);
       });
    }, []);
-
    const viewPreview = useSelector(state => state.previewToggleReducer);
    return (
       <>
@@ -34,7 +34,7 @@ const StoreInfo = ({ setIsEmptyValue }) => {
             </div>
             <main className="mainContant">
                <div className="storeImg">
-                  <img src="https://ifh.cc/g/4v3A2t.png" alt=""></img>
+                  <img src={userInfo.userImage} alt=""></img>
                </div>
                <div className="storeInfoContainer">
                   <div>{userInfo.businessName}</div>

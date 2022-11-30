@@ -11,7 +11,8 @@ import {
    savedTableListCheckBoxArr,
    clearSavedTableListCheckBoxArr,
    updateTableNumber,
-   getQrData
+   getQrData,
+   updateProgress
 } from '../../../redux/action/action';
 import axios from 'axios';
 
@@ -24,6 +25,13 @@ const CreateQR = () => {
    const newTableNumArr = useSelector(state => state.adminReducer.updateTableNumber);
    const modifyingSavedTableNumState = useSelector(state => state.adminReducer.modifyingSavedTableNum);
    const savedTableListCheckBoxArrState = useSelector(state => state.adminReducer.savedTableListCheckBoxArr);
+   const qrDatas = useSelector(state => state.adminReducer.qrDate);
+   const getQrDatas = () => {
+      axios.get(`${API_BASE_URL}/table/${sessionStorage.getItem('userId')}/qr`).then(res => {
+         setQrData(res.data.data);
+         dispatch(getQrData(res.data.data));
+      });
+   };
 
    //수정버튼
    const handleClickModifyingSavedTableNum = () => {
@@ -35,19 +43,32 @@ const CreateQR = () => {
    };
    //확인버튼
    const handleClickSubmitNewTableNum = () => {
-      //handleClickModifyingSavedTableNum();
-      savedTableListCheckBoxArrState.length === 0
-         ? alert('선택된 QR Table이 없습니다.')
-         : dispatch(modifyingSavedTableNum(!modifyingSavedTableNumState));
+      if (savedTableListCheckBoxArrState.length === 0) {
+         console.log('zzzzz');
+         alert('선택된 QR Table이 없습니다.');
+         dispatch(modifyingSavedTableNum(!modifyingSavedTableNumState));
+      } else {
+         dispatch(modifyingSavedTableNum(!modifyingSavedTableNumState));
+      }
 
       const filter = qrData.filter((data, idx) => {
          data.beforeTableNumber = data.tableNumber;
+         getQrDatas();
          newTableNumArr.forEach(element => {
             if (element.idx === idx) {
-               data.afterTableNumber = Number(element.newTableNum);
-               data.qrUrl = `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://qr-order.s3-website.ap-northeast-2.amazonaws.com/usermenu/${sessionStorage.getItem(
-                  'userId'
-               )}/${element.newTableNum}`;
+               if (!element.newTableNum) {
+                  const url = `${window.location.protocol}//${window.location.host}`;
+                  data.afterTableNumber = Number(qrDatas[idx].tableNumber);
+                  data.qrUrl = `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=${url}/usermenu/${sessionStorage.getItem(
+                     'userId'
+                  )}/${qrDatas[idx].tableNumber}`;
+               } else {
+                  const url = `${window.location.protocol}//${window.location.host}`;
+                  data.afterTableNumber = Number(element.newTableNum);
+                  data.qrUrl = `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=${url}/usermenu/${sessionStorage.getItem(
+                     'userId'
+                  )}/${element.newTableNum}`;
+               }
             }
          });
 
@@ -56,6 +77,7 @@ const CreateQR = () => {
          delete data.createdAt;
          return savedTableListCheckBoxArrState.indexOf(idx) !== -1;
       });
+
       const body = {
          tableList: filter
       };
@@ -64,12 +86,17 @@ const CreateQR = () => {
          headers: { 'Content-Type': 'application/json' },
          body: JSON.stringify(body)
       })
-         .then(() => {
-            axios.get(`${API_BASE_URL}/table/${sessionStorage.getItem('userId')}/qr`).then(res => {
-               dispatch(getQrData(res.data.data));
-            });
+         .then(res => {
+            if (res.status === 409) {
+               alert('이미 등록된 테이블 번호가 있습니다.');
+               getQrDatas();
+               return;
+            } else {
+               getQrDatas();
+            }
          })
          .catch(err => console.log(err));
+      dispatch(updateProgress());
    };
 
    const handleClickDeleteQr = () => {
@@ -92,9 +119,7 @@ const CreateQR = () => {
             body: JSON.stringify(body)
          })
             .then(() => {
-               axios.get(`${API_BASE_URL}/table/${sessionStorage.getItem('userId')}/qr`).then(res => {
-                  dispatch(getQrData(res.data.data));
-               });
+               getQrDatas();
             })
             .catch(err => console.log(err));
       }
@@ -115,10 +140,7 @@ const CreateQR = () => {
    useEffect(() => {
       dispatch(clearSavedTableListCheckBoxArr());
       dispatch(qrListAllCheck(false));
-      axios.get(`${API_BASE_URL}/table/${sessionStorage.getItem('userId')}/qr`).then(res => {
-         setQrData(res.data.data);
-         dispatch(getQrData(res.data.data));
-      });
+      getQrDatas();
    }, []);
    return (
       <MainContants>
@@ -160,7 +182,7 @@ const CreateQR = () => {
                   <div></div>
                </div>
             </div>
-            <QrList />
+            <QrList dummyState={dummyState}></QrList>
             <div className="printBtn">
                <Button />
             </div>

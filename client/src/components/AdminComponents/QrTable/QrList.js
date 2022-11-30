@@ -1,15 +1,16 @@
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import QrInfo from './QrInfo';
-const QrList = () => {
+const QrList = ({ dummyState }) => {
    const qrData = useSelector(state => state.adminReducer.qrDate);
    return (
       <QrListBox>
-         {qrData.length === 0 ? (
+         {qrData && qrData.length === 0 ? (
             <div className="emptyList">저장된 QR이 없습니다.</div>
          ) : (
+            qrData &&
             qrData.map((data, idx) => {
-               return <QrInfo key={idx} data={data} idx={idx}></QrInfo>;
+               return <QrInfo key={idx} data={data} idx={idx} dummyState={dummyState}></QrInfo>;
             })
          )}
       </QrListBox>
@@ -35,9 +36,6 @@ const QrListBox = styled.div`
    }
    ::-webkit-scrollbar-thumb {
       background: #a9a9a9;
-   }
-   > :nth-child(even) {
-      background-color: rgb(237 237 237);
    }
 `;
 export default QrList;

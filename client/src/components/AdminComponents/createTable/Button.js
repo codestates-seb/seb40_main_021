@@ -41,7 +41,6 @@ const ButtonWrap = ({ text, num }) => {
       //서버에 post 요청
 
       if (!setOverlapNumState && !setSavedTebleNum) {
-         alert('테이블 등록');
          const body = { tableList: qrData };
          console.log(body);
          fetch(`${API_BASE_URL}/table/${sessionStorage.getItem('userId')}`, {
@@ -49,8 +48,14 @@ const ButtonWrap = ({ text, num }) => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
          })
-            .then(() => {
-               navigate('/user/qr');
+            .then(res => {
+               console.log(res);
+               if (res.status === 201) {
+                  alert('테이블 등록');
+                  navigate('/user/qr');
+               } else {
+                  alert('통신 에러');
+               }
             })
             .catch(err => console.log(err));
       } else {
