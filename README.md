@@ -5,10 +5,11 @@
 ㅇㅇㅇㅇㅇㅇㅇㅇ
 
 ## 👨‍👩‍👧‍👦 Team Members 
-|류희경 (팀장, FE)|오현지 (FE)|임채영 (FE)|편범준 (FE)|강문수 (BE)|김효성 (BE)|박정민 (BE)
+|류희경|오현지|임채영|편범준|강문수|김효성|박정민|
 |:--------------------:|:--------------------:|:--------------------:|:--------------------:|:--------------------:|:--------------------:|:--------------------:|
 |                |     |            |                |                  |<img src = "https://avatars.githubusercontent.com/u/107914598?s=400&v=4" width = "100" height = "100">|                        |
 |[@beals1129](https://github.com/beals1129)|[@opc13579](https://github.com/opc13579)|[@Icyeong](https://github.com/Icyeong)|[@joon-github](https://github.com/joon-github)|[@KANG-MoonSoo](https://github.com/KANG-MoonSoo)|[@wkqltm95](https://github.com/wkqltm95)|[@inmyownway](https://github.com/inmyownway)|
+|팀장, FE|FE|FE|FE|BE|BE|BE|
 
 
 ## 프로젝트 기간
