@@ -2,13 +2,12 @@ import { useEffect, useState } from 'react';
 import TableStatus from './TableStatus';
 import styled from 'styled-components';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+
 const TableList = () => {
-   const url = useSelector(state => state.adminReducer.apiUrl);
+   const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const [orderData, setOrderData] = useState([]);
    useEffect(() => {
-      axios.get(`${url}/table/${sessionStorage.getItem('userId')}`).then(res => {
-         console.log(res);
+      axios.get(`${API_BASE_URL}/table/${sessionStorage.getItem('userId')}`).then(res => {
          setOrderData(res.data.data);
       });
    }, []);

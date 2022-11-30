@@ -5,12 +5,12 @@ import { setOverlapNumState, setSavedTebleNum, registerTableNum } from '../../..
 
 import axios from 'axios';
 const QrInfo = ({ idx }) => {
+   const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const inputRef = useRef(null);
    const [savedNumChack, setSavedNumChack] = useState(false);
    const [inputTextLengthCheck, setInputTextLengthCheck] = useState(true);
    const [qrData, setQrData] = useState([]);
    const qrDataList = useSelector(state => state.adminReducer.qrDate);
-   const url = useSelector(state => state.adminReducer.apiUrl);
    const dispatch = useDispatch();
    const onChangeTableNumDispatch = e => {
       let tableNum = e.target.value;
@@ -45,8 +45,7 @@ const QrInfo = ({ idx }) => {
       }
    };
    useEffect(() => {
-      axios.get(`${url}/table/${sessionStorage.getItem('userId')}/qr`).then(res => {
-         console.log(res);
+      axios.get(`${API_BASE_URL}/table/${sessionStorage.getItem('userId')}/qr`).then(res => {
          setQrData(res.data.data);
       });
    }, []);

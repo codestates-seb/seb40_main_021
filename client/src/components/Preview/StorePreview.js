@@ -8,6 +8,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 export const StorePreview = () => {
+   const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const store = useSelector(store => store.menuReducer.store);
    const dispatch = useDispatch();
    const userId = useParams().userId;
@@ -16,7 +17,7 @@ export const StorePreview = () => {
    // 가게 정보 불러오기
    useEffect(() => {
       axios
-         .get(`/member/${sessionStorage.getItem('userId')}`)
+         .get(`${API_BASE_URL}/member/${sessionStorage.getItem('userId')}`)
          // .get(`/member/1`)
          .then(res => {
             const storeInfo = res.data.data;

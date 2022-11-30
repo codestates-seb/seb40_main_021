@@ -2,8 +2,9 @@ import axios from 'axios';
 export const GET_USER_POST_SUCCESS = 'GET_USER_POST_SUCCESS';
 
 export const getCataegoryData = userId => {
+   const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    return async dispatch => {
-      const response = await axios(`https://300c-118-103-212-116.jp.ngrok.io/category/${userId}`, {
+      const response = await axios(`${API_BASE_URL}/category/${userId}`, {
          method: 'GET'
       });
 

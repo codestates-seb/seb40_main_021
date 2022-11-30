@@ -17,7 +17,6 @@ import {
    UPDATE_PROGRESS
 } from '../action/action';
 const adminState = {
-   apiUrl: 'http://ec2-15-164-244-227.ap-northeast-2.compute.amazonaws.com',
    printModal: false,
    qrListAllCheck: false,
    storeInfoUpdateState: false,

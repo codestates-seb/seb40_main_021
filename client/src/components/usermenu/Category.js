@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { activate, activateCategory, setMenu } from '../../redux/actions/menuAction';
 
 export const Category = ({ data }) => {
+   const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const active = useSelector(store => store.stateReducer.category);
    const dispatch = useDispatch();
 
@@ -16,7 +17,7 @@ export const Category = ({ data }) => {
    // 카테고리별 메뉴목록 불러오기
    useEffect(() => {
       axios
-         .get(`/category/read/${active}`)
+         .get(`${API_BASE_URL}/category/read/${active}`)
          .then(res => {
             const menus = res.data.data.menus;
             dispatch(setMenu(menus));

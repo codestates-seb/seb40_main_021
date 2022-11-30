@@ -13,6 +13,7 @@ export const MENU_SELECTED = 'MENU_SELECTED';
 export const CATEGORY_SELECTED = 'CATEGORY_SELECTED';
 export const SET_STOREINFO = 'SET_STOREINFO';
 export const NO_HEADER = 'NO_HEADER';
+export const PARAMS = 'PARAMS';
 
 ////////////////////////////////////////////////////
 //menuReducer
@@ -116,6 +117,13 @@ export const activateCategory = res => {
 export const noHeader = res => {
    return {
       type: NO_HEADER,
+      payload: res
+   };
+};
+// params 저장
+export const setParams = res => {
+   return {
+      type: PARAMS,
       payload: res
    };
 };

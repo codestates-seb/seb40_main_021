@@ -17,6 +17,7 @@ import {
 import axios from 'axios';
 
 const CreateQR = () => {
+   const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const [qrData, setQrData] = useState([]);
    const [dummyState, setDummyState] = useState([]);
    const allChackBoxRef = useRef(null);
@@ -24,10 +25,9 @@ const CreateQR = () => {
    const newTableNumArr = useSelector(state => state.adminReducer.updateTableNumber);
    const modifyingSavedTableNumState = useSelector(state => state.adminReducer.modifyingSavedTableNum);
    const savedTableListCheckBoxArrState = useSelector(state => state.adminReducer.savedTableListCheckBoxArr);
-   const url = useSelector(state => state.adminReducer.apiUrl);
    const qrDatas = useSelector(state => state.adminReducer.qrDate);
    const getQrDatas = () => {
-      axios.get(`${url}/table/${sessionStorage.getItem('userId')}/qr`).then(res => {
+      axios.get(`${API_BASE_URL}/table/${sessionStorage.getItem('userId')}/qr`).then(res => {
          setQrData(res.data.data);
          dispatch(getQrData(res.data.data));
       });
@@ -81,7 +81,7 @@ const CreateQR = () => {
       const body = {
          tableList: filter
       };
-      fetch(`${url}/table/update/${sessionStorage.getItem('userId')}`, {
+      fetch(`${API_BASE_URL}/table/update/${sessionStorage.getItem('userId')}`, {
          method: 'PATCH',
          headers: { 'Content-Type': 'application/json' },
          body: JSON.stringify(body)
@@ -113,7 +113,7 @@ const CreateQR = () => {
             tableList: filter
          };
 
-         fetch(`${url}/table/${sessionStorage.getItem('userId')}`, {
+         fetch(`${API_BASE_URL}/table/${sessionStorage.getItem('userId')}`, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)

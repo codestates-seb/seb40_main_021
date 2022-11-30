@@ -5,10 +5,10 @@ import { Wrapper } from './SignupTos.Style';
 import { IdRemember, LoginBtn, LoginPanel, LoginTitle } from './Login.Style';
 import { Container } from './Complete.Style';
 import { Info, InfoFormError, FormControl } from './MemberInfo.Style';
-import { useSelector } from 'react-redux';
 
 const Login = () => {
-   const url = useSelector(state => state.adminReducer.apiUrl);
+   const API_BASE_URL = process.env.REACT_APP_API_ROOT;
+
    const postLogin = async () => {
       try {
          setFinalCheck({
@@ -17,7 +17,7 @@ const Login = () => {
             pwCheck: !password || passwordError ? true : false
          });
 
-         const res = await axios.post(`${url}/member/login`, {
+         const res = await axios.post(`${API_BASE_URL}/member/login`, {
             loginId: id,
             password: password
          });
