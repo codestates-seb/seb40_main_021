@@ -1,9 +1,8 @@
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import QrInfo from './QrInfo';
-const QrList = () => {
+const QrList = ({ dummyState }) => {
    const qrData = useSelector(state => state.adminReducer.qrDate);
-   console.log(qrData);
    return (
       <QrListBox>
          {qrData && qrData.length === 0 ? (
@@ -11,7 +10,7 @@ const QrList = () => {
          ) : (
             qrData &&
             qrData.map((data, idx) => {
-               return <QrInfo key={idx} data={data} idx={idx}></QrInfo>;
+               return <QrInfo key={idx} data={data} idx={idx} dummyState={dummyState}></QrInfo>;
             })
          )}
       </QrListBox>

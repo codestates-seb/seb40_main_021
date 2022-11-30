@@ -31,7 +31,7 @@ const CategoryAdd = ({ placeholder, active, setToggleCategoryAdd, userId }) => {
       // });
       axios({
          method: 'POST',
-         url: `category/write`,
+         url: `http://ec2-15-164-244-227.ap-northeast-2.compute.amazonaws.com/category/write`,
          data: {
             memberId: userId,
             categoryName: categoryName

@@ -51,7 +51,7 @@ const ButtonWrap = ({ text, num }) => {
          })
             .then(res => {
                console.log(res);
-               if (res.status === 200) {
+               if (res.status === 201) {
                   alert('테이블 등록');
                   navigate('/user/qr');
                } else {

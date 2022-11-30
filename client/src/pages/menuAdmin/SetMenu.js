@@ -104,7 +104,7 @@ const SetMenu = () => {
             console.log(menuList);
             clickFetchFunc({
                method: 'PATCH',
-               url: `/menu/${categoryList[activeIndex].categoryId}`,
+               url: `http://ec2-15-164-244-227.ap-northeast-2.compute.amazonaws.com/menu/${categoryList[activeIndex].categoryId}`,
                data: {
                   menuList: menuList
                }
