@@ -8,6 +8,7 @@ const TableList = () => {
    const [orderData, setOrderData] = useState([]);
    useEffect(() => {
       axios.get(`${url}/table/${sessionStorage.getItem('userId')}`).then(res => {
+         console.log(res);
          setOrderData(res.data.data);
       });
    }, []);

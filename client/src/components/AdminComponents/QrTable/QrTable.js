@@ -16,7 +16,6 @@ import {
 import axios from 'axios';
 
 const CreateQR = () => {
-   const [isChack, setIscheack] = useState(true);
    const [qrData, setQrData] = useState([]);
    const [dummyState, setDummyState] = useState([]);
    const allChackBoxRef = useRef(null);
@@ -45,8 +44,9 @@ const CreateQR = () => {
          data.beforeTableNumber = data.tableNumber;
          newTableNumArr.forEach(element => {
             if (element.idx === idx) {
+               const url = `${window.location.protocol}//${window.location.host}`;
                data.afterTableNumber = Number(element.newTableNum);
-               data.qrUrl = `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://qr-order.s3-website.ap-northeast-2.amazonaws.com/usermenu/${sessionStorage.getItem(
+               data.qrUrl = `https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=${url}/usermenu/${sessionStorage.getItem(
                   'userId'
                )}/${element.newTableNum}`;
             }
@@ -90,14 +90,12 @@ const CreateQR = () => {
    };
    const allCheck = () => {
       if (allChackBoxRef.current.checked) {
-         setIscheack(false);
          dispatch(clearSavedTableListCheckBoxArr());
          dispatch(qrListAllCheck(true));
          for (let idx = 0; idx < qrData.length; idx++) {
             dispatch(savedTableListCheckBoxArr(idx));
          }
       } else {
-         setIscheack(true);
          dispatch(qrListAllCheck(false));
          dispatch(clearSavedTableListCheckBoxArr());
       }
@@ -151,7 +149,7 @@ const CreateQR = () => {
                   <div></div>
                </div>
             </div>
-            <QrList isChack={isChack} setIscheack={setIscheack}></QrList>
+            <QrList></QrList>
             <div className="printBtn">
                <Button />
             </div>

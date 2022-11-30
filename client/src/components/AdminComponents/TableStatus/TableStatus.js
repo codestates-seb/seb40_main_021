@@ -2,7 +2,6 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { RiDeleteBinLine } from 'react-icons/ri';
 const TableStatus = ({ data }) => {
-   console.log(data);
    const priceList = data.orderList.map(menus => {
       return menus.price * menus.quantity;
    });

@@ -1,16 +1,15 @@
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import QrInfo from './QrInfo';
-const QrList = ({ isChack, setIscheack }) => {
+const QrList = () => {
    const qrData = useSelector(state => state.adminReducer.qrDate);
-   console.log(isChack);
    return (
-      <QrListBox isChack={isChack}>
+      <QrListBox>
          {qrData.length === 0 ? (
             <div className="emptyList">저장된 QR이 없습니다.</div>
          ) : (
             qrData.map((data, idx) => {
-               return <QrInfo key={idx} data={data} idx={idx} setIscheack={setIscheack}></QrInfo>;
+               return <QrInfo key={idx} data={data} idx={idx}></QrInfo>;
             })
          )}
       </QrListBox>
@@ -36,9 +35,6 @@ const QrListBox = styled.div`
    }
    ::-webkit-scrollbar-thumb {
       background: #a9a9a9;
-   }
-   > :nth-child(even) {
-      background-color: ${({ isChack }) => (!isChack ? '#FFEBDD' : '#f6f6f6')};
    }
 `;
 export default QrList;

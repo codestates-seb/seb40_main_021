@@ -44,9 +44,8 @@ const ButtonWrap = ({ text, num }) => {
       if (!setOverlapNumState && !setSavedTebleNum) {
          alert('테이블 등록');
          const body = { tableList: qrData };
-         console.log(body);
          //${url}
-         fetch(`/table/${sessionStorage.getItem('userId')}`, {
+         fetch(`${url}/table/${sessionStorage.getItem('userId')}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)

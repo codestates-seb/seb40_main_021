@@ -16,7 +16,7 @@ import {
    ALARMDATA_UPDATE
 } from '../action/action';
 const adminState = {
-   apiUrl: 'https://4d66-221-140-177-247.jp.ngrok.io',
+   apiUrl: 'https://df2a-118-103-212-116.jp.ngrok.io',
    printModal: false,
    qrListAllCheck: false,
    storeInfoUpdateState: false,
@@ -42,7 +42,7 @@ export const adminReducer = (state = adminState, action) => {
 
       case REGISTER_TABLE_NUM:
          // eslint-disable-next-line no-case-declarations
-         const url = 'http://qr-order.s3-website.ap-northeast-2.amazonaws.com';
+         const url = `${window.location.protocol}//${window.location.host}`;
          state.qrDate[action.payload.idx].tableNumber = action.payload.tableNum;
          state.qrDate[
             action.payload.idx
