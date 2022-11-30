@@ -76,9 +76,21 @@ const CreateQR = () => {
    const handleClickDeleteQr = () => {
       // eslint-disable-next-line no-restricted-globals
       if (confirm('정말 삭제하시겠습니까?')) {
+         const filter = qrData.filter((data, idx) => {
+            delete data.qrUrl;
+            delete data.tableId;
+            delete data.createdAt;
+            return savedTableListCheckBoxArrState.indexOf(idx) !== -1;
+         });
+
+         const body = {
+            tableList: filter
+         };
+
          fetch(`${url}/table/${sessionStorage.getItem('userId')}`, {
             method: 'DELETE',
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
          })
             .then(() => {
                axios.get(`${url}/table/${sessionStorage.getItem('userId')}/qr`).then(res => {
