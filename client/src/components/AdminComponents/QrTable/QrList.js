@@ -3,11 +3,13 @@ import styled from 'styled-components';
 import QrInfo from './QrInfo';
 const QrList = () => {
    const qrData = useSelector(state => state.adminReducer.qrDate);
+   console.log(qrData);
    return (
       <QrListBox>
-         {qrData.length === 0 ? (
+         {qrData && qrData.length === 0 ? (
             <div className="emptyList">저장된 QR이 없습니다.</div>
          ) : (
+            qrData &&
             qrData.map((data, idx) => {
                return <QrInfo key={idx} data={data} idx={idx}></QrInfo>;
             })

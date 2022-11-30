@@ -60,7 +60,7 @@ const CreateQR = () => {
       const body = {
          tableList: filter
       };
-      fetch(`/table/update/${sessionStorage.getItem('userId')}`, {
+      fetch(`${url}/table/update/${sessionStorage.getItem('userId')}`, {
          method: 'PATCH',
          headers: { 'Content-Type': 'application/json' },
          body: JSON.stringify(body)
@@ -76,7 +76,7 @@ const CreateQR = () => {
    const handleClickDeleteQr = () => {
       // eslint-disable-next-line no-restricted-globals
       if (confirm('정말 삭제하시겠습니까?')) {
-         fetch(`/table/${sessionStorage.getItem('userId')}`, {
+         fetch(`${url}/table/${sessionStorage.getItem('userId')}`, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' }
          })
@@ -105,6 +105,7 @@ const CreateQR = () => {
       dispatch(clearSavedTableListCheckBoxArr());
       dispatch(qrListAllCheck(false));
       axios.get(`${url}/table/${sessionStorage.getItem('userId')}/qr`).then(res => {
+         console.log(res);
          setQrData(res.data.data);
          dispatch(getQrData(res.data.data));
       });

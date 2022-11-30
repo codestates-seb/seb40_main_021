@@ -16,6 +16,7 @@ const Gnb = () => {
    const alarmData = useSelector(state => state.adminReducer.alarmData);
    const getAlarm = async url => {
       let variable = await axios.get(url).then(res => {
+         console.log(res);
          return res.data.data
             .slice(0)
             .reverse()

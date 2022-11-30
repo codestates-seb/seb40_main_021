@@ -15,7 +15,6 @@ const InputTable = () => {
       setTableValue(e.target.value);
    };
    axios.get(`${url}/category/${sessionStorage.getItem('userId')}`).then(res => {
-      console.log(res);
       if (res.data.length !== 0) {
          setThereIsMenu(true);
       }

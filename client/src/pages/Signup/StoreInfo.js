@@ -48,12 +48,12 @@ const StoreInfo = () => {
       contactNumber === '' ||
       NumberError
    );
-
+   const url = useSelector(state => state.adminReducer.apiUrl);
    const postStoreInfo = async () => {
       try {
          onCheckValues();
 
-         const res = await axios.post(`/member`, {
+         const res = await axios.post(`${url}/member`, {
             loginId: inputValue.userMemberReducer.id,
             password: inputValue.userMemberReducer.password,
             businessNumber: inputValue.userMemberReducer.businessNumber,

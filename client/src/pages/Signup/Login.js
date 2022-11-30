@@ -5,8 +5,10 @@ import { Wrapper } from './SignupTos.Style';
 import { IdRemember, LoginBtn, LoginPanel, LoginTitle } from './Login.Style';
 import { Container } from './Complete.Style';
 import { Info, InfoFormError, FormControl } from './MemberInfo.Style';
+import { useSelector } from 'react-redux';
 
 const Login = () => {
+   const url = useSelector(state => state.adminReducer.apiUrl);
    const postLogin = async () => {
       try {
          setFinalCheck({
@@ -15,11 +17,11 @@ const Login = () => {
             pwCheck: !password || passwordError ? true : false
          });
 
-         const res = await axios.post(`/member/login`, {
+         const res = await axios.post(`${url}/member/login`, {
             loginId: id,
             password: password
          });
-
+         console.log(res);
          sessionStorage.setItem('access token', res.headers.get('authorization'));
          sessionStorage.setItem('refresh token', res.headers.get('refresh'));
 
