@@ -6,6 +6,7 @@ import { CartItem } from '../../components/usermenu/CartItem';
 import { emptyCart } from '../../redux/actions/menuAction';
 
 export const Cart = () => {
+   const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const [total, setTotal] = useState(0);
    const cart = useSelector(store => store.menuReducer.cart);
    let temp = 0;
@@ -31,12 +32,11 @@ export const Cart = () => {
 
       const data = {
          tableNumber,
-         // tableNumber: '1',
          orderMenus: fetchData,
          message: '옵션메시지'
       };
 
-      fetch(`/order/${userId}`, {
+      fetch(`${API_BASE_URL}/order/${userId}`, {
          method: 'POST',
          headers: { 'Content-Type': 'application/json' },
          body: JSON.stringify(data)

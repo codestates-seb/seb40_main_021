@@ -13,6 +13,7 @@ import { useAxios } from '../../util/useAxios';
 import { v4 as uuidv4 } from 'uuid';
 
 const SetMenu = () => {
+   const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const [toggleCategoryAdd, setToggleCategoryAdd] = useState(false);
    const dispatch = useDispatch();
    const state = useSelector(store => store.menuUserItemReducer);
@@ -25,7 +26,7 @@ const SetMenu = () => {
       } else {
          dispatch(
             menuUserAdd({
-               // menuImg: '',
+               menuImage: '',
                price: '',
                menuName: '',
                menuContent: '',
@@ -35,7 +36,7 @@ const SetMenu = () => {
                   menuName: '',
                   menuContent: '',
                   price: '',
-                  menuImg: ''
+                  menuImage: ''
                }
             })
          );
@@ -97,14 +98,14 @@ const SetMenu = () => {
             for (let i = 0; i < menuList.length; i++) {
                menuList[i] = { ...menuList[i], categoryId: categoryList[activeIndex].categoryId, memberId: 1 };
                delete menuList[i].errorMessage;
-               delete menuList[i].menuImg;
+               delete menuList[i].menuImage;
                delete menuList[i].uuid;
             }
             console.log('성공');
             console.log(menuList);
             clickFetchFunc({
                method: 'PATCH',
-               url: `/menu/${categoryList[activeIndex].categoryId}`,
+               url: `${API_BASE_URL}/menu/${categoryList[activeIndex].categoryId}`,
                data: {
                   menuList: menuList
                }

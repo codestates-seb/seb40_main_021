@@ -5,6 +5,7 @@ import { menuSaveAndChangeAdd } from '../../redux/action/action';
 import { useAxios } from '../../util/useAxios';
 
 const SetMenuLi = ({ submit, setSubmit, activeIndex }) => {
+   const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const changeCategoryList = useSelector(store => store.categoryUserItemReducer.data);
 
    let categoryId;
@@ -19,7 +20,7 @@ const SetMenuLi = ({ submit, setSubmit, activeIndex }) => {
       if (categoryId) {
          clickFetchFunc({
             method: 'GET',
-            url: `category/read/${categoryId}`
+            url: `${API_BASE_URL}/category/read/${categoryId}`
          });
       }
    }, [changeCategoryList, activeIndex]);

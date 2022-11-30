@@ -6,6 +6,7 @@ import { OrderedItem } from '../../components/usermenu/OrderedItem';
 import { orderedList } from '../../redux/actions/menuAction';
 
 export const OrderedList = () => {
+   const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const dispatch = useDispatch();
    const [total, setTotal] = useState(0);
    const ordered = useSelector(store => store.menuReducer.ordered);
@@ -17,7 +18,7 @@ export const OrderedList = () => {
    useEffect(() => {
       // 주문목록 불러오기
       axios
-         .get(`/order/${userId}/${tableNumber}`)
+         .get(`${API_BASE_URL}/order/${userId}/${tableNumber}`)
          // .get(`/order/1/1`)
          .then(res => {
             const data = res.data.data;

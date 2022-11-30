@@ -9,9 +9,9 @@ import axios from 'axios';
 import useInterval from '../../util/useInterval';
 
 const Gnb = () => {
+   const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const dispatch = useDispatch();
    const gnbState = useSelector(store => store.gnbReducer);
-   const url = useSelector(state => state.adminReducer.apiUrl);
    const alarmData = useSelector(state => state.adminReducer.alarmData);
    const getAlarm = async url => {
       let variable = await axios.get(url).then(res => {
@@ -23,8 +23,8 @@ const Gnb = () => {
       return variable;
    };
    const getAlarms = async () => {
-      const orderAlarmReverse = await getAlarm(`${url}/table/${sessionStorage.getItem('userId')}/order`);
-      const callAlarmReverse = await getAlarm(`${url}/call/${sessionStorage.getItem('userId')}`);
+      const orderAlarmReverse = await getAlarm(`${API_BASE_URL}/table/${sessionStorage.getItem('userId')}/order`);
+      const callAlarmReverse = await getAlarm(`${API_BASE_URL}/call/${sessionStorage.getItem('userId')}`);
       dispatch(updateAlarmData(callAlarmReverse, orderAlarmReverse));
    };
    useEffect(() => {
