@@ -4,7 +4,6 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import MenuImg from '../../components/Menu/MenuImg';
 import Postcode from '../../components/PostCode/Postcode';
-import { ImagePreview, RealUpload, Upload } from './StoreInfo.Style';
 import {
    Wrapper,
    Container,
@@ -23,7 +22,6 @@ import { InfoForm, CompanyNum, FormControl } from './MemberInfo.Style';
 const StoreInfo = () => {
    const inputValue = useSelector(state => state);
 
-   // eslint-disable-next-line no-unused-vars
    const [img, setImg] = useState();
    const [businessName, setBusinessName] = useState('');
    const [about, setAbout] = useState();
@@ -57,7 +55,7 @@ const StoreInfo = () => {
             loginId: inputValue.userMemberReducer.id,
             password: inputValue.userMemberReducer.password,
             businessNumber: inputValue.userMemberReducer.businessNumber,
-            // img: img,
+            userImage: img,
             businessName: businessName,
             about: about,
             address: address,
@@ -118,11 +116,7 @@ const StoreInfo = () => {
                   <InfoForm>
                      <p>프로필 사진 등록</p>
                   </InfoForm>
-                  <RealUpload type="file" accept="image/*" required multiple onChange={setImg} />
-                  <MenuImg>
-                     <Upload />
-                     <ImagePreview />
-                  </MenuImg>
+                  <MenuImg type="file" accept="image/*" required multiple onChange={setImg} />
 
                   <InfoForm buttonError={isCheck.businessNameError} passwordError={businessName === '' ? true : false}>
                      <p>상호명 *</p>
