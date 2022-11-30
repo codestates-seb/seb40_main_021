@@ -13,8 +13,6 @@ export const NavMenu = () => {
    const categoryId = useSelector(store => store.menuReducer.category[0].categoryId);
    const userId = useParams().userId;
 
-   console.log(categoryId);
-
    useEffect(() => {
       // 카테고리목록 불러오기
       axios

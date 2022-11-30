@@ -20,7 +20,6 @@ const Btn = styled.button`
 const ButtonWrap = ({ text, num }) => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const navigate = useNavigate();
-   // const url = useSelector(state => state.adminReducer.apiUrl);
    const setOverlapNumState = useSelector(state => state.adminReducer.tableNumInputValueOverlap);
    const setSavedTebleNum = useSelector(state => state.adminReducer.setSavedTebleNum);
    const qrData = useSelector(state => state.adminReducer.qrDate);
