@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import MenuImg from '../../components/Menu/MenuImg';
 import Postcode from '../../components/PostCode/Postcode';
+
 import {
    Wrapper,
    Container,
@@ -17,11 +18,12 @@ import {
 } from './SignupTos.Style';
 import { useSelector } from 'react-redux';
 import { InfoForm, CompanyNum, FormControl } from './MemberInfo.Style';
-//가게 사진, 가게 설명, 주소, 전화번호, 영업시간
-// 주소, 바디, 헤더
+
 const StoreInfo = () => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
+   const location = useLocation();
 
+   const navigate = useNavigate();
    const inputValue = useSelector(state => state);
 
    const [img, setImg] = useState();
@@ -41,6 +43,14 @@ const StoreInfo = () => {
       contactNumber: false
    });
 
+   useEffect(() => {
+      if (location?.state === null) {
+         alert('잘못된 접근입니다.');
+         navigate('/SignupTos', { replace: true });
+         return;
+      }
+   }, []);
+
    const linkError = !(
       businessName === '' ||
       address === '' ||
@@ -48,9 +58,14 @@ const StoreInfo = () => {
       contactNumber === '' ||
       NumberError
    );
+
    const postStoreInfo = async () => {
       try {
          onCheckValues();
+
+         if (!linkError) {
+            return;
+         }
 
          const res = await axios.post(`${API_BASE_URL}/member`, {
             loginId: inputValue.userMemberReducer.id,
@@ -63,6 +78,8 @@ const StoreInfo = () => {
             contactNumber: contactNumber,
             businessHours: businessHours
          });
+
+         navigate('/complete');
          console.log(res);
       } catch (err) {
          console.log(err);
@@ -70,7 +87,6 @@ const StoreInfo = () => {
    };
 
    const handleNumber = e => {
-      // console.log(fileUpload.value);
       setContactNumber(e.target.value);
       setIsCheck({ ...isCheck, contactNumber: false });
       const ContactNumberRegex = /[0-9]$/;
@@ -197,7 +213,7 @@ const StoreInfo = () => {
                   </InfoForm>
 
                   <Btn>
-                     <Link to={linkError ? '/complete' : null} onClick={postStoreInfo}>
+                     <Link to={null} onClick={postStoreInfo}>
                         완료
                      </Link>
                   </Btn>
