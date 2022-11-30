@@ -23,7 +23,7 @@ export const Container = styled.div`
    display: flex;
    justify-content: center;
    align-items: center;
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       width: 100%;
       display: flex;
       justify-content: center;
@@ -32,7 +32,7 @@ export const Container = styled.div`
 `;
 export const MemberReg = styled.section`
    padding: 30px;
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       width: 100%;
       background: #fff;
    }
@@ -46,7 +46,7 @@ export const PageTitle = styled.div`
       font-weight: 900;
       margin: 0 0 0 1rem;
    }
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       padding: 0 2.6rem;
    }
 `;
@@ -61,7 +61,7 @@ export const DivideLine = styled.ul`
       height: 5px;
       background: #d9d9d9;
    }
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       margin: 15px 0 14px;
       padding: 0 2.6rem;
    }
@@ -86,7 +86,7 @@ export const MemberPanel = styled.div`
       font-size: 13px;
       color: #ff6c01;
    }
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       width: 100%;
       height: auto;
       padding: 2.6rem 2.6rem 0;
@@ -152,7 +152,7 @@ export const AgreeTitle = styled.div`
       padding: 20px;
       cursor: pointer;
       background: #fff;
-      @media screen and (max-width: 700px) {
+      @media screen and (max-width: 900px) {
          width: calc(100% - 40px);
       }
    }
@@ -191,7 +191,7 @@ export const AgreeDetailActive = styled(AgreeDetail)`
       background: rgba(0, 0, 0, 0.3);
       border-radius: 30px;
    }
-   @media screen and (min-width: 700px) {
+   @media screen and (min-width: 900px) {
       display: block;
    }
 `;
@@ -211,7 +211,7 @@ export const Btn = styled.div`
       justify-content: center;
       margin: 20px auto 0 auto;
 
-      @media screen and (max-width: 700px) {
+      @media screen and (max-width: 900px) {
          max-width: none;
          background: #bababa;
          text-shadow: none;
@@ -223,7 +223,7 @@ export const Btn = styled.div`
          margin: none;
       }
    }
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       width: 100%;
    }
 `;
@@ -234,7 +234,7 @@ export const ImgContainer = styled.span`
       display: none;
    }
 
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       width: 40px;
       height: 40px;
       color: #ff6c01;

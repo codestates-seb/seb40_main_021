@@ -16,8 +16,20 @@ export const Info = styled.div`
       margin: 8px 0;
       border-radius: 5px 5px 0 0;
       border: none;
-
       border-bottom: 3px solid #b6b6b6;
+
+      ${props =>
+         props.idError &&
+         css`
+            border-bottom: 3px solid #ff6c01;
+         `}
+
+      ${props =>
+         props.buttonError &&
+         css`
+            border-bottom: 3px solid #ff6c01;
+         `}
+
       background: #f4f4f4;
 
       &::placeholder {
@@ -43,7 +55,7 @@ export const Info = styled.div`
       width: 60%;
    }
 
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       input {
          background: #f4f4f4;
          border: none;
@@ -70,6 +82,13 @@ export const InfoForm = styled.div`
       border: none;
 
       border-bottom: 3px solid #b6b6b6;
+
+      ${props =>
+         props.buttonError &&
+         css`
+            border-bottom: 3px solid #ff6c01;
+         `}
+
       background: #f4f4f4;
 
       &::placeholder {
@@ -89,7 +108,7 @@ export const InfoForm = styled.div`
               `}
    }
 
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       input {
          background: #f4f4f4;
          border: none;
@@ -99,10 +118,22 @@ export const InfoForm = styled.div`
 `;
 
 export const InfoFormError = styled(InfoForm)`
-   input[type='password'] {
+   input[name='passwordConfirm'] {
       background: #f4f4f4;
       border: none;
       border-bottom: 3px solid #b6b6b6;
+
+      ${props =>
+         props.buttonError &&
+         css`
+            border-bottom: 3px solid #ff6c01;
+         `}
+
+      ${props =>
+         props.passwordConfirmError &&
+         css`
+            border-bottom: 3px solid #ff6c01;
+         `}
    }
 
    input:focus {
@@ -126,6 +157,17 @@ export const InfoFormError = styled(InfoForm)`
    }
 `;
 export const InfoFormAuthComplete = styled(InfoForm)`
+   input[name='businessNumber'] {
+      ${props =>
+         props.businessNumberError
+            ? css`
+                 border-bottom: 3px solid #ff6c01;
+              `
+            : css`
+                 border-bottom: 3px solid #b6b6b6;
+              `};
+   }
+
    span {
       display: block;
    }
@@ -141,7 +183,7 @@ export const CompanyNum = styled.div`
    input {
       width: 70%;
    }
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       position: relative;
       input {
          width: 100%;
@@ -163,7 +205,11 @@ export const Btn = styled.button`
    justify-content: center;
    margin: 20px auto 0 auto;
 
-   @media screen and (max-width: 700px) {
+   &:hover {
+      color: #ff6c01;
+   }
+
+   @media screen and (max-width: 900px) {
       max-width: none;
       background: #bababa;
       text-shadow: none;
@@ -173,7 +219,7 @@ export const Btn = styled.button`
       width: 100%;
       margin: none;
    }
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       width: 100%;
       height: 50px;
    }
@@ -198,7 +244,7 @@ export const BtnFill = styled.button`
    a:hover {
       color: #fff;
    }
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       position: absolute;
       top: 0;
       right: 0;

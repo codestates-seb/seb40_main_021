@@ -4,7 +4,7 @@ import { CompletePanel } from './Complete.Style';
 export const LoginPanel = styled(CompletePanel)`
    padding: 5.2rem 12rem 0;
 
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       width: 100%;
       padding: 5.2rem;
       display: flex;
@@ -98,7 +98,7 @@ export const LoginBtn = styled.div`
    a:hover {
       color: #fff;
    }
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       /* margin: 39rem 0 0; */
    }
 `;

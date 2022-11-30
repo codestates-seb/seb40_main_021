@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import IconCloseWhite from './../../assets/img/icon_close_white_bold.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { previewToggleState } from '../../redux/action/action';
+import MenuAppPreview from './menuAppPreview';
 
 const ContentWrap = styled.div`
    width: 100%;
@@ -23,7 +24,7 @@ const CloseButton = styled.button`
    right: 50px;
    top: 25px;
 `;
-const PreviewContent = () => {
+const PreviewContent = ({ now }) => {
    const dispatch = useDispatch();
    const viewPreview = useSelector(state => state.previewToggleReducer);
    const ClosePreview = () => {
@@ -31,12 +32,13 @@ const PreviewContent = () => {
    };
    return (
       <ContentWrap>
-         <iframe
+         {/* <iframe
             title="title"
             width="100%"
             height="100vh"
             src="http://menutestmobile.s3-website.ap-northeast-2.amazonaws.com/"
-         />
+         /> */}
+         <MenuAppPreview now={now} />
          <CloseButton onClick={ClosePreview}>
             <img src={IconCloseWhite} alt={'closeBtn'} />
          </CloseButton>

@@ -23,21 +23,36 @@ import { InfoForm, CompanyNum, FormControl } from './MemberInfo.Style';
 const StoreInfo = () => {
    const inputValue = useSelector(state => state);
 
-   const postStoreInfo = async () => {
-      const test = {
-         loginId: inputValue.userMemberReducer.id,
-         password: inputValue.userMemberReducer.password,
-         businessNumber: inputValue.userMemberReducer.businessNumber,
-         // img: img,
-         businessName: businessName,
-         about: about,
-         address: address,
-         contactNumber: contactNumber,
-         businessHours: businessHours
-      };
+   // eslint-disable-next-line no-unused-vars
+   const [img, setImg] = useState();
+   const [businessName, setBusinessName] = useState('');
+   const [about, setAbout] = useState();
+   const [address, setAddress] = useState('');
+   const [detailAddress, setDetailAddress] = useState('');
 
-      console.log(test);
+   const [contactNumber, setContactNumber] = useState('');
+   const [businessHours, setBusinessHours] = useState();
+   const [NumberError, setNumberError] = React.useState(false);
+
+   const [isCheck, setIsCheck] = useState({
+      businessNameError: false,
+      address: false,
+      detailAddress: false,
+      contactNumber: false
+   });
+
+   const linkError = !(
+      businessName === '' ||
+      address === '' ||
+      detailAddress === '' ||
+      contactNumber === '' ||
+      NumberError
+   );
+
+   const postStoreInfo = async () => {
       try {
+         onCheckValues();
+
          const res = await axios.post(`/member`, {
             loginId: inputValue.userMemberReducer.id,
             password: inputValue.userMemberReducer.password,
@@ -55,26 +70,27 @@ const StoreInfo = () => {
       }
    };
 
-   // eslint-disable-next-line no-unused-vars
-   const [img, setImg] = useState();
-   const [businessName, setBusinessName] = useState('');
-   const [about, setAbout] = useState();
-   const [address, setAddress] = useState();
-   const [contactNumber, setContactNumber] = useState();
-   const [businessHours, setBusinessHours] = useState();
-   const [NumberError, setNumberError] = React.useState(false);
-
    const handleNumber = e => {
       setContactNumber(e.target.value);
-
-      console.log(contactNumber);
-
+      setIsCheck({ ...isCheck, contactNumber: false });
       const ContactNumberRegex = /[0-9]$/;
 
       if (ContactNumberRegex.test(e.target.value) || e.target.value === '') {
          setNumberError(false);
       } else {
          setNumberError(true);
+      }
+   };
+
+   const onCheckValues = () => {
+      if (businessName === '' || address === '' || detailAddress === '' || contactNumber === '') {
+         setIsCheck({
+            ...isCheck,
+            businessNameError: businessName === '' ? true : false,
+            address: address === '' ? true : false,
+            detailAddress: detailAddress === '' ? true : false,
+            contactNumber: contactNumber === '' ? true : false
+         });
       }
    };
 
@@ -108,12 +124,15 @@ const StoreInfo = () => {
                      <ImagePreview />
                   </MenuImg>
 
-                  <InfoForm>
+                  <InfoForm buttonError={isCheck.businessNameError} passwordError={businessName === '' ? true : false}>
                      <p>상호명 *</p>
                      <FormControl
                         type="text"
                         placeholder="상호명을 입력해주세요"
-                        onChange={e => setBusinessName(e.target.value)}
+                        onChange={e => {
+                           setBusinessName(e.target.value);
+                           setIsCheck({ ...isCheck, businessNameError: false });
+                        }}
                      />
                   </InfoForm>
 
@@ -126,17 +145,37 @@ const StoreInfo = () => {
                      />
                   </InfoForm>
 
-                  <InfoForm>
+                  <InfoForm buttonError={isCheck.address} passwordError={address === '' ? true : false}>
                      <p>가게주소 *</p>
                      <CompanyNum>
                         <Postcode setAddress={setAddress} />
-                        <FormControl value={address} type="text" placeholder="도로명 주소 검색" />
+                        <FormControl
+                           name="adress"
+                           type="text"
+                           placeholder="도로명 주소 검색"
+                           value={address}
+                           onChange={e => {
+                              setAddress(e.target.value);
+                              setIsCheck({ ...isCheck, address: false });
+                           }}
+                        />
                      </CompanyNum>
-
-                     <FormControl type="text" placeholder="상세 주소를 입력해주세요" />
                   </InfoForm>
 
-                  <InfoForm>
+                  <InfoForm buttonError={isCheck.detailAddress} passwordError={detailAddress === '' ? true : false}>
+                     <FormControl
+                        name="detailAdreess"
+                        type="text"
+                        placeholder="상세 주소를 입력해주세요"
+                        value={detailAddress}
+                        onChange={e => {
+                           setDetailAddress(e.target.value);
+                           setIsCheck({ ...isCheck, detailAddress: false });
+                        }}
+                     />
+                  </InfoForm>
+
+                  <InfoForm buttonError={isCheck.contactNumber} passwordError={contactNumber === '' ? true : false}>
                      <p>가게 전화번호 *</p>
                      <FormControl
                         maxLength={13}
@@ -162,7 +201,7 @@ const StoreInfo = () => {
                   </InfoForm>
 
                   <Btn>
-                     <Link to="/complete" onClick={postStoreInfo}>
+                     <Link to={linkError ? '/complete' : null} onClick={postStoreInfo}>
                         완료
                      </Link>
                   </Btn>

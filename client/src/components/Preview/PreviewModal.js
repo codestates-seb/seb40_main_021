@@ -11,10 +11,10 @@ const PreviewLayout = styled.div`
    align-items: center;
    background-color: rgba(0, 0, 0, 0.5);
 `;
-const PreviewModal = () => {
+const PreviewModal = ({ now }) => {
    return (
       <PreviewLayout>
-         <PreviewContent />
+         <PreviewContent now={now} />
       </PreviewLayout>
    );
 };

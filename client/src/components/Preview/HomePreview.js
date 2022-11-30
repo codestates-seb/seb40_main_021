@@ -3,10 +3,10 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { MenuDetailed } from '../usermenu/MenuDetailed';
 import { StoreMenuList } from '../usermenu/StoreMenuList';
-import { NavMenu } from '../usermenu/NavMenu';
 import { saveMenuId } from '../../redux/actions/menuAction';
 import { Wrapper } from '../../style/menu.style';
 import { motion } from 'framer-motion';
+import { NavMenuPreview } from './NavMenuPreview';
 
 export const HomePreview = () => {
    const dispatch = useDispatch();
@@ -27,7 +27,7 @@ export const HomePreview = () => {
                opacity: 1,
                transition: { duration: 0.3 }
             }}>
-            <NavMenu />
+            <NavMenuPreview />
             <StoreMenuList />
             <MenuDetailed />
          </motion.main>

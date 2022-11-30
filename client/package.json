@@ -25,6 +25,7 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
+    "react-slick": "^0.29.0",
     "redux": "^4.2.0",
     "styled-components": "^5.3.6",
     "styled-reset": "^4.4.2",
@@ -64,5 +65,5 @@
     "eslint-plugin-react": "^7.31.11",
     "eslint-plugin-react-hooks": "^4.6.0"
   },
-  "proxy":"https://df2a-118-103-212-116.jp.ngrok.io"
+  "proxy": "https://df2a-118-103-212-116.jp.ngrok.io"
 }
