@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import {
    BtnFill,
@@ -27,11 +27,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { onChangeIdAction, onChangePasswordAction, onChangeBusinessNumberAction } from '../../redux/action/action';
 
 const MemberInfo = () => {
+   const location = useLocation();
+
    const navigate = useNavigate();
    const dispatch = useDispatch();
    const inputValue = useSelector(state => state);
 
-   // eslint-disable-next-line no-unused-vars
    const [passwordConfirm, setPasswordConfirm] = React.useState('');
 
    const [idError, setIdError] = React.useState(false);
@@ -46,11 +47,39 @@ const MemberInfo = () => {
       businessNumCheck: false
    });
 
-   const [Certification, setCertification] = React.useState(false);
+   const [Certification, setCertification] = React.useState('');
+
+   useEffect(() => {
+      if (location?.state === null) {
+         alert('잘못된 접근입니다.');
+         navigate('/SignupTos', { replace: true });
+         return;
+      }
+   }, []);
+
+   const postMemberDataNavi = () => {
+      const navMoveReg =
+         inputValue?.userMemberReducer?.id !== '' &&
+         !idError &&
+         inputValue?.userMemberReducer?.password !== '' &&
+         !passwordError &&
+         inputValue?.userMemberReducer?.password === passwordConfirm &&
+         Certification &&
+         Certification !== '국세청에 등록되지 않은 사업자등록번호입니다.';
+
+      if (navMoveReg) {
+         navigate('/storeInfo', {
+            state: {
+               next: true
+            }
+         });
+      } else {
+         isValidate();
+      }
+   };
 
    const handleId = e => {
       dispatch(onChangeIdAction(e.target.value));
-      // setId(e.target.value);
 
       const idRegex = /^[a-z0-9]{1,11}$/;
 
@@ -65,7 +94,6 @@ const MemberInfo = () => {
 
    const handlePassword = e => {
       dispatch(onChangePasswordAction(e.target.value));
-      // setPassword(e.target.value);
 
       const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,}$/;
 
@@ -111,40 +139,15 @@ const MemberInfo = () => {
          setBusinessNumberError(res?.data);
 
          if (res?.data?.data[0].tax_type_cd === '') {
-            setCertification(true);
+            setCertification(res?.data?.data[0].tax_type);
+            setFinalCheck({ ...finalCheck, businessNumCheck: true });
          } else {
-            setCertification(false);
+            setCertification(res?.data?.data[0].tax_type);
+            setFinalCheck({ ...finalCheck, businessNumCheck: false });
          }
       } catch (err) {
          console.log(err);
       }
-   };
-
-   const postMemberDataNavi = () => {
-      const navMoveReg =
-         !!inputValue?.userMemberReducer?.id &&
-         !idError &&
-         !!inputValue?.userMemberReducer?.password &&
-         !passwordError &&
-         !passwordConfirmError &&
-         !Certification;
-
-      console.log(
-         !!inputValue?.userMemberReducer?.id,
-         !idError,
-         !!inputValue?.userMemberReducer?.password,
-         !passwordError,
-         !passwordConfirmError,
-         Certification
-      );
-
-      if (navMoveReg) {
-         navigate('/storeInfo');
-      } else {
-         postBusinessNumber();
-         isValidate();
-      }
-      return;
    };
 
    const isValidate = () => {
@@ -157,7 +160,7 @@ const MemberInfo = () => {
             idCheck: inputValue?.userMemberReducer?.id === '' ? true : false,
             pwCheck: inputValue?.userMemberReducer?.password === '' ? true : false,
             pwConfirmCheck: passwordConfirm === '' ? true : false,
-            businessNumCheck: false
+            businessNumCheck: inputValue?.userMemberReducer?.businessNumber === '' ? true : false
          });
       }
    };
@@ -215,7 +218,7 @@ const MemberInfo = () => {
                      />
                   </InfoFormError>
                   {passwordConfirmError && <span>확인 비밀번호가 다릅니다.</span>}
-                  <InfoFormAuthComplete businessNumberError={Certification}>
+                  <InfoFormAuthComplete businessNumberError={finalCheck.businessNumCheck}>
                      <p>사업자번호 입력</p>
                      <CompanyNum>
                         <FormControl
@@ -225,8 +228,8 @@ const MemberInfo = () => {
                            onChange={handleNumber}
                            value={inputValue?.userMemberReducer?.businessNumber ?? ''}
                         />
-                        <BtnFill>
-                           <Link onClick={postBusinessNumber}>인증하기</Link>
+                        <BtnFill onClick={postBusinessNumber}>
+                           <span>인증하기</span>
                         </BtnFill>
                      </CompanyNum>
                      <span>{businessNumberError && businessNumberError?.data[0].tax_type}</span>

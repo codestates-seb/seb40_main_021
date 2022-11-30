@@ -60,6 +60,18 @@ export const Info = styled.div`
          background: #f4f4f4;
          border: none;
          border-bottom: 0px solid #b6b6b6;
+
+         ${props =>
+            props.idError &&
+            css`
+               border-bottom: 3px solid #ff6c01;
+            `}
+
+         ${props =>
+            props.buttonError &&
+            css`
+               border-bottom: 3px solid #ff6c01;
+            `}
       }
    }
 `;
@@ -113,6 +125,18 @@ export const InfoForm = styled.div`
          background: #f4f4f4;
          border: none;
          border-bottom: 0px solid #b6b6b6;
+
+         ${props =>
+            props.idError &&
+            css`
+               border-bottom: 3px solid #ff6c01;
+            `}
+
+         ${props =>
+            props.buttonError &&
+            css`
+               border-bottom: 3px solid #ff6c01;
+            `}
       }
    }
 `;
@@ -238,12 +262,18 @@ export const BtnFill = styled.button`
    align-items: center;
    justify-content: center;
    margin: 8px 0;
+   span {
+      color: #fff;
+      font-size: 16px;
+   }
+
    a {
       color: #fff;
+      &:hover {
+         color: #fff;
+      }
    }
-   a:hover {
-      color: #fff;
-   }
+
    @media screen and (max-width: 900px) {
       position: absolute;
       top: 0;
