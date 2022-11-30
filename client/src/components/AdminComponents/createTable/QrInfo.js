@@ -5,12 +5,12 @@ import { setOverlapNumState, setSavedTebleNum, registerTableNum } from '../../..
 
 import axios from 'axios';
 const QrInfo = ({ idx }) => {
+   const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const inputRef = useRef(null);
    const [savedNumChack, setSavedNumChack] = useState(false);
    const [inputTextLengthCheck, setInputTextLengthCheck] = useState(true);
    const [qrData, setQrData] = useState([]);
    const qrDataList = useSelector(state => state.adminReducer.qrDate);
-   const url = useSelector(state => state.adminReducer.apiUrl);
    const dispatch = useDispatch();
    const onChangeTableNumDispatch = e => {
       let tableNum = e.target.value;
@@ -45,7 +45,7 @@ const QrInfo = ({ idx }) => {
       }
    };
    useEffect(() => {
-      axios.get(`${url}/table/${sessionStorage.getItem('userId')}/qr`).then(res => {
+      axios.get(`${API_BASE_URL}/table/${sessionStorage.getItem('userId')}/qr`).then(res => {
          setQrData(res.data.data);
       });
    }, []);
@@ -61,7 +61,11 @@ const QrInfo = ({ idx }) => {
                   onChange={e => onChangeTableNumDispatch(e)}></input>
             </div>
             <div className="textBox">
-               {inputTextLengthCheck ? '번호를 입력해주세요.' : savedNumChack ? '등록된 테이블입니다.' : 'Y'}
+               {inputTextLengthCheck
+                  ? '번호를 입력해주세요.'
+                  : savedNumChack
+                  ? '등록된 테이블입니다.'
+                  : '사용 가능한 번호 입니다.'}
             </div>
          </div>
       </QrInfoBox>

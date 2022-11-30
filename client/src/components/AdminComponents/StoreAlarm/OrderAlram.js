@@ -1,14 +1,13 @@
 import { useState } from 'react';
 import { Order, OrderListBox } from './OderAlarmStyle';
 import { MdExpandMore } from 'react-icons/md';
-import { useSelector } from 'react-redux';
 const OrderAlram = ({ menu, idx }) => {
+   const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const [menuViewDetails, setMenuViewDetails] = useState(false);
-   const url = useSelector(state => state.adminReducer.apiUrl);
    const handleClickOrderCheck = () => {
       alert('확인');
       const orderId = menu.orderId;
-      fetch(`${url}/order/${orderId}`, {
+      fetch(`${API_BASE_URL}/order/${orderId}`, {
          method: 'PATCH',
          headers: { 'Content-Type': 'application/json' },
          body: JSON.stringify({ checkBox: false })

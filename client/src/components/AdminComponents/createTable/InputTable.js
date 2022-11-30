@@ -1,20 +1,19 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 // import Input from '../../Input';  보류
 import styled from 'styled-components';
 import Button from './Button';
 
 const InputTable = () => {
-   const url = useSelector(state => state.adminReducer.apiUrl);
+   const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const navigate = useNavigate();
    const [tableValue, setTableValue] = useState('');
    const [thereIsMenu, setThereIsMenu] = useState(true);
    const hadleClickCreateQR = e => {
       setTableValue(e.target.value);
    };
-   axios.get(`${url}/category/${sessionStorage.getItem('userId')}`).then(res => {
+   axios.get(`${API_BASE_URL}/category/${sessionStorage.getItem('userId')}`).then(res => {
       console.log(res);
       if (res.data.length !== 0) {
          setThereIsMenu(true);

@@ -7,12 +7,13 @@ import { useAxios } from '../../util/useAxios';
 import * as S from './SetMenu.style';
 
 const CategoryMapLi = ({ activeIndex, setActiveIndex, setSubmit, toggleCategoryAdd, setToggleCategoryAdd }) => {
+   const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const categoryList = useSelector(store => store.categoryUserItemReducer.data);
 
    //get
    const { response, error } = useAxios({
       method: 'GET',
-      url: `category/${sessionStorage.getItem('userId')}`
+      url: `${API_BASE_URL}/category/${sessionStorage.getItem('userId')}`
    });
    //  const { clickFetchFunc } = useAxios({}, false);
    // response && console.log(response)

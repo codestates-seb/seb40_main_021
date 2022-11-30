@@ -7,6 +7,7 @@ import { useAxios } from '../../util/useAxios';
 import * as S from './SetMenu.style';
 
 const MenuLi = ({ activeIndex }) => {
+   const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const categoryList = useSelector(store => store.categoryUserItemReducer.data);
    const menuList = useSelector(store => store.menuSaveItemReducer.data);
    let categoryId;
@@ -20,7 +21,7 @@ const MenuLi = ({ activeIndex }) => {
       if (categoryId) {
          clickFetchFunc({
             method: 'GET',
-            url: `category/read/${categoryId}`
+            url: `${API_BASE_URL}/category/read/${categoryId}`
          });
       }
    }, [categoryList, activeIndex]);

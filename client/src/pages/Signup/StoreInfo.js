@@ -20,6 +20,8 @@ import { InfoForm, CompanyNum, FormControl } from './MemberInfo.Style';
 //가게 사진, 가게 설명, 주소, 전화번호, 영업시간
 // 주소, 바디, 헤더
 const StoreInfo = () => {
+   const API_BASE_URL = process.env.REACT_APP_API_ROOT;
+
    const inputValue = useSelector(state => state);
 
    const [img, setImg] = useState();
@@ -46,12 +48,11 @@ const StoreInfo = () => {
       contactNumber === '' ||
       NumberError
    );
-
    const postStoreInfo = async () => {
       try {
          onCheckValues();
 
-         const res = await axios.post(`/member`, {
+         const res = await axios.post(`${API_BASE_URL}/member`, {
             loginId: inputValue.userMemberReducer.id,
             password: inputValue.userMemberReducer.password,
             businessNumber: inputValue.userMemberReducer.businessNumber,
@@ -69,6 +70,7 @@ const StoreInfo = () => {
    };
 
    const handleNumber = e => {
+      // console.log(fileUpload.value);
       setContactNumber(e.target.value);
       setIsCheck({ ...isCheck, contactNumber: false });
       const ContactNumberRegex = /[0-9]$/;

@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import Input from '../../Input';
 import { changStoreInfoData } from '../../../redux/action/action';
 
+// eslint-disable-next-line no-unused-vars
 const InfoUpdateInput = ({ data, setIsEmptyValue }) => {
    const [storeName, setStoreNmae] = useState({ target: { value: data.businessName } });
    const [address, setAddress] = useState({ target: { value: data.address } });
@@ -10,6 +11,7 @@ const InfoUpdateInput = ({ data, setIsEmptyValue }) => {
    const [businessNum, setBusinessNum] = useState({ target: { value: data.businessNumber } });
    const [businessTime, setBusinessTime] = useState({ target: { value: data.businessHours } });
    const [description, setDescription] = useState({ target: { value: data.about } });
+
    const patchData = {
       businessName: storeName.target.value,
       address: address.target.value,
@@ -20,29 +22,25 @@ const InfoUpdateInput = ({ data, setIsEmptyValue }) => {
    };
    const dispatch = useDispatch();
 
-   const onChangeInputValue = () => {
-      dispatch(changStoreInfoData(patchData));
-      if (
-         storeName.target.value.length === 0 ||
-         address.target.value.length === 0 ||
-         number.target.value.length === 0 ||
-         businessNum.target.value.length === 0 ||
-         businessTime.target.value.length === 0 ||
-         description.target.value.length === 0
-      ) {
+   const isEmptyInputValue = value => {
+      if (value.length === 0) {
+         console.log(value);
          setIsEmptyValue(false);
       } else {
+         console.log(value);
          setIsEmptyValue(true);
       }
+      dispatch(changStoreInfoData(patchData));
    };
    return (
       <div>
          <section className="sodivinfo">
-            <div className="sotrinfo" onChange={onChangeInputValue}>
+            <div className="sotrinfo">
                <div>
                   <div>가게 이름</div>
                   <div>
                      <Input
+                        isEmptyInputValue={isEmptyInputValue}
                         placeholder="빈칸을 채워주세요."
                         handleValue={setStoreNmae}
                         value={storeName.target.value}
@@ -51,6 +49,7 @@ const InfoUpdateInput = ({ data, setIsEmptyValue }) => {
                   <div>주소</div>
                   <div>
                      <Input
+                        isEmptyInputValue={isEmptyInputValue}
                         placeholder="빈칸을 채워주세요."
                         handleValue={setAddress}
                         value={address.target.value}
@@ -61,6 +60,7 @@ const InfoUpdateInput = ({ data, setIsEmptyValue }) => {
                   <div>연락처</div>
                   <div>
                      <Input
+                        isEmptyInputValue={isEmptyInputValue}
                         placeholder="빈칸을 채워주세요."
                         handleValue={setNumber}
                         value={number.target.value}
@@ -71,6 +71,7 @@ const InfoUpdateInput = ({ data, setIsEmptyValue }) => {
                   <div>사업자 번호</div>
                   <div>
                      <Input
+                        isEmptyInputValue={isEmptyInputValue}
                         placeholder="빈칸을 채워주세요."
                         handleValue={setBusinessNum}
                         value={businessNum.target.value}
@@ -81,6 +82,7 @@ const InfoUpdateInput = ({ data, setIsEmptyValue }) => {
                   <div>영업 시간</div>
                   <div>
                      <Input
+                        isEmptyInputValue={isEmptyInputValue}
                         placeholder="빈칸을 채워주세요."
                         handleValue={setBusinessTime}
                         value={businessTime.target.value}

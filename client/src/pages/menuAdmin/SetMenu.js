@@ -5,37 +5,38 @@ import IconAdd from '../../assets/img/icon_add.png';
 import IconCategoryAdd from '../../assets/img/icon_category_plus.png';
 import ButtonWrap from '../../components/Menu/ButtonWrap';
 import * as S from './SetMenu.style';
-import { v4 as uuidv4 } from 'uuid';
 import SetMenuLi from './SetMenuLi';
 import CategoryMapLi from './CategoryMapLi';
 import PreviewModal from '../../components/Preview/PreviewModal';
 import { useNavigate } from 'react-router-dom';
 import { useAxios } from '../../util/useAxios';
+import { v4 as uuidv4 } from 'uuid';
 
 const SetMenu = () => {
+   const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const [toggleCategoryAdd, setToggleCategoryAdd] = useState(false);
    const dispatch = useDispatch();
    const state = useSelector(store => store.menuUserItemReducer);
-   const saveState = useSelector(store => store.menuSaveItemReducer.data.menus);
+   // const saveState = useSelector(store => store.menuSaveItemReducer.data.menus);
    const categoryList = useSelector(store => store.categoryUserItemReducer.data);
-   const menuList = useSelector(store => store.menuUserItemReducer.data);
+   const menuListState = useSelector(store => store.menuUserItemReducer.data);
    const menuCountPlus = () => {
       if (categoryList.length === 0) {
          alert('카테고리를 먼저 추가해주세요.');
       } else {
          dispatch(
             menuUserAdd({
-               menuId: uuidv4(),
-               menuImg: '',
+               menuImage: '',
                price: '',
                menuName: '',
                menuContent: '',
-               recommnd: false,
+               recommendedMenu: false,
+               uuid: uuidv4(),
                errorMessage: {
                   menuName: '',
                   menuContent: '',
                   price: '',
-                  menuImg: ''
+                  menuImage: ''
                }
             })
          );
@@ -44,11 +45,7 @@ const SetMenu = () => {
 
    const [activeIndex, setActiveIndex] = useState(0);
    const [submit, setSubmit] = useState(false);
-   // const categoryList = useSelector(store => store.categoryUserItemReducer.data);
    const { clickFetchFunc } = useAxios({}, false);
-
-   console.log(state, 'state');
-   console.log(saveState, 'saveState');
    const navigate = useNavigate();
    const menuClickSave = saveAll => {
       if (saveAll) {
@@ -75,27 +72,7 @@ const SetMenu = () => {
                (state.data[i].menuName.trim() !== '' || state.data[i].menuName !== '') &&
                (state.data[i].menuContent.trim() !== '' || state.data[i].menuContent !== '')
             ) {
-               // setSubmit(true);
-               //통신진행
-               // console.log(
-               //    menuList[0].menuName,
-               //    menuList[0].menuContent,
-               //    menuList[0].price,
-               //    menuList[0].recommnd,
-               //    categoryList[activeIndex].categoryId
-               // );
-               // clickFetchFunc({
-               //    method: 'POST',
-               //    url: `/menu/write`,
-               //    data: {
-               //       memberId: userId,
-               //       menuName: menuList[0].menuName,
-               //       menuContent: menuList[0].menuContent,
-               //       price: menuList[0].price,
-               //       recommendedMenu: menuList[0].recommnd,
-               //       categoryId: categoryList[activeIndex].categoryId
-               //    }
-               // })
+               //
             } else {
                // setNoReadInput(true)
                noReadInput = true;
@@ -115,17 +92,22 @@ const SetMenu = () => {
             return alert('오류 칸을 수정해주세요.');
          }
          if (!noReadInput && !ErrorInput && stateData) {
+            let menuList = [...menuListState];
+
+            // menuList = menuList.map(el => delete el.errorMessage);
+            for (let i = 0; i < menuList.length; i++) {
+               menuList[i] = { ...menuList[i], categoryId: categoryList[activeIndex].categoryId, memberId: 1 };
+               delete menuList[i].errorMessage;
+               delete menuList[i].menuImage;
+               delete menuList[i].uuid;
+            }
             console.log('성공');
+            console.log(menuList);
             clickFetchFunc({
-               method: 'POST',
-               url: `/menu/write`,
+               method: 'PATCH',
+               url: `${API_BASE_URL}/menu/${categoryList[activeIndex].categoryId}`,
                data: {
-                  memberId: sessionStorage.getItem('userId'),
-                  menuName: menuList[0].menuName,
-                  menuContent: menuList[0].menuContent,
-                  price: menuList[0].price,
-                  recommendedMenu: menuList[0].recommnd,
-                  categoryId: categoryList[activeIndex].categoryId
+                  menuList: menuList
                }
             });
             alert('저장이 완료되었습니다.');
@@ -136,7 +118,7 @@ const SetMenu = () => {
    const viewPreview = useSelector(state => state.previewToggleReducer);
    return (
       <S.SetMenuLayout>
-         {viewPreview ? <PreviewModal /> : null}
+         {viewPreview ? <PreviewModal now={'menu'} /> : null}
          <S.Head>메뉴판 제작</S.Head>
          <S.MenuLayout>
             <CategoryMapLi

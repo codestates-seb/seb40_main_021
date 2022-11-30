@@ -4,34 +4,37 @@ import InfoUpdateInput from './InfoUpdateInput';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import PreviewModal from '../../Preview/PreviewModal';
 
 const StoreInfo = ({ setIsEmptyValue }) => {
-   const url = useSelector(state => state.adminReducer.apiUrl);
+   const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const [userInfo, setUserInfo] = useState({
-      about: null,
-      address: null,
-      businessHours: null,
-      businessName: null,
-      businessNumber: null,
-      contactNumber: null
+      userImage: '',
+      about: '',
+      address: '',
+      businessHours: '',
+      businessName: '',
+      businessNumber: '',
+      contactNumber: ''
    });
    const UpdateState = useSelector(state => state.adminReducer.storeInfoUpdateState);
 
    useEffect(() => {
-      axios.get(`${url}/member/${sessionStorage.getItem('userId')}`).then(res => {
+      axios.get(`${API_BASE_URL}/member/${sessionStorage.getItem('userId')}`).then(res => {
          setUserInfo(res.data.data);
       });
    }, []);
-
+   const viewPreview = useSelector(state => state.previewToggleReducer);
    return (
       <>
          <MainContants>
+            {viewPreview ? <PreviewModal /> : null}
             <div className="title">
                <h1>가게정보</h1>
             </div>
             <main className="mainContant">
                <div className="storeImg">
-                  <img src="https://ifh.cc/g/4v3A2t.png" alt=""></img>
+                  <img src={userInfo.userImage} alt=""></img>
                </div>
                <div className="storeInfoContainer">
                   <div>{userInfo.businessName}</div>

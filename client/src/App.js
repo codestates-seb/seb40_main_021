@@ -18,6 +18,7 @@ import Complete from './pages/Signup/Complete';
 import Login from './pages/Signup/Login';
 import { useSelector } from 'react-redux';
 import { AnimatedRoutes } from './components/usermenu/AnimatedRoutes';
+import { Home } from './pages';
 
 function App() {
    const printModalState = useSelector(state => state.adminReducer.printModal);
@@ -29,6 +30,7 @@ function App() {
          <BrowserRouter>
             {printModalState || noHeader ? null : <Header />}
             <Routes>
+               <Route path="/" element={<Home />} />
                <Route path="/user" element={<GnbLayout />}>
                   <Route path="/user" element={<AlarmPage />} />
                   <Route path="/user/table" element={<Table />} />
@@ -38,7 +40,7 @@ function App() {
                   <Route path="/user/menusetting" element={<SetMenu />} />
                   <Route path="/user/menu" element={<Menu />} />
                </Route>
-               <Route exact path="/SignupTos" element={<SignupTos />} />
+               <Route path="/SignupTos" element={<SignupTos />} />
                <Route path="/MemberInfo" element={<MemberInfo />} />
                <Route path="/StoreInfo" element={<StoreInfo />} />
                <Route path="/Complete" element={<Complete />} />

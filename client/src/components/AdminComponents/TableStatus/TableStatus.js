@@ -1,16 +1,34 @@
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-
+import { RiDeleteBinLine } from 'react-icons/ri';
 const TableStatus = ({ data }) => {
    const priceList = data.orderList.map(menus => {
       return menus.price * menus.quantity;
    });
+   const url = useSelector(state => state.adminReducer.apiUrl);
    const totalPrice = priceList.reduce((prev, current) => prev + current);
+   const hadleClickDeleteOrder = () => {
+      if (confirm('정말 삭제하시겠습니까?')) {
+         fetch(`${url}/order/${sessionStorage.getItem('userId')}/${data.tableNumber}`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' }
+         });
+      }
+   };
+
    return (
       <TableStatusBox>
          <div className="orderHead">
             <div>No. {data.tableNumber}</div>
             <div>
-               주문 <b>{data.orderList.length}</b>개
+               <div className="orderDelete">
+                  <button onClick={hadleClickDeleteOrder}>
+                     <RiDeleteBinLine size="15"></RiDeleteBinLine>
+                  </button>
+               </div>
+               <div>
+                  주문 <b>{data.orderList.length}</b>개
+               </div>
             </div>
          </div>
          <div className="orderList">
@@ -41,24 +59,37 @@ const TableStatusBox = styled.div`
    box-shadow: 0 4px 2px 0px lightgray;
    font-size: 1.3rem;
    padding: 20px;
-   background-color: #fdffde;
+   background-color: #fffff3;
    border-radius: 3px 3px 15px 3px;
    margin-bottom: 25px;
+   .orderDelete {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      justify-content: end;
+      > button {
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         font-size: 12px;
+      }
+   }
    .orderHead {
       display: flex;
       align-items: center;
       width: 100%;
       height: 80px;
-      border-bottom: 1px solid gray;
+      border-bottom: 1px solid #c2a9a9;
       font-weight: 900;
       > :nth-child(1) {
          font-size: 30px;
-         color: #ff6c01;
+         color: #ff5252;
          font-weight: bold;
-         width: 70%;
+         width: 50%;
          margin-left: 10px;
       }
       > :nth-child(2) {
+         width: 50%;
          b {
             font-size: 24px;
          }
@@ -87,7 +118,7 @@ const TableStatusBox = styled.div`
       }
    }
    .totalPrice {
-      border-top: 1px solid gray;
+      border-top: 1px solid #c2a9a9;
       width: 100%;
       height: 10%;
       > div {

@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { storeInfoUpdate } from '../../../redux/action/action';
+import { previewToggleState, storeInfoUpdate } from '../../../redux/action/action';
 const ButtonWrap = ({ bottom, isEmptyValue }) => {
+   const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const dispatch = useDispatch();
-   const url = useSelector(state => state.adminReducer.apiUrl);
    const UpdateState = useSelector(state => state.adminReducer.storeInfoUpdateState);
    const storeInfoData = useSelector(state => state.adminReducer.storeInfoData);
    console.log(isEmptyValue);
@@ -18,7 +18,7 @@ const ButtonWrap = ({ bottom, isEmptyValue }) => {
             contactNumber: storeInfoData.number,
             about: storeInfoData.description
          };
-         fetch(`${url}/member/${sessionStorage.getItem('userId')}`, {
+         fetch(`${API_BASE_URL}/member/${sessionStorage.getItem('userId')}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
@@ -31,9 +31,14 @@ const ButtonWrap = ({ bottom, isEmptyValue }) => {
          alert('모든 칸을 채워주세요');
       }
    };
+
+   const viewPreview = useSelector(state => state.previewToggleReducer);
+   const PreviewFunc = () => {
+      dispatch(previewToggleState(!viewPreview));
+   };
    return (
       <BtnWrap bottom={bottom}>
-         <WhiteBtn>미리보기</WhiteBtn>
+         <WhiteBtn onClick={PreviewFunc}>미리보기</WhiteBtn>
          <OrangeBtn onClick={handleClickInfoUpdate}>{UpdateState ? '확인' : '가게정보 수정'}</OrangeBtn>
       </BtnWrap>
    );
@@ -68,7 +73,8 @@ export const WhiteBtn = styled.button`
       background-color: #313e46;
    }
    @media screen and (max-width: 700px) {
-      display: none;
+      width: 50%;
+      /* display: none; */
    }
 `;
 const OrangeBtn = styled.button`

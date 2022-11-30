@@ -7,6 +7,8 @@ import { Container } from './Complete.Style';
 import { Info, InfoFormError, FormControl } from './MemberInfo.Style';
 
 const Login = () => {
+   const API_BASE_URL = process.env.REACT_APP_API_ROOT;
+
    const postLogin = async () => {
       try {
          setFinalCheck({
@@ -15,11 +17,11 @@ const Login = () => {
             pwCheck: !password || passwordError ? true : false
          });
 
-         const res = await axios.post(`/member/login`, {
+         const res = await axios.post(`${API_BASE_URL}/member/login`, {
             loginId: id,
             password: password
          });
-
+         console.log(res);
          sessionStorage.setItem('access token', res.headers.get('authorization'));
          sessionStorage.setItem('refresh token', res.headers.get('refresh'));
 

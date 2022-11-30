@@ -1,17 +1,19 @@
-import { Search } from './Search';
+import { Search } from '../usermenu/Search';
 import { useDispatch, useSelector } from 'react-redux';
-import { Category } from './Category';
+import { Category } from '../usermenu/Category';
 import { useEffect } from 'react';
 import { setCategory, setMenu } from '../../redux/actions/menuAction';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
-export const NavMenu = () => {
+export const NavMenuPreview = () => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const dispatch = useDispatch();
    const category = useSelector(store => store.menuReducer.category);
    const categoryId = useSelector(store => store.menuReducer.category[0].categoryId);
    const userId = useParams().userId;
+
+   console.log(categoryId);
 
    useEffect(() => {
       // 카테고리목록 불러오기
