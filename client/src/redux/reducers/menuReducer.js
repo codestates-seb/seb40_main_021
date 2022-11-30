@@ -12,7 +12,7 @@ import {
 } from '../actions/menuAction';
 
 const initialState = {
-   category: [],
+   category: [{ categoryId: 0 }],
    menu: [],
    searchedMenu: [],
    cart: [],

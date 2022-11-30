@@ -42,17 +42,20 @@ const ButtonWrap = ({ text, num }) => {
       //서버에 post 요청
 
       if (!setOverlapNumState && !setSavedTebleNum) {
-         alert('테이블 등록');
          const body = { tableList: qrData };
          //${url}
-         fetch(`${url}/table/${sessionStorage.getItem('userId')}`, {
+         fetch(`/table/${sessionStorage.getItem('userId')}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
          })
             .then(res => {
-               console.log(res);
-               navigate('/user/qr');
+               if (res.status === 200) {
+                  alert('테이블 등록');
+                  navigate('/user/qr');
+               } else {
+                  alert('통신 에러');
+               }
             })
             .catch(err => console.log(err));
       } else {

@@ -10,7 +10,7 @@ export const NavMenu = () => {
    const dispatch = useDispatch();
    const category = useSelector(store => store.menuReducer.category);
    const categoryId = useSelector(store => store.menuReducer.category[0].categoryId);
-   const userId = useParams.userId;
+   const userId = useParams().userId;
 
    useEffect(() => {
       // 카테고리목록 불러오기
