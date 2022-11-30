@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { previewToggleState, storeInfoUpdate } from '../../../redux/action/action';
 const ButtonWrap = ({ bottom, isEmptyValue }) => {
+   const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const dispatch = useDispatch();
-   const url = useSelector(state => state.adminReducer.apiUrl);
    const UpdateState = useSelector(state => state.adminReducer.storeInfoUpdateState);
    const storeInfoData = useSelector(state => state.adminReducer.storeInfoData);
    console.log(isEmptyValue);
@@ -18,7 +18,7 @@ const ButtonWrap = ({ bottom, isEmptyValue }) => {
             contactNumber: storeInfoData.number,
             about: storeInfoData.description
          };
-         fetch(`${url}/member/${sessionStorage.getItem('userId')}`, {
+         fetch(`${API_BASE_URL}/member/${sessionStorage.getItem('userId')}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)

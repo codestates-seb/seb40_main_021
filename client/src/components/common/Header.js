@@ -3,11 +3,12 @@ import Logo from './../../assets/img/logo.png';
 import IconSignout from './../../assets/img/icon_signout.png';
 import IconList from './../../assets/img/icon_list.png';
 import * as S from './Header.style';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { gnbToggleOpen } from '../../redux/action/action';
 
 const Header = () => {
-   const isLogin = true;
+   const store = useSelector(store => store.menuReducer.store);
+   const isLogin = false;
    const dispatch = useDispatch();
 
    return (
@@ -25,7 +26,7 @@ const Header = () => {
                <>
                   <S.LineBtnUser>
                      <Link to="/user/store">
-                        <span>치킨빠스</span>
+                        <span>{store.businessName}</span>
                      </Link>
                   </S.LineBtnUser>
                   <S.LineBtnUserNoUnder>
@@ -38,10 +39,10 @@ const Header = () => {
             ) : (
                <>
                   <S.LineBtn>
-                     <Link to="/">로그인</Link>
+                     <Link to="/login">로그인</Link>
                   </S.LineBtn>
                   <S.Button>
-                     <Link to="/">회원가입</Link>
+                     <Link to="/signuptos">회원가입</Link>
                   </S.Button>
                </>
             )}

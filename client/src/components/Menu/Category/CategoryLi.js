@@ -12,6 +12,7 @@ import {
 import { useAxios } from '../../../util/useAxios';
 
 const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex, userId }) => {
+   const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const { categoryId, categoryName } = el;
 
    const state = useSelector(store => store.categoryUserItemReducer);
@@ -39,7 +40,7 @@ const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex, userId
             dispatch(setUserCategoryNaming(''));
             clickFetchFunc({
                method: 'PATCH',
-               url: `/category/update/${userId}`,
+               url: `${API_BASE_URL}/category/update/${userId}`,
                data: { categoryName: categoryAddName }
             });
             setTogglePatchCategory(!togglePatchCategory);
@@ -76,7 +77,7 @@ const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex, userId
          }
          clickFetchFunc({
             method: 'DELETE',
-            url: `/category/${categoryId}`
+            url: `${API_BASE_URL}/category/${categoryId}`
          });
          return dispatch(setUserDeleteCategory(idx));
       }

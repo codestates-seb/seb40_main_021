@@ -3,20 +3,20 @@ import { faBell } from '@fortawesome/free-regular-svg-icons';
 import { useState } from 'react';
 import { ModalStyle } from '../../style/menu.style';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export const Modal = modal => {
+   const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const [callStaff, setCallStaff] = useState(false);
-   const userId = useParams().userId;
-   const tableNumber = useParams().tableNumber;
-   console.log(userId, tableNumber);
+   const params = useSelector(store => store.stateReducer.params);
+   console.log(params);
 
    const callStaffHandler = () => {
       setCallStaff(true);
       axios({
          method: 'POST',
-         url: `/call/${userId}/${tableNumber}`,
-         body: { tableNumber }
+         url: `${API_BASE_URL}/call/${params[0]}/${params[1]}`,
+         body: { tableNumber: `${params[1]}` }
          // url: `/call/1/1`,
          // body: { tableNumber : "1" }
       }).then(res => {

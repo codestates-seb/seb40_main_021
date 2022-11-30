@@ -3,24 +3,29 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Category } from '../usermenu/Category';
 import { useEffect } from 'react';
 import { setCategory, setMenu } from '../../redux/actions/menuAction';
-import axios, { all, spread } from 'axios';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 export const NavMenuPreview = () => {
+   const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const dispatch = useDispatch();
    const category = useSelector(store => store.menuReducer.category);
-   // const userId = useParams.userId;
+   const categoryId = useSelector(store => store.menuReducer.category[0].categoryId);
+   const userId = useParams().userId;
 
-   // 카테고리목록 불러오기
-   // 첫번째 카테고리 메뉴목록 불러오기
+   console.log(categoryId);
+
    useEffect(() => {
-      all([axios.get(`/category/${sessionStorage.getItem('userId')}}`), axios.get('/category/read/1')])
-         // all([axios.get('/category/1'), axios.get('/category/read/1')])
+      // 카테고리목록 불러오기
+      axios
+         .get(`${API_BASE_URL}/category/${userId}`)
+         .then(res => {
+            dispatch(setCategory(res.data));
+         })
          .then(
-            spread((res1, res2) => {
-               const categoryList = res1.data;
-               const menus = res2.data.data.menus;
-               dispatch(setCategory(categoryList));
-               dispatch(setMenu(menus));
+            // 첫번째 카테고리 메뉴목록 불러오기
+            axios.get(`${API_BASE_URL}/category/read/${categoryId}`).then(res => {
+               dispatch(setMenu(res.data.data.menus));
             })
          )
          .catch(err => console.log(err));

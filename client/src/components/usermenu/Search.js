@@ -5,8 +5,8 @@ import { useDispatch } from 'react-redux';
 import IconSearch from './../../assets/image/search.svg';
 
 export const Search = () => {
+   const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const dispatch = useDispatch();
-
    const wrapperRef = useRef();
    const [searchTxt, setSearchTxt] = useState('');
 
@@ -17,7 +17,7 @@ export const Search = () => {
       if (searchTxt) {
          axios({
             method: 'GET',
-            url: `/menu/search/1?keyword=${searchTxt}`
+            url: `${API_BASE_URL}/menu/search/1?keyword=${searchTxt}`
          })
             .then(res => {
                if (res.data.data.length === 0) {

@@ -7,7 +7,7 @@ import axios from 'axios';
 import PreviewModal from '../../Preview/PreviewModal';
 
 const StoreInfo = ({ setIsEmptyValue }) => {
-   const url = useSelector(state => state.adminReducer.apiUrl);
+   const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const [userInfo, setUserInfo] = useState({
       about: null,
       address: null,
@@ -19,7 +19,7 @@ const StoreInfo = ({ setIsEmptyValue }) => {
    const UpdateState = useSelector(state => state.adminReducer.storeInfoUpdateState);
 
    useEffect(() => {
-      axios.get(`${url}/member/${sessionStorage.getItem('userId')}`).then(res => {
+      axios.get(`${API_BASE_URL}/member/${sessionStorage.getItem('userId')}`).then(res => {
          setUserInfo(res.data.data);
       });
    }, []);
