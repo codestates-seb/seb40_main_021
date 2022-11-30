@@ -7,7 +7,7 @@
 ## 👨‍👩‍👧‍👦 Team Members 
 |류희경|오현지|임채영|편범준|강문수|김효성|박정민|
 |:--------------------:|:--------------------:|:--------------------:|:--------------------:|:--------------------:|:--------------------:|:--------------------:|
-|                |     |            |                |                  |<img src = "https://avatars.githubusercontent.com/u/107914598?s=400&v=4" width = "100" height = "100">|                        |
+|<img src = "https://avatars.githubusercontent.com/u/57256728?v=4" width = "100" height = "100">|<img src = "https://avatars.githubusercontent.com/u/107424698?v=4" width = "100" height = "100">|<img src = "https://avatars.githubusercontent.com/u/98375183?v=4" width = "100" height = "100">|<img src = "https://avatars.githubusercontent.com/u/104752645?v=4" width = "100" height = "100">|<img src = "https://avatars.githubusercontent.com/u/107465049?v=4" width = "100" height = "100">|<img src = "https://avatars.githubusercontent.com/u/107914598?s=400&v=4" width = "100" height = "100">|<img src = "https://avatars.githubusercontent.com/u/90558247?v=4" width = "100" height = "100">|
 |[@beals1129](https://github.com/beals1129)|[@opc13579](https://github.com/opc13579)|[@Icyeong](https://github.com/Icyeong)|[@joon-github](https://github.com/joon-github)|[@KANG-MoonSoo](https://github.com/KANG-MoonSoo)|[@wkqltm95](https://github.com/wkqltm95)|[@inmyownway](https://github.com/inmyownway)|
 |팀장, FE|FE|FE|FE|BE|BE|BE|
 
