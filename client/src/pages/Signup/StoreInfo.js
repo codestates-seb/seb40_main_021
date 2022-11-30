@@ -146,7 +146,7 @@ const StoreInfo = () => {
                      <CompanyNum>
                         <Postcode setAddress={setAddress} />
                         <FormControl
-                           name="adress"
+                           name="address"
                            type="text"
                            placeholder="도로명 주소 검색"
                            value={address}
@@ -160,7 +160,7 @@ const StoreInfo = () => {
 
                   <InfoForm buttonError={isCheck.detailAddress} passwordError={detailAddress === '' ? true : false}>
                      <FormControl
-                        name="detailAdreess"
+                        name="detailAddress"
                         type="text"
                         placeholder="상세 주소를 입력해주세요"
                         value={detailAddress}
