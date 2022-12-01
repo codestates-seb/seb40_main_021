@@ -81,7 +81,7 @@ export const IdRemember = styled.div`
    }
 `;
 export const LoginBtn = styled.div`
-   a {
+   button {
       background: #ff6c01;
       border-radius: 10px;
       font-size: 16px;
@@ -95,7 +95,7 @@ export const LoginBtn = styled.div`
       margin-top: 35px;
       float: left;
    }
-   a:hover {
+   button:hover {
       color: #fff;
    }
    @media screen and (max-width: 900px) {
