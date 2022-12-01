@@ -14,6 +14,13 @@ export const bottomLineError = css`
       css`
          border-bottom: 3px solid #ff6c01;
       `}
+
+
+      ${props =>
+      props.passwordConfirmError &&
+      css`
+         border-bottom: 3px solid #ff6c01;
+      `}
 `;
 
 export const Info = styled.div`
@@ -150,19 +157,7 @@ export const InfoFormError = styled(InfoForm)`
    input[name='passwordConfirm'] {
       background: #f4f4f4;
       border: none;
-      border-bottom: 3px solid #b6b6b6;
-
-      ${props =>
-         props.buttonError &&
-         css`
-            border-bottom: 3px solid #ff6c01;
-         `}
-
-      ${props =>
-         props.passwordConfirmError &&
-         css`
-            border-bottom: 3px solid #ff6c01;
-         `}
+      ${bottomLineError}
 
       &:focus {
          outline: none;

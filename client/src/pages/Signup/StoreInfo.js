@@ -82,7 +82,10 @@ const StoreInfo = () => {
          navigate('/complete');
          console.log(res);
       } catch (err) {
-         console.log(err);
+         if (err.response.status === 409) {
+            alert('중복된 아이디가 있습니다.');
+            return;
+         }
       }
    };
 
