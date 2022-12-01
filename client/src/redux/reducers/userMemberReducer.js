@@ -1,9 +1,10 @@
-import { USER_MEMBER_ID, USER_MEMBER_PASSWORD, USER_MEMBER_BUSINESSNUMBER } from '../action/action';
+import { USER_MEMBER_ID, USER_MEMBER_PASSWORD, USER_MEMBER_BUSINESSNUMBER, IS_LOGIN } from '../action/action';
 
 const initialState = {
    id: '',
    password: '',
-   businessNumber: ''
+   businessNumber: '',
+   isLogin: false
 };
 
 const userMemberReducer = (state = initialState, action) => {
@@ -25,6 +26,9 @@ const userMemberReducer = (state = initialState, action) => {
             ...state,
             businessNumber: action.payload
          };
+
+      case IS_LOGIN:
+         return { ...state, isLogin: action.payload };
       default:
          return state;
    }

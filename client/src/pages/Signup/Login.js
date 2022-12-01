@@ -5,9 +5,12 @@ import { IdRemember, LoginBtn, LoginPanel, LoginTitle } from './Login.Style';
 import { Container } from './Complete.Style';
 import { Info, InfoFormError, FormControl } from './MemberInfo.Style';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setLoginStatus } from '../../redux/action/action';
 
 const Login = () => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
+   const dispatch = useDispatch();
    const navigate = useNavigate();
    const postLogin = async () => {
       try {
@@ -28,6 +31,7 @@ const Login = () => {
 
          console.log(res);
          if (res.status === 200) {
+            dispatch(setLoginStatus(true));
             navigate('/user');
          } else {
             alert('일단 로그인 실패');

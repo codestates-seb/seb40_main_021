@@ -1,15 +1,22 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from './../../assets/img/logo.png';
 import IconSignout from './../../assets/img/icon_signout.png';
 import IconList from './../../assets/img/icon_list.png';
 import * as S from './Header.style';
 import { useDispatch, useSelector } from 'react-redux';
-import { gnbToggleOpen } from '../../redux/action/action';
+import { gnbToggleOpen, setLoginStatus } from '../../redux/action/action';
 
 const Header = () => {
    const store = useSelector(store => store.menuReducer.store);
-   const isLogin = false;
+   const isLogin = useSelector(store => store.userMemberReducer.isLogin);
    const dispatch = useDispatch();
+   const navigate = useNavigate();
+
+   const logoutHandler = () => {
+      dispatch(setLoginStatus(false));
+      sessionStorage.clear();
+      navigate('/');
+   };
 
    return (
       <S.HeaderWrap>
@@ -30,10 +37,10 @@ const Header = () => {
                      </Link>
                   </S.LineBtnUser>
                   <S.LineBtnUserNoUnder>
-                     <Link to="/">
+                     <button onClick={logoutHandler}>
                         <img src={IconSignout} alt="sign out" />
                         로그아웃
-                     </Link>
+                     </button>
                   </S.LineBtnUserNoUnder>
                </>
             ) : (
