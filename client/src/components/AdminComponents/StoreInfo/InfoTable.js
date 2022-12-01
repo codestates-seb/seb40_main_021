@@ -1,27 +1,27 @@
-export const InfoTable = ({ data }) => {
+export const InfoTable = ({ userInfo }) => {
    return (
       <div>
          <table className="table">
             <tbody>
                <tr>
                   <th>주소</th>
-                  <td>{data.address}</td>
+                  <td>{userInfo.address}</td>
                </tr>
                <tr>
                   <th>연락처</th>
-                  <td>{data.contactNumber}</td>
+                  <td>{userInfo.contactNumber}</td>
                </tr>
                <tr>
                   <th>사업자 번호</th>
-                  <td>{data.businessNumber}</td>
+                  <td>{userInfo.businessNumber}</td>
                </tr>
                <tr>
                   <th>영업시간</th>
-                  <td className="sotreTimes">{data.businessHours}</td>
+                  <td className="sotreTimes">{userInfo.businessHours}</td>
                </tr>
                <tr>
                   <th>가게설명</th>
-                  <td>{data.about}</td>
+                  <td>{userInfo.about}</td>
                </tr>
             </tbody>
          </table>

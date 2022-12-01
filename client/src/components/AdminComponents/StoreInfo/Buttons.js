@@ -1,12 +1,18 @@
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { previewToggleState, storeInfoUpdate } from '../../../redux/action/action';
-const ButtonWrap = ({ bottom, isEmptyValue }) => {
+import axios from 'axios';
+import { useEffect } from 'react';
+const ButtonWrap = ({ bottom, isEmptyValue, setUserInfo }) => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const dispatch = useDispatch();
    const UpdateState = useSelector(state => state.adminReducer.storeInfoUpdateState);
    const storeInfoData = useSelector(state => state.adminReducer.storeInfoData);
-   console.log(isEmptyValue);
+   useEffect(() => {
+      axios.get(`${API_BASE_URL}/member/${sessionStorage.getItem('userId')}`).then(res => {
+         setUserInfo(res.data.data);
+      });
+   }, []);
    const handleClickInfoUpdate = () => {
       if (!UpdateState) dispatch(storeInfoUpdate());
       if (UpdateState && isEmptyValue) {
@@ -14,8 +20,10 @@ const ButtonWrap = ({ bottom, isEmptyValue }) => {
          dispatch(storeInfoUpdate());
          const body = {
             businessName: storeInfoData.businessName,
+            address: storeInfoData.address,
             businessNumber: storeInfoData.businessNum,
             contactNumber: storeInfoData.number,
+            businessHours: storeInfoData.businessHours,
             about: storeInfoData.description
          };
          fetch(`${API_BASE_URL}/member/${sessionStorage.getItem('userId')}`, {
@@ -23,8 +31,10 @@ const ButtonWrap = ({ bottom, isEmptyValue }) => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
          })
-            .then(res => {
-               console.log(res);
+            .then(() => {
+               axios.get(`${API_BASE_URL}/member/${sessionStorage.getItem('userId')}`).then(res => {
+                  setUserInfo(res.data.data);
+               });
             })
             .catch(err => console.log(err));
       } else if (UpdateState && !isEmptyValue) {
