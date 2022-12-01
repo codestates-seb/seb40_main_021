@@ -172,7 +172,7 @@ export const LineBtnUser = styled.button`
    }
 `;
 export const LineBtnUserNoUnder = styled.button`
-   & a {
+   & button {
       text-decoration: none;
       height: 33px;
       border-radius: 20px;

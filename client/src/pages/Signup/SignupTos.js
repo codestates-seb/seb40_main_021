@@ -49,7 +49,7 @@ const SignupTos = () => {
          alert('약관 체크를 해주세요');
          return;
       }
-      navigate('/MemberInfo', { state: { agree1: isChecked.agree1, agree2: isChecked.agree2 } });
+      navigate('/signup/1', { state: { agree1: isChecked.agree1, agree2: isChecked.agree2 } });
    };
 
    return (
@@ -158,6 +158,7 @@ const SignupTos = () => {
                         않은 용어는 개별서비스에 대한 별도 약관 및 이용규정에서 정의합니다.
                      </h5>
                   </AgreeDetailActive>
+
 
                   <Btn onClick={onAlert}>
                      <Link to={null}>다음</Link>
