@@ -26,14 +26,14 @@ const Gnb = () => {
    const getAlarms = async () => {
       const orderAlarmReverse = await getAlarm(`${API_BASE_URL}/table/${sessionStorage.getItem('userId')}/order`);
       const callAlarmReverse = await getAlarm(`${API_BASE_URL}/call/${sessionStorage.getItem('userId')}`);
-      dispatch(updateAlarmData(callAlarmReverse, orderAlarmReverse));
+      dispatch(updateAlarmData(orderAlarmReverse, callAlarmReverse));
    };
    useEffect(() => {
       getAlarms();
    }, []);
 
    useInterval(() => {
-      // getAlarms();
+      getAlarms();
    }, 3000);
    const count = alarmData.orderAlarmReverse.length + alarmData.callAlarmReverse.length;
    return (
