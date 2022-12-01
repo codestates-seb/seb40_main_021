@@ -79,7 +79,7 @@ const StoreInfo = () => {
             businessHours: businessHours
          });
 
-         navigate('/complete');
+         navigate('/signup/complete');
          console.log(res);
       } catch (err) {
          if (err.response.status === 409) {
@@ -216,7 +216,9 @@ const StoreInfo = () => {
                   </InfoForm>
 
                   <Btn>
+
                      <Link to={null} onClick={postStoreInfo}>
+
                         완료
                      </Link>
                   </Btn>
