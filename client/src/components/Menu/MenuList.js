@@ -2,7 +2,7 @@ import * as S from './MenuList.style';
 import Input from '../Input';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { menuUserUpdate, menuUserDelete, menuUserErrorMessage } from '../../redux/action/action';
+import { menuUserUpdate, menuUserDelete, menuUserErrorMessage, setMenuUpdate } from '../../redux/action/action';
 import styled from 'styled-components';
 import IconPhoto from './../../assets/img/icon_menu_photo.png';
 
@@ -74,6 +74,7 @@ const MenuList = ({ el, submit, setSubmit }) => {
    const [helperText, setHelperText] = useState({});
    //get menu
    useEffect(() => {
+      setImageSrc(el.menuImage);
       setmenuNameChange(el.menuName);
       setpricesChange(el.price);
       setmenuAboutChange(el.menuContent);
@@ -82,6 +83,7 @@ const MenuList = ({ el, submit, setSubmit }) => {
 
    //유효성
    const handleValue = e => {
+      dispatch(setMenuUpdate(true));
       if (e.target.name === 'menuName') {
          const maxValue = 21;
          if (maxValue && maxValue < e.target.value.length) return;
@@ -140,6 +142,7 @@ const MenuList = ({ el, submit, setSubmit }) => {
    }, [helperText]);
 
    const DeleteMenu = () => {
+      dispatch(setMenuUpdate(true));
       dispatch(menuUserDelete(el.uuid));
    };
 
@@ -149,8 +152,8 @@ const MenuList = ({ el, submit, setSubmit }) => {
    //     number = number.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
    //     // setpricesChange(String(pricesChange).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
    // }, [pricesChange])
-
-   // let number = pricesChange.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g);
+   // .toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g);
+   let number = pricesChange.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
    // let number = pricesChange.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
 
    let menuNameError, pricesError, menuAboutError;
@@ -213,7 +216,7 @@ const MenuList = ({ el, submit, setSubmit }) => {
                      <Input
                         name={`prices`}
                         active={pricesError}
-                        // value={number || ''}
+                        value={number || ''}
                         placeholder="가격(숫자)을 입력해주세요"
                         type="text"
                         pattern="[0-9]*"

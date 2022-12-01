@@ -1,38 +1,50 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Wrapper } from './SignupTos.Style';
 import { IdRemember, LoginBtn, LoginPanel, LoginTitle } from './Login.Style';
 import { Container } from './Complete.Style';
 import { Info, InfoFormError, FormControl } from './MemberInfo.Style';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setLoginStatus } from '../../redux/action/action';
 
 const Login = () => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
+   const dispatch = useDispatch();
    const navigate = useNavigate();
+
    const postLogin = async () => {
       try {
-         setFinalCheck({
-            ...finalCheck,
-            idCheck: id === '' ? true : false,
-            pwCheck: !password || passwordError ? true : false
-         });
+         localStorage.setItem('id_remember', id);
+
+         if (!linkError) {
+            setFinalCheck({
+               ...finalCheck,
+               idCheck: id === '' ? true : false,
+               pwCheck: !password || passwordError ? true : false
+            });
+            return;
+         }
 
          const res = await axios.post(`${API_BASE_URL}/member/login`, {
             loginId: id,
             password: password
          });
-         console.log(res);
+
          sessionStorage.setItem('access token', res.headers.get('authorization'));
          sessionStorage.setItem('refresh token', res.headers.get('refresh'));
          sessionStorage.setItem('userId', res.data.memberId);
 
          console.log(res);
+
          if (res.status === 200) {
+            dispatch(setLoginStatus(true));
             navigate('/user');
          } else {
             alert('일단 로그인 실패');
          }
       } catch (err) {
+         alert('입력하신 아이디 또는 비밀번호가 정확하지 않습니다.');
          console.log(err);
       }
    };
@@ -43,10 +55,18 @@ const Login = () => {
    const [idError, setIdError] = React.useState(false);
    const [passwordError, setPasswordError] = React.useState(false);
 
+   const [isChecked, setIsChecked] = useState(false);
+
    const [finalCheck, setFinalCheck] = React.useState({
       idCheck: false,
       pwCheck: false
    });
+
+   useEffect(() => {
+      if (sessionStorage.getItem('access token')) {
+         navigate(`/user`);
+      }
+   }, []);
 
    const handleId = e => {
       setId(e.target.value);
@@ -74,7 +94,30 @@ const Login = () => {
       }
    };
 
-   // const linkError = !idError && !passwordError && id !== '' && password !== '';
+   const handleKeyDown = event => {
+      if (event.key === 'Enter') {
+         postLogin();
+      }
+   };
+
+   const handleOnCheck = () => {
+      setIsChecked(prev => !prev);
+
+      if (!isChecked) {
+         localStorage.setItem('id_remember', id);
+      } else {
+         localStorage.removeItem('id_remember');
+      }
+   };
+
+   useEffect(() => {
+      if (localStorage.getItem('id_remember')) {
+         setIsChecked(true);
+         setId(localStorage.getItem('id_remember'));
+      }
+   }, []);
+
+   const linkError = !idError && !passwordError && id !== '' && password !== '';
 
    return (
       <Wrapper>
@@ -87,6 +130,7 @@ const Login = () => {
                   <Info buttonError={finalCheck.idCheck} idError={idError}>
                      <p>아이디</p>
                      <FormControl
+                        onKeyDown={handleKeyDown}
                         maxLength={11}
                         type="text"
                         placeholder="아이디를 입력해주세요"
@@ -100,6 +144,7 @@ const Login = () => {
                   <InfoFormError buttonError={finalCheck.pwCheck} passwordConfirmError={passwordError}>
                      <p>비밀번호</p>
                      <FormControl
+                        onKeyDown={handleKeyDown}
                         value={password}
                         type="password"
                         placeholder="비밀번호를 입력해주세요"
@@ -109,7 +154,13 @@ const Login = () => {
 
                      {passwordError && <span>영문, 숫자, 특수문자 포함 8자리 이상</span>}
                      <IdRemember>
-                        <input type="checkbox" id="rememberCheck" name="checkbox" />
+                        <input
+                           checked={isChecked}
+                           onChange={handleOnCheck}
+                           type="checkbox"
+                           id="rememberCheck"
+                           name="checkbox"
+                        />
                         <label htmlFor="rememberCheck">아이디 기억하기</label>
                      </IdRemember>
                   </InfoFormError>

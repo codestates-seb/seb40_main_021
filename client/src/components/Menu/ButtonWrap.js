@@ -69,9 +69,10 @@ const BtnWrap = styled.div`
 // `;
 const ButtonWrap = ({ name, save }) => {
    const dispatch = useDispatch();
+   const categoryList = useSelector(store => store.categoryUserItemReducer.data);
    const viewPreview = useSelector(state => state.previewToggleReducer);
    const PreviewFunc = () => {
-      dispatch(previewToggleState(!viewPreview));
+      categoryList.length === 0 ? alert('카테고리를 1개이상 등록해주세요') : dispatch(previewToggleState(!viewPreview));
    };
    return (
       <BtnWrap>

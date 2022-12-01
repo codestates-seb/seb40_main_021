@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
    Active,
    AgreeDetailActive,
@@ -18,6 +18,8 @@ import topArrow from './../../assets/img/topArrow.png';
 import bottomArrow from './../../assets/img/bottomArrow.png';
 
 const SignupTos = () => {
+   const navigate = useNavigate();
+
    const [isToggleOpen, setIsToggleOpen] = useState(true);
    const [isTestInfoToggleOpen, setIsTestInfoToggleOpen] = useState(true);
    const [isChecked, setIsChecked] = useState({
@@ -40,6 +42,14 @@ const SignupTos = () => {
 
    const onTestInfoToggle = () => {
       setIsTestInfoToggleOpen(!isTestInfoToggleOpen);
+   };
+
+   const onAlert = () => {
+      if (!isChecked.agree1 || !isChecked.agree2) {
+         alert('약관 체크를 해주세요');
+         return;
+      }
+      navigate('/signup/1', { state: { agree1: isChecked.agree1, agree2: isChecked.agree2 } });
    };
 
    return (
@@ -149,8 +159,9 @@ const SignupTos = () => {
                      </h5>
                   </AgreeDetailActive>
 
-                  <Btn>
-                     <Link to={!!isChecked.agree1 && !!isChecked.agree2 ? '/MemberInfo' : null}>다음</Link>
+
+                  <Btn onClick={onAlert}>
+                     <Link to={null}>다음</Link>
                   </Btn>
                </MemberPanel>
             </MemberReg>

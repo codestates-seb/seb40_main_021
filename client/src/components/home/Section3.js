@@ -17,6 +17,7 @@ export const Section_3 = () => {
             </label>
          </div>
          <CenterMode />
+         <div className="admin-imgBox">이미지만 나와요</div>
          <div className="usermenu-wrapper">
             <img src={userMenu} alt="" />
          </div>

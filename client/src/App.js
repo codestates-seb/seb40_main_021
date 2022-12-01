@@ -40,12 +40,12 @@ function App() {
                   <Route path="/user/menusetting" element={<SetMenu />} />
                   <Route path="/user/menu" element={<Menu />} />
                </Route>
-               <Route path="/SignupTos" element={<SignupTos />} />
-               <Route path="/MemberInfo" element={<MemberInfo />} />
-               <Route path="/StoreInfo" element={<StoreInfo />} />
-               <Route path="/Complete" element={<Complete />} />
-               <Route path="/Login" element={<Login />} />
-               {/* <Route path="/usermenu/*" element={<MenuApp />} /> */}
+               <Route path="/signup" element={<SignupTos />} />
+               <Route path="/signup/1" element={<MemberInfo />} />
+               <Route path="/signup/2" element={<StoreInfo />} />
+               <Route path="/signup/complete" element={<Complete />} />
+               <Route path="/login" element={<Login />} />
+
                <Route path="/usermenu/*" element={<AnimatedRoutes />} />
             </Routes>
          </BrowserRouter>
