@@ -58,7 +58,6 @@ const MenuList = ({ el, submit, setSubmit }) => {
    const [menuAboutChange, setmenuAboutChange] = useState('');
    const [pricesChange, setpricesChange] = useState('');
    const [checkedChange, setcheckedChange] = useState(false);
-   console.log(imgSrc);
 
    const encodeFileToBase64 = fileBlob => {
       const reader = new FileReader();

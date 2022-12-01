@@ -4,7 +4,6 @@ import { HeaderPreview } from './HeaderPreview';
 import { BottomNavPreview } from './BottomNavPreview';
 import { StorePreview } from './StorePreview';
 const MenuAppPreview = ({ now }) => {
-   console.log(now);
    return (
       <AnimatePresence>
          {now === 'menu' ? <HomePreview /> : <StorePreview />}

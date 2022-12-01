@@ -4,21 +4,17 @@ import { Category } from '../usermenu/Category';
 import { useEffect } from 'react';
 import { setCategory, setMenu } from '../../redux/actions/menuAction';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
 
 export const NavMenuPreview = () => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const dispatch = useDispatch();
    const category = useSelector(store => store.menuReducer.category);
    const categoryId = useSelector(store => store.menuReducer.category[0].categoryId);
-   const userId = useParams().userId;
-
-   console.log(categoryId);
 
    useEffect(() => {
       // 카테고리목록 불러오기
       axios
-         .get(`${API_BASE_URL}/category/${userId}`)
+         .get(`${API_BASE_URL}/category/${sessionStorage.getItem('userId')}`)
          .then(res => {
             dispatch(setCategory(res.data));
          })
@@ -28,7 +24,7 @@ export const NavMenuPreview = () => {
                dispatch(setMenu(res.data.data.menus));
             })
          )
-         .catch(err => console.log(err));
+         .catch(err => err);
    }, []);
 
    return (

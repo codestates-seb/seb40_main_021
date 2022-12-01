@@ -17,7 +17,6 @@ const SetMenu = () => {
    const [toggleCategoryAdd, setToggleCategoryAdd] = useState(false);
    const dispatch = useDispatch();
    const state = useSelector(store => store.menuUserItemReducer);
-   // const saveState = useSelector(store => store.menuSaveItemReducer.data.menus);
    const categoryList = useSelector(store => store.categoryUserItemReducer.data);
    const menuListState = useSelector(store => store.menuUserItemReducer.data);
    const menuCountPlus = () => {
@@ -105,8 +104,6 @@ const SetMenu = () => {
                delete menuList[i].errorMessage;
                delete menuList[i].uuid;
             }
-            console.log('성공');
-            console.log(menuList);
             clickFetchFunc({
                method: 'PATCH',
                url: `${API_BASE_URL}/menu/${categoryList[activeIndex].categoryId}`,

@@ -41,7 +41,6 @@ const menuUserItemReducer = (state = initialState, action) => {
          state.data.find(x => x.uuid === action.payload.id).menuImage = action.payload.menuImgValue;
          state.data.find(x => x.uuid === action.payload.id).price = action.payload.pricesValue;
          state.data.find(x => x.uuid === action.payload.id).recommendedMenu = action.payload.checked;
-         console.log(state);
          return state;
       case MENU_USER_DELETE:
          // eslint-disable-next-line no-case-declarations

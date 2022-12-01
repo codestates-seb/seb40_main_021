@@ -88,9 +88,7 @@ const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex, userId
       // }
    };
    const setmenuChangeState = useSelector(store => store.setmenuStateChangeReducer);
-   console.log(setmenuChangeState, '      console.log(setmenuChangeState);');
    const onTitleClick = () => {
-      console.log(setmenuChangeState);
       if (setmenuChangeState) {
          if (confirm('저장하지 않은 메뉴가 사라질 수 있습니다. 카테고리를 변경하시겠습니까?')) {
             setActiveIndex(idx);
