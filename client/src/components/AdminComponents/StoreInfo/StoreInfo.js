@@ -36,34 +36,37 @@ const StoreInfo = ({ setIsEmptyValue, userInfo }) => {
    );
 };
 const MainContants = styled.div`
+   height: 80%;
    display: flex;
    flex-direction: column;
    align-items: center;
    width: 100%;
-
+   .storeDataUpdate {
+      background-color: white;
+   }
+   .inputContainner {
+      margin-bottom: 20px;
+      > :first-child {
+         font-size: 14px;
+         margin-bottom: 5px;
+      }
+   }
    .table {
+      font-size: 15px;
       border-collapse: separate;
       border-spacing: 0 15px;
-   }
-   .sotreTimes {
-      display: flex;
-      flex-direction: column;
-   }
-   .sotreTime {
-      margin-bottom: 5px;
    }
    .mainContant {
       display: flex;
       box-sizing: border-box;
       width: 100%;
+      min-height: 550px;
       height: 100%;
-      max-height: 500px;
       background-color: white;
       box-shadow: 0 4px 2px 0px lightgray;
       padding: 50px;
    }
-   > :first-child {
-      //title
+   .title {
       width: 100%;
       margin-bottom: 30px;
       h1 {
@@ -93,26 +96,19 @@ const MainContants = styled.div`
       }
       > :first-child {
          //storeName
-         font-size: 1.5rem;
+         font-size: 18px;
          font-weight: bold;
          margin-bottom: 20px;
       }
    }
-   @media screen and (max-width: 1100px) {
-      .mainContant {
-         flex-direction: column;
-      }
-      .storeInfoContainer {
-         margin-top: 30px;
-         margin-left: 0;
-      }
-   }
-   @media screen and (max-width: 700px) {
+
+   @media screen and (max-width: 900px) {
       display: flex;
       align-items: center;
       height: 100%;
       width: 100%;
       margin-top: 0;
+
       .title {
          display: none;
       }
@@ -130,7 +126,6 @@ const MainContants = styled.div`
          margin-left: 0;
          padding: 0 15px 0 15px;
          > :first-child {
-            text-align: center;
             margin-bottom: 50px;
          }
       }

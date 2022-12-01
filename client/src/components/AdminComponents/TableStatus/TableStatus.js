@@ -121,16 +121,8 @@ const TableStatusBox = styled.div`
          margin: 5px 10px 0 0;
       }
    }
-   @media screen and (max-width: 1400px) {
-      width: 90%;
-   }
-   @media screen and (max-width: 1200px) {
-      width: 90%;
-   }
-   /* @media screen and (max-width: 1400px) {
-      width: 60%;
-   } */
-   @media screen and (max-width: 1000px) {
+
+   @media screen and (max-width: 900px) {
       margin-bottom: 30px;
    }
 `;
