@@ -1,18 +1,10 @@
-import { useEffect, useState } from 'react';
 import OrderAlram from './OrderAlram';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import callAlramSound from '../../../assets/sound/callAlram.wav';
+
 const OrderAlarms = () => {
-   const [audio] = useState(new Audio(callAlramSound));
    const orderAlarmList = useSelector(state => state.adminReducer.alarmData.orderAlarmReverse);
-   console.log(orderAlarmList);
-   sessionStorage.setItem('order', orderAlarmList.length);
-   useEffect(() => {
-      if (sessionStorage.getItem('order') < orderAlarmList.length) {
-         audio.play();
-      }
-   }, []);
+
    return (
       <MainContents>
          <div className="subTitle">주문 알람</div>
