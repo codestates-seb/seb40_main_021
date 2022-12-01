@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import MenuImg from '../../components/Menu/MenuImg';
 import Postcode from '../../components/PostCode/Postcode';
-import { ImagePreview, RealUpload, Upload } from './StoreInfo.Style';
+
 import {
    Wrapper,
    Container,
@@ -18,14 +18,14 @@ import {
 } from './SignupTos.Style';
 import { useSelector } from 'react-redux';
 import { InfoForm, CompanyNum, FormControl } from './MemberInfo.Style';
-//가게 사진, 가게 설명, 주소, 전화번호, 영업시간
-// 주소, 바디, 헤더
+
 const StoreInfo = () => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
+   // const location = useLocation();
 
+   const navigate = useNavigate();
    const inputValue = useSelector(state => state);
 
-   // eslint-disable-next-line no-unused-vars
    const [img, setImg] = useState();
    const [businessName, setBusinessName] = useState('');
    const [about, setAbout] = useState();
@@ -43,6 +43,14 @@ const StoreInfo = () => {
       contactNumber: false
    });
 
+   // useEffect(() => {
+   //    if (location?.state === null) {
+   //       alert('잘못된 접근입니다.');
+   //       navigate('/SignupTos', { replace: true });
+   //       return;
+   //    }
+   // }, []);
+
    const linkError = !(
       businessName === '' ||
       address === '' ||
@@ -50,9 +58,14 @@ const StoreInfo = () => {
       contactNumber === '' ||
       NumberError
    );
+
    const postStoreInfo = async () => {
       try {
          onCheckValues();
+
+         if (!linkError) {
+            return;
+         }
 
          const res = await axios.post(`${API_BASE_URL}/member`, {
             loginId: inputValue.userMemberReducer.id,
@@ -65,14 +78,18 @@ const StoreInfo = () => {
             contactNumber: contactNumber,
             businessHours: businessHours
          });
+
+         navigate('/complete');
          console.log(res);
       } catch (err) {
-         console.log(err);
+         if (err.response.status === 409) {
+            alert('중복된 아이디가 있습니다.');
+            return;
+         }
       }
    };
 
    const handleNumber = e => {
-      // console.log(fileUpload.value);
       setContactNumber(e.target.value);
       setIsCheck({ ...isCheck, contactNumber: false });
       const ContactNumberRegex = /[0-9]$/;
@@ -120,11 +137,7 @@ const StoreInfo = () => {
                   <InfoForm>
                      <p>프로필 사진 등록</p>
                   </InfoForm>
-                  <RealUpload type="file" accept="image/*" required multiple onChange={setImg} />
-                  <MenuImg>
-                     <Upload />
-                     <ImagePreview />
-                  </MenuImg>
+                  <MenuImg type="file" accept="image/*" required multiple onChange={setImg} />
 
                   <InfoForm buttonError={isCheck.businessNameError} passwordError={businessName === '' ? true : false}>
                      <p>상호명 *</p>
@@ -152,7 +165,7 @@ const StoreInfo = () => {
                      <CompanyNum>
                         <Postcode setAddress={setAddress} />
                         <FormControl
-                           name="adress"
+                           name="address"
                            type="text"
                            placeholder="도로명 주소 검색"
                            value={address}
@@ -166,7 +179,7 @@ const StoreInfo = () => {
 
                   <InfoForm buttonError={isCheck.detailAddress} passwordError={detailAddress === '' ? true : false}>
                      <FormControl
-                        name="detailAdreess"
+                        name="detailAddress"
                         type="text"
                         placeholder="상세 주소를 입력해주세요"
                         value={detailAddress}
@@ -203,7 +216,7 @@ const StoreInfo = () => {
                   </InfoForm>
 
                   <Btn>
-                     <Link to={linkError ? '/complete' : null} onClick={postStoreInfo}>
+                     <Link to={null} onClick={postStoreInfo}>
                         완료
                      </Link>
                   </Btn>

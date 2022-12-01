@@ -1,3 +1,4 @@
+export const TOKEN = 'TOKEN';
 export const CLICK_TO_StoreInfoUpdate = 'CLICK_TO_StoreInfoUpdate';
 export const GNB_MOBILE = 'GNB_MOBILE';
 export const MENU_USER_UPDATE = 'MENU_USER_UPDATE';
@@ -298,6 +299,12 @@ export const updateProgress = () => {
 export const setMenuUpdate = res => {
    return {
       type: SET_MENU_UPDATE,
+      payload: res
+   };
+};
+export const storeToken = res => {
+   return {
+      type: TOKEN,
       payload: res
    };
 };
