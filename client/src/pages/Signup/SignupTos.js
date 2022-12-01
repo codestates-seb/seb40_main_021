@@ -159,7 +159,6 @@ const SignupTos = () => {
                      </h5>
                   </AgreeDetailActive>
 
-
                   <Btn onClick={onAlert}>
                      <Link to={null}>다음</Link>
                   </Btn>
