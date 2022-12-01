@@ -216,9 +216,7 @@ const StoreInfo = () => {
                   </InfoForm>
 
                   <Btn>
-
                      <Link to={null} onClick={postStoreInfo}>
-
                         완료
                      </Link>
                   </Btn>
