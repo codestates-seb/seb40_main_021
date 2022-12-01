@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import { Wrapper } from './SignupTos.Style';
 import { IdRemember, LoginBtn, LoginPanel, LoginTitle } from './Login.Style';
 import { Container } from './Complete.Style';
 import { Info, InfoFormError, FormControl } from './MemberInfo.Style';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
@@ -33,7 +33,12 @@ const Login = () => {
          sessionStorage.setItem('userId', res.data.memberId);
 
          console.log(res);
-         navigate(`/user`);
+
+         if (res.status === 200) {
+            navigate('/user');
+         } else {
+            alert('일단 로그인 실패');
+         }
       } catch (err) {
          alert('입력하신 아이디 또는 비밀번호가 정확하지 않습니다.');
          console.log(err);
@@ -156,8 +161,7 @@ const Login = () => {
                      </IdRemember>
                   </InfoFormError>
                </form>
-
-               <LoginBtn tabIndex={0}>
+               <LoginBtn>
                   <button onClick={postLogin}>로그인</button>
                </LoginBtn>
             </LoginPanel>
