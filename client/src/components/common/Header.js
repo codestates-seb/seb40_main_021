@@ -9,9 +9,8 @@ import { gnbToggleOpen } from '../../redux/action/action';
 const Header = () => {
    const store = useSelector(store => store.menuReducer.store);
    const dispatch = useDispatch();
-   const token = useSelector(store => store.globalTokenReducer.token);
+   const isLogin = false;
 
-   console.log(token);
    return (
       <S.HeaderWrap>
          <Link className="logo" to="/">
@@ -23,7 +22,7 @@ const Header = () => {
          </S.IconBtn>
          {/* <S.PageName>테이블 목록</S.PageName> */}
          <S.ButtonWrap>
-            {token ? (
+            {isLogin ? (
                <>
                   <S.LineBtnUser>
                      <Link to="/user/store">
