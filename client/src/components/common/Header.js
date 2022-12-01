@@ -10,6 +10,7 @@ const Header = () => {
    const store = useSelector(store => store.menuReducer.store);
    const dispatch = useDispatch();
    const token = useSelector(store => store.globalTokenReducer.token);
+
    console.log(token);
    return (
       <S.HeaderWrap>
