@@ -96,9 +96,12 @@ const SetMenu = () => {
 
             // menuList = menuList.map(el => delete el.errorMessage);
             for (let i = 0; i < menuList.length; i++) {
-               menuList[i] = { ...menuList[i], categoryId: categoryList[activeIndex].categoryId, memberId: 1 };
+               menuList[i] = {
+                  ...menuList[i],
+                  categoryId: categoryList[activeIndex].categoryId,
+                  memberId: sessionStorage.getItem('userId')
+               };
                delete menuList[i].errorMessage;
-               delete menuList[i].menuImage;
                delete menuList[i].uuid;
             }
             console.log('성공');

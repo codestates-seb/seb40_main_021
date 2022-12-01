@@ -58,6 +58,7 @@ const MenuList = ({ el, submit, setSubmit }) => {
    const [menuAboutChange, setmenuAboutChange] = useState('');
    const [pricesChange, setpricesChange] = useState('');
    const [checkedChange, setcheckedChange] = useState(false);
+   console.log(imgSrc);
 
    const encodeFileToBase64 = fileBlob => {
       const reader = new FileReader();
@@ -149,8 +150,8 @@ const MenuList = ({ el, submit, setSubmit }) => {
    //     number = number.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
    //     // setpricesChange(String(pricesChange).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
    // }, [pricesChange])
-
-   // let number = pricesChange.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g);
+   // .toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g);
+   let number = pricesChange.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
    // let number = pricesChange.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
 
    let menuNameError, pricesError, menuAboutError;
@@ -213,7 +214,7 @@ const MenuList = ({ el, submit, setSubmit }) => {
                      <Input
                         name={`prices`}
                         active={pricesError}
-                        // value={number || ''}
+                        value={number || ''}
                         placeholder="가격(숫자)을 입력해주세요"
                         type="text"
                         pattern="[0-9]*"
