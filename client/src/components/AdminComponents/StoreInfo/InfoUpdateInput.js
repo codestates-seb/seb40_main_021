@@ -1,36 +1,33 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Input from '../../Input';
-import { changStoreInfoData } from '../../../redux/action/action';
+import { changeStoreInfoData } from '../../../redux/action/action';
 
-// eslint-disable-next-line no-unused-vars
 const InfoUpdateInput = ({ data, setIsEmptyValue }) => {
    const [storeName, setStoreNmae] = useState({ target: { value: data.businessName } });
    const [address, setAddress] = useState({ target: { value: data.address } });
    const [number, setNumber] = useState({ target: { value: data.contactNumber } });
    const [businessNum, setBusinessNum] = useState({ target: { value: data.businessNumber } });
-   const [businessTime, setBusinessTime] = useState({ target: { value: data.businessHours } });
+   const [businessHours, setBusinessHours] = useState({ target: { value: data.businessHours } });
    const [description, setDescription] = useState({ target: { value: data.about } });
 
-   const patchData = {
-      businessName: storeName.target.value,
-      address: address.target.value,
-      number: number.target.value,
-      businessNum: businessNum.target.value,
-      businessTime: businessTime.target.value,
-      description: description.target.value
-   };
    const dispatch = useDispatch();
 
-   const isEmptyInputValue = value => {
-      if (value.length === 0) {
-         console.log(value);
+   const isEmptyInputValue = (e, name) => {
+      const patchData = {
+         businessName: name === 'storeName' ? e.target.value : storeName.target.value,
+         address: name === 'address' ? e.target.value : address.target.value,
+         number: name === 'storeNumber' ? e.target.value : number.target.value,
+         businessNum: name === 'businessNumber' ? e.target.value : businessNum.target.value,
+         businessHours: name === 'businessHours' ? e.target.value : businessHours.target.value,
+         description: name === 'description' ? e.target.value : description.target.value
+      };
+      dispatch(changeStoreInfoData(patchData));
+      if (e.target.value.length === 0) {
          setIsEmptyValue(false);
       } else {
-         console.log(value);
          setIsEmptyValue(true);
       }
-      dispatch(changStoreInfoData(patchData));
    };
    return (
       <div>
@@ -40,6 +37,7 @@ const InfoUpdateInput = ({ data, setIsEmptyValue }) => {
                   <div>가게 이름</div>
                   <div>
                      <Input
+                        name={'storeName'}
                         isEmptyInputValue={isEmptyInputValue}
                         placeholder="빈칸을 채워주세요."
                         handleValue={setStoreNmae}
@@ -49,6 +47,7 @@ const InfoUpdateInput = ({ data, setIsEmptyValue }) => {
                   <div>주소</div>
                   <div>
                      <Input
+                        name={'address'}
                         isEmptyInputValue={isEmptyInputValue}
                         placeholder="빈칸을 채워주세요."
                         handleValue={setAddress}
@@ -60,6 +59,7 @@ const InfoUpdateInput = ({ data, setIsEmptyValue }) => {
                   <div>연락처</div>
                   <div>
                      <Input
+                        name={'storeNumber'}
                         isEmptyInputValue={isEmptyInputValue}
                         placeholder="빈칸을 채워주세요."
                         handleValue={setNumber}
@@ -71,6 +71,7 @@ const InfoUpdateInput = ({ data, setIsEmptyValue }) => {
                   <div>사업자 번호</div>
                   <div>
                      <Input
+                        name={'businessNumber'}
                         isEmptyInputValue={isEmptyInputValue}
                         placeholder="빈칸을 채워주세요."
                         handleValue={setBusinessNum}
@@ -82,10 +83,11 @@ const InfoUpdateInput = ({ data, setIsEmptyValue }) => {
                   <div>영업 시간</div>
                   <div>
                      <Input
+                        name={'businessHours'}
                         isEmptyInputValue={isEmptyInputValue}
                         placeholder="빈칸을 채워주세요."
-                        handleValue={setBusinessTime}
-                        value={businessTime.target.value}
+                        handleValue={setBusinessHours}
+                        value={businessHours.target.value}
                         width="500px"></Input>
                   </div>
                </div>
@@ -93,6 +95,8 @@ const InfoUpdateInput = ({ data, setIsEmptyValue }) => {
                   <div>가게 설명</div>
                   <div>
                      <Input
+                        name={'description'}
+                        isEmptyInputValue={isEmptyInputValue}
                         placeholder="빈칸을 채워주세요."
                         handleValue={setDescription}
                         value={description.target.value}

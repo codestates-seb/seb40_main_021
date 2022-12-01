@@ -276,7 +276,7 @@ export const onChangeBusinessNumberAction = res => {
       payload: res
    };
 };
-export const changStoreInfoData = data => {
+export const changeStoreInfoData = data => {
    return {
       type: STORE_INFO_DATA,
       payload: data

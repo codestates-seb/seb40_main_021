@@ -2,30 +2,11 @@ import styled from 'styled-components';
 import InfoTable from './InfoTable';
 import InfoUpdateInput from './InfoUpdateInput';
 import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+
 import PreviewModal from '../../Preview/PreviewModal';
 
-const StoreInfo = ({ setIsEmptyValue }) => {
-   const API_BASE_URL = process.env.REACT_APP_API_ROOT;
-   console.log('API_BASE_URL', API_BASE_URL);
-   const [userInfo, setUserInfo] = useState({
-      userImage: '',
-      about: '',
-      address: '',
-      businessHours: '',
-      businessName: '',
-      businessNumber: '',
-      contactNumber: ''
-   });
+const StoreInfo = ({ setIsEmptyValue, userInfo }) => {
    const UpdateState = useSelector(state => state.adminReducer.storeInfoUpdateState);
-
-   useEffect(() => {
-      axios.get(`${API_BASE_URL}/member/${sessionStorage.getItem('userId')}`).then(res => {
-         setUserInfo(res.data.data);
-         console.log(res.data.data);
-      });
-   }, []);
    const viewPreview = useSelector(state => state.previewToggleReducer);
    return (
       <>
@@ -39,11 +20,11 @@ const StoreInfo = ({ setIsEmptyValue }) => {
                   <img src={userInfo.userImage} alt=""></img>
                </div>
                <div className="storeInfoContainer">
-                  <div>{userInfo.businessName}</div>
+                  {UpdateState ? null : <div>{`가게 이름 : ${userInfo.businessName}`}</div>}
                   {UpdateState ? (
                      <InfoUpdateInput data={userInfo} setIsEmptyValue={setIsEmptyValue} />
                   ) : (
-                     <InfoTable data={userInfo} />
+                     <InfoTable userInfo={userInfo} />
                   )}
                </div>
             </main>

@@ -39,7 +39,7 @@ const Gnb = () => {
    }, []);
 
    useInterval(() => {
-      getAlarms();
+      //getAlarms();
    }, 3000);
    const count = alarmData.orderAlarmReverse.length + alarmData.callAlarmReverse.length;
    return (
