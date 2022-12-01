@@ -42,7 +42,7 @@ const StoreInfo = () => {
       detailAddress: false,
       contactNumber: false
    });
-   console.log(img);
+
    // useEffect(() => {
    //    if (location?.state === null) {
    //       alert('잘못된 접근입니다.');
@@ -56,18 +56,19 @@ const StoreInfo = () => {
       address === '' ||
       detailAddress === '' ||
       contactNumber === '' ||
-      NumberError
+      !/^\d{2,3}-\d{4}-\d{4}$/.test(contactNumber)
    );
 
    const postStoreInfo = async () => {
       try {
          onCheckValues();
          valiation();
+
          if (!linkError) {
             return;
          }
 
-         const res = await axios.post(`${API_BASE_URL}/member`, {
+         const res = await axios.post(`${API_BASE_URL}/ㅁㅁ`, {
             loginId: inputValue.userMemberReducer.id,
             password: inputValue.userMemberReducer.password,
             businessNumber: inputValue.userMemberReducer.businessNumber,
@@ -89,9 +90,9 @@ const StoreInfo = () => {
    const handleNumber = e => {
       setContactNumber(e.target.value);
       setIsCheck({ ...isCheck, contactNumber: false });
-      const ContactNumberRegex = /[0-9]$/;
+      const ContactNumberRegex = /[0-9]{10,11}$/;
 
-      if (ContactNumberRegex.test(e.target.value) || e.target.value === '') {
+      if (!ContactNumberRegex.test(e.target.value) || e.target.value === '') {
          setNumberError(false);
       } else {
          setNumberError(true);
