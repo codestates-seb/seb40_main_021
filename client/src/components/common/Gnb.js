@@ -4,18 +4,18 @@ import BellIcon from './../../assets/img/bell_icon.png';
 import { gnbToggleOpen, updateAlarmData } from '../../redux/action/action';
 import IconClose from './../../assets/img/icon_close_white.png';
 import * as S from './Gnb.style';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import useInterval from '../../util/useInterval';
-
+import callAlramSound from '../../assets/sound/callAlram.wav';
 const Gnb = () => {
+   const [audio] = useState(new Audio(callAlramSound));
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const dispatch = useDispatch();
    const gnbState = useSelector(store => store.gnbReducer);
    const alarmData = useSelector(state => state.adminReducer.alarmData);
    const getAlarm = async url => {
       let variable = await axios.get(url).then(res => {
-         console.log(res);
          return res.data.data
             .slice(0)
             .reverse()
@@ -26,14 +26,20 @@ const Gnb = () => {
    const getAlarms = async () => {
       const orderAlarmReverse = await getAlarm(`${API_BASE_URL}/table/${sessionStorage.getItem('userId')}/order`);
       const callAlarmReverse = await getAlarm(`${API_BASE_URL}/call/${sessionStorage.getItem('userId')}`);
-      dispatch(updateAlarmData(callAlarmReverse, orderAlarmReverse));
+      if (
+         sessionStorage.getItem('call') < callAlarmReverse.length ||
+         sessionStorage.getItem('order') < orderAlarmReverse.length
+      ) {
+         audio.play();
+      }
+      dispatch(updateAlarmData(orderAlarmReverse, callAlarmReverse));
    };
    useEffect(() => {
       getAlarms();
    }, []);
 
    useInterval(() => {
-      // getAlarms();
+      getAlarms();
    }, 3000);
    const count = alarmData.orderAlarmReverse.length + alarmData.callAlarmReverse.length;
    return (

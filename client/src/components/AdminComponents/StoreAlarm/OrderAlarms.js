@@ -6,6 +6,7 @@ import callAlramSound from '../../../assets/sound/callAlram.wav';
 const OrderAlarms = () => {
    const [audio] = useState(new Audio(callAlramSound));
    const orderAlarmList = useSelector(state => state.adminReducer.alarmData.orderAlarmReverse);
+   console.log(orderAlarmList);
    sessionStorage.setItem('order', orderAlarmList.length);
    useEffect(() => {
       if (sessionStorage.getItem('order') < orderAlarmList.length) {
