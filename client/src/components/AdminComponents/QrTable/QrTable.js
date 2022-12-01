@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import QrList from './QrList';
 import Button from './Button';
 import { RiDeleteBinLine } from 'react-icons/ri';
+import { TiCancel } from 'react-icons/ti';
 import { CiEdit } from 'react-icons/ci';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -136,6 +137,9 @@ const CreateQR = () => {
          dispatch(clearSavedTableListCheckBoxArr());
       }
    };
+   const hadleClickUpdateCancel = () => {
+      dispatch(modifyingSavedTableNum(!modifyingSavedTableNumState));
+   };
 
    useEffect(() => {
       dispatch(clearSavedTableListCheckBoxArr());
@@ -143,7 +147,7 @@ const CreateQR = () => {
       getQrDatas();
    }, []);
    return (
-      <MainContants>
+      <MainContants modifyingSavedTableNumState={modifyingSavedTableNumState}>
          <div className="title">
             <h1>테이블 목록</h1>
          </div>
@@ -162,7 +166,10 @@ const CreateQR = () => {
                         <CiEdit size="20"></CiEdit>
                      </button>
                   )}
-
+                  <button className="cancelBtn" onClick={hadleClickUpdateCancel}>
+                     취소
+                     <TiCancel size="20"></TiCancel>
+                  </button>
                   <button onClick={handleClickDeleteQr} className="u_d_btn">
                      삭제
                      <RiDeleteBinLine size="15"></RiDeleteBinLine>
@@ -173,7 +180,11 @@ const CreateQR = () => {
             <div className="flex">
                <div className="th">
                   <div className="allCheck">
-                     <input ref={allChackBoxRef} type="checkbox" onClick={allCheck}></input>
+                     <input
+                        disabled={modifyingSavedTableNumState ? true : false}
+                        ref={allChackBoxRef}
+                        type="checkbox"
+                        onClick={allCheck}></input>
                      전체선택
                   </div>
                   <div>No.</div>
@@ -197,6 +208,18 @@ const MainContants = styled.div`
    height: 90%;
    width: 100%;
    padding: 30px 50px;
+   .cancelBtn {
+      margin-right: 30px;
+      display: ${({ modifyingSavedTableNumState }) => (modifyingSavedTableNumState ? 'flex' : 'none')};
+      align-items: center;
+      justify-content: center;
+      background-color: white;
+      border: 0;
+      height: auto;
+      width: auto;
+      border-radius: 5px;
+      font-weight: 900;
+   }
    .allCheck {
       display: flex;
       justify-content: center;
