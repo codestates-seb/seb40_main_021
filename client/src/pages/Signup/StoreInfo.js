@@ -62,7 +62,7 @@ const StoreInfo = () => {
    const postStoreInfo = async () => {
       try {
          onCheckValues();
-
+         valiation();
          if (!linkError) {
             return;
          }
@@ -82,10 +82,7 @@ const StoreInfo = () => {
          navigate('/signup/complete');
          console.log(res);
       } catch (err) {
-         if (err.response.status === 409) {
-            alert('중복된 아이디가 있습니다.');
-            return;
-         }
+         console.log(err);
       }
    };
 
@@ -110,6 +107,28 @@ const StoreInfo = () => {
             detailAddress: detailAddress === '' ? true : false,
             contactNumber: contactNumber === '' ? true : false
          });
+      }
+   };
+
+   const valiation = () => {
+      if (businessName === '') {
+         alert('상호명을 입력해주세요.');
+         return;
+      }
+
+      if (address === '') {
+         alert('도로명 주소를 입력해주세요.');
+         return;
+      }
+
+      if (detailAddress === '') {
+         alert('가게 상세주소를 입력해주세요.');
+         return;
+      }
+
+      if (contactNumber === '') {
+         alert('가게 전화번호를 입력해주세요.');
+         return;
       }
    };
 
@@ -201,7 +220,7 @@ const StoreInfo = () => {
                         onInput={e => {
                            e.target.value = e.target.value
                               .replace(/[^0-9]/g, '')
-                              .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+                              .replace(/^(\d{2,3})(\d{4})(\d{4})$/, `$1-$2-$3`);
                         }}
                      />
                   </InfoForm>
