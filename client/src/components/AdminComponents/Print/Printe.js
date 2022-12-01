@@ -42,16 +42,7 @@ const Printe = () => {
                         <AiOutlinePrinter size={30}></AiOutlinePrinter>
                      </button>
                      <button
-                        onClick={() => {
-                           if (pageNum === dividedQrList.length - 1) {
-                              alert('마지막 페이지 입니다.');
-                              return;
-                           }
-                           setPageNum(pageNum + 1);
-                        }}>
-                        다음
-                     </button>
-                     <button
+                        className="optionBtn"
                         onClick={() => {
                            if (pageNum === 0) {
                               alert('첫 페이지 입니다.');
@@ -61,19 +52,26 @@ const Printe = () => {
                         }}>
                         이전
                      </button>
-                     <button onClick={exit} className="exitBtn">
-                        취소
+                     <button
+                        className="optionBtn"
+                        onClick={() => {
+                           if (pageNum === dividedQrList.length - 1) {
+                              alert('마지막 페이지 입니다.');
+                              return;
+                           }
+                           setPageNum(pageNum + 1);
+                        }}>
+                        다음
+                     </button>
+
+                     <button onClick={exit} className="optionBtn">
+                        나가기
                      </button>
                      <div>{`${pageNum + 1}/${dividedQrList.length}`}</div>
                   </div>
                )}
             </div>
             <div className="imgs">
-               {/* <div className="qrImg">
-                  {filterQrList.map(Qr => {
-                     return <Qrimg key={Qr.tableId} data={Qr}></Qrimg>;
-                  })}
-               </div> */}
                <div className="qrImg">
                   {dividedQrList[pageNum].map(Qr => {
                      return <Qrimg key={Qr.tableId} data={Qr}></Qrimg>;
@@ -96,16 +94,17 @@ const PrintContainer = styled.main`
    bottom: 0;
    left: 0;
    right: 0;
-   background-color: rgba(204, 204, 204, 0.332);
+   background-color: white;
    .btn {
-      background-color: rgba(204, 204, 204, 0.7);
-      width: 100px;
+      width: 300px;
+      height: 30px;
       left: 250px;
       position: absolute;
       top: 50%;
-      left: 50%;
+      left: 10%;
       transform: translate(-50%, -50%);
       .btnBox {
+         padding: 5px;
          margin-bottom: 10px;
          display: flex;
          align-items: center;
@@ -118,11 +117,13 @@ const PrintContainer = styled.main`
             border: none;
             cursor: pointer;
          }
-         .exitBtn {
-            width: 20px;
+         .optionBtn {
+            font-weight: bold;
+            width: 50px;
             height: 20px;
             text-align: center;
-            background-color: white;
+            background-color: black;
+            color: white;
             margin-right: 20px;
             border-radius: 5px;
             border: 0;
@@ -130,11 +131,12 @@ const PrintContainer = styled.main`
          }
       }
    }
-   .imgs {
+   .print {
       box-sizing: border-box;
       width: 706.25px;
       height: 1000px;
       background-color: white;
+      overflow: hidden;
    }
 
    .qrImg {
