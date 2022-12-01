@@ -203,7 +203,7 @@ const StoreInfo = () => {
                   </InfoForm>
 
                   <Btn>
-                     <Link to={linkError ? '/complete' : null} onClick={postStoreInfo}>
+                     <Link to={linkError ? '/signup/complete' : null} onClick={postStoreInfo}>
                         완료
                      </Link>
                   </Btn>

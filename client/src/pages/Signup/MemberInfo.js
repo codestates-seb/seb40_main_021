@@ -139,7 +139,7 @@ const MemberInfo = () => {
       );
 
       if (navMoveReg) {
-         navigate('/storeInfo');
+         navigate('/signup/2');
       } else {
          postBusinessNumber();
          isValidate();

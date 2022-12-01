@@ -150,7 +150,7 @@ const SignupTos = () => {
                   </AgreeDetailActive>
 
                   <Btn>
-                     <Link to={!!isChecked.agree1 && !!isChecked.agree2 ? '/MemberInfo' : null}>다음</Link>
+                     <Link to={!!isChecked.agree1 && !!isChecked.agree2 ? '/signup/1' : null}>다음</Link>
                   </Btn>
                </MemberPanel>
             </MemberReg>

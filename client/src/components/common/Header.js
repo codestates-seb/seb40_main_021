@@ -49,7 +49,7 @@ const Header = () => {
                      <Link to="/login">로그인</Link>
                   </S.LineBtn>
                   <S.Button>
-                     <Link to="/signuptos">회원가입</Link>
+                     <Link to="/signup">회원가입</Link>
                   </S.Button>
                </>
             )}
