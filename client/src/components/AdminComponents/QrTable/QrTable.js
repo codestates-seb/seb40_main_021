@@ -205,7 +205,7 @@ const MainContants = styled.div`
    display: flex;
    flex-direction: column;
    align-items: center;
-   height: 90%;
+   height: calc(100vh - 50px);
    width: 100%;
    padding: 30px 50px;
    .cancelBtn {
@@ -321,7 +321,7 @@ const MainContants = styled.div`
       flex-direction: column;
       box-sizing: border-box;
       width: 100%;
-      /* height: 90%; */
+      height: 80%;
       background-color: white;
       box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
       border-radius: 5px;

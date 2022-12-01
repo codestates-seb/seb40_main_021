@@ -30,7 +30,6 @@ const Gnb = () => {
          sessionStorage.getItem('call') < callAlarmReverse.length ||
          sessionStorage.getItem('order') < orderAlarmReverse.length
       ) {
-         console.log(orderAlarmReverse.length);
          sessionStorage.setItem('call', callAlarmReverse.length);
          sessionStorage.setItem('order', orderAlarmReverse.length);
          audio.play();

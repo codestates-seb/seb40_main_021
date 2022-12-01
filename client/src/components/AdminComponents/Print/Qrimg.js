@@ -1,6 +1,6 @@
 import styled from 'styled-components';
+
 const Qrimg = ({ data }) => {
-   console.log(data);
    return (
       <Img>
          <div>
@@ -15,6 +15,7 @@ const Img = styled.div`
    flex-direction: column;
    align-items: center;
    border: 1px solid lightgray;
+   height: 100%;
 
    img {
       box-sizing: border-box;
