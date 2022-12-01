@@ -5,12 +5,9 @@ import { Wrapper } from './SignupTos.Style';
 import { IdRemember, LoginBtn, LoginPanel, LoginTitle } from './Login.Style';
 import { Container } from './Complete.Style';
 import { Info, InfoFormError, FormControl } from './MemberInfo.Style';
-import { useDispatch } from 'react-redux';
-import { storeToken } from '../../redux/action/action';
 
 const Login = () => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
-   const dispatch = useDispatch();
    const navigate = useNavigate();
 
    const postLogin = async () => {
@@ -34,8 +31,6 @@ const Login = () => {
          sessionStorage.setItem('access token', res.headers.get('authorization'));
          sessionStorage.setItem('refresh token', res.headers.get('refresh'));
          sessionStorage.setItem('userId', res.data.memberId);
-
-         dispatch(storeToken(res.headers.get('authorization')));
 
          console.log(res);
          navigate(`/user`);

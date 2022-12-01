@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {
    BtnFill,
@@ -27,7 +27,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { onChangeIdAction, onChangePasswordAction, onChangeBusinessNumberAction } from '../../redux/action/action';
 
 const MemberInfo = () => {
-   const location = useLocation();
+   // const location = useLocation();
 
    const navigate = useNavigate();
    const dispatch = useDispatch();
@@ -49,13 +49,13 @@ const MemberInfo = () => {
 
    const [Certification, setCertification] = React.useState('');
 
-   useEffect(() => {
-      if (location?.state === null) {
-         alert('잘못된 접근입니다.');
-         navigate('/SignupTos', { replace: true });
-         return;
-      }
-   }, []);
+   // useEffect(() => {
+   //    if (location?.state === null) {
+   //       alert('잘못된 접근입니다.');
+   //       navigate('/SignupTos', { replace: true });
+   //       return;
+   //    }
+   // }, []);
 
    const postMemberDataNavi = () => {
       const navMoveReg =

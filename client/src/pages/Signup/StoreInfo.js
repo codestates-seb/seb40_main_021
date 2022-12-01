@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import axios from 'axios';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import MenuImg from '../../components/Menu/MenuImg';
 import Postcode from '../../components/PostCode/Postcode';
 
@@ -21,7 +21,7 @@ import { InfoForm, CompanyNum, FormControl } from './MemberInfo.Style';
 
 const StoreInfo = () => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
-   const location = useLocation();
+   // const location = useLocation();
 
    const navigate = useNavigate();
    const inputValue = useSelector(state => state);
@@ -43,13 +43,13 @@ const StoreInfo = () => {
       contactNumber: false
    });
 
-   useEffect(() => {
-      if (location?.state === null) {
-         alert('잘못된 접근입니다.');
-         navigate('/SignupTos', { replace: true });
-         return;
-      }
-   }, []);
+   // useEffect(() => {
+   //    if (location?.state === null) {
+   //       alert('잘못된 접근입니다.');
+   //       navigate('/SignupTos', { replace: true });
+   //       return;
+   //    }
+   // }, []);
 
    const linkError = !(
       businessName === '' ||
