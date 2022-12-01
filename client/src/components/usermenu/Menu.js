@@ -12,7 +12,7 @@ export const Menu = ({ menu }) => {
       <li>
          <button value={menu.menuId} onClick={selectHandler}>
             <div className="menuImgBox">
-               <img src={menu.img} alt={menu.menuName} />
+               <img src={menu.menuImage} alt={menu.menuName} />
             </div>
             <div className="menuTxtBox">
                <div className="inline">

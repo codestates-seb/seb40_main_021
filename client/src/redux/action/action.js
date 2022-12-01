@@ -33,7 +33,9 @@ export const USER_MEMBER_BUSINESSNUMBER = 'USER_MEMBER_BUSINESSNUMBER';
 export const STORE_INFO_DATA = 'STORE_INFO_DATA';
 export const ALARMDATA_UPDATE = 'ALARMDATA_UPDATE';
 export const UPDATE_PROGRESS = 'UPDATE_PROGRESS';
+export const SET_MENU_UPDATE = 'SET_MENU_UPDATE';
 export const IS_LOGIN = 'IS_LOGIN';
+
 export const storeInfoUpdate = () => {
    return {
       type: CLICK_TO_StoreInfoUpdate
@@ -293,6 +295,13 @@ export const updateAlarmData = (orderAlarmReverse, callAlarmReverse) => {
 export const updateProgress = () => {
    return {
       type: UPDATE_PROGRESS
+   };
+};
+
+export const setMenuUpdate = res => {
+   return {
+      type: SET_MENU_UPDATE,
+      payload: res
    };
 };
 

@@ -4,6 +4,7 @@ import IconDelete from './../../../assets/img/icon_delete.png';
 import * as S from './CategoryLi.style';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+   setMenuUpdate,
    setUserCategoryNaming,
    setUserCategoryNowNaming,
    setUserDeleteCategory,
@@ -86,8 +87,17 @@ const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex, userId
       //    return alert('마지막 카테고리는 삭제가 불가능합니다.');
       // }
    };
+   const setmenuChangeState = useSelector(store => store.setmenuStateChangeReducer);
    const onTitleClick = () => {
-      setActiveIndex(idx);
+      if (setmenuChangeState) {
+         if (confirm('저장하지 않은 메뉴가 사라질 수 있습니다. 카테고리를 변경하시겠습니까?')) {
+            setActiveIndex(idx);
+            dispatch(setMenuUpdate(false));
+         }
+      } else {
+         setActiveIndex(idx);
+         dispatch(setMenuUpdate(false));
+      }
    };
    return (
       <S.CategoryLiSTyle active={active} onClick={onTitleClick}>

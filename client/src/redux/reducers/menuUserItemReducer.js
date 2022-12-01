@@ -24,7 +24,7 @@ const menuUserItemReducer = (state = initialState, action) => {
                   menuName: '',
                   menuContent: '',
                   price: '',
-                  menuImg: ''
+                  menuImage: ''
                },
                uuid: uuidv4()
             };
@@ -38,7 +38,7 @@ const menuUserItemReducer = (state = initialState, action) => {
       case MENU_USER_UPDATE:
          state.data.find(x => x.uuid === action.payload.id).menuName = action.payload.menuNameValue;
          state.data.find(x => x.uuid === action.payload.id).menuContent = action.payload.menuAboutValue;
-         state.data.find(x => x.uuid === action.payload.id).menuImg = action.payload.menuImgValue;
+         state.data.find(x => x.uuid === action.payload.id).menuImage = action.payload.menuImgValue;
          state.data.find(x => x.uuid === action.payload.id).price = action.payload.pricesValue;
          state.data.find(x => x.uuid === action.payload.id).recommendedMenu = action.payload.checked;
          return state;
