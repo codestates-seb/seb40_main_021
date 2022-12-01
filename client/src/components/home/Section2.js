@@ -7,7 +7,7 @@ export const Section_2 = () => {
    return (
       <Section_Style_2>
          <div className="inner-container">
-            <h4>서비스 안내</h4>
+            <h5>서비스 안내</h5>
             <ul>
                <li>
                   <div className="imgBox">

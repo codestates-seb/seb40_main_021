@@ -1,4 +1,4 @@
-import { FooterWrapper } from '../../style/index.style';
+import { FooterWrapper } from '../../style/footer.style';
 
 export const Footer = () => {
    return (
