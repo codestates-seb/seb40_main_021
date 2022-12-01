@@ -16,13 +16,27 @@ import MemberInfo from './pages/Signup/MemberInfo';
 import StoreInfo from './pages/Signup/StoreInfo';
 import Complete from './pages/Signup/Complete';
 import Login from './pages/Signup/Login';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AnimatedRoutes } from './components/usermenu/AnimatedRoutes';
 import { Home } from './pages';
+import { useEffect } from 'react';
+import { setLoginStatus } from './redux/action/action';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function App() {
    const printModalState = useSelector(state => state.adminReducer.printModal);
    const noHeader = useSelector(store => store.stateReducer.header);
+   const token = sessionStorage.getItem('access token');
+   const dispatch = useDispatch();
+
+   useEffect(() => {
+      AOS.init({ duration: 600 });
+      // 토큰이 있을시 로그인 유지
+      if (token) {
+         dispatch(setLoginStatus(true));
+      }
+   }, []);
 
    return (
       <div className="App">

@@ -1,10 +1,13 @@
 import { FooterWrapper } from '../../style/footer.style';
+import logo from '../../assets/image/logo-white.svg';
 
 export const Footer = () => {
    return (
       <FooterWrapper>
          <div className="inner-container">
-            <div className="logo-imgBox">QR 오더</div>
+            <div className="logo-imgBox">
+               <img src={logo} alt="logo" />
+            </div>
             <div>
                <p>
                   더이상 복잡한 메뉴판 사용과 대면 주문 서비스는 그만. 이제는 자리에서 간편한 QR order로 효율적인 가게
