@@ -150,6 +150,7 @@ const MemberInfo = () => {
       }
    };
 
+
    const isValidate = () => {
       if (
          (inputValue?.userMemberReducer?.id === '' && !idError) ||
