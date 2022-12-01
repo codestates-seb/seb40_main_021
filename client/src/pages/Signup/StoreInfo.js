@@ -26,7 +26,7 @@ const StoreInfo = () => {
    const navigate = useNavigate();
    const inputValue = useSelector(state => state);
 
-   const [img, setImg] = useState();
+   const [img, setImg] = useState('');
    const [businessName, setBusinessName] = useState('');
    const [about, setAbout] = useState();
    const [address, setAddress] = useState('');
@@ -42,7 +42,7 @@ const StoreInfo = () => {
       detailAddress: false,
       contactNumber: false
    });
-
+   console.log(img);
    // useEffect(() => {
    //    if (location?.state === null) {
    //       alert('잘못된 접근입니다.');
@@ -137,7 +137,7 @@ const StoreInfo = () => {
                   <InfoForm>
                      <p>프로필 사진 등록</p>
                   </InfoForm>
-                  <MenuImg type="file" accept="image/*" required multiple onChange={setImg} />
+                  <MenuImg type="file" accept="image/*" required multiple setImg={setImg} />
 
                   <InfoForm buttonError={isCheck.businessNameError} passwordError={businessName === '' ? true : false}>
                      <p>상호명 *</p>
@@ -216,9 +216,7 @@ const StoreInfo = () => {
                   </InfoForm>
 
                   <Btn>
-
                      <Link to={null} onClick={postStoreInfo}>
-
                         완료
                      </Link>
                   </Btn>

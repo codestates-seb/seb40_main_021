@@ -68,7 +68,7 @@ const MemberInfo = () => {
          Certification !== '국세청에 등록되지 않은 사업자등록번호입니다.';
 
       if (navMoveReg) {
-         navigate('/storeInfo', {
+         navigate('/signup/2', {
             state: {
                next: true
             }
@@ -149,7 +149,6 @@ const MemberInfo = () => {
          console.log(err);
       }
    };
-
 
    const isValidate = () => {
       if (

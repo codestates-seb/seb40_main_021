@@ -45,7 +45,7 @@ const LabelPhoto = styled.label`
    }
 `;
 
-const MenuImg = idx => {
+const MenuImg = ({ idx, setImg }) => {
    const [imgSrc, setImageSrc] = useState('');
    const encodeFileToBase64 = fileBlob => {
       const reader = new FileReader();
@@ -53,6 +53,7 @@ const MenuImg = idx => {
       return new Promise(resolve => {
          reader.onload = () => {
             setImageSrc(reader.result);
+            setImg(reader.result);
             resolve();
          };
       });
