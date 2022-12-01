@@ -8,6 +8,7 @@ import PreviewModal from '../../Preview/PreviewModal';
 
 const StoreInfo = ({ setIsEmptyValue }) => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
+   console.log('API_BASE_URL', API_BASE_URL);
    const [userInfo, setUserInfo] = useState({
       userImage: '',
       about: '',
@@ -22,6 +23,7 @@ const StoreInfo = ({ setIsEmptyValue }) => {
    useEffect(() => {
       axios.get(`${API_BASE_URL}/member/${sessionStorage.getItem('userId')}`).then(res => {
          setUserInfo(res.data.data);
+         console.log(res.data.data);
       });
    }, []);
    const viewPreview = useSelector(state => state.previewToggleReducer);

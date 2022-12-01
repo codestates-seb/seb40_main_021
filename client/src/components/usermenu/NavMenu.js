@@ -11,6 +11,7 @@ export const NavMenu = () => {
    const dispatch = useDispatch();
    const category = useSelector(store => store.menuReducer.category);
    const categoryId = useSelector(store => store.menuReducer.category[0].categoryId);
+   console.log(categoryId);
    const userId = useParams().userId;
 
    useEffect(() => {
