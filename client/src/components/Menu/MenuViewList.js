@@ -25,7 +25,7 @@ const ImgList = styled.span`
    height: 133px;
    background: ${p => (p.backimg ? `url(${p.backimg})` : 'null')};
    background-size: cover;
-   background-position: 100% 100%;
+   background-position: center;
    @media screen and (max-width: 700px) {
       width: 100px;
       height: 100px;
@@ -41,7 +41,7 @@ const MenuViewList = ({ el }) => {
                {el.menuImg === '' ? (
                   <ImgList backimg={Img} alt="menuImg" />
                ) : (
-                  <ImgList backimg={el.menuImg} alt="menuImg" />
+                  <ImgList backimg={el.menuImage} alt="menuImg" />
                )}
             </PicWrap>
             <S.InputWrap>

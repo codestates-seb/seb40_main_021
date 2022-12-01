@@ -75,6 +75,7 @@ const MenuList = ({ el, submit, setSubmit }) => {
    const [helperText, setHelperText] = useState({});
    //get menu
    useEffect(() => {
+      setImageSrc(el.menuImage);
       setmenuNameChange(el.menuName);
       setpricesChange(el.price);
       setmenuAboutChange(el.menuContent);
