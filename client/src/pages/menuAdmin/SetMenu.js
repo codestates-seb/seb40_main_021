@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { menuUserAdd, menuUserErrorMessageSubmit } from '../../redux/action/action';
+import { menuUserAdd, menuUserErrorMessageSubmit, setMenuUpdate } from '../../redux/action/action';
 import IconAdd from '../../assets/img/icon_add.png';
 import IconCategoryAdd from '../../assets/img/icon_category_plus.png';
 import ButtonWrap from '../../components/Menu/ButtonWrap';
@@ -21,6 +21,7 @@ const SetMenu = () => {
    const categoryList = useSelector(store => store.categoryUserItemReducer.data);
    const menuListState = useSelector(store => store.menuUserItemReducer.data);
    const menuCountPlus = () => {
+      dispatch(setMenuUpdate(true));
       if (categoryList.length === 0) {
          alert('카테고리를 먼저 추가해주세요.');
       } else {
@@ -147,17 +148,17 @@ const SetMenu = () => {
                <S.MenuListUl>
                   <SetMenuLi activeIndex={activeIndex} submit={submit} setSubmit={setSubmit} />
                </S.MenuListUl>
-               <S.ButtonWarp>
-                  <S.NonePlace />
-                  <S.AddBtn onClick={menuCountPlus}>
-                     <img src={IconAdd} alt="add" />
-                     메뉴 추가
-                  </S.AddBtn>
-                  <S.SaveBtn onClick={() => menuClickSave(false)}>저장</S.SaveBtn>
-               </S.ButtonWarp>
+               {/* <S.ButtonWarp> */}
+               {/* <S.NonePlace /> */}
+               <S.AddBtn onClick={menuCountPlus}>
+                  <img src={IconAdd} alt="add" />
+                  메뉴 추가
+               </S.AddBtn>
+               {/* <S.SaveBtn onClick={() => menuClickSave(false)}>저장</S.SaveBtn> */}
+               {/* </S.ButtonWarp> */}
             </S.MenuContainerWarp>
          </S.MenuLayout>
-         <ButtonWrap save={() => menuClickSave(true)} name={'완료'} />
+         <ButtonWrap save={() => menuClickSave(false)} name={'완료'} />
       </S.SetMenuLayout>
    );
 };

@@ -8,6 +8,7 @@ import { menuReducer } from './menuReducer';
 import { stateReducer } from './stateReducer';
 import { previewToggleReducer } from './previewToggleReducer';
 import userMemberReducer from './userMemberReducer';
+import setmenuStateChangeReducer from './setMenuStateChangeReducer';
 
 export const rootReducer = combineReducers({
    menuReducer,
@@ -18,5 +19,6 @@ export const rootReducer = combineReducers({
    categoryUserItemReducer,
    menuSaveItemReducer,
    previewToggleReducer,
-   userMemberReducer
+   userMemberReducer,
+   setmenuStateChangeReducer
 });

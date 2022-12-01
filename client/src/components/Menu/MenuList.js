@@ -2,7 +2,7 @@ import * as S from './MenuList.style';
 import Input from '../Input';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { menuUserUpdate, menuUserDelete, menuUserErrorMessage } from '../../redux/action/action';
+import { menuUserUpdate, menuUserDelete, menuUserErrorMessage, setMenuUpdate } from '../../redux/action/action';
 import styled from 'styled-components';
 import IconPhoto from './../../assets/img/icon_menu_photo.png';
 
@@ -83,6 +83,7 @@ const MenuList = ({ el, submit, setSubmit }) => {
 
    //유효성
    const handleValue = e => {
+      dispatch(setMenuUpdate(true));
       if (e.target.name === 'menuName') {
          const maxValue = 21;
          if (maxValue && maxValue < e.target.value.length) return;
@@ -141,6 +142,7 @@ const MenuList = ({ el, submit, setSubmit }) => {
    }, [helperText]);
 
    const DeleteMenu = () => {
+      dispatch(setMenuUpdate(true));
       dispatch(menuUserDelete(el.uuid));
    };
 
