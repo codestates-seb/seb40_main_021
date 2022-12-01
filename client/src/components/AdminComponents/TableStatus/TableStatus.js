@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { RiDeleteBinLine } from 'react-icons/ri';
+// import { RiDeleteBinLine } from 'react-icons/ri';
 const TableStatus = ({ data }) => {
    const priceList = data.orderList.map(menus => {
       return menus.price * menus.quantity;
@@ -21,15 +21,11 @@ const TableStatus = ({ data }) => {
          <div className="orderHead">
             <div>No. {data.tableNumber}</div>
             <div>
-               <div className="orderDelete">
-                  <button onClick={hadleClickDeleteOrder}>
-                     <RiDeleteBinLine size="15"></RiDeleteBinLine>
-                  </button>
-               </div>
-               <div>
-                  주문 <b>{data.orderList.length}</b>개
-               </div>
+               주문 <b>{data.orderList.length}</b>개
             </div>
+            <button className="orderDelete" onClick={hadleClickDeleteOrder}>
+               {/* <RiDeleteBinLine size="15"></RiDeleteBinLine> */}X
+            </button>
          </div>
          <div className="orderList">
             {data.orderList.map(menus => {
@@ -63,16 +59,10 @@ const TableStatusBox = styled.div`
    border-radius: 3px 3px 15px 3px;
    margin-bottom: 25px;
    .orderDelete {
-      display: flex;
-      height: 100%;
-      width: 100%;
-      justify-content: end;
-      > button {
-         display: flex;
-         align-items: center;
-         justify-content: center;
-         font-size: 12px;
-      }
+      color: gray;
+      font-weight: bold;
+      position: relative;
+      top: -35px;
    }
    .orderHead {
       display: flex;
