@@ -26,7 +26,7 @@ const StoreInfo = () => {
    const navigate = useNavigate();
    const inputValue = useSelector(state => state);
 
-   const [img, setImg] = useState();
+   const [img, setImg] = useState('');
    const [businessName, setBusinessName] = useState('');
    const [about, setAbout] = useState();
    const [address, setAddress] = useState('');
@@ -56,18 +56,19 @@ const StoreInfo = () => {
       address === '' ||
       detailAddress === '' ||
       contactNumber === '' ||
-      NumberError
+      !/^\d{2,3}-\d{4}-\d{4}$/.test(contactNumber)
    );
 
    const postStoreInfo = async () => {
       try {
          onCheckValues();
+         valiation();
 
          if (!linkError) {
             return;
          }
 
-         const res = await axios.post(`${API_BASE_URL}/member`, {
+         const res = await axios.post(`${API_BASE_URL}/ㅁㅁ`, {
             loginId: inputValue.userMemberReducer.id,
             password: inputValue.userMemberReducer.password,
             businessNumber: inputValue.userMemberReducer.businessNumber,
@@ -82,19 +83,16 @@ const StoreInfo = () => {
          navigate('/signup/complete');
          console.log(res);
       } catch (err) {
-         if (err.response.status === 409) {
-            alert('중복된 아이디가 있습니다.');
-            return;
-         }
+         console.log(err);
       }
    };
 
    const handleNumber = e => {
       setContactNumber(e.target.value);
       setIsCheck({ ...isCheck, contactNumber: false });
-      const ContactNumberRegex = /[0-9]$/;
+      const ContactNumberRegex = /[0-9]{10,11}$/;
 
-      if (ContactNumberRegex.test(e.target.value) || e.target.value === '') {
+      if (!ContactNumberRegex.test(e.target.value) || e.target.value === '') {
          setNumberError(false);
       } else {
          setNumberError(true);
@@ -110,6 +108,28 @@ const StoreInfo = () => {
             detailAddress: detailAddress === '' ? true : false,
             contactNumber: contactNumber === '' ? true : false
          });
+      }
+   };
+
+   const valiation = () => {
+      if (businessName === '') {
+         alert('상호명을 입력해주세요.');
+         return;
+      }
+
+      if (address === '') {
+         alert('도로명 주소를 입력해주세요.');
+         return;
+      }
+
+      if (detailAddress === '') {
+         alert('가게 상세주소를 입력해주세요.');
+         return;
+      }
+
+      if (contactNumber === '') {
+         alert('가게 전화번호를 입력해주세요.');
+         return;
       }
    };
 
@@ -137,7 +157,7 @@ const StoreInfo = () => {
                   <InfoForm>
                      <p>프로필 사진 등록</p>
                   </InfoForm>
-                  <MenuImg type="file" accept="image/*" required multiple onChange={setImg} />
+                  <MenuImg type="file" accept="image/*" required multiple setImg={setImg} />
 
                   <InfoForm buttonError={isCheck.businessNameError} passwordError={businessName === '' ? true : false}>
                      <p>상호명 *</p>
@@ -201,7 +221,7 @@ const StoreInfo = () => {
                         onInput={e => {
                            e.target.value = e.target.value
                               .replace(/[^0-9]/g, '')
-                              .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+                              .replace(/^(\d{2,3})(\d{4})(\d{4})$/, `$1-$2-$3`);
                         }}
                      />
                   </InfoForm>
