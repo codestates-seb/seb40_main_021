@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { createQr } from '../../../redux/action/action';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 const Btn = styled.button`
    width: 120px;
    height: 47px;
@@ -64,7 +65,9 @@ const ButtonWrap = ({ text, num }) => {
          alert('중복된 테이블 번호가 입력되었습니다.');
       }
    };
-
+   useEffect(() => {
+      dispatch(createQr([]));
+   }, []);
    return <Btn onClick={text === 'QR 등록' ? hadleClickCreateQR : handleClickSaveQr}>{text}</Btn>;
 };
 
