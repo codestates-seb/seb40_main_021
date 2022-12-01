@@ -94,10 +94,11 @@ export const LoginBtn = styled.div`
       color: #fff;
       margin-top: 35px;
       float: left;
+      &:hover {
+         color: #fff;
+      }
    }
-   button:hover {
-      color: #fff;
-   }
+
    @media screen and (max-width: 900px) {
       /* margin: 39rem 0 0; */
    }
