@@ -1,9 +1,6 @@
 package com.example.demo.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 public class MemberDto {
     @Getter
@@ -56,5 +53,10 @@ public class MemberDto {
         private String businessName;
         private String businessHours;
         private String userImage;
+    }
+
+    @Data
+    public static class loginIdCheck {
+        private String loginId;
     }
 }

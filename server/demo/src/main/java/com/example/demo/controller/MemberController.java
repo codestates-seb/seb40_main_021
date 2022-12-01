@@ -67,4 +67,17 @@ public class MemberController {
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @PostMapping("/check")
+    public ResponseEntity loginIdCheck(@Valid @RequestBody MemberDto.loginIdCheck requestBody) {
+
+        boolean check = memberService.loginIdCheck(requestBody);
+        if(check == true) {
+
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+    }
 }

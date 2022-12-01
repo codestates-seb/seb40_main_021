@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.auth.CustomAuthorityUtils;
+import com.example.demo.dto.MemberDto;
 import com.example.demo.entity.Member;
 import com.example.demo.exception.BusinessLogicException;
 import com.example.demo.exception.ExceptionCode;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class MemberService {
@@ -85,5 +87,18 @@ public class MemberService {
         Optional<Member> member = memberRepository.findByLoginId(loginId);
         if (member.isPresent())
             throw new BusinessLogicException(ExceptionCode.MEMBER_EXISTS);
+    }
+
+    public boolean loginIdCheck(MemberDto.loginIdCheck requestBody) {
+
+        List<Member> memberList = memberRepository.findAll().stream()
+                .filter(member -> member.getLoginId().equals(requestBody.getLoginId()))
+                .collect(Collectors.toList());
+        if(memberList.size() == 1) {
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 }
