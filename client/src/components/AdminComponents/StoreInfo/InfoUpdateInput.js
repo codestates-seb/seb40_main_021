@@ -34,6 +34,10 @@ const InfoUpdateInput = ({ data, setIsEmptyValue }) => {
          <section className="sodivinfo">
             <div className="sotrinfo">
                <div>
+                  <div className="storeImg">가게 이미지</div>
+                  <div>
+                     <img src={data.userImage} alt="" width={510}></img>
+                  </div>
                   <div>가게 이름</div>
                   <div>
                      <Input

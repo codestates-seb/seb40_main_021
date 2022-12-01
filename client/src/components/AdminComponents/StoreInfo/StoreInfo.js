@@ -16,9 +16,12 @@ const StoreInfo = ({ setIsEmptyValue, userInfo }) => {
                <h1>가게정보</h1>
             </div>
             <main className="mainContant">
-               <div className="storeImg">
-                  <img src={userInfo.userImage} alt=""></img>
-               </div>
+               {UpdateState ? null : (
+                  <div className="storeImg">
+                     {' '}
+                     <img src={userInfo.userImage} alt=""></img>
+                  </div>
+               )}
                <div className="storeInfoContainer">
                   {UpdateState ? null : <div>{`가게 이름 : ${userInfo.businessName}`}</div>}
                   {UpdateState ? (
