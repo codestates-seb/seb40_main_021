@@ -8,8 +8,8 @@ import { gnbToggleOpen } from '../../redux/action/action';
 
 const Header = () => {
    const store = useSelector(store => store.menuReducer.store);
-   const isLogin = false;
    const dispatch = useDispatch();
+   const isLogin = false;
 
    return (
       <S.HeaderWrap>

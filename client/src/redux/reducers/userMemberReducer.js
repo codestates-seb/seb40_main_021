@@ -6,7 +6,7 @@ const initialState = {
    businessNumber: ''
 };
 
-const userMemberReducer = (state = initialState, action) => {
+export const userMemberReducer = (state = initialState, action) => {
    switch (action.type) {
       case USER_MEMBER_ID:
          return {
@@ -29,5 +29,3 @@ const userMemberReducer = (state = initialState, action) => {
          return state;
    }
 };
-
-export default userMemberReducer;
