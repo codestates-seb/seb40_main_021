@@ -1,16 +1,20 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+
 import styled from 'styled-components';
 const CallAlarm = ({ data }) => {
-   const url = useSelector(state => state.adminReducer.apiUrl);
+   const API_BASE_URL = process.env.REACT_APP_API_ROOT;
+   const callAlarmList = useSelector(state => state.adminReducer.alarmData.callAlarmReverse);
    const [callCheck, setCallCheck] = useState(true);
    const handelClickCallCheck = () => {
       setCallCheck(!callCheck);
       if (callCheck) {
          setTimeout(() => {
-            fetch(`${url}/call/${sessionStorage.getItem('userId')}/${data.tableNumber}`, {
+            fetch(`${API_BASE_URL}/call/${sessionStorage.getItem('userId')}/${data.tableNumber}`, {
                method: 'DELETE',
                headers: { 'Content-Type': 'application/json' }
+            }).then(() => {
+               sessionStorage.setItem('call', callAlarmList.length);
             });
          }, 5000);
       }

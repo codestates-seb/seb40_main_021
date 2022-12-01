@@ -1,14 +1,14 @@
 import React from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import { Wrapper } from './SignupTos.Style';
 import { IdRemember, LoginBtn, LoginPanel, LoginTitle } from './Login.Style';
 import { Container } from './Complete.Style';
 import { Info, InfoFormError, FormControl } from './MemberInfo.Style';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
-
+   const navigate = useNavigate();
    const postLogin = async () => {
       try {
          setFinalCheck({
@@ -24,10 +24,14 @@ const Login = () => {
          console.log(res);
          sessionStorage.setItem('access token', res.headers.get('authorization'));
          sessionStorage.setItem('refresh token', res.headers.get('refresh'));
-
          sessionStorage.setItem('userId', res.data.memberId);
 
          console.log(res);
+         if (res.status === 200) {
+            navigate('/user');
+         } else {
+            alert('일단 로그인 실패');
+         }
       } catch (err) {
          console.log(err);
       }
@@ -70,7 +74,7 @@ const Login = () => {
       }
    };
 
-   const linkError = !idError && !passwordError && id !== '' && password !== '';
+   // const linkError = !idError && !passwordError && id !== '' && password !== '';
 
    return (
       <Wrapper>
@@ -111,9 +115,7 @@ const Login = () => {
                   </InfoFormError>
                </form>
                <LoginBtn>
-                  <Link to={linkError ? '/user' : null} onClick={postLogin}>
-                     로그인
-                  </Link>
+                  <button onClick={postLogin}>로그인</button>
                </LoginBtn>
             </LoginPanel>
          </Container>
