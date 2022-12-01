@@ -24,12 +24,19 @@ export const CartItem = ({ data }) => {
       const filtered = cart.filter(menu => menu.menuId !== data.menuId);
       dispatch(deleteMenu(filtered));
    };
-
    return (
       <li className="stored-menu">
          <div className="left">
             <div className="imgBox">
-               <img src={data.img} alt={data.menuName} />
+               {data.img === undefined ? (
+                  <p>
+                     이미지
+                     <br />
+                     준비중입니다
+                  </p>
+               ) : (
+                  <img src={data.img} alt={data.menuName} />
+               )}
             </div>
             <div className="menuTxt">
                <h2>{data.menuName}</h2>
