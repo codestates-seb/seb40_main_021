@@ -99,6 +99,12 @@ const Gnb = () => {
                   테이블 목록
                </NavLink>
             </S.Li>
+            <S.Li>
+               <NavLink onClick={() => dispatch(gnbToggleOpen(false))} to="/user/store">
+                  <S.StoreImg className="storeImg" alt="plus icon" />
+                  가게 정보
+               </NavLink>
+            </S.Li>
             <S.MSpan onClick={logoutHandler}>로그아웃</S.MSpan>
          </S.GnbList>
       </S.GnbContainer>
