@@ -142,8 +142,10 @@ const MenuList = ({ el, submit, setSubmit }) => {
    }, [helperText]);
 
    const DeleteMenu = () => {
-      dispatch(setMenuUpdate(true));
-      dispatch(menuUserDelete(el.uuid));
+      if (confirm('메뉴를 삭제하시겠습니까?')) {
+         dispatch(setMenuUpdate(true));
+         dispatch(menuUserDelete(el.uuid));
+      }
    };
 
    //number , 쉼표처리

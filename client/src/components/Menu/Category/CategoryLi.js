@@ -5,6 +5,7 @@ import * as S from './CategoryLi.style';
 import { useDispatch, useSelector } from 'react-redux';
 import {
    deleteCategoryAndMenu,
+   deleteCategoryAndMenumenu,
    setMenuUpdate,
    setUserCategoryNaming,
    setUserCategoryNowNaming,
@@ -83,6 +84,7 @@ const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex, userId
          });
          if (state.data.length === 1) {
             dispatch(deleteCategoryAndMenu());
+            dispatch(deleteCategoryAndMenumenu());
          }
          return dispatch(setUserDeleteCategory(idx));
       }

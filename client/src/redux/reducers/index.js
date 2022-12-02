@@ -17,7 +17,7 @@ import storage from 'redux-persist/lib/storage';
 const persistConfig = {
    key: 'root',
    storage,
-   whitelist: ['globalTokenReducer']
+   whitelist: ['globalTokenReducer', 'userMemberReducer']
 };
 
 export const rootReducer = combineReducers({
