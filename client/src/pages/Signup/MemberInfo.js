@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {
@@ -52,13 +52,13 @@ const MemberInfo = () => {
 
    const [Certification, setCertification] = React.useState('');
 
-   // useEffect(() => {
-   //    if (location?.state === null) {
-   //       alert('잘못된 접근입니다.');
-   //       navigate('/SignupTos', { replace: true });
-   //       return;
-   //    }
-   // }, []);
+   useEffect(() => {
+      if (inputValue?.userMemberReducer?.id === '' && inputValue?.userMemberReducer?.password === '') {
+         alert('잘못된 접근입니다.');
+         navigate('/signup', { replace: true });
+         return;
+      }
+   }, []);
 
    const valiation = () => {
       if (idDuplicate === 0) {
@@ -112,9 +112,6 @@ const MemberInfo = () => {
                next: true
             }
          });
-         dispatch(onChangeIdAction(''));
-         dispatch(onChangePasswordAction(''));
-         dispatch(onChangeBusinessNumberAction(''));
       } else {
          isValidate();
       }

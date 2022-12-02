@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import MenuImg from '../../components/Menu/MenuImg';
@@ -16,13 +15,15 @@ import {
    PanelTitle,
    Btn
 } from './SignupTos.Style';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { InfoForm, CompanyNum, FormControl } from './MemberInfo.Style';
+import { onChangeIdAction, onChangePasswordAction, onChangeBusinessNumberAction } from '../../redux/action/action';
 
 const StoreInfo = () => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    // const location = useLocation();
 
+   const dispatch = useDispatch();
    const navigate = useNavigate();
    const inputValue = useSelector(state => state);
 
@@ -42,14 +43,14 @@ const StoreInfo = () => {
       detailAddress: false,
       contactNumber: false
    });
-
-   // useEffect(() => {
-   //    if (location?.state === null) {
-   //       alert('잘못된 접근입니다.');
-   //       navigate('/SignupTos', { replace: true });
-   //       return;
-   //    }
-   // }, []);
+   console.log(img);
+   useEffect(() => {
+      if (inputValue.userMemberReducer.id === '' && inputValue.userMemberReducer.password === '') {
+         alert('잘못된 접근입니다.');
+         navigate('/signup', { replace: true });
+         return;
+      }
+   }, []);
 
    const linkError = !(
       businessName === '' ||
@@ -67,12 +68,22 @@ const StoreInfo = () => {
          if (!linkError) {
             return;
          }
-
-         const res = await axios.post(`${API_BASE_URL}/ㅁㅁ`, {
+         console.log({
             loginId: inputValue.userMemberReducer.id,
             password: inputValue.userMemberReducer.password,
             businessNumber: inputValue.userMemberReducer.businessNumber,
-            userImage: img,
+            userImage: 'img',
+            businessName: businessName,
+            about: about,
+            address: address,
+            contactNumber: contactNumber,
+            businessHours: businessHours
+         });
+         const res = await axios.post(`${API_BASE_URL}/member`, {
+            loginId: inputValue.userMemberReducer.id,
+            password: inputValue.userMemberReducer.password,
+            businessNumber: inputValue.userMemberReducer.businessNumber,
+            userImage: 'img',
             businessName: businessName,
             about: about,
             address: address,
@@ -81,6 +92,11 @@ const StoreInfo = () => {
          });
 
          navigate('/signup/complete');
+
+         dispatch(onChangeIdAction(''));
+         dispatch(onChangePasswordAction(''));
+         dispatch(onChangeBusinessNumberAction(''));
+
          console.log(res);
       } catch (err) {
          console.log(err);
