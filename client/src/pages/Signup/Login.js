@@ -31,8 +31,8 @@ const Login = () => {
             password: password
          });
 
-         sessionStorage.setItem('access token', res.headers.get('authorization'));
-         sessionStorage.setItem('refresh token', res.headers.get('refresh'));
+         sessionStorage.setItem('access token', res.headers.get('Authorization'));
+         sessionStorage.setItem('refresh token', res.headers.get('Refresh'));
          sessionStorage.setItem('userId', res.data.memberId);
 
          console.log(res);

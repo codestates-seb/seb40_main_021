@@ -64,7 +64,7 @@ const InputBox = styled.input`
 const Input = ({ type, name, handleValue, width, value, placeholder, idx, active, isEmptyInputValue }) => {
    const onChange = e => {
       handleValue(e);
-      isEmptyInputValue && isEmptyInputValue(e.target.value);
+      isEmptyInputValue && isEmptyInputValue(e, name);
    };
 
    return (

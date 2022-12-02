@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { Order, OrderListBox } from './OderAlarmStyle';
 import { MdExpandMore } from 'react-icons/md';
+import { useSelector } from 'react-redux';
 const OrderAlram = ({ menu, idx }) => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const [menuViewDetails, setMenuViewDetails] = useState(false);
+   const orderAlarmList = useSelector(state => state.adminReducer.alarmData.orderAlarmReverse);
    const handleClickOrderCheck = () => {
       alert('확인');
       const orderId = menu.orderId;
@@ -11,7 +13,11 @@ const OrderAlram = ({ menu, idx }) => {
          method: 'PATCH',
          headers: { 'Content-Type': 'application/json' },
          body: JSON.stringify({ checkBox: false })
-      }).catch(err => console.log(err));
+      })
+         .then(() => {
+            sessionStorage.setItem('order', orderAlarmList.length);
+         })
+         .catch(err => console.log(err));
    };
    return (
       <Order

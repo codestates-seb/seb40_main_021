@@ -5,10 +5,19 @@ import Buttons from '../../components/AdminComponents/StoreInfo/Buttons';
 import { useState } from 'react';
 const Store = () => {
    const [isEmptyValue, setIsEmptyValue] = useState(false);
+   const [userInfo, setUserInfo] = useState({
+      userImage: '',
+      about: '',
+      address: '',
+      businessHours: '',
+      businessName: '',
+      businessNumber: '',
+      contactNumber: ''
+   });
    return (
       <StoreContainer>
-         <StoreInfo setIsEmptyValue={setIsEmptyValue}></StoreInfo>
-         <Buttons isEmptyValue={isEmptyValue} />
+         <StoreInfo setIsEmptyValue={setIsEmptyValue} userInfo={userInfo}></StoreInfo>
+         <Buttons isEmptyValue={isEmptyValue} setUserInfo={setUserInfo} />
       </StoreContainer>
    );
 };
