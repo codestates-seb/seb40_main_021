@@ -29,7 +29,6 @@ const StoreInfo = () => {
    const navigate = useNavigate();
    const inputValue = useSelector(state => state);
 
-   // eslint-disable-next-line no-unused-vars
    const [img, setImg] = useState('');
    const [businessName, setBusinessName] = useState('');
    const [about, setAbout] = useState();
@@ -76,7 +75,7 @@ const StoreInfo = () => {
             loginId: inputValue.userMemberReducer.id,
             password: inputValue.userMemberReducer.password,
             businessNumber: inputValue.userMemberReducer.businessNumber,
-            userImage: 'img',
+            userImage: img,
             businessName: businessName,
             about: about,
             address: address,
