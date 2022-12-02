@@ -5,7 +5,7 @@ const Qrimg = ({ data }) => {
    return (
       <Img>
          <div className="imgBorder">
-            <img style={{ width: 135 }} className="qrImg" src={data.qrUrl} alt=""></img>
+            <img style={{ width: 165 }} className="qrImg" src={data.qrUrl} alt=""></img>
             <div className="imgTextBox">
                <img className="qrScanIcon" src={qrScanIcon} alt=""></img>
                <div className="text">스캔 후 주문</div>
@@ -19,11 +19,10 @@ const Img = styled.div`
    display: flex;
    flex-direction: column;
    align-items: center;
-   border: 1px solid lightgray;
+   border: 1px dotted lightgray;
    width: 100%;
-   height: 240px;
-   padding: 20px 30px 10px 30px;
-   box-sizing: border-box;
+   height: 280.75px;
+   padding: 20px 40px 30px 40px;
    .tableNum {
       margin-top: 5px;
       font-size: 20px;
@@ -38,16 +37,18 @@ const Img = styled.div`
       width: 25px;
    }
    .imgTextBox {
+      position: relative;
+      top: -10;
       color: white;
       width: 110%;
-      height: 50px;
+      height: 55px;
       background-color: black;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 18px;
       font-weight: bold;
-      margin-top: -26px;
+      margin-top: -23px;
       z-index: 0;
    }
    .imgBorder {
@@ -55,20 +56,20 @@ const Img = styled.div`
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      width: 85%;
+      width: 90%;
       height: 100%;
       border: 4px solid black;
-      background-color: black;
+      border-bottom: 20px solid black;
+      background-color: white;
       border-radius: 5px 5px 15px 15px;
       overflow: hidden;
-      padding: 5px;
+      padding: 5px 5px 0 5px;
    }
    .qrImg {
       position: relative;
       margin: 0;
       padding: 0;
       top: -15px;
-
       object-fit: cover;
    }
 `;

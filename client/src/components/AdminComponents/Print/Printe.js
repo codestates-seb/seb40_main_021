@@ -34,7 +34,7 @@ const Printe = () => {
    };
    return (
       <PrintContainer>
-         <div className="print">
+         <div className="printSize">
             <div className="btn">
                {clickPrintBtn ? null : (
                   <div className="btnBox">
@@ -67,7 +67,7 @@ const Printe = () => {
                      <button onClick={exit} className="optionBtn">
                         나가기
                      </button>
-                     <div>{`${pageNum + 1}/${dividedQrList.length}`}</div>
+                     <div className="paging">{`${pageNum + 1}/${dividedQrList.length}`}</div>
                   </div>
                )}
             </div>
@@ -88,29 +88,43 @@ const PrintContainer = styled.main`
    height: 100vh;
    flex-direction: column;
    align-items: center;
-   justify-content: center;
    position: absolute;
    top: 0;
    bottom: 0;
    left: 0;
    right: 0;
-   background-color: white;
+   background-color: rgba(230, 230, 230, 0.5);
+   overflow: scroll;
+   .paging {
+      color: black;
+      font-size: 15px;
+      font-weight: bold;
+   }
+   .imgs {
+      height: 1123px;
+      background-color: white;
+   }
    .btn {
-      width: 300px;
-      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: sticky;
+      width: fit-content;
+      height: fit-content;
       left: 250px;
-      position: absolute;
-      top: 50%;
-      left: 10%;
+      top: 10%;
+      left: -5%;
       transform: translate(-50%, -50%);
       .btnBox {
          padding: 5px;
          margin-bottom: 10px;
          display: flex;
          align-items: center;
-         justify-content: space-between;
+         flex-direction: column;
+         justify-content: center;
          .printBtn {
             margin: 0;
+            margin-bottom: 10px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -124,19 +138,16 @@ const PrintContainer = styled.main`
             text-align: center;
             background-color: black;
             color: white;
-            margin-right: 20px;
             border-radius: 5px;
+            margin-bottom: 10px;
             border: 0;
             cursor: pointer;
          }
       }
    }
-   .print {
-      box-sizing: border-box;
-      width: 706.25px;
-      height: 1000px;
-      background-color: white;
-      overflow: hidden;
+   .printSize {
+      display: flex;
+      width: 794px;
    }
 
    .qrImg {
