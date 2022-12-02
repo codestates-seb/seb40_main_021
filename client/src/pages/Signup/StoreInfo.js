@@ -29,7 +29,6 @@ const StoreInfo = () => {
    const navigate = useNavigate();
    const inputValue = useSelector(state => state);
 
-   // eslint-disable-next-line no-unused-vars
    const [img, setImg] = useState('');
    const [businessName, setBusinessName] = useState('');
    const [about, setAbout] = useState();
