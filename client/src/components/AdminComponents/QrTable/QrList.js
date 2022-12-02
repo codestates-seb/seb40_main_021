@@ -22,7 +22,6 @@ const QrListBox = styled.div`
    width: 100%;
    height: 70%;
    overflow-y: scroll;
-
    .emptyList {
       display: flex;
       font-size: 16px;

@@ -7,17 +7,18 @@ const OrderAlram = ({ menu, idx }) => {
    const [menuViewDetails, setMenuViewDetails] = useState(false);
    const orderAlarmList = useSelector(state => state.adminReducer.alarmData.orderAlarmReverse);
    const handleClickOrderCheck = () => {
-      alert('확인');
-      const orderId = menu.orderId;
-      fetch(`${API_BASE_URL}/order/${orderId}`, {
-         method: 'PATCH',
-         headers: { 'Content-Type': 'application/json' },
-         body: JSON.stringify({ checkBox: false })
-      })
-         .then(() => {
-            sessionStorage.setItem('order', orderAlarmList.length);
+      if (confirm('정말 삭제 하시겠습니까?')) {
+         const orderId = menu.orderId;
+         fetch(`${API_BASE_URL}/order/${orderId}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ checkBox: false })
          })
-         .catch(err => console.log(err));
+            .then(() => {
+               sessionStorage.setItem('order', orderAlarmList.length);
+            })
+            .catch(err => console.log(err));
+      }
    };
    return (
       <Order
@@ -26,12 +27,16 @@ const OrderAlram = ({ menu, idx }) => {
          onClick={() => {
             setMenuViewDetails(!menuViewDetails);
          }}>
+         <button className="deleteBtn" onClick={handleClickOrderCheck}>
+            X
+         </button>
          <div id="oderInfo">
             <b>No. {menu.tableNumber}</b>
             <div>
                주문 메뉴 : <b>{menu.orderMenuList.length}</b>개
             </div>
             <div id="orderTime">{menu.createdAt}</div>
+
             <div className="detailedMenu">
                <MdExpandMore className="detailedMenuIcon" />
             </div>
@@ -46,10 +51,6 @@ const OrderAlram = ({ menu, idx }) => {
                   </div>
                );
             })}
-            <div className="reqText">
-               <b>{`요청사항 : ${menu.message}`}</b>
-               <button onClick={handleClickOrderCheck}>확인</button>
-            </div>
          </OrderListBox>
       </Order>
    );

@@ -36,7 +36,11 @@ const QrInfo = ({ data, idx, dummyState }) => {
       <QrInfoBox isIncludes={isIncludes}>
          <div className="qrInfos">
             <div>
-               <input ref={checkBoxRef} onClick={() => handleClickCheckBox(idx)} type="checkbox"></input>
+               <input
+                  disabled={modifyingSavedTableNumState ? true : false}
+                  ref={checkBoxRef}
+                  onClick={() => handleClickCheckBox(idx)}
+                  type="checkbox"></input>
             </div>
             <div>{idx + 1}</div>
             <div className="tableNumBox">

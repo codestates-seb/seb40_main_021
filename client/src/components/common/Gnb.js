@@ -26,11 +26,12 @@ const Gnb = () => {
    const getAlarms = async () => {
       const orderAlarmReverse = await getAlarm(`${API_BASE_URL}/table/${sessionStorage.getItem('userId')}/order`);
       const callAlarmReverse = await getAlarm(`${API_BASE_URL}/call/${sessionStorage.getItem('userId')}`);
-
       if (
          sessionStorage.getItem('call') < callAlarmReverse.length ||
          sessionStorage.getItem('order') < orderAlarmReverse.length
       ) {
+         sessionStorage.setItem('call', callAlarmReverse.length);
+         sessionStorage.setItem('order', orderAlarmReverse.length);
          audio.play();
       }
       dispatch(updateAlarmData(orderAlarmReverse, callAlarmReverse));
@@ -40,7 +41,7 @@ const Gnb = () => {
    }, []);
 
    useInterval(() => {
-      //getAlarms();
+      getAlarms();
    }, 3000);
    const count = alarmData.orderAlarmReverse.length + alarmData.callAlarmReverse.length;
    return (
