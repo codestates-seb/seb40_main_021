@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import MenuImg from '../../components/Menu/MenuImg';
 import Postcode from '../../components/PostCode/Postcode';
-
+import ImageNotes from './../../assets/images/notes.png';
 import {
    Wrapper,
    Container,
@@ -154,7 +154,7 @@ const StoreInfo = () => {
          <Container>
             <MemberReg>
                <PageTitle>
-                  <img src="images/notes.png" alt="img" />
+                  <img src={ImageNotes} alt="img" />
                   <h4>회원가입</h4>
                </PageTitle>
                <DivideLine>

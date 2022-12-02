@@ -24,7 +24,7 @@ import {
 } from './SignupTos.Style';
 
 import { useDispatch, useSelector } from 'react-redux';
-
+import ImageNotes from './../../assets/images/notes.png';
 import { onChangeIdAction, onChangePasswordAction, onChangeBusinessNumberAction } from '../../redux/action/action';
 
 const MemberInfo = () => {
@@ -231,7 +231,7 @@ const MemberInfo = () => {
          <Container>
             <MemberReg>
                <PageTitle>
-                  <img src="images/notes.png" alt="img" />
+                  <img src={ImageNotes} alt="img" />
                   <h4>회원가입</h4>
                </PageTitle>
                <DivideLine>
