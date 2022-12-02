@@ -95,6 +95,14 @@ const PrintContainer = styled.main`
    right: 0;
    background-color: rgba(230, 230, 230, 0.5);
    overflow: scroll;
+   &::-webkit-scrollbar {
+      width: 10px;
+      background: rgba(0, 0, 0, 0);
+   }
+   &::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 30px;
+   }
    .paging {
       color: black;
       font-size: 15px;

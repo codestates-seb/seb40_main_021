@@ -42,15 +42,16 @@ const CallAlarmContainer = styled.div`
       display: flex;
       overflow-x: scroll;
       align-items: center;
+      &::-webkit-scrollbar {
+         width: 10px;
+         background: rgba(0, 0, 0, 0);
+      }
+      &::-webkit-scrollbar-thumb {
+         background: rgba(0, 0, 0, 0.3);
+         border-radius: 30px;
+      }
    }
-   .callAlarms::-webkit-scrollbar {
-      height: 10px;
-      background: rgba(0, 0, 0, 0);
-   }
-   .callAlarms::-webkit-scrollbar-thumb {
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 30px;
-   }
+
    .subTitle {
       display: flex;
       flex-direction: column;

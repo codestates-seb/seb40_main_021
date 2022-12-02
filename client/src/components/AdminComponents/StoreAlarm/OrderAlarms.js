@@ -41,11 +41,13 @@ const MainContents = styled.main`
       padding: 10px;
       border-radius: 5px;
       overflow-y: scroll;
-      ::-webkit-scrollbar {
-         width: 8px;
+      &::-webkit-scrollbar {
+         width: 10px;
+         background: rgba(0, 0, 0, 0);
       }
-      ::-webkit-scrollbar-thumb {
-         background: #a9a9a9;
+      &::-webkit-scrollbar-thumb {
+         background: rgba(0, 0, 0, 0.3);
+         border-radius: 30px;
       }
    }
    .subTitle {
