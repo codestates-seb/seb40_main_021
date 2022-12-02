@@ -41,8 +41,6 @@ export const MenuDetailed = () => {
       };
    }, [menuId]);
 
-   // useEffect(() => {}, [isActive]);
-
    // 선택메뉴 카트에 담기
    const cartBtnHandler = () => {
       // 추가 메뉴
@@ -51,7 +49,7 @@ export const MenuDetailed = () => {
          menuName: menu.menuName,
          price: menu.price,
          quantity,
-         img: menu.img
+         img: menu.menuImage
       };
 
       // 로컬 스토리지에 저장된 장바구니 리스트 불러오기
@@ -85,7 +83,7 @@ export const MenuDetailed = () => {
          <div className="menu">
             <div className="inline">
                <h1>{menu && menu.menuName}</h1>
-               <p>{menu && menu.price}원</p>
+               <p>{menu && menu.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</p>
             </div>
             <p>{menu && menu.menuContent}</p>
          </div>
@@ -103,7 +101,8 @@ export const MenuDetailed = () => {
                </div>
             </div>
             <div className="total">
-               총 금액 : {menu && quantity * menu.price}원<button onClick={cartBtnHandler}>담기</button>
+               총 금액 : {menu && (quantity * menu.price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
+               <button onClick={cartBtnHandler}>담기</button>
             </div>
          </div>
       </DetailedWrapper>

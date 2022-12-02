@@ -19,7 +19,6 @@ export const OrderedList = () => {
       // 주문목록 불러오기
       axios
          .get(`${API_BASE_URL}/order/${userId}/${tableNumber}`)
-         // .get(`/order/1/1`)
          .then(res => {
             const data = res.data.data;
             dispatch(orderedList(data));
@@ -37,7 +36,7 @@ export const OrderedList = () => {
                <OrderedItem key={menu.menuId} data={menu} />
             ))}
          </ul>
-         <p className="total-price fixed">총 주문 금액 : {total}원</p>
+         <p className="total-price fixed">총 주문 금액 : {total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</p>
       </div>
    );
 };
