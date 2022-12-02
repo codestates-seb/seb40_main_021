@@ -191,7 +191,6 @@ const MemberInfo = () => {
          console.log(err);
       }
    };
-
    const isValidate = () => {
       if (
          (inputValue?.userMemberReducer?.id === '' && !idError) ||

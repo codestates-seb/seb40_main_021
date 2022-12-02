@@ -35,6 +35,7 @@ export const ALARMDATA_UPDATE = 'ALARMDATA_UPDATE';
 export const UPDATE_PROGRESS = 'UPDATE_PROGRESS';
 export const SET_MENU_UPDATE = 'SET_MENU_UPDATE';
 export const IS_LOGIN = 'IS_LOGIN';
+export const DELETE_CATEGORY_RESTE_MENU = 'DELETE_CATEGORY_RESTE_MENU';
 
 export const storeInfoUpdate = chack => {
    return {
@@ -312,5 +313,11 @@ export const setLoginStatus = res => {
    return {
       type: IS_LOGIN,
       payload: res
+   };
+};
+
+export const deleteCategoryAndMenu = () => {
+   return {
+      type: DELETE_CATEGORY_RESTE_MENU
    };
 };

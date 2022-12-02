@@ -1,6 +1,5 @@
 import * as S from './MenuList.style';
 import IconCheck from './../../assets/img/icon_recommend_check.png';
-import Img from './../../assets/img/defeultPic.png';
 import styled from 'styled-components';
 
 const PicWrap = styled.div`
@@ -23,6 +22,8 @@ const ImgList = styled.span`
    display: block;
    width: 133px;
    height: 133px;
+   border-radius: 5px;
+   overflow: hidden;
    background: ${p => (p.backimg ? `url(${p.backimg})` : 'null')};
    background-size: cover;
    background-position: center;
@@ -33,13 +34,32 @@ const ImgList = styled.span`
       overflow: hidden;
    }
 `;
+const NoBackImg = styled.div`
+   background-color: #d9d9d9;
+   width: 133px;
+   height: 133px;
+   display: flex;
+   align-items: center;
+   border-radius: 5px;
+   justify-content: center;
+   & p {
+      font-family: 'IBM Plex Sans KR', sans-serif;
+      font-weight: 700;
+      text-align: center;
+   }
+`;
 const MenuViewList = ({ el }) => {
    return (
       <S.List>
          <S.ListLi>
             <PicWrap>
-               {el.menuImg === '' ? (
-                  <ImgList backimg={Img} alt="menuImg" />
+               {el.menuImg === undefined ? (
+                  <NoBackImg>
+                     <p>
+                        이미지를 <br />
+                        준비중입니다.
+                     </p>
+                  </NoBackImg>
                ) : (
                   <ImgList backimg={el.menuImage} alt="menuImg" />
                )}
