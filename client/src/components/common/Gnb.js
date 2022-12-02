@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import BellIcon from './../../assets/img/bell_icon.png';
-import { gnbToggleOpen, updateAlarmData } from '../../redux/action/action';
+import { gnbToggleOpen, setLoginStatus, updateAlarmData } from '../../redux/action/action';
 import IconClose from './../../assets/img/icon_close_white.png';
 import * as S from './Gnb.style';
 import { useEffect, useState } from 'react';
@@ -39,6 +39,14 @@ const Gnb = () => {
    useEffect(() => {
       getAlarms();
    }, []);
+
+   const navigate = useNavigate();
+
+   const logoutHandler = () => {
+      dispatch(setLoginStatus(false));
+      sessionStorage.clear();
+      navigate('/');
+   };
 
    useInterval(() => {
       getAlarms();
@@ -91,7 +99,7 @@ const Gnb = () => {
                   테이블 목록
                </NavLink>
             </S.Li>
-            <S.MSpan>로그아웃</S.MSpan>
+            <S.MSpan onClick={logoutHandler}>로그아웃</S.MSpan>
          </S.GnbList>
       </S.GnbContainer>
    );
