@@ -36,6 +36,7 @@ export const UPDATE_PROGRESS = 'UPDATE_PROGRESS';
 export const SET_MENU_UPDATE = 'SET_MENU_UPDATE';
 export const IS_LOGIN = 'IS_LOGIN';
 export const DELETE_CATEGORY_RESTE_MENU = 'DELETE_CATEGORY_RESTE_MENU';
+export const DELETE_CATEGORY_RESTE_MENU_MENU = 'DELETE_CATEGORY_RESTE_MENU_MENU';
 
 export const storeInfoUpdate = chack => {
    return {
@@ -319,5 +320,11 @@ export const setLoginStatus = res => {
 export const deleteCategoryAndMenu = () => {
    return {
       type: DELETE_CATEGORY_RESTE_MENU
+   };
+};
+
+export const deleteCategoryAndMenumenu = () => {
+   return {
+      type: DELETE_CATEGORY_RESTE_MENU_MENU
    };
 };
