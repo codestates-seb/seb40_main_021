@@ -17,7 +17,7 @@ const Container = styled.div`
 `;
 
 const GnbLayout = () => {
-   const isLogin = useSelector(store => store.userMemberReducer.isLogin);
+   const isLogin = useSelector(store => store.isLoginReducer.isLogin);
    const navigate = useNavigate();
    const { pathname } = useLocation();
    console.log(isLogin, navigate, pathname);
