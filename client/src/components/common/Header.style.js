@@ -43,7 +43,7 @@ export const LogoImg = styled.img`
    width: auto;
    height: 50px;
    @media screen and (max-width: 900px) {
-      display: none;
+      display: ${props => (props.isLogin ? 'none' : 'block')};
    }
 `;
 export const IconBtn = styled.button`
