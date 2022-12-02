@@ -27,9 +27,12 @@ const GnbLayout = () => {
          navigate('/login', { state: pathname });
       }
    }, []);
+   const printModalState = useSelector(state => state.adminReducer.printModal);
+   const noHeader = useSelector(store => store.stateReducer.header);
    return (
       <Container>
-         <HeaderUser />
+         {printModalState || noHeader ? null : <HeaderUser />}
+
          <Gnb />
          <Outlet />
       </Container>
