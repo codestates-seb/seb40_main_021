@@ -14,7 +14,7 @@ import {
 } from '../../../redux/action/action';
 import { useAxios } from '../../../util/useAxios';
 
-const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex, userId }) => {
+const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex }) => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const { categoryId, categoryName } = el;
 
@@ -43,7 +43,7 @@ const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex, userId
             dispatch(setUserCategoryNaming(''));
             clickFetchFunc({
                method: 'PATCH',
-               url: `${API_BASE_URL}/category/update/${userId}`,
+               url: `${API_BASE_URL}/category/update/${categoryId}`,
                data: { categoryName: categoryAddName }
             });
             setTogglePatchCategory(!togglePatchCategory);

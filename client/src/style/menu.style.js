@@ -27,7 +27,10 @@ export const Wrapper = styled.div`
          transform: translate(-50%);
          display: flex;
          padding: 0 0 0 65px;
-
+         .preview {
+            height: 500px;
+            overflow-y: scroll;
+         }
          ul {
             width: 100%;
             max-width: 500px;
