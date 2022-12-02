@@ -120,7 +120,7 @@ const MemberInfo = () => {
    const handleId = e => {
       dispatch(onChangeIdAction(e.target.value));
 
-      const idRegex = /^[a-z0-9]{1,11}$/;
+      const idRegex = /^[a-z]{1,11}$/;
 
       if (idRegex.test(e.target.value)) {
          setIdError(false);
@@ -264,7 +264,7 @@ const MemberInfo = () => {
                         </BtnIdCheck>
                      </CompanyNum>
                   </Info>
-                  {idError && <span>영문(소문자), 숫자 포함해 주세요.</span>}
+                  {idError && <span>영문(소문자)만 작성해 주세요.</span>}
                   <InfoForm buttonError={finalCheck.pwCheck} passwordError={passwordError}>
                      <p>비밀번호</p>
                      <FormControl
