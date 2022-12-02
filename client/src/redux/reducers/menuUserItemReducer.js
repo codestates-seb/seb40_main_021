@@ -4,7 +4,8 @@ import {
    MENU_USER_DELETE,
    ERROR_CASE_HANDLE,
    EROOR_TO_SUBMIT,
-   MENU_GET_ADD_USER
+   MENU_GET_ADD_USER,
+   DELETE_CATEGORY_RESTE_MENU
 } from '../action/action';
 
 import { v4 as uuidv4 } from 'uuid';
@@ -57,6 +58,9 @@ const menuUserItemReducer = (state = initialState, action) => {
          if (number.length < 2) state.data[action.payload.idx].errorMessage.price = '가격을 작성해주세요.';
          if (state.data[action.payload.idx].menuContent.length < 2)
             state.data[action.payload.idx].errorMessage.menuContent = '메뉴 설명을 작성해주세요.';
+         return state;
+      case DELETE_CATEGORY_RESTE_MENU:
+         state = initialState;
          return state;
       default:
          return state;

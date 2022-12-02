@@ -86,7 +86,6 @@ export const adminReducer = (state = adminState, action) => {
          for (let i = 0; i < state.savedTableListCheckBoxArr.length; i++) {
             const body = { idx: state.savedTableListCheckBoxArr[i], newTableNum: null };
             newArr.push(body);
-            console.log(newArr);
          }
          return Object.assign({}, state, { updateTableNumber: newArr });
       case UPDATE_PROGRESS:
