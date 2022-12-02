@@ -26,12 +26,15 @@ public class CallService {
     private final TableRepository tableRepository;
 
     public Call createCall(Call call) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        String formattedNow = LocalDateTime.now().format(formatter);
-        call.setCreatedAt(formattedNow);
         verifyCall(call);
 
-        return callRepository.save(call);
+        Call findCall = callRepository.save(call);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String formattedNow = findCall.getCreateDate().format(formatter);
+        findCall.setCreatedAt(formattedNow);
+
+        return callRepository.save(findCall);
     }
 
     public void verifyCall(Call call) {

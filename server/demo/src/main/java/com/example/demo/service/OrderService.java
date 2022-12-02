@@ -31,8 +31,6 @@ public class OrderService {
                 .stream().filter(table -> table.getTableNumber() == order.getTable().getTableNumber())
                 .collect(Collectors.toList());
         order.setTable(tableList.get(0));
-        String formatedNow = LocalDateTime.now().format(formatter);
-        order.setCreatedAt(formatedNow);
 
         for(int i = 0; i < order.getOrderMenuList().size(); i++) {
             Optional<Menu> menu = menuRepository.findById(order.getOrderMenuList().get(i).getMenu().getMenuId());
@@ -40,7 +38,12 @@ public class OrderService {
                 order.getOrderMenuList().get(i).setMenu(menu.get());
             }
         }
-        return orderRepository.save(order);
+        Order findOrder = orderRepository.save(order);
+
+        String formatedNow = findOrder.getCreateDate().format(formatter);
+        findOrder.setCreatedAt(formatedNow);
+
+        return orderRepository.save(findOrder);
     }
 
     public void deleteOrder(Long memberId, int tableNumber) {
