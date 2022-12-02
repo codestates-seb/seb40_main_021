@@ -15,7 +15,6 @@ import userMenu6 from '../../assets/image/menu6.png';
 import userMenu7 from '../../assets/image/menu7.png';
 import userMenu8 from '../../assets/image/menu8.png';
 import CenterMode from './Slider';
-import MultipleItems from './Slider2';
 
 export const Section_3 = () => {
    return (
@@ -42,7 +41,6 @@ export const Section_3 = () => {
             <img src={adminPage7} alt="" />
             <img src={adminPage7} alt="" />
          </div>
-         <MultipleItems />
          <div className="usermenu-wrapper" data-aos="fade-in">
             <img src={userMenu1} alt="" />
             <img src={userMenu2} alt="" />
