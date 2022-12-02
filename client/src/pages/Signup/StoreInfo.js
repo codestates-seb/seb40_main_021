@@ -76,7 +76,7 @@ const StoreInfo = () => {
             loginId: inputValue.userMemberReducer.id,
             password: inputValue.userMemberReducer.password,
             businessNumber: inputValue.userMemberReducer.businessNumber,
-            userImage: 'img',
+            userImage: img,
             businessName: businessName,
             about: about,
             address: address,
