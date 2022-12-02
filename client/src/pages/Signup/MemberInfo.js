@@ -24,7 +24,7 @@ import {
 } from './SignupTos.Style';
 
 import { useDispatch, useSelector } from 'react-redux';
-
+import ImageNotes from './../../assets/images/notes.png';
 import { onChangeIdAction, onChangePasswordAction, onChangeBusinessNumberAction } from '../../redux/action/action';
 
 const MemberInfo = () => {
@@ -53,9 +53,9 @@ const MemberInfo = () => {
    const [Certification, setCertification] = React.useState('');
 
    // useEffect(() => {
-   //    if (location?.state === null) {
+   //    if (inputValue?.userMemberReducer?.id === '' && inputValue?.userMemberReducer?.password === '') {
    //       alert('잘못된 접근입니다.');
-   //       navigate('/SignupTos', { replace: true });
+   //       navigate('/signup', { replace: true });
    //       return;
    //    }
    // }, []);
@@ -112,9 +112,6 @@ const MemberInfo = () => {
                next: true
             }
          });
-         dispatch(onChangeIdAction(''));
-         dispatch(onChangePasswordAction(''));
-         dispatch(onChangeBusinessNumberAction(''));
       } else {
          isValidate();
       }
@@ -123,7 +120,7 @@ const MemberInfo = () => {
    const handleId = e => {
       dispatch(onChangeIdAction(e.target.value));
 
-      const idRegex = /^[a-z0-9]{1,11}$/;
+      const idRegex = /^[a-z]{1,11}$/;
 
       if (idRegex.test(e.target.value)) {
          setIdError(false);
@@ -191,7 +188,6 @@ const MemberInfo = () => {
          console.log(err);
       }
    };
-
    const isValidate = () => {
       if (
          (inputValue?.userMemberReducer?.id === '' && !idError) ||
@@ -234,7 +230,7 @@ const MemberInfo = () => {
          <Container>
             <MemberReg>
                <PageTitle>
-                  <img src="images/notes.png" alt="img" />
+                  <img src={ImageNotes} alt="img" />
                   <h4>회원가입</h4>
                </PageTitle>
                <DivideLine>
@@ -267,7 +263,7 @@ const MemberInfo = () => {
                         </BtnIdCheck>
                      </CompanyNum>
                   </Info>
-                  {idError && <span>영문(소문자), 숫자 포함해 주세요.</span>}
+                  {idError && <span>영문(소문자)만 작성해 주세요.</span>}
                   <InfoForm buttonError={finalCheck.pwCheck} passwordError={passwordError}>
                      <p>비밀번호</p>
                      <FormControl

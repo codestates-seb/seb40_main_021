@@ -111,6 +111,7 @@ const SetMenu = () => {
                   menuList: menuList
                }
             });
+            dispatch(setMenuUpdate(false));
             alert('저장이 완료되었습니다.');
          }
       }

@@ -12,8 +12,8 @@ export const FooterWrapper = styled.footer`
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      .logo-imgBox {
-         font-size: 25px;
+      .logo-imgBox img {
+         width: 100px;
       }
       p {
          font-size: 16px;

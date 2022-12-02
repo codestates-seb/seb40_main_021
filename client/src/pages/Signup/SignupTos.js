@@ -16,6 +16,7 @@ import {
 } from './SignupTos.Style';
 import topArrow from './../../assets/img/topArrow.png';
 import bottomArrow from './../../assets/img/bottomArrow.png';
+import ImageNotes from './../../assets/images/notes.png';
 
 const SignupTos = () => {
    const navigate = useNavigate();
@@ -57,7 +58,7 @@ const SignupTos = () => {
          <Container>
             <MemberReg>
                <PageTitle>
-                  <img src="images/notes.png" alt="img" />
+                  <img src={ImageNotes} alt="img" />
                   <h4>회원가입</h4>
                </PageTitle>
                <DivideLine>
@@ -158,7 +159,6 @@ const SignupTos = () => {
                         않은 용어는 개별서비스에 대한 별도 약관 및 이용규정에서 정의합니다.
                      </h5>
                   </AgreeDetailActive>
-
                   <Btn onClick={onAlert}>
                      <Link to={null}>다음</Link>
                   </Btn>

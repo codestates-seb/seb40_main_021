@@ -4,7 +4,7 @@ const GlobalStyle = createGlobalStyle`
     html, body { font-family:'Noto Sans KR', sans-serif; width:100%; margin:0; background:#f7f7f7; font-size:10px !important; color:#545454; -webkit-font-smoothing:antialiased;  overflow-x:hidden; /* word-wrap:break-word; word-break:keep-all; */ }
     section { position:relative; margin:0 0; padding:0 0; background-color:#F9F9F9; overflow: hidden; }
     a { text-decoration: none; color:#545454; }
-    a:hover, a:active, a:focus { outline:none; text-decoration:none; color:#FF6C01; }
+    a:hover, a:active, a:focus { outline:none; text-decoration:none; }
     h1 { font-size:3.0rem; }
     h2 { font-size:2.4rem; }
     h3 { font-size:1.8rem; }

@@ -2,7 +2,7 @@ import { Search } from './Search';
 import { useDispatch, useSelector } from 'react-redux';
 import { Category } from './Category';
 import { useEffect } from 'react';
-import { setCategory, setMenu } from '../../redux/actions/menuAction';
+import { activateCategory, setCategory, setMenu } from '../../redux/actions/menuAction';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
@@ -11,8 +11,8 @@ export const NavMenu = () => {
    const dispatch = useDispatch();
    const category = useSelector(store => store.menuReducer.category);
    const categoryId = useSelector(store => store.menuReducer.category[0].categoryId);
-   console.log(categoryId);
    const userId = useParams().userId;
+   // const scrolling = useRef();
 
    useEffect(() => {
       // 카테고리목록 불러오기
@@ -23,12 +23,15 @@ export const NavMenu = () => {
          })
          .then(
             // 첫번째 카테고리 메뉴목록 불러오기
-            axios.get(`${API_BASE_URL}/category/read/${categoryId}`).then(res => {
-               dispatch(setMenu(res.data.data.menus));
-            })
+            axios
+               .get(`${API_BASE_URL}/category/read/${categoryId}`)
+               .then(res => {
+                  dispatch(setMenu(res.data.data.menus));
+               })
+               .then(dispatch(activateCategory(categoryId)))
          )
          .catch(err => console.log(err));
-   }, []);
+   }, [categoryId]);
 
    return (
       <div className="nav-wrapper">
