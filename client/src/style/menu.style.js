@@ -204,6 +204,7 @@ export const Wrapper = styled.div`
          position: fixed;
          top: 50px;
          left: 50%;
+         z-index: 10;
          transform: translate(-50%);
          display: flex;
          .button {

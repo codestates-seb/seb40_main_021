@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Logo from './../../assets/img/logo.png';
+import Logo from './../../assets/image/logo.svg';
 
 import * as S from './Header.style';
 
@@ -7,7 +7,7 @@ const Header = () => {
    return (
       <S.HeaderWrap>
          <Link className="logo" to="/">
-            <S.LogoImg className="home" src={Logo} alt="주문해조 logo" />
+            <S.LogoImg className="home" src={Logo} alt="logo" />
          </Link>
          {/* <S.PageName>테이블 목록</S.PageName> */}
          <S.ButtonWrap>
