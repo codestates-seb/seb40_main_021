@@ -36,5 +36,6 @@ public class OrderDto {
         private String menuName;
         private int price;
         private int quantity;
+        private String menuImage;
     }
 }

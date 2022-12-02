@@ -72,6 +72,7 @@ public class OrderService {
                 response.setMenuName(orderList.get(i).getOrderMenuList().get(j).getMenu().getMenuName());
                 response.setPrice(orderList.get(i).getOrderMenuList().get(j).getMenu().getPrice());
                 response.setQuantity(orderList.get(i).getOrderMenuList().get(j).getQuantity());
+                response.setMenuImage(orderList.get(i).getOrderMenuList().get(j).getMenu().getMenuImage());
                 list.add(response);
             }
         }
