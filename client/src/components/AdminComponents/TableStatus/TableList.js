@@ -2,15 +2,22 @@ import { useEffect, useState } from 'react';
 import TableStatus from './TableStatus';
 import styled from 'styled-components';
 import axios from 'axios';
+import useInterval from '../../../util/useInterval';
 
 const TableList = () => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const [orderData, setOrderData] = useState([]);
+   const [orderDataUpdate, setOrderDataUpdate] = useState(false);
    useEffect(() => {
       axios.get(`${API_BASE_URL}/table/${sessionStorage.getItem('userId')}`).then(res => {
          setOrderData(res.data.data);
       });
-   }, []);
+   }, [orderDataUpdate]);
+   useInterval(() => {
+      axios.get(`${API_BASE_URL}/table/${sessionStorage.getItem('userId')}`).then(res => {
+         setOrderData(res.data.data);
+      });
+   }, 3000);
    return (
       <Content>
          <h1 className="title">테이블 목록</h1>
@@ -20,7 +27,13 @@ const TableList = () => {
                <div className="orderEmpty">주문 내역이 없습니다.</div>
             ) : (
                orderData.map(order => {
-                  return <TableStatus key={order.tableNumber} data={order}></TableStatus>;
+                  return (
+                     <TableStatus
+                        key={order.tableNumber}
+                        data={order}
+                        orderDataUpdate={orderDataUpdate}
+                        setOrderDataUpdate={setOrderDataUpdate}></TableStatus>
+                  );
                })
             )}
          </div>
@@ -65,19 +78,16 @@ const Content = styled.div`
          grid-template-columns: repeat(2, 1fr);
       }
       @media screen and (max-width: 900px) {
+         margin: 0;
          grid-template-columns: 1fr;
          grid-template-rows: 1fr;
-         flex-grow: 1;
-      }
-      @media screen and (max-width: 700px) {
-         grid-template-columns: repeat(2, 1fr);
          flex-grow: 1;
       }
       @media screen and (max-width: 500px) {
          grid-template-columns: 1fr;
       }
    }
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       width: 100%;
       margin-left: 0;
       padding: 30px;
