@@ -13,9 +13,8 @@ const TableList = () => {
    }, []);
    return (
       <Content>
-         <div className="title">
-            <h1>테이블 목록</h1>
-         </div>
+         <h1 className="title">테이블 목록</h1>
+
          <div className="table">
             {orderData.length === 0 ? (
                <div className="orderEmpty">주문 내역이 없습니다.</div>
@@ -45,9 +44,8 @@ const Content = styled.div`
    }
    .title {
       font-size: 20px;
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 30px;
+      font-weight: bold;
+      margin-bottom: 80px;
    }
    .table {
       display: grid;

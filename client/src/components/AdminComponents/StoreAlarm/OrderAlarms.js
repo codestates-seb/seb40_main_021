@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 const OrderAlarms = () => {
    const orderAlarmList = useSelector(state => state.adminReducer.alarmData.orderAlarmReverse);
-
+   sessionStorage.setItem('order', orderAlarmList.length);
    return (
       <MainContents>
          <div className="subTitle">주문 알람</div>

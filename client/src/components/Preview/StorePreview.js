@@ -5,14 +5,11 @@ import { StoreInfo } from '../usermenu/StoreInfo';
 import { useEffect } from 'react';
 import { setStoreInfo } from '../../redux/actions/menuAction';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
 
 export const StorePreview = () => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const store = useSelector(store => store.menuReducer.store);
    const dispatch = useDispatch();
-   const userId = useParams().userId;
-   console.log(userId);
 
    // 가게 정보 불러오기
    useEffect(() => {
@@ -23,7 +20,7 @@ export const StorePreview = () => {
             const storeInfo = res.data.data;
             dispatch(setStoreInfo(storeInfo));
          })
-         .catch(err => console.log(err));
+         .catch(err => err);
    }, []);
 
    return (

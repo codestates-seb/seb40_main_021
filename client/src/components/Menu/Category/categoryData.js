@@ -11,7 +11,6 @@ export const getCataegoryData = userId => {
       if (!response.ok) {
          throw new Error('무언가가 잘못되었습니다!');
       }
-      console.log('tlfgod?');
       dispatch({
          type: GET_USER_POST_SUCCESS,
          payload: response

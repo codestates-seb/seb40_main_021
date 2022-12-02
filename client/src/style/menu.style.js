@@ -23,11 +23,10 @@ export const Wrapper = styled.div`
          position: fixed;
          top: 50px;
          left: 50%;
+         z-index: 10;
          transform: translate(-50%);
          display: flex;
          padding: 0 0 0 65px;
-
-         /* box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15); */
 
          ul {
             width: 100%;
@@ -42,6 +41,9 @@ export const Wrapper = styled.div`
             -webkit-overflow-scrolling: touch;
             &::-webkit-scrollbar {
                display: none;
+            }
+            &.scrolling {
+               box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
             }
          }
          li {
@@ -126,11 +128,10 @@ export const Wrapper = styled.div`
          }
       }
       .menulist-wrapper {
+         background-color: white;
          margin-top: 100px;
          display: flex;
          flex-direction: column;
-         height: calc(100vh - 170px);
-         overflow-y: scroll;
          padding: 0 20px 30px 20px;
          &::-webkit-scrollbar {
             width: 5px;
@@ -161,6 +162,11 @@ export const Wrapper = styled.div`
                   background-color: lightgray;
                   margin-bottom: 10px;
                   overflow: hidden;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  font-size: 15px;
+                  font-weight: 600;
                   img {
                      width: 100%;
                   }
@@ -243,6 +249,12 @@ export const Wrapper = styled.div`
          background-color: #ffd6b8;
          overflow: hidden;
          display: flex;
+         justify-content: center;
+         align-items: center;
+         font-size: 16px;
+         font-weight: 600;
+         text-align: center;
+         line-height: 20px;
          img {
             width: 100%;
          }
@@ -270,18 +282,20 @@ export const Wrapper = styled.div`
             word-break: keep-all;
          }
          .store-info {
-            padding: 5px;
+            padding: 10px;
             background-color: #ffefe3;
             border-radius: 3px;
+            min-height: 120px;
          }
       }
    }
 
    .menu-container {
       margin-top: 95px;
-      height: calc(100vh - 170px);
+      min-height: calc(100vh - 95px);
       display: flex;
       flex-direction: column;
+      position: relative;
       h1 {
          font-size: 14px;
          font-weight: 600;
@@ -291,7 +305,6 @@ export const Wrapper = styled.div`
          display: flex;
          flex-direction: column;
          flex: 1;
-         overflow-y: scroll;
          &::-webkit-scrollbar {
             width: 5px;
             background: rgba(0, 0, 0, 0);
@@ -317,6 +330,12 @@ export const Wrapper = styled.div`
                   background-color: lightgray;
                   margin-right: 10px;
                   overflow: hidden;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  font-size: 12px;
+                  font-weight: 600;
+                  text-align: center;
                   img {
                      width: 100%;
                   }
@@ -378,6 +397,11 @@ export const Wrapper = styled.div`
          font-weight: 600;
          padding: 0 20px;
          margin: 10px 0 20px;
+         &.fixed {
+            position: absolute;
+            bottom: 75px;
+            left: 0;
+         }
       }
       .order-btn {
          width: calc(100% - 40px);
@@ -385,7 +409,8 @@ export const Wrapper = styled.div`
          background-color: #ff6b00;
          color: white;
          border-radius: 10px;
-         margin: 0 20px 10px 20px;
+         /* margin: 0 20px 10px 20px; */
+         margin: 0 20px 85px 20px;
          font-size: 20px;
          font-weight: 600;
       }
@@ -583,7 +608,13 @@ export const HeaderStyle = styled.header`
    z-index: 9999;
    transform: translate(-50%);
    box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.15);
-
+   .storeName {
+      height: 50px;
+      padding: 12px 0;
+      img {
+         height: 100%;
+      }
+   }
    @media screen and (max-width: 500px) {
       width: 100vw;
    }

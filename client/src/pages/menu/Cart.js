@@ -13,7 +13,6 @@ export const Cart = () => {
    const dispatch = useDispatch();
    const userId = useParams().userId;
    const tableNumber = useParams().tableNumber;
-   console.log(userId, tableNumber);
 
    useEffect(() => {
       cart.map(menu => (temp += menu.price * menu.quantity));

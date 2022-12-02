@@ -33,9 +33,7 @@ const adminState = {
 export const adminReducer = (state = adminState, action) => {
    switch (action.type) {
       case CLICK_TO_StoreInfoUpdate:
-         // eslint-disable-next-line no-case-declarations
-         const currenStoreInfoUpdateState = state.storeInfoUpdateState;
-         return Object.assign({}, state, { storeInfoUpdateState: !currenStoreInfoUpdateState });
+         return Object.assign({}, state, { storeInfoUpdateState: action.payload.chack });
 
       case CREATE_QR:
          return Object.assign({}, state, { qrDate: action.payload.QrList });
@@ -86,7 +84,6 @@ export const adminReducer = (state = adminState, action) => {
          for (let i = 0; i < state.savedTableListCheckBoxArr.length; i++) {
             const body = { idx: state.savedTableListCheckBoxArr[i], newTableNum: null };
             newArr.push(body);
-            console.log(newArr);
          }
          return Object.assign({}, state, { updateTableNumber: newArr });
       case UPDATE_PROGRESS:

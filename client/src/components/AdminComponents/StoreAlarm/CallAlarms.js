@@ -1,18 +1,10 @@
-import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Callalram from './CallAlarm';
-import callAlramSound from '../../../assets/sound/callAlram.wav';
 
 const CallAlarms = () => {
-   const [audio] = useState(new Audio(callAlramSound));
    const callAlarmList = useSelector(state => state.adminReducer.alarmData.callAlarmReverse);
    sessionStorage.setItem('call', callAlarmList.length);
-   useEffect(() => {
-      if (sessionStorage.getItem('call') < callAlarmList.length) {
-         audio.play();
-      }
-   }, []);
    return (
       <CallAlarmContainer>
          <div className="subTitle">
