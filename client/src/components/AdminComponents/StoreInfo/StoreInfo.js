@@ -87,6 +87,14 @@ const MainContants = styled.div`
       width: 100%;
       margin-left: 30px;
       overflow-y: scroll;
+      &::-webkit-scrollbar {
+         width: 10px;
+         background: rgba(0, 0, 0, 0);
+      }
+      &::-webkit-scrollbar-thumb {
+         background: rgba(0, 0, 0, 0.3);
+         border-radius: 30px;
+      }
       th {
          height: 50px;
          max-height: 50px;

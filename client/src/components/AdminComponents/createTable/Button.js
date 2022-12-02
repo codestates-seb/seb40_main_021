@@ -38,9 +38,16 @@ const ButtonWrap = ({ text, num }) => {
       }
       dispatch(createQr(QrList));
    };
+
    const handleClickSaveQr = () => {
       //서버에 post 요청
-
+      for (let i = 0; i < qrData.length; i++) {
+         if (!qrData[i].tableNumber) {
+            alert('테이블 번호를 전부 입력해주세요');
+            return;
+         }
+      }
+      console.log(qrData);
       if (!setOverlapNumState && !setSavedTebleNum) {
          const body = { tableList: qrData };
          console.log(body);
