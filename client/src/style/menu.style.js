@@ -71,7 +71,7 @@ export const Wrapper = styled.div`
          top: 2.5px;
          left: 20px;
          display: flex;
-         padding: 2.5px 20px;
+         padding: 2.5px 20px 5px 0;
          transition: 0.6s;
          z-index: 1;
 
@@ -132,7 +132,7 @@ export const Wrapper = styled.div`
          margin-top: 100px;
          display: flex;
          flex-direction: column;
-         padding: 0 20px 30px 20px;
+         padding: 0 20px 95px 20px;
          &::-webkit-scrollbar {
             width: 5px;
             background: rgba(0, 0, 0, 0);
@@ -297,6 +297,7 @@ export const Wrapper = styled.div`
       display: flex;
       flex-direction: column;
       position: relative;
+      margin-bottom: 200px;
       h1 {
          font-size: 14px;
          font-weight: 600;
@@ -393,15 +394,23 @@ export const Wrapper = styled.div`
             }
          }
       }
+      .fixed {
+         background: white;
+         position: fixed;
+         bottom: 75px;
+         display: flex;
+         flex-direction: column;
+         width: 100%;
+         max-width: 500px;
+         box-shadow: 0px -2px 4px rgb(0 0 0 / 15%);
+      }
       .total-price {
          font-size: 20px;
          font-weight: 600;
          padding: 0 20px;
-         margin: 10px 0 20px;
+         margin: 15px 0 0px;
          &.fixed {
-            position: absolute;
-            bottom: 75px;
-            left: 0;
+            padding: 10px 20px;
          }
       }
       .order-btn {
@@ -410,8 +419,7 @@ export const Wrapper = styled.div`
          background-color: #ff6b00;
          color: white;
          border-radius: 10px;
-         /* margin: 0 20px 10px 20px; */
-         margin: 0 20px 85px 20px;
+         margin: 15px 20px;
          font-size: 20px;
          font-weight: 600;
       }
@@ -548,6 +556,10 @@ export const BottomNavStyle = styled.div`
    transform: translate(-50%);
    box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.15);
    padding: 10px 20px;
+   transition: 0.2s;
+   &.hidden {
+      transform: translate(-50%, 100%);
+   }
 
    button,
    .button {
