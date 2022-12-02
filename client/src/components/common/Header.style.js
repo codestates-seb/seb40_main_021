@@ -13,6 +13,9 @@ export const HeaderWrap = styled.header`
    align-items: center;
    background-color: white;
    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.15);
+   .logo img {
+      height: 30px;
+   }
 
    @media screen and (max-width: 900px) {
       /* justify-content: flex-start; */
@@ -89,7 +92,7 @@ export const Button = styled.button`
       height: 33px;
       border-radius: 20px;
       background-color: #ff6b00;
-      color: white;
+      color: white !important;
       padding: 6px 12px;
       cursor: pointer;
       border: none;
@@ -124,9 +127,6 @@ export const LineBtn = styled.button`
    padding: 0;
    background-color: transparent;
    border: none;
-   & :hover {
-      background-color: #ffebdd;
-   }
 `;
 export const LineBtnUser = styled.button`
    & a {

@@ -8,11 +8,20 @@ export const Menu = ({ menu }) => {
       dispatch(saveMenuId(menu.menuId));
       dispatch(activate(true));
    };
+
    return (
       <li>
          <button value={menu.menuId} onClick={selectHandler}>
             <div className="menuImgBox">
-               <img src={menu.menuImage} alt={menu.menuName} />
+               {menu.menuImage === '' ? (
+                  <p>
+                     이미지
+                     <br />
+                     준비중입니다
+                  </p>
+               ) : (
+                  <img src={menu.menuImage} alt={menu.menuName} />
+               )}
             </div>
             <div className="menuTxtBox">
                <div className="inline">

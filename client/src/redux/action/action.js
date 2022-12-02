@@ -37,9 +37,12 @@ export const SET_MENU_UPDATE = 'SET_MENU_UPDATE';
 export const IS_LOGIN = 'IS_LOGIN';
 export const DELETE_CATEGORY_RESTE_MENU = 'DELETE_CATEGORY_RESTE_MENU';
 
-export const storeInfoUpdate = () => {
+export const storeInfoUpdate = chack => {
    return {
-      type: CLICK_TO_StoreInfoUpdate
+      type: CLICK_TO_StoreInfoUpdate,
+      payload: {
+         chack
+      }
    };
 };
 

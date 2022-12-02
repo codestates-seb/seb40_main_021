@@ -9,15 +9,16 @@ const ButtonWrap = ({ bottom, isEmptyValue, setUserInfo }) => {
    const UpdateState = useSelector(state => state.adminReducer.storeInfoUpdateState);
    const storeInfoData = useSelector(state => state.adminReducer.storeInfoData);
    useEffect(() => {
+      dispatch(storeInfoUpdate(false));
       axios.get(`${API_BASE_URL}/member/${sessionStorage.getItem('userId')}`).then(res => {
          setUserInfo(res.data.data);
       });
    }, []);
    const handleClickInfoUpdate = () => {
-      if (!UpdateState) dispatch(storeInfoUpdate());
+      if (!UpdateState) dispatch(storeInfoUpdate(true));
       if (UpdateState && isEmptyValue) {
          alert('전송');
-         dispatch(storeInfoUpdate());
+         dispatch(storeInfoUpdate(false));
          const body = {
             businessName: storeInfoData.businessName,
             address: storeInfoData.address,
@@ -60,7 +61,8 @@ const BtnWrap = styled.div`
    width: 100%;
    justify-content: end;
    margin: 20px 10px 0 0;
-   @media screen and (max-width: 700px) {
+
+   @media screen and (max-width: 900px) {
       background-color: white;
       margin: 0;
       width: 100%;
@@ -82,7 +84,7 @@ export const WhiteBtn = styled.button`
    &:hover {
       background-color: #313e46;
    }
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       width: 50%;
       /* display: none; */
    }
@@ -92,6 +94,7 @@ const OrangeBtn = styled.button`
    height: 47px;
    align-items: center;
    padding: 12px 0px;
+
    /* border: 2px solid #ff6c01; */
    cursor: pointer;
    color: white;
@@ -104,7 +107,7 @@ const OrangeBtn = styled.button`
    &:hover {
       background-color: #313e46;
    }
-   @media screen and (max-width: 700px) {
-      width: 100%;
+   @media screen and (max-width: 900px) {
+      width: 50%;
    }
 `;
