@@ -47,7 +47,7 @@ public class Member extends BaseTimeEntity {
     private String businessHours;
 
 
-    @Column
+    @Column(columnDefinition = "TEXT")
     private String userImage;
 
 

@@ -1,13 +1,16 @@
 spring:
     datasource:
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/mainproject?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-        username: root
-        password: ${MYSQL_PASSWORD}
+        #url: jdbc:mysql://localhost:3306/mainproject?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+
+        url: jdbc:mysql://mainproject-db.ck26oqmz3ktz.ap-northeast-2.rds.amazonaws.com:3306/mainproject?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+        username: admin
+        #username: root
+        password: yourpassword
     jpa:
         database: mysql
         hibernate:
-            ddl-auto: update
+            ddl-auto: create
         show_sql: true
         properties:
             hibernate:
@@ -23,7 +26,7 @@ server:
         encoding:
             force-response: true
 jwt:
-    secret-key: ${JWT_SECRET_KEY}
+    secret-key: sadadsadzxczxczczxsadadsadzxczxczczxsadadsadzxczxczczxsadadsadzxczxczczxsadadsadzxczxczczxsadadsadzxczxczczx
     access-token-expiration-minutes: 30
     refresh-token-expiration-minutes: 420
 mail:
