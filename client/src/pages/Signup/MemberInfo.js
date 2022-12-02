@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {
+   BtnIdCheck,
    BtnFill,
    CompanyNum,
    FormControl,
@@ -28,7 +29,7 @@ import { onChangeIdAction, onChangePasswordAction, onChangeBusinessNumberAction 
 
 const MemberInfo = () => {
    // const location = useLocation();
-
+   const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const navigate = useNavigate();
    const dispatch = useDispatch();
    const inputValue = useSelector(state => state);
@@ -39,6 +40,8 @@ const MemberInfo = () => {
    const [passwordError, setPasswordError] = React.useState(false);
    const [passwordConfirmError, setPasswordConfirmError] = React.useState(false);
    const [businessNumberError, setBusinessNumberError] = React.useState('');
+
+   const [idDuplicate, setIdDuplicate] = React.useState(0);
 
    const [finalCheck, setFinalCheck] = useState({
       idCheck: false,
@@ -57,8 +60,42 @@ const MemberInfo = () => {
    //    }
    // }, []);
 
+   const valiation = () => {
+      if (idDuplicate === 0) {
+         alert('아이디 중복확인을 해주세요.');
+         return;
+      }
+
+      if (idDuplicate === 409) {
+         alert('이미 사용중인 아이디입니다.');
+         return;
+      }
+
+      if (inputValue?.userMemberReducer?.id === '') {
+         alert('아이디를 입력해주세요.');
+         return;
+      }
+
+      if (inputValue?.userMemberReducer?.password === '') {
+         alert('비밀번호를 입력해주세요.');
+         return;
+      }
+
+      if (passwordConfirm === '') {
+         alert('비밀번호 재확인을 입력해주세요.');
+         return;
+      }
+
+      if (inputValue?.userMemberReducer?.businessNumber === '') {
+         alert('사업자 번호를 입력해주세요.');
+         return;
+      }
+   };
+
    const postMemberDataNavi = () => {
       const navMoveReg =
+         idDuplicate !== 0 &&
+         idDuplicate !== 409 &&
          inputValue?.userMemberReducer?.id !== '' &&
          !idError &&
          inputValue?.userMemberReducer?.password !== '' &&
@@ -67,12 +104,17 @@ const MemberInfo = () => {
          Certification &&
          Certification !== '국세청에 등록되지 않은 사업자등록번호입니다.';
 
+      valiation();
+
       if (navMoveReg) {
-         navigate('/storeInfo', {
+         navigate('/signup/2', {
             state: {
                next: true
             }
          });
+         dispatch(onChangeIdAction(''));
+         dispatch(onChangePasswordAction(''));
+         dispatch(onChangeBusinessNumberAction(''));
       } else {
          isValidate();
       }
@@ -165,6 +207,28 @@ const MemberInfo = () => {
       }
    };
 
+   const handleDuplicate = async () => {
+      try {
+         const res = await axios.post(`${API_BASE_URL}/member/check`, {
+            loginId: inputValue.userMemberReducer.id
+         });
+         alert('사용가능한 아이디 입니다.');
+         setIdDuplicate(200);
+
+         console.log(res);
+      } catch (err) {
+         if (inputValue?.userMemberReducer?.id === '') {
+            alert('아이디를 입력해주세요.');
+            return;
+         }
+         if (err.response.status === 409) {
+            alert('중복된 아이디 입니다.');
+            setIdDuplicate(err.response.status);
+            return;
+         }
+      }
+   };
+
    return (
       <Wrapper>
          <Container>
@@ -186,14 +250,22 @@ const MemberInfo = () => {
 
                   <Info buttonError={finalCheck.idCheck} idError={idError}>
                      <p>아이디</p>
-                     <FormControl
-                        maxLength={11}
-                        type="text"
-                        placeholder="아이디를 입력해주세요"
-                        name="id"
-                        value={inputValue?.userMemberReducer?.id ?? ''}
-                        onChange={handleId}
-                     />
+
+                     <CompanyNum>
+                        <FormControl
+                           className="id-input"
+                           maxLength={11}
+                           type="text"
+                           placeholder="아이디를 입력해주세요"
+                           name="id"
+                           value={inputValue?.userMemberReducer?.id ?? ''}
+                           onChange={handleId}
+                        />
+
+                        <BtnIdCheck onClick={handleDuplicate}>
+                           <span>아이디 확인</span>
+                        </BtnIdCheck>
+                     </CompanyNum>
                   </Info>
                   {idError && <span>영문(소문자), 숫자 포함해 주세요.</span>}
                   <InfoForm buttonError={finalCheck.pwCheck} passwordError={passwordError}>

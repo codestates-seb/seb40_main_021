@@ -33,9 +33,7 @@ const adminState = {
 export const adminReducer = (state = adminState, action) => {
    switch (action.type) {
       case CLICK_TO_StoreInfoUpdate:
-         // eslint-disable-next-line no-case-declarations
-         const currenStoreInfoUpdateState = state.storeInfoUpdateState;
-         return Object.assign({}, state, { storeInfoUpdateState: !currenStoreInfoUpdateState });
+         return Object.assign({}, state, { storeInfoUpdateState: action.payload.chack });
 
       case CREATE_QR:
          return Object.assign({}, state, { qrDate: action.payload.QrList });

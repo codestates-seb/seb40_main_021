@@ -193,6 +193,10 @@ export const FormControl = styled.input`
    width: 100%;
    padding: 0 20px;
    height: 45px;
+
+   &.id-input {
+      width: 70%;
+   }
 `;
 export const CompanyNum = styled.div`
    display: flex;
@@ -202,7 +206,8 @@ export const CompanyNum = styled.div`
    }
    @media screen and (max-width: 900px) {
       position: relative;
-      input {
+      input,
+      .id-input {
          width: 100%;
       }
    }
@@ -273,5 +278,17 @@ export const BtnFill = styled.button`
       right: 0;
       width: 70px;
       border-radius: 0 5px 0 0;
+   }
+`;
+
+export const BtnIdCheck = styled(BtnFill)`
+   width: 25%;
+
+   span {
+      width: 70px;
+   }
+
+   @media screen and (max-width: 900px) {
+      width: 10rem;
    }
 `;

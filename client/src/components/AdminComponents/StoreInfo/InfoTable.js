@@ -17,7 +17,7 @@ export const InfoTable = ({ userInfo }) => {
                </tr>
                <tr>
                   <th>영업시간</th>
-                  <td className="sotreTimes">{userInfo.businessHours}</td>
+                  <td>{userInfo.businessHours}</td>
                </tr>
                <tr>
                   <th>가게설명</th>
