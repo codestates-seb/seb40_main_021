@@ -8,6 +8,7 @@ import PreviewModal from '../../Preview/PreviewModal';
 const StoreInfo = ({ setIsEmptyValue, userInfo }) => {
    const UpdateState = useSelector(state => state.adminReducer.storeInfoUpdateState);
    const viewPreview = useSelector(state => state.previewToggleReducer);
+   console.log(userInfo);
    return (
       <>
          <MainContants>
@@ -18,8 +19,13 @@ const StoreInfo = ({ setIsEmptyValue, userInfo }) => {
             <main className="mainContant">
                {UpdateState ? null : (
                   <div className="storeImg">
-                     {' '}
-                     <img src={userInfo.userImage} alt=""></img>
+                     {userInfo.userImage === 'img' ? (
+                        <div className="noImg">
+                           <p>등록된 이미지가 없습니다.</p>
+                        </div>
+                     ) : (
+                        <img src={userInfo.userImage} alt=""></img>
+                     )}
                   </div>
                )}
                <div className="storeInfoContainer">
@@ -41,10 +47,29 @@ const MainContants = styled.div`
    flex-direction: column;
    align-items: center;
    width: 100%;
+   .inputBox {
+   }
+   .noImg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #d9d9d9;
+      width: 120px;
+      height: 120px;
+      border-radius: 5px;
+      > p {
+         font-size: 10px;
+         font-family: 'IBM Plex Sans KR', sans-serif;
+         font-weight: 700;
+         text-align: center;
+      }
+   }
    .storeDataUpdate {
       background-color: white;
    }
    .inputContainner {
+      width: 80%;
+      margin-right: 0;
       margin-bottom: 20px;
       > :first-child {
          font-size: 14px;

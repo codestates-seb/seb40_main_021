@@ -22,10 +22,10 @@ const GnbLayout = () => {
    const { pathname } = useLocation();
    console.log(isLogin, navigate, pathname);
    useEffect(() => {
-      if (!isLogin) {
-         alert('로그인을 해주세요.');
-         navigate('/login', { state: pathname });
-      }
+      // if (!isLogin) {
+      //    alert('로그인을 해주세요.');
+      //    navigate('/login', { state: pathname });
+      // }
    }, []);
    const printModalState = useSelector(state => state.adminReducer.printModal);
    const noHeader = useSelector(store => store.stateReducer.header);
