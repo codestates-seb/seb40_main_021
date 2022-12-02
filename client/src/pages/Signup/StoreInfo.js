@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import MenuImg from '../../components/Menu/MenuImg';
 import Postcode from '../../components/PostCode/Postcode';
 import ImageNotes from './../../assets/images/notes.png';
+
 import {
    Wrapper,
    Container,
@@ -29,7 +31,6 @@ const StoreInfo = () => {
 
    // eslint-disable-next-line no-unused-vars
    const [img, setImg] = useState('');
-   console.log(img);
    const [businessName, setBusinessName] = useState('');
    const [about, setAbout] = useState();
    const [address, setAddress] = useState('');
@@ -70,17 +71,6 @@ const StoreInfo = () => {
          if (!linkError) {
             return;
          }
-         console.log({
-            loginId: inputValue.userMemberReducer.id,
-            password: inputValue.userMemberReducer.password,
-            businessNumber: inputValue.userMemberReducer.businessNumber,
-            // userImage: 'img',
-            businessName: businessName,
-            about: about,
-            address: address,
-            contactNumber: contactNumber,
-            businessHours: businessHours
-         });
 
          const res = await axios.post(`${API_BASE_URL}/member`, {
             loginId: inputValue.userMemberReducer.id,
@@ -150,6 +140,11 @@ const StoreInfo = () => {
          alert('가게 전화번호를 입력해주세요.');
          return;
       }
+
+      if (!/^\d{2,3}-\d{4}-\d{4}$/.test(contactNumber)) {
+         alert('올바른 가게 전화번호를 입력해주세요.');
+         return;
+      }
    };
 
    return (
@@ -204,6 +199,7 @@ const StoreInfo = () => {
                      <CompanyNum>
                         <Postcode setAddress={setAddress} />
                         <FormControl
+                           disabled
                            name="address"
                            type="text"
                            placeholder="도로명 주소 검색"
