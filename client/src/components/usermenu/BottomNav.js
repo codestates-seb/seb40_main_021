@@ -11,8 +11,6 @@ export const BottomNav = modal => {
    const params = useParams()['*'].split('/');
    const dispatch = useDispatch();
 
-   console.log(params);
-
    // 팝업 보여주기
    const navHandler = () => {
       modal.setIsModalOpen(true);

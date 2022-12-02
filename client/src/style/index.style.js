@@ -16,12 +16,12 @@ export const HomeWrapper = styled.div`
       transform: skewX(150deg);
    }
    .bgImg {
-      height: 480px;
+      height: 550px;
       position: absolute;
-      right: 35%;
+      right: 38%;
       top: 100vh;
       z-index: 2;
-      transform: translateY(-100%) rotateY(180deg);
+      transform: translateY(-100%);
       img {
          width: auto;
          height: 100%;
@@ -29,8 +29,8 @@ export const HomeWrapper = styled.div`
    }
    @media screen and (max-width: 1000px) {
       .bgImg {
-         height: 410px;
-         right: 37%;
+         height: 470px;
+         right: 39%;
       }
    }
    @media screen and (max-width: 620px) {
@@ -69,23 +69,16 @@ export const Section_Style_1 = styled(Section)`
          font-weight: 900;
          margin-bottom: 25px;
          position: relative;
+         display: flex;
+         align-items: flex-end;
+         img {
+            width: 150px;
+            margin-right: 15px;
+         }
          span {
             font-size: 20px;
+            margin-bottom: 3px;
             color: #646161;
-         }
-         &::before,
-         ::after {
-            content: '';
-            width: 13px;
-            height: 13px;
-            position: absolute;
-            top: -15px;
-            left: 9px;
-            background-color: #fea96c;
-            border-radius: 50%;
-         }
-         &::after {
-            left: 38px;
          }
       }
       p {
@@ -145,19 +138,12 @@ export const Section_Style_1 = styled(Section)`
          h1 {
             font-size: 33px;
             margin-bottom: 20px;
+            img {
+               width: 130px;
+               margin-right: 12px;
+            }
             span {
                font-size: 18px;
-            }
-            &::before,
-            ::after {
-               content: '';
-               width: 11px;
-               height: 11px;
-               top: -12px;
-               left: 6px;
-            }
-            &::after {
-               left: 31px;
             }
          }
       }
@@ -183,7 +169,6 @@ export const Section_Style_1 = styled(Section)`
    @media screen and (max-width: 620px) {
       min-height: 0;
       flex-direction: column;
-      /* justify-content: flex-start; */
       justify-content: space-between;
       align-items: center;
       .left {
@@ -192,20 +177,16 @@ export const Section_Style_1 = styled(Section)`
          margin-left: 0;
          h1 {
             font-size: 28px;
-            &::before,
-            ::after {
-               content: '';
-               width: 8px;
-               height: 8px;
-               top: -8px;
-               left: 4px;
-            }
-            &::after {
-               left: 24px;
+            img {
+               width: 115px;
+               margin-right: 15px;
             }
          }
          p {
             margin-bottom: 20px;
+         }
+         button {
+            display: none;
          }
       }
 
@@ -280,7 +261,7 @@ export const Section_Style_2 = styled.section`
          }
          p {
             font-size: 16px;
-            line-height: 20px;
+            line-height: 22px;
             margin-bottom: 15px;
          }
       }

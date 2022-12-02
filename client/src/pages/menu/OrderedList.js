@@ -37,7 +37,7 @@ export const OrderedList = () => {
                <OrderedItem key={menu.menuId} data={menu} />
             ))}
          </ul>
-         <p className="total-price">총 주문 금액 : {total}원</p>
+         <p className="total-price fixed">총 주문 금액 : {total}원</p>
       </div>
    );
 };

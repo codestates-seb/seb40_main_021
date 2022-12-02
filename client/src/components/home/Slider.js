@@ -16,7 +16,7 @@ export default class CenterMode extends Component {
 
       return (
          <SliderWrapper className="slide-wrapper">
-            <div className="container ">
+            <div className="container" data-aos="fade-in">
                <link
                   rel="stylesheet"
                   type="text/css"

@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import Logo from './../../assets/img/logo.png';
+import Logo from './../../assets/image/logo.svg';
 import IconSignout from './../../assets/img/icon_signout.png';
 import IconList from './../../assets/img/icon_list.png';
 import * as S from './Header.style';
