@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import MenuImg from '../../components/Menu/MenuImg';
 import Postcode from '../../components/PostCode/Postcode';
-
+import ImageNotes from './../../assets/images/notes.png';
 import {
    Wrapper,
    Container,
@@ -16,16 +15,19 @@ import {
    PanelTitle,
    Btn
 } from './SignupTos.Style';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { InfoForm, CompanyNum, FormControl } from './MemberInfo.Style';
+import { onChangeIdAction, onChangePasswordAction, onChangeBusinessNumberAction } from '../../redux/action/action';
 
 const StoreInfo = () => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    // const location = useLocation();
 
+   const dispatch = useDispatch();
    const navigate = useNavigate();
    const inputValue = useSelector(state => state);
 
+   // eslint-disable-next-line no-unused-vars
    const [img, setImg] = useState('');
    console.log(img);
    const [businessName, setBusinessName] = useState('');
@@ -44,13 +46,13 @@ const StoreInfo = () => {
       contactNumber: false
    });
 
-   // useEffect(() => {
-   //    if (location?.state === null) {
-   //       alert('잘못된 접근입니다.');
-   //       navigate('/SignupTos', { replace: true });
-   //       return;
-   //    }
-   // }, []);
+   useEffect(() => {
+      if (inputValue.userMemberReducer.id === '' && inputValue.userMemberReducer.password === '') {
+         alert('잘못된 접근입니다.');
+         navigate('/signup', { replace: true });
+         return;
+      }
+   }, []);
 
    const linkError = !(
       businessName === '' ||
@@ -84,7 +86,7 @@ const StoreInfo = () => {
             loginId: inputValue.userMemberReducer.id,
             password: inputValue.userMemberReducer.password,
             businessNumber: inputValue.userMemberReducer.businessNumber,
-            // userImage: 'img',
+            userImage: 'img',
             businessName: businessName,
             about: about,
             address: address,
@@ -93,6 +95,11 @@ const StoreInfo = () => {
          });
 
          navigate('/signup/complete');
+
+         dispatch(onChangeIdAction(''));
+         dispatch(onChangePasswordAction(''));
+         dispatch(onChangeBusinessNumberAction(''));
+
          console.log(res);
       } catch (err) {
          console.log(err);
@@ -150,7 +157,7 @@ const StoreInfo = () => {
          <Container>
             <MemberReg>
                <PageTitle>
-                  <img src="images/notes.png" alt="img" />
+                  <img src={ImageNotes} alt="img" />
                   <h4>회원가입</h4>
                </PageTitle>
                <DivideLine>
