@@ -27,6 +27,7 @@ const StoreInfo = () => {
    const navigate = useNavigate();
    const inputValue = useSelector(state => state);
 
+   // eslint-disable-next-line no-unused-vars
    const [img, setImg] = useState('');
    const [businessName, setBusinessName] = useState('');
    const [about, setAbout] = useState();
@@ -43,7 +44,7 @@ const StoreInfo = () => {
       detailAddress: false,
       contactNumber: false
    });
-   console.log(img);
+
    useEffect(() => {
       if (inputValue.userMemberReducer.id === '' && inputValue.userMemberReducer.password === '') {
          alert('잘못된 접근입니다.');
@@ -68,17 +69,7 @@ const StoreInfo = () => {
          if (!linkError) {
             return;
          }
-         console.log({
-            loginId: inputValue.userMemberReducer.id,
-            password: inputValue.userMemberReducer.password,
-            businessNumber: inputValue.userMemberReducer.businessNumber,
-            userImage: 'img',
-            businessName: businessName,
-            about: about,
-            address: address,
-            contactNumber: contactNumber,
-            businessHours: businessHours
-         });
+
          const res = await axios.post(`${API_BASE_URL}/member`, {
             loginId: inputValue.userMemberReducer.id,
             password: inputValue.userMemberReducer.password,
