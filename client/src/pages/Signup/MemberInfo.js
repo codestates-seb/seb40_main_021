@@ -53,9 +53,9 @@ const MemberInfo = () => {
    const [Certification, setCertification] = React.useState('');
 
    // useEffect(() => {
-   //    if (inputValue?.userMemberReducer?.id === '' && inputValue?.userMemberReducer?.password === '') {
+   //    if (location?.state === null) {
    //       alert('잘못된 접근입니다.');
-   //       navigate('/signup', { replace: true });
+   //       navigate('/SignupTos', { replace: true });
    //       return;
    //    }
    // }, []);
@@ -90,6 +90,11 @@ const MemberInfo = () => {
          alert('사업자 번호를 입력해주세요.');
          return;
       }
+
+      if (Certification === '국세청에 등록되지 않은 사업자등록번호입니다.') {
+         alert('국세청에 등록되지 않은 사업자등록번호입니다.');
+         return;
+      }
    };
 
    const postMemberDataNavi = () => {
@@ -120,7 +125,7 @@ const MemberInfo = () => {
    const handleId = e => {
       dispatch(onChangeIdAction(e.target.value));
 
-      const idRegex = /^[a-z]{1,11}$/;
+      const idRegex = /^[a-z0-9]{1,11}$/;
 
       if (idRegex.test(e.target.value)) {
          setIdError(false);
@@ -188,6 +193,7 @@ const MemberInfo = () => {
          console.log(err);
       }
    };
+
    const isValidate = () => {
       if (
          (inputValue?.userMemberReducer?.id === '' && !idError) ||
@@ -263,7 +269,7 @@ const MemberInfo = () => {
                         </BtnIdCheck>
                      </CompanyNum>
                   </Info>
-                  {idError && <span>영문(소문자)만 작성해 주세요.</span>}
+                  {idError && <span>영문(소문자), 숫자 포함해 주세요.</span>}
                   <InfoForm buttonError={finalCheck.pwCheck} passwordError={passwordError}>
                      <p>비밀번호</p>
                      <FormControl

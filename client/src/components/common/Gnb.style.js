@@ -7,6 +7,8 @@ import IconPlus from './../../assets/img/icon_plus.png';
 import IconPlusActive from './../../assets/img/icon_plus_active.png';
 import IconQR from './../../assets/img/icon_QR.png';
 import IconQRActive from './../../assets/img/icon_qr_active.png';
+import StoreIcon from './../../assets/image/icon_store.png';
+import StoreIconWhite from './../../assets/image/icon_store_white.png';
 
 export const GnbContainer = styled.div`
    position: fixed;
@@ -156,6 +158,9 @@ export const Li = styled.li`
       &.active .qrImg {
          background: url(${IconQRActive});
       }
+      &.active .storeImg {
+         background: url(${StoreIcon});
+      }
    }
 `;
 export const TableImg = styled.span`
@@ -172,6 +177,14 @@ export const MenuImg = styled.span`
    height: 20px;
    margin-right: 12px;
    background: url(${IconMenu});
+   background-size: cover;
+`;
+export const StoreImg = styled.span`
+   display: block;
+   width: 20px;
+   height: 20px;
+   margin-right: 12px;
+   background: url(${StoreIconWhite});
    background-size: cover;
 `;
 export const PlusImg = styled.span`

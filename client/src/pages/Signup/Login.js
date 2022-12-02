@@ -17,6 +17,7 @@ const Login = () => {
       try {
          localStorage.setItem('id_remember', id);
 
+         validation();
          if (!linkError) {
             setFinalCheck({
                ...finalCheck,
@@ -116,6 +117,18 @@ const Login = () => {
          setId(localStorage.getItem('id_remember'));
       }
    }, []);
+
+   const validation = () => {
+      if (id === '') {
+         alert('아이디를 입력해주세요.');
+         return;
+      }
+
+      if (password === '') {
+         alert('패스워드를 입력해주세요.');
+         return;
+      }
+   };
 
    const linkError = !idError && !passwordError && id !== '' && password !== '';
 

@@ -18,7 +18,7 @@ const HeaderUser = () => {
 
    return (
       <S.HeaderWrap>
-         <Link className="logo" to="/">
+         <Link className="logo" to="/user">
             <S.LogoImg src={Logo} alt="주문해조 logo" />
          </Link>
          <S.IconBtn onClick={() => dispatch(gnbToggleOpen(true))}>
