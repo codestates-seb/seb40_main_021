@@ -28,7 +28,9 @@ const Complete = () => {
                   </h5>
                </CompleteTxt>
                <CompleteBtn>
-                  <BtnDefaultActive>둘러보기</BtnDefaultActive>
+                  <BtnDefaultActive>
+                     <Link to="/">둘러보기</Link>
+                  </BtnDefaultActive>
                   <BtnFill>
                      <Link to="/login">로그인</Link>
                   </BtnFill>
