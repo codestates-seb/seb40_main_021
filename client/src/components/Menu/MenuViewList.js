@@ -53,7 +53,7 @@ const MenuViewList = ({ el }) => {
       <S.List>
          <S.ListLi>
             <PicWrap>
-               {el.menuImg === undefined ? (
+               {el.menuImage === '' ? (
                   <NoBackImg>
                      <p>
                         이미지를 <br />
