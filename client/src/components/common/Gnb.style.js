@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import IconTable from './../../assets/img/icon_table.png';
 import IconTableActive from './../../assets/img/icon_table_active.png';
 import IconMenu from './../../assets/img/icon_menu.png';
@@ -9,7 +9,17 @@ import IconQR from './../../assets/img/icon_QR.png';
 import IconQRActive from './../../assets/img/icon_qr_active.png';
 import StoreIcon from './../../assets/image/icon_store.png';
 import StoreIconWhite from './../../assets/image/icon_store_white.png';
+const bellAmimation = keyframes`
+      0% {
+            opacity: 0;
+            transform: translate3d(0%, -100%, 0%);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
+`;
 export const GnbContainer = styled.div`
    position: fixed;
    top: 50px;
@@ -60,6 +70,7 @@ export const CloseBtn = styled.button`
       display: block;
    }
    & img {
+      animation: ${bellAmimation} 0.3s;
       height: 18px;
       width: 18px;
    }
