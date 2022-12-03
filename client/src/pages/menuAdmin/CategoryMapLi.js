@@ -20,6 +20,7 @@ const CategoryMapLi = ({ activeIndex, setActiveIndex, setSubmit, toggleCategoryA
    const dispatch = useDispatch();
    useEffect(() => {
       response && dispatch(setGetUserCategory(response));
+      console.log(response);
    }, [response]);
    return (
       <>

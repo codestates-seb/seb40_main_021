@@ -78,6 +78,7 @@ const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex }) => {
          if (idx !== 0) {
             setActiveIndex(idx - 1);
          }
+         console.log(categoryId, 'categoryId');
          clickFetchFunc({
             method: 'DELETE',
             url: `${API_BASE_URL}/category/${categoryId}`
