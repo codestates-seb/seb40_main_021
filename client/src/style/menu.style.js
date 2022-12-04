@@ -69,7 +69,7 @@ export const Wrapper = styled.div`
       }
       .search-wrapper {
          width: 40px;
-         height: 55px;
+         height: 50px;
          position: fixed;
          top: 2.5px;
          left: 20px;
@@ -83,7 +83,7 @@ export const Wrapper = styled.div`
             height: 40px;
             border-radius: 30px;
             border: none;
-            /* box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.18); */
+            box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.18);
             text-align: center;
             padding: 0 10px;
             position: absolute;
@@ -183,6 +183,7 @@ export const Wrapper = styled.div`
                   h2 {
                      font-size: 14px;
                      font-weight: 600;
+                     word-break: keep-all;
                   }
                   span {
                      font-size: 10px;
@@ -190,6 +191,7 @@ export const Wrapper = styled.div`
                      padding: 2px;
                      border-radius: 3px;
                      background-color: #ffd6b8;
+                     word-break: keep-all;
                   }
                   p {
                      font-size: 12px;
@@ -290,6 +292,7 @@ export const Wrapper = styled.div`
             background-color: #ffefe3;
             border-radius: 3px;
             min-height: 120px;
+            line-height: 22px;
          }
       }
    }
@@ -473,6 +476,8 @@ export const DetailedWrapper = styled.section`
          h1 {
             font-size: 20px;
             color: #ff6b00;
+            word-break: keep-all;
+            font-weight: 600;
          }
          p {
             font-size: 16px;

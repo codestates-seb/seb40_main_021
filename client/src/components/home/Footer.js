@@ -23,10 +23,7 @@ export const Footer = () => {
                         <a href="https://github.com/codestates-seb/seb40_main_021">Github</a>
                      </li>
                      <li>
-                        <a href="https://github.com/codestates-seb/seb40_main_021">Discord</a>
-                     </li>
-                     <li>
-                        <a href="https://naver.com">Notion</a>
+                        <a href="https://www.notion.so/codestates/e3c68e7e0b3541a1b613d02231782d0f">Notion</a>
                      </li>
                   </ul>
                </div>
