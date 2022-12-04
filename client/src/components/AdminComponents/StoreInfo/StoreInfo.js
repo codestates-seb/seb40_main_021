@@ -19,9 +19,11 @@ const StoreInfo = ({ setIsEmptyValue, userInfo }) => {
             <main className="mainContant">
                {UpdateState ? null : (
                   <div className="storeImg">
-                     {userInfo.userImage === 'img' ? (
+                     {userInfo.userImage === '' ? (
                         <div className="noImg">
-                           <p>등록된 이미지가 없습니다.</p>
+                           <p>
+                              이미지 <br /> 준비중입니다.
+                           </p>
                         </div>
                      ) : (
                         <img src={userInfo.userImage} alt=""></img>
@@ -58,7 +60,7 @@ const MainContants = styled.div`
       height: 120px;
       border-radius: 5px;
       > p {
-         font-size: 10px;
+         font-size: 14px;
          font-family: 'IBM Plex Sans KR', sans-serif;
          font-weight: 700;
          text-align: center;

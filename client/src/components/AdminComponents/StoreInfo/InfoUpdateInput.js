@@ -11,7 +11,8 @@ const InfoUpdateInput = ({ data, setIsEmptyValue }) => {
    const [businessNum, setBusinessNum] = useState({ target: { value: data.businessNumber } });
    const [businessHours, setBusinessHours] = useState({ target: { value: data.businessHours } });
    const [description, setDescription] = useState({ target: { value: data.about } });
-   const [img, setImg] = useState('');
+   const [img, setImg] = useState(data.userImage);
+   console.log(data);
 
    const dispatch = useDispatch();
 
