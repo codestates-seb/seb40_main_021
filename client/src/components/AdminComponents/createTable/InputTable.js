@@ -9,7 +9,7 @@ const InputTable = () => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const navigate = useNavigate();
    const [tableValue, setTableValue] = useState('');
-   const [thereIsMenu, setThereIsMenu] = useState(true);
+   const [thereIsMenu, setThereIsMenu] = useState(false);
    const hadleClickCreateQR = e => {
       setTableValue(e.target.value);
    };

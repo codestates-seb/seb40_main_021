@@ -31,84 +31,78 @@ const InfoUpdateInput = ({ data, setIsEmptyValue }) => {
    };
    return (
       <div className="storeDataUpdate">
-         <div>
-            <div className="inputContainner">
+         <div className="inputContainner">
+            <div>
+               <p className="storeImg">가게 이미지</p>
                <div>
-                  <p className="storeImg">가게 이미지</p>
-                  <div>
-                     <img src={data.userImage} alt="" width={510}></img>
-                  </div>
-               </div>
-               <div>
-                  <p>가게 이름</p>
-                  <Input
-                     name={'storeName'}
-                     isEmptyInputValue={isEmptyInputValue}
-                     placeholder="빈칸을 채워주세요."
-                     handleValue={setStoreNmae}
-                     value={storeName.target.value}
-                     width="500px"></Input>
-               </div>
-            </div>
-            <div className="inputContainner">
-               <p>주소</p>
-               <div>
-                  <Input
-                     name={'address'}
-                     isEmptyInputValue={isEmptyInputValue}
-                     placeholder="빈칸을 채워주세요."
-                     handleValue={setAddress}
-                     value={address.target.value}
-                     width="500px"></Input>
+                  <img src={data.userImage} alt=""></img>
                </div>
             </div>
          </div>
          <div className="inputContainner">
+            <p>가게 이름</p>
+            <div className="inputBox">
+               <Input
+                  name={'storeName'}
+                  isEmptyInputValue={isEmptyInputValue}
+                  placeholder="빈칸을 채워주세요."
+                  handleValue={setStoreNmae}
+                  value={storeName.target.value}></Input>
+            </div>
+         </div>
+         <div className="inputContainner">
+            <p>주소</p>
+            <div className="inputBox">
+               <Input
+                  name={'address'}
+                  isEmptyInputValue={isEmptyInputValue}
+                  placeholder="빈칸을 채워주세요."
+                  handleValue={setAddress}
+                  value={address.target.value}></Input>
+            </div>
+         </div>
+         <div className="inputContainner">
             <p>연락처</p>
-            <div>
+            <div className="inputBox">
                <Input
                   name={'storeNumber'}
                   isEmptyInputValue={isEmptyInputValue}
                   placeholder="빈칸을 채워주세요."
                   handleValue={setNumber}
-                  value={number.target.value}
-                  width="500px"></Input>
+                  value={number.target.value}></Input>
             </div>
          </div>
          <div className="inputContainner">
             <p>사업자 번호</p>
-            <div>
+            <div className="inputBox">
                <Input
                   name={'businessNumber'}
                   isEmptyInputValue={isEmptyInputValue}
                   placeholder="빈칸을 채워주세요."
                   handleValue={setBusinessNum}
-                  value={businessNum.target.value}
-                  width="500px"></Input>
+                  value={businessNum.target.value}></Input>
             </div>
          </div>
          <div className="inputContainner">
             <p>영업 시간</p>
-            <div>
+            <div className="inputBox">
                <Input
                   name={'businessHours'}
                   isEmptyInputValue={isEmptyInputValue}
                   placeholder="빈칸을 채워주세요."
                   handleValue={setBusinessHours}
-                  value={businessHours.target.value}
-                  width="500px"></Input>
+                  value={businessHours.target.value}></Input>
             </div>
          </div>
          <div className="inputContainner">
             <p>가게 설명</p>
-            <div>
+            <div className="inputBox">
                <Input
                   name={'description'}
                   isEmptyInputValue={isEmptyInputValue}
                   placeholder="빈칸을 채워주세요."
                   handleValue={setDescription}
-                  value={description.target.value}
-                  width="500px"></Input>
+                  value={description.target.value}></Input>
             </div>
          </div>
       </div>

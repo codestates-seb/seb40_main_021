@@ -1,17 +1,18 @@
-import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 // import { RiDeleteBinLine } from 'react-icons/ri';
-const TableStatus = ({ data }) => {
+const TableStatus = ({ data, orderDataUpdate, setOrderDataUpdate }) => {
+   const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const priceList = data.orderList.map(menus => {
       return menus.price * menus.quantity;
    });
-   const url = useSelector(state => state.adminReducer.apiUrl);
    const totalPrice = priceList.reduce((prev, current) => prev + current);
    const hadleClickDeleteOrder = () => {
       if (confirm('정말 삭제하시겠습니까?')) {
-         fetch(`${url}/order/${sessionStorage.getItem('userId')}/${data.tableNumber}`, {
+         fetch(`${API_BASE_URL}/order/${sessionStorage.getItem('userId')}/${data.tableNumber}`, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' }
+         }).then(() => {
+            setOrderDataUpdate(!orderDataUpdate);
          });
       }
    };
