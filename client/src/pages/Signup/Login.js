@@ -31,12 +31,9 @@ const Login = () => {
             loginId: id,
             password: password
          });
-
          sessionStorage.setItem('access token', res.headers.get('Authorization'));
          sessionStorage.setItem('refresh token', res.headers.get('Refresh'));
          sessionStorage.setItem('userId', res.data.memberId);
-
-         console.log(res);
 
          if (res.status === 200) {
             dispatch(setLoginStatus(true));
@@ -46,7 +43,7 @@ const Login = () => {
          }
       } catch (err) {
          alert('입력하신 아이디 또는 비밀번호가 정확하지 않습니다.');
-         console.log(err);
+         err;
       }
    };
 

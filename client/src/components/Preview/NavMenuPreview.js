@@ -2,7 +2,7 @@ import { Search } from '../usermenu/Search';
 import { useDispatch, useSelector } from 'react-redux';
 import { Category } from '../usermenu/Category';
 import { useEffect } from 'react';
-import { setCategory, setMenu } from '../../redux/actions/menuAction';
+import { activateCategory, setCategory, setMenu } from '../../redux/actions/menuAction';
 import axios from 'axios';
 
 export const NavMenuPreview = () => {
@@ -20,9 +20,12 @@ export const NavMenuPreview = () => {
          })
          .then(
             // 첫번째 카테고리 메뉴목록 불러오기
-            axios.get(`${API_BASE_URL}/category/read/${categoryId}`).then(res => {
-               dispatch(setMenu(res.data.data.menus));
-            })
+            axios
+               .get(`${API_BASE_URL}/category/read/${categoryId}`)
+               .then(res => {
+                  dispatch(setMenu(res.data.data.menus));
+               })
+               .then(dispatch(activateCategory(categoryId)))
          )
          .catch(err => err);
    }, []);

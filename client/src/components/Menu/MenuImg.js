@@ -28,6 +28,14 @@ const LabelPhoto = styled.label`
    display: block;
    position: relative;
    cursor: pointer;
+   .fullImg {
+      width: 133px;
+      height: 133px;
+      @media screen and (max-width: 700px) {
+         width: 100px;
+         height: 100px;
+      }
+   }
    @media screen and (max-width: 700px) {
       width: 100px;
       height: 100px;
@@ -45,24 +53,30 @@ const LabelPhoto = styled.label`
    }
 `;
 
-const MenuImg = ({ idx, setImg }) => {
+const MenuImg = ({ idx, setImg, value }) => {
    const [imgSrc, setImageSrc] = useState('');
    const encodeFileToBase64 = fileBlob => {
-      const reader = new FileReader();
-      reader.readAsDataURL(fileBlob);
-      return new Promise(resolve => {
-         reader.onload = () => {
-            setImageSrc(reader.result);
-            setImg(reader.result);
-            resolve();
-         };
-      });
+      const maxSize = 40000;
+      if (fileBlob.size > maxSize) {
+         alert('이미지 용량은 40KB까지로 제한됩니다.');
+      } else {
+         const reader = new FileReader();
+         reader.readAsDataURL(fileBlob);
+         return new Promise(resolve => {
+            reader.onload = () => {
+               setImageSrc(reader.result);
+               setImg(reader.result);
+               resolve();
+            };
+         });
+      }
    };
    return (
       <PicWrap>
          <p></p>
          <LabelPhoto background={imgSrc} htmlFor={`picture${idx}`}>
-            <img src={IconPhoto} alt="add" />
+            {value ? <img className="fullImg" src={value} alt="add" /> : <img src={IconPhoto} alt="add" />}
+            <img src={value ? value : IconPhoto} alt="add" />
          </LabelPhoto>
          <input
             onChange={e => encodeFileToBase64(e.target.files[0])}

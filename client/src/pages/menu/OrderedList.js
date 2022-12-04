@@ -13,7 +13,6 @@ export const OrderedList = () => {
    let temp = 0;
    const userId = useParams().userId;
    const tableNumber = useParams().tableNumber;
-   console.log(userId, tableNumber);
 
    useEffect(() => {
       // 주문목록 불러오기
@@ -25,7 +24,7 @@ export const OrderedList = () => {
             ordered.map(menu => (temp += menu.price * menu.quantity));
             setTotal(temp);
          })
-         .catch(err => console.log(err));
+         .catch(err => err);
    }, []);
 
    return (

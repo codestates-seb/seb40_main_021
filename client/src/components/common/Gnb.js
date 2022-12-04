@@ -4,11 +4,12 @@ import BellIcon from './../../assets/img/bell_icon.png';
 import { gnbToggleOpen, setLoginStatus, updateAlarmData } from '../../redux/action/action';
 import IconClose from './../../assets/img/icon_close_white.png';
 import * as S from './Gnb.style';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import useInterval from '../../util/useInterval';
 import callAlramSound from '../../assets/sound/callAlram.wav';
 const Gnb = () => {
+   const bellIconRef = useRef(null);
    const [audio] = useState(new Audio(callAlramSound));
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const dispatch = useDispatch();
@@ -23,6 +24,12 @@ const Gnb = () => {
       });
       return variable;
    };
+   const bellAnimation = deg => {
+      setTimeout(() => {
+         bellIconRef.current.style.transition = `0.3s`;
+         bellIconRef.current.style.transform = `translateX(0%) rotateZ(${deg}deg)`;
+      }, 300);
+   };
    const getAlarms = async () => {
       const orderAlarmReverse = await getAlarm(`${API_BASE_URL}/table/${sessionStorage.getItem('userId')}/order`);
       const callAlarmReverse = await getAlarm(`${API_BASE_URL}/call/${sessionStorage.getItem('userId')}`);
@@ -33,6 +40,13 @@ const Gnb = () => {
          sessionStorage.setItem('call', callAlarmReverse.length);
          sessionStorage.setItem('order', orderAlarmReverse.length);
          audio.play();
+         bellAnimation(-20);
+         setTimeout(() => {
+            bellAnimation(20);
+         }, 300);
+         setTimeout(() => {
+            bellAnimation(0);
+         }, 600);
       }
       dispatch(updateAlarmData(orderAlarmReverse, callAlarmReverse));
    };
@@ -63,7 +77,7 @@ const Gnb = () => {
                   <div>
                      <S.Bell bell>
                         <span>{count}</span>
-                        <img src={BellIcon} alt="벨알람" />
+                        <img ref={bellIconRef} src={BellIcon} alt="벨알람" />
                      </S.Bell>
                      매장알람
                   </div>
