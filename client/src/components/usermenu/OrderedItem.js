@@ -15,7 +15,7 @@ export const OrderedItem = ({ data }) => {
             </div>
             <div className="menuTxt">
                <h2>{data.menuName}</h2>
-               <p>{data.price * data.quantity}원</p>
+               <p>{(data.price * data.quantity).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</p>
             </div>
          </div>
          <p className="menu-quantity">{data.quantity}개</p>

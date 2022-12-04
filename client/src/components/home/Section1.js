@@ -1,6 +1,6 @@
 import { Section_Style_1 } from '../../style/index.style';
 import SectionImg1 from '../../assets/image/qrorderbg.png';
-import Qr from '../../assets/image/qr.svg';
+import Qr from '../../assets/image/QRorder.png';
 import logo from '../../assets/image/logo.svg';
 
 export const Section_1 = () => {
