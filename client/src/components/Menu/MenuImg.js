@@ -28,6 +28,14 @@ const LabelPhoto = styled.label`
    display: block;
    position: relative;
    cursor: pointer;
+   .fullImg {
+      width: 133px;
+      height: 133px;
+      @media screen and (max-width: 700px) {
+         width: 100px;
+         height: 100px;
+      }
+   }
    @media screen and (max-width: 700px) {
       width: 100px;
       height: 100px;
@@ -45,7 +53,7 @@ const LabelPhoto = styled.label`
    }
 `;
 
-const MenuImg = ({ idx, setImg }) => {
+const MenuImg = ({ idx, setImg, value }) => {
    const [imgSrc, setImageSrc] = useState('');
    const encodeFileToBase64 = fileBlob => {
       const reader = new FileReader();
@@ -62,7 +70,8 @@ const MenuImg = ({ idx, setImg }) => {
       <PicWrap>
          <p></p>
          <LabelPhoto background={imgSrc} htmlFor={`picture${idx}`}>
-            <img src={IconPhoto} alt="add" />
+            {value ? <img className="fullImg" src={value} alt="add" /> : <img src={IconPhoto} alt="add" />}
+            <img src={value ? value : IconPhoto} alt="add" />
          </LabelPhoto>
          <input
             onChange={e => encodeFileToBase64(e.target.files[0])}

@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Input from '../../Input';
 import { changeStoreInfoData } from '../../../redux/action/action';
+import MenuImg from '../../Menu/MenuImg';
 
 const InfoUpdateInput = ({ data, setIsEmptyValue }) => {
    const [storeName, setStoreNmae] = useState({ target: { value: data.businessName } });
@@ -10,6 +11,7 @@ const InfoUpdateInput = ({ data, setIsEmptyValue }) => {
    const [businessNum, setBusinessNum] = useState({ target: { value: data.businessNumber } });
    const [businessHours, setBusinessHours] = useState({ target: { value: data.businessHours } });
    const [description, setDescription] = useState({ target: { value: data.about } });
+   const [img, setImg] = useState('');
 
    const dispatch = useDispatch();
 
@@ -20,23 +22,31 @@ const InfoUpdateInput = ({ data, setIsEmptyValue }) => {
          number: name === 'storeNumber' ? e.target.value : number.target.value,
          businessNum: name === 'businessNumber' ? e.target.value : businessNum.target.value,
          businessHours: name === 'businessHours' ? e.target.value : businessHours.target.value,
-         description: name === 'description' ? e.target.value : description.target.value
+         description: name === 'description' ? e.target.value : description.target.value,
+         userImage: img
       };
+      console.log(img);
       dispatch(changeStoreInfoData(patchData));
-      if (e.target.value.length === 0) {
-         setIsEmptyValue(false);
-      } else {
-         setIsEmptyValue(true);
+
+      if (name !== 'name') {
+         if (e.target.value.length === 0) {
+            setIsEmptyValue(false);
+         } else {
+            setIsEmptyValue(true);
+         }
       }
    };
+
+   useEffect(() => {
+      isEmptyInputValue(null, 'name');
+   }, [img]);
+
    return (
       <div className="storeDataUpdate">
          <div className="inputContainner">
-            <div>
-               <p className="storeImg">가게 이미지</p>
-               <div>
-                  <img src={data.userImage} alt=""></img>
-               </div>
+            <p>가게 이미지</p>
+            <div className="inputBox">
+               <MenuImg setImg={setImg} value={data.userImage} />
             </div>
          </div>
          <div className="inputContainner">

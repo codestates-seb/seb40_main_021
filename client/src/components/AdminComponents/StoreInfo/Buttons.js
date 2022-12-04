@@ -25,7 +25,8 @@ const ButtonWrap = ({ bottom, isEmptyValue, setUserInfo }) => {
             businessNumber: storeInfoData.businessNum,
             contactNumber: storeInfoData.number,
             businessHours: storeInfoData.businessHours,
-            about: storeInfoData.description
+            about: storeInfoData.description,
+            userImage: storeInfoData.userImage
          };
          fetch(`${API_BASE_URL}/member/${sessionStorage.getItem('userId')}`, {
             method: 'PATCH',
