@@ -66,10 +66,11 @@ export const Order = styled.div`
    background-color: white;
    padding-top: 5px;
    .deleteBtn {
-      position: absolute;
-      right: 75px;
-      font-weight: bold;
+      display: flex;
       color: gray;
+      justify-content: end;
+      margin-right: 10px;
+      height: 0;
    }
    .reqText {
       display: flex;

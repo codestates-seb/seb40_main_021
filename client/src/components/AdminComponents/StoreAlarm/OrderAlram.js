@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Order, OrderListBox } from './OderAlarmStyle';
 import { MdExpandMore } from 'react-icons/md';
 import { useSelector } from 'react-redux';
+import { RiDeleteBinLine } from 'react-icons/ri';
 const OrderAlram = ({ menu, idx }) => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const [menuViewDetails, setMenuViewDetails] = useState(false);
@@ -20,6 +21,17 @@ const OrderAlram = ({ menu, idx }) => {
             .catch(err => err);
       }
    };
+
+   const today = new Date();
+   const hours = today.getHours();
+   const minutes = today.getMinutes();
+   const findHourIndex = menu.createdAt.indexOf('시');
+   const findMinuteIndex = menu.createdAt.indexOf('분');
+   const findHour = menu.createdAt.slice(0, findHourIndex);
+   const findMinute = menu.createdAt.slice(findHourIndex + 2, findMinuteIndex);
+   const hourCalculation = hours - findHour;
+   const minuteCalculation = minutes - findMinute;
+
    return (
       <Order
          menuViewDetails={menuViewDetails}
@@ -27,15 +39,21 @@ const OrderAlram = ({ menu, idx }) => {
          onClick={() => {
             setMenuViewDetails(!menuViewDetails);
          }}>
-         <button className="deleteBtn" onClick={handleClickOrderCheck}>
-            X
-         </button>
+         <div className="deleteBtn">
+            <button onClick={handleClickOrderCheck}>
+               <RiDeleteBinLine size="15"></RiDeleteBinLine>
+            </button>
+         </div>
          <div id="oderInfo">
             <b>No. {menu.tableNumber}</b>
             <div>
                주문 메뉴 : <b>{menu.orderMenuList.length}</b>개
             </div>
-            <div id="orderTime">{menu.createdAt}</div>
+            <div id="orderTime">
+               {hourCalculation === 0
+                  ? `${minuteCalculation}분 전`
+                  : `${hourCalculation}시간 ${minuteCalculation}분 전`}
+            </div>
 
             <div className="detailedMenu">
                <MdExpandMore className="detailedMenuIcon" />

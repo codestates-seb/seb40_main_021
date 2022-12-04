@@ -18,7 +18,6 @@ export const GET_USER_POST_SUCCESS = 'GET_USER_POST_SUCCESS';
 export const CHANGE_INPUT = 'CHANGE_INPUT';
 export const CHANGE_NOW_INPUT = 'CHANGE_NOW_INPUT';
 export const DELETE_CATEGORY = 'DELETE_CATEGORY';
-export const QR_LIST_ALL_CHECK = 'QR_LIST_ALL_CHECK';
 export const PRINT_MODAL = 'PRINT_MODAL';
 export const CLEAR_SAVED_TABLE_LIST_CHECKBOX_ARR = 'CLEAR_SAVED_TABLE_LIST_CHECKBOX_ARR';
 export const MENU_VIEW_ITEM_ADD = 'MENU_VIEW_ITEM_ADD';
@@ -203,14 +202,7 @@ export const clearSavedTableListCheckBoxArr = () => {
       type: CLEAR_SAVED_TABLE_LIST_CHECKBOX_ARR
    };
 };
-export const qrListAllCheck = chack => {
-   return {
-      type: QR_LIST_ALL_CHECK,
-      payload: {
-         chack
-      }
-   };
-};
+
 export const printModal = chack => {
    return {
       type: PRINT_MODAL,

@@ -9,7 +9,8 @@ const Table = () => {
 };
 const MainContent = styled.main`
    width: 100%;
-   height: 100vh;
+   height: 100%;
+   overflow: scroll;
 `;
 
 export default Table;
