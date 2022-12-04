@@ -8,7 +8,6 @@ import { CiEdit } from 'react-icons/ci';
 import { useDispatch, useSelector } from 'react-redux';
 import {
    modifyingSavedTableNum,
-   qrListAllCheck,
    savedTableListCheckBoxArr,
    clearSavedTableListCheckBoxArr,
    updateTableNumber,
@@ -128,12 +127,10 @@ const CreateQR = () => {
    const allCheck = () => {
       if (allChackBoxRef.current.checked) {
          dispatch(clearSavedTableListCheckBoxArr());
-         dispatch(qrListAllCheck(true));
          for (let idx = 0; idx < qrData.length; idx++) {
             dispatch(savedTableListCheckBoxArr(idx));
          }
       } else {
-         dispatch(qrListAllCheck(false));
          dispatch(clearSavedTableListCheckBoxArr());
       }
    };
@@ -143,7 +140,6 @@ const CreateQR = () => {
 
    useEffect(() => {
       dispatch(clearSavedTableListCheckBoxArr());
-      dispatch(qrListAllCheck(false));
       getQrDatas();
    }, []);
    return (
@@ -193,7 +189,7 @@ const CreateQR = () => {
                   <div></div>
                </div>
             </div>
-            <QrList dummyState={dummyState}></QrList>
+            <QrList dummyState={dummyState} allChackBoxRef={allChackBoxRef}></QrList>
             <div className="printBtn">
                <Button />
             </div>
