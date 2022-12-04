@@ -6,8 +6,6 @@ import { useSelector } from 'react-redux';
 
 export const OrderNav = () => {
    const params = useSelector(store => store.stateReducer.params);
-
-   console.log(params);
    return (
       <div className="orderNav-wrapper">
          <NavLink

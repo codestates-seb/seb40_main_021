@@ -9,7 +9,6 @@ export const Modal = modal => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const [callStaff, setCallStaff] = useState(false);
    const params = useSelector(store => store.stateReducer.params);
-   console.log(params);
 
    const callStaffHandler = () => {
       setCallStaff(true);

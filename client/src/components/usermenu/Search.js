@@ -26,7 +26,7 @@ export const Search = () => {
                }
                dispatch(setMenu(res.data.data));
             })
-            .catch(err => console.log(err));
+            .catch(err => err);
 
          setSearchTxt('');
          wrapperRef.current.classList.remove('active');

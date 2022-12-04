@@ -38,7 +38,7 @@ const ButtonWrap = ({ bottom, isEmptyValue, setUserInfo }) => {
                   setUserInfo(res.data.data);
                });
             })
-            .catch(err => console.log(err));
+            .catch(err => err);
       } else if (UpdateState && !isEmptyValue) {
          alert('모든 칸을 채워주세요');
       }

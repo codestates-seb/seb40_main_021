@@ -23,13 +23,11 @@ const categoryUserItemReducer = (state = initialState, action) => {
                data: action.payload
             };
          }
-         console.log(state);
          return state;
 
       case SET_USER_ADD_CATEGORY:
          // eslint-disable-next-line no-case-declarations
          let changeData = [...state.data, action.payload.res];
-         console.log(changeData, 'changeData');
          return Object.assign({}, state, { data: changeData });
       case SET_USER_MODIFY_CATEGORY:
          state.data[action.payload.idx].categoryName = action.payload.res;

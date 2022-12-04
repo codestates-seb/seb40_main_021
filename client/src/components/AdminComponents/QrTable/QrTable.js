@@ -45,7 +45,6 @@ const CreateQR = () => {
    //확인버튼
    const handleClickSubmitNewTableNum = () => {
       if (savedTableListCheckBoxArrState.length === 0) {
-         console.log('zzzzz');
          alert('선택된 QR Table이 없습니다.');
          dispatch(modifyingSavedTableNum(!modifyingSavedTableNumState));
       } else {
@@ -96,7 +95,7 @@ const CreateQR = () => {
                getQrDatas();
             }
          })
-         .catch(err => console.log(err));
+         .catch(err => err);
       dispatch(updateProgress());
    };
 
@@ -122,7 +121,7 @@ const CreateQR = () => {
             .then(() => {
                getQrDatas();
             })
-            .catch(err => console.log(err));
+            .catch(err => err);
       }
    };
    const allCheck = () => {

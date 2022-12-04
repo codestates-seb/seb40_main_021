@@ -22,7 +22,7 @@ export const Category = ({ data }) => {
             const menus = res.data.data.menus;
             dispatch(setMenu(menus));
          })
-         .catch(err => console.log(err));
+         .catch(err => err);
    }, [active]);
 
    return (

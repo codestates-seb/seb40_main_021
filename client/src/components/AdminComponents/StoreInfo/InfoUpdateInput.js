@@ -12,8 +12,6 @@ const InfoUpdateInput = ({ data, setIsEmptyValue }) => {
    const [businessHours, setBusinessHours] = useState({ target: { value: data.businessHours } });
    const [description, setDescription] = useState({ target: { value: data.about } });
    const [img, setImg] = useState(data.userImage);
-   console.log(data);
-
    const dispatch = useDispatch();
 
    const isEmptyInputValue = (e, name) => {
@@ -26,7 +24,6 @@ const InfoUpdateInput = ({ data, setIsEmptyValue }) => {
          description: name === 'description' ? e.target.value : description.target.value,
          userImage: img
       };
-      console.log(img);
       dispatch(changeStoreInfoData(patchData));
 
       if (name !== 'name') {

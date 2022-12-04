@@ -77,19 +77,15 @@ const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex }) => {
       if (window.confirm('카테고리 삭제시 해당하는 메뉴들도 함께 삭제됩니다. 삭제하시겠습니까?')) {
          if (idx !== 0) {
             setActiveIndex(idx - 1);
-            console.log('첫번째');
          }
-         console.log(categoryId, 'categoryId');
          clickFetchFunc({
             method: 'DELETE',
             url: `${API_BASE_URL}/category/${categoryId}`
          });
-         console.log('두번째');
 
          if (state.data.length === 1) {
             dispatch(deleteCategoryAndMenu());
             dispatch(deleteCategoryAndMenumenu());
-            console.log('세번째');
          }
          return dispatch(setUserDeleteCategory(idx));
       }

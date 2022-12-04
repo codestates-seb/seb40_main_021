@@ -1,6 +1,5 @@
-import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 import Gnb from './Gnb';
 import HeaderUser from './HeaderUser';
@@ -17,16 +16,6 @@ const Container = styled.div`
 `;
 
 const GnbLayout = () => {
-   const isLogin = useSelector(store => store.isLoginReducer.isLogin);
-   const navigate = useNavigate();
-   const { pathname } = useLocation();
-   console.log(isLogin, navigate, pathname);
-   useEffect(() => {
-      // if (!isLogin) {
-      //    alert('로그인을 해주세요.');
-      //    navigate('/login', { state: pathname });
-      // }
-   }, []);
    const printModalState = useSelector(state => state.adminReducer.printModal);
    const noHeader = useSelector(store => store.stateReducer.header);
    return (

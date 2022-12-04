@@ -8,7 +8,6 @@ import PreviewModal from '../../Preview/PreviewModal';
 const StoreInfo = ({ setIsEmptyValue, userInfo }) => {
    const UpdateState = useSelector(state => state.adminReducer.storeInfoUpdateState);
    const viewPreview = useSelector(state => state.previewToggleReducer);
-   console.log(userInfo);
    return (
       <>
          <MainContants>
