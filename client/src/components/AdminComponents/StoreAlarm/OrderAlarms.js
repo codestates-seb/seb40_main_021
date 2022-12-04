@@ -14,7 +14,6 @@ const OrderAlarms = () => {
                   <div className="orderEmpty">주문 알람이 없습니다.</div>
                ) : (
                   orderAlarmList.map((menu, idx) => {
-                     console.log(menu);
                      return <OrderAlram key={menu.orderId} menu={menu} idx={idx}></OrderAlram>;
                   })
                )}
