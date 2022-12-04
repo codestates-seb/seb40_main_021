@@ -42,8 +42,8 @@ const TableList = () => {
 };
 
 const Content = styled.div`
-   min-height: calc(100vh - 50px);
    width: calc(100% - 250px);
+   height: 100%;
    margin-left: 250px;
    padding: 30px 50px;
    /* overflow: scroll; */
@@ -62,6 +62,8 @@ const Content = styled.div`
    }
    .table {
       display: grid;
+
+      height: 100%;
       width: 100%;
       grid-template-columns: repeat(5, 1fr);
       align-items: center;

@@ -29,7 +29,7 @@ const StoreInfo = ({ setIsEmptyValue, userInfo }) => {
                   </div>
                )}
                <div className="storeInfoContainer">
-                  {UpdateState ? null : <div>{`가게 이름 : ${userInfo.businessName}`}</div>}
+                  {UpdateState ? null : <div className="businessName">{`${userInfo.businessName}`}</div>}
                   {UpdateState ? (
                      <InfoUpdateInput data={userInfo} setIsEmptyValue={setIsEmptyValue} />
                   ) : (
@@ -48,8 +48,6 @@ const MainContants = styled.div`
    align-items: center;
    width: 100%;
    line-height: 2;
-   .inputBox {
-   }
    .noImg {
       display: flex;
       align-items: center;
@@ -102,6 +100,7 @@ const MainContants = styled.div`
       }
    }
    .storeImg {
+      margin-top: 12px;
       > Img {
          width: 100px;
          height: 100px;
@@ -114,6 +113,7 @@ const MainContants = styled.div`
       width: 100%;
       margin-left: 30px;
       overflow-y: scroll;
+
       &::-webkit-scrollbar {
          width: 10px;
          background: rgba(0, 0, 0, 0);
@@ -127,11 +127,11 @@ const MainContants = styled.div`
          max-height: 50px;
          text-align: left;
          font-weight: bold;
-         width: 130px;
+         width: 100px;
       }
       > :first-child {
          //storeName
-         font-size: 18px;
+         font-size: 24px;
          font-weight: bold;
          margin-bottom: 20px;
       }
@@ -153,6 +153,7 @@ const MainContants = styled.div`
          flex-direction: column;
          padding: 0;
          width: 100%;
+         height: 100%;
          box-shadow: 0 0 0 0;
          max-height: 100vh;
       }
@@ -160,6 +161,11 @@ const MainContants = styled.div`
          margin-top: 30px;
          margin-left: 0;
          padding: 0 15px 0 15px;
+         .businessName {
+            display: flex;
+            justify-content: center;
+            font-size: 20px;
+         }
          > :first-child {
             margin-bottom: 50px;
          }
