@@ -56,15 +56,20 @@ const LabelPhoto = styled.label`
 const MenuImg = ({ idx, setImg, value }) => {
    const [imgSrc, setImageSrc] = useState('');
    const encodeFileToBase64 = fileBlob => {
-      const reader = new FileReader();
-      reader.readAsDataURL(fileBlob);
-      return new Promise(resolve => {
-         reader.onload = () => {
-            setImageSrc(reader.result);
-            setImg(reader.result);
-            resolve();
-         };
-      });
+      const maxSize = 40000;
+      if (fileBlob.size > maxSize) {
+         alert('이미지 용량은 40KB까지로 제한됩니다.');
+      } else {
+         const reader = new FileReader();
+         reader.readAsDataURL(fileBlob);
+         return new Promise(resolve => {
+            reader.onload = () => {
+               setImageSrc(reader.result);
+               setImg(reader.result);
+               resolve();
+            };
+         });
+      }
    };
    return (
       <PicWrap>

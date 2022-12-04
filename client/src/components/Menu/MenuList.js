@@ -61,13 +61,18 @@ const MenuList = ({ el, submit, setSubmit }) => {
 
    const encodeFileToBase64 = fileBlob => {
       const reader = new FileReader();
-      reader.readAsDataURL(fileBlob);
-      return new Promise(resolve => {
-         reader.onload = () => {
-            setImageSrc(reader.result);
-            resolve();
-         };
-      });
+      const maxSize = 40000;
+      if (fileBlob.size > maxSize) {
+         alert('이미지 용량은 40KB까지로 제한됩니다.');
+      } else {
+         reader.readAsDataURL(fileBlob);
+         return new Promise(resolve => {
+            reader.onload = () => {
+               setImageSrc(reader.result);
+               resolve();
+            };
+         });
+      }
    };
 
    const [, setIsError] = useState(true);
