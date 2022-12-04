@@ -21,7 +21,6 @@ const Printe = () => {
       return arr;
    }
    const dividedQrList = divideQrList(filterQrList, 12);
-   console.log('dividedQrList', dividedQrList);
    const dispatch = useDispatch();
    const print = async () => {
       await setClickPrintBtn(true);

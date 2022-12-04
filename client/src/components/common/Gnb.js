@@ -28,7 +28,6 @@ const Gnb = () => {
       setTimeout(() => {
          bellIconRef.current.style.transition = `0.3s`;
          bellIconRef.current.style.transform = `translateX(0%) rotateZ(${deg}deg)`;
-         console.log(deg);
       }, 300);
    };
    const getAlarms = async () => {

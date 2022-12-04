@@ -47,17 +47,14 @@ const ButtonWrap = ({ text, num }) => {
             return;
          }
       }
-      console.log(qrData);
       if (!setOverlapNumState && !setSavedTebleNum) {
          const body = { tableList: qrData };
-         console.log(body);
          fetch(`${API_BASE_URL}/table/${sessionStorage.getItem('userId')}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
          })
             .then(res => {
-               console.log(res);
                if (res.status === 201) {
                   alert('테이블 등록');
                   navigate('/user/qr');
@@ -65,7 +62,7 @@ const ButtonWrap = ({ text, num }) => {
                   alert('통신 에러');
                }
             })
-            .catch(err => console.log(err));
+            .catch(err => err);
       } else {
          //데이터 패치
 

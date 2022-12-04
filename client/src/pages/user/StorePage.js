@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Buttons from '../../components/AdminComponents/StoreInfo/Buttons';
 import { useState } from 'react';
 const Store = () => {
-   const [isEmptyValue, setIsEmptyValue] = useState(false);
+   const [isEmptyValue, setIsEmptyValue] = useState(true);
    const [userInfo, setUserInfo] = useState({
       userImage: '',
       about: '',

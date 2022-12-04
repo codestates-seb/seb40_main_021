@@ -19,6 +19,8 @@ const SetMenu = () => {
    const state = useSelector(store => store.menuUserItemReducer);
    const categoryList = useSelector(store => store.categoryUserItemReducer.data);
    const menuListState = useSelector(store => store.menuUserItemReducer.data);
+   // const setmenuChangeState = useSelector(store => store.setmenuStateChangeReducer);
+
    const menuCountPlus = () => {
       dispatch(setMenuUpdate(true));
       if (categoryList.length === 0) {

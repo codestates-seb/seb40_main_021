@@ -71,7 +71,7 @@ const StoreInfo = () => {
             return;
          }
 
-         const res = await axios.post(`${API_BASE_URL}/member`, {
+         await axios.post(`${API_BASE_URL}/member`, {
             loginId: inputValue.userMemberReducer.id,
             password: inputValue.userMemberReducer.password,
             businessNumber: inputValue.userMemberReducer.businessNumber,
@@ -88,10 +88,8 @@ const StoreInfo = () => {
          dispatch(onChangeIdAction(''));
          dispatch(onChangePasswordAction(''));
          dispatch(onChangeBusinessNumberAction(''));
-
-         console.log(res);
       } catch (err) {
-         console.log(err);
+         err;
       }
    };
 

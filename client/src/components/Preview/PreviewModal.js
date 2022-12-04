@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import PreviewContent from './PreviewContent';
 const PreviewLayout = styled.div`
@@ -14,6 +14,7 @@ const PreviewLayout = styled.div`
    background-color: rgba(0, 0, 0, 0.5);
 `;
 const PreviewModal = ({ now }) => {
+   const hi = useRef();
    var keys = { 37: 1, 38: 1, 39: 1, 40: 1 };
 
    function preventDefault(e) {
@@ -63,7 +64,7 @@ const PreviewModal = ({ now }) => {
       window.removeEventListener('keydown', preventDefaultForScrollKeys, false);
    }
    useEffect(() => {
-      //scroll top
+      // scroll top
       window.scrollTo(0, 0);
       // modal이 떠 있을 땐 스크롤 막음
       disableScroll();
@@ -71,9 +72,10 @@ const PreviewModal = ({ now }) => {
       // modal 닫히면 다시 스크롤 가능하도록 함
       return () => enableScroll();
    }, []);
+
    return (
       <PreviewLayout>
-         <PreviewContent now={now} />
+         <PreviewContent ref={hi} now={now} />
       </PreviewLayout>
    );
 };

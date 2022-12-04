@@ -25,7 +25,8 @@ const ButtonWrap = ({ bottom, isEmptyValue, setUserInfo }) => {
             businessNumber: storeInfoData.businessNum,
             contactNumber: storeInfoData.number,
             businessHours: storeInfoData.businessHours,
-            about: storeInfoData.description
+            about: storeInfoData.description,
+            userImage: storeInfoData.userImage
          };
          fetch(`${API_BASE_URL}/member/${sessionStorage.getItem('userId')}`, {
             method: 'PATCH',
@@ -37,7 +38,7 @@ const ButtonWrap = ({ bottom, isEmptyValue, setUserInfo }) => {
                   setUserInfo(res.data.data);
                });
             })
-            .catch(err => console.log(err));
+            .catch(err => err);
       } else if (UpdateState && !isEmptyValue) {
          alert('모든 칸을 채워주세요');
       }

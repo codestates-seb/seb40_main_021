@@ -17,7 +17,7 @@ const OrderAlram = ({ menu, idx }) => {
             .then(() => {
                sessionStorage.setItem('order', orderAlarmList.length);
             })
-            .catch(err => console.log(err));
+            .catch(err => err);
       }
    };
    return (

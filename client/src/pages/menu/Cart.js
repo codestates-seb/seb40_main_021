@@ -46,7 +46,7 @@ export const Cart = () => {
                return alert('주문이 완료되었습니다.');
             }
          })
-         .catch(err => console.log(err));
+         .catch(err => err);
    };
 
    return (

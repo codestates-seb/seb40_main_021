@@ -42,7 +42,7 @@ export const NavMenu = () => {
                })
                .then(dispatch(activateCategory(categoryId)))
          )
-         .catch(err => console.log(err));
+         .catch(err => err);
    }, [categoryId]);
 
    return (

@@ -17,7 +17,7 @@ export const Home = () => {
       };
    });
    return (
-      <Wrapper>
+      <Wrapper className="preview">
          <motion.main
             className="no-padding"
             initial={{

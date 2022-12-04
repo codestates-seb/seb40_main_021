@@ -190,7 +190,7 @@ const MemberInfo = () => {
             setFinalCheck({ ...finalCheck, businessNumCheck: false });
          }
       } catch (err) {
-         console.log(err);
+         err;
       }
    };
 
@@ -211,13 +211,11 @@ const MemberInfo = () => {
 
    const handleDuplicate = async () => {
       try {
-         const res = await axios.post(`${API_BASE_URL}/member/check`, {
+         await axios.post(`${API_BASE_URL}/member/check`, {
             loginId: inputValue.userMemberReducer.id
          });
          alert('사용가능한 아이디 입니다.');
          setIdDuplicate(200);
-
-         console.log(res);
       } catch (err) {
          if (inputValue?.userMemberReducer?.id === '') {
             alert('아이디를 입력해주세요.');
