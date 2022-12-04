@@ -14,7 +14,7 @@ import {
 } from '../../../redux/action/action';
 import { useAxios } from '../../../util/useAxios';
 
-const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex, userId }) => {
+const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex }) => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const { categoryId, categoryName } = el;
 
@@ -43,7 +43,7 @@ const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex, userId
             dispatch(setUserCategoryNaming(''));
             clickFetchFunc({
                method: 'PATCH',
-               url: `${API_BASE_URL}/category/update/${userId}`,
+               url: `${API_BASE_URL}/category/update/${categoryId}`,
                data: { categoryName: categoryAddName }
             });
             setTogglePatchCategory(!togglePatchCategory);
@@ -77,14 +77,18 @@ const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex, userId
       if (window.confirm('카테고리 삭제시 해당하는 메뉴들도 함께 삭제됩니다. 삭제하시겠습니까?')) {
          if (idx !== 0) {
             setActiveIndex(idx - 1);
+            console.log('첫번째');
          }
          clickFetchFunc({
             method: 'DELETE',
             url: `${API_BASE_URL}/category/${categoryId}`
          });
+         console.log('두번째');
+
          if (state.data.length === 1) {
             dispatch(deleteCategoryAndMenu());
             dispatch(deleteCategoryAndMenumenu());
+            console.log('세번째');
          }
          return dispatch(setUserDeleteCategory(idx));
       }

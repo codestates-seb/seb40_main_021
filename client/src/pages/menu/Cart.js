@@ -57,10 +57,12 @@ export const Cart = () => {
                <CartItem key={menu.menuId} data={menu} />
             ))}
          </ul>
-         <p className="total-price">총 주문 금액 : {total}원</p>
-         <button className="order-btn" onClick={orderHandler}>
-            주문하기
-         </button>
+         <div className="fixed">
+            <p className="total-price">총 주문 금액 : {total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</p>
+            <button className="order-btn" onClick={orderHandler}>
+               주문하기
+            </button>
+         </div>
       </div>
    );
 };
