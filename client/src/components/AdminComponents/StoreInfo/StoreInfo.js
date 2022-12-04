@@ -42,7 +42,7 @@ const StoreInfo = ({ setIsEmptyValue, userInfo }) => {
    );
 };
 const MainContants = styled.div`
-   height: 80%;
+   height: calc(100% - 47px);
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -81,13 +81,14 @@ const MainContants = styled.div`
       font-size: 15px;
       border-collapse: separate;
       border-spacing: 0 15px;
+      margin-right: 15px;
    }
    .mainContant {
       display: flex;
       box-sizing: border-box;
       width: 100%;
-      min-height: 550px;
-      height: 100%;
+      height: 80%;
+      min-height: 150px;
       background-color: white;
       box-shadow: 0 4px 2px 0px lightgray;
       padding: 50px;
