@@ -26,7 +26,7 @@ export const Menu = ({ menu }) => {
             <div className="menuTxtBox">
                <div className="inline">
                   <h2>{menu.menuName}</h2>
-                  {menu.like && <span>인기</span>}
+                  {menu.recommendedMenu && <span>인기</span>}
                </div>
                <p>{menu.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</p>
             </div>

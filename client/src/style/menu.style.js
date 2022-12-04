@@ -66,7 +66,7 @@ export const Wrapper = styled.div`
       }
       .search-wrapper {
          width: 40px;
-         height: 50px;
+         height: 55px;
          position: fixed;
          top: 2.5px;
          left: 20px;
@@ -293,11 +293,11 @@ export const Wrapper = styled.div`
 
    .menu-container {
       margin-top: 95px;
-      min-height: calc(100vh - 95px);
+      /* min-height: calc(100vh - 95px); */
       display: flex;
       flex-direction: column;
       position: relative;
-      margin-bottom: 200px;
+      margin-bottom: 120px;
       h1 {
          font-size: 14px;
          font-weight: 600;
@@ -477,6 +477,7 @@ export const DetailedWrapper = styled.section`
       }
       p {
          font-size: 14px;
+         word-break: keep-all;
       }
    }
    .cart {

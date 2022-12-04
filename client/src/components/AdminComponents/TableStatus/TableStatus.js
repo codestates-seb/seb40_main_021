@@ -32,13 +32,13 @@ const TableStatus = ({ data }) => {
                   <div className="order" key={menus.menuId}>
                      <div>{menus.menuName}</div>
                      <div>{`${menus.quantity}개`}</div>
-                     <div>{`${menus.price * menus.quantity}원`}</div>
+                     <div>{(menus.price * menus.quantity).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</div>
                   </div>
                );
             })}
          </div>
          <div className="totalPrice">
-            <div>{`total : ${totalPrice}원`}</div>
+            <div>{`total : ${totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원`}</div>
          </div>
       </TableStatusBox>
    );
