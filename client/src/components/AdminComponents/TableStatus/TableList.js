@@ -20,7 +20,7 @@ const TableList = () => {
    }, 3000);
    return (
       <Content>
-         <h1 className="title">테이블 목록</h1>
+         <h1 className="title">테이블 현황</h1>
 
          <div className="table">
             {orderData.length === 0 ? (
