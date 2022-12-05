@@ -160,10 +160,8 @@ const StoreInfo = () => {
 
                <MemberPanel>
                   <PanelTitle>
-                     <h5>
-                        3. 가게 정보 입력
-                        <span>* 고객에게 보여지는 페이지로 신중하게 입력해주세요.</span>
-                     </h5>
+                     <h5>3. 가게 정보 입력</h5>
+                     <span style={{ float: 'left' }}>* 고객에게 보여지는 페이지로 신중하게 입력해주세요.</span>
                   </PanelTitle>
                   <InfoForm>
                      <p>프로필 사진 등록</p>
@@ -247,7 +245,10 @@ const StoreInfo = () => {
                      />
                   </InfoForm>
 
-                  <Btn>
+                  <Btn
+                     allChecked={
+                        !(businessName === '' || address === '' || detailAddress === '' || contactNumber === '')
+                     }>
                      <Link to={null} onClick={postStoreInfo}>
                         완료
                      </Link>
