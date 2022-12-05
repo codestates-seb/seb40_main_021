@@ -21,7 +21,11 @@ const MenuLi = ({ activeIndex }) => {
       if (categoryId) {
          clickFetchFunc({
             method: 'GET',
-            url: `${API_BASE_URL}/category/read/${categoryId}`
+            url: `${API_BASE_URL}/category/read/${categoryId}`,
+            headers: {
+               'Content-Type': 'application/json',
+               Authorization: sessionStorage.getItem('access token')
+            }
          });
       }
    }, [categoryList, activeIndex]);

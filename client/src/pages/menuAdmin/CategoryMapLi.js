@@ -13,7 +13,11 @@ const CategoryMapLi = ({ activeIndex, setActiveIndex, setSubmit, toggleCategoryA
    //get
    const { response, error } = useAxios({
       method: 'GET',
-      url: `${API_BASE_URL}/category/${sessionStorage.getItem('userId')}`
+      url: `${API_BASE_URL}/category/${sessionStorage.getItem('userId')}`,
+      headers: {
+         'Content-Type': 'application/json',
+         Authorization: sessionStorage.getItem('access token')
+      }
    });
    //  const { clickFetchFunc } = useAxios({}, false);
    // response && console.log(response)

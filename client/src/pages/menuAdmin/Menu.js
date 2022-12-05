@@ -21,7 +21,12 @@ const Menu = () => {
    let error;
    useEffect(() => {
       axios
-         .get(`${API_BASE_URL}/category/${sessionStorage.getItem('userId')}`)
+         .get(`${API_BASE_URL}/category/${sessionStorage.getItem('userId')}`, {
+            headers: {
+               'Content-Type': 'application/json',
+               Authorization: sessionStorage.getItem('access token')
+            }
+         })
          .then(res => {
             dispatch(setGetUserCategory(res.data));
          })

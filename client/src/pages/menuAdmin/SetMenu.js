@@ -120,6 +120,10 @@ const SetMenu = () => {
                url: `${API_BASE_URL}/menu/${categoryList[activeIndex].categoryId}`,
                data: {
                   menuList: menuList
+               },
+               headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: sessionStorage.getItem('access token')
                }
             });
             dispatch(setMenuUpdate(false));
