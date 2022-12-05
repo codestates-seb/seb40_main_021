@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUtensils, faBell, faStore, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { BottomNavStyle } from '../../style/menu.style';
 
-export const BottomNavPreview = () => {
+export const BottomNavPreview = ({ now }) => {
    return (
       <BottomNavStyle>
-         <a className={'active button'}>
+         <a className={now === 'menu' ? 'active button' : 'button'}>
             <FontAwesomeIcon icon={faUtensils} />
             <p>메뉴</p>
          </a>
@@ -15,7 +15,7 @@ export const BottomNavPreview = () => {
             <FontAwesomeIcon icon={faBell} />
             <p>호출</p>
          </button>
-         <a className="button">
+         <a className={now !== 'menu' ? 'active button' : 'button'}>
             <FontAwesomeIcon icon={faStore} />
             <p>가게정보</p>
          </a>

@@ -8,7 +8,7 @@ const MenuAppPreview = ({ now }) => {
       <AnimatePresence>
          {now === 'menu' ? <HomePreview /> : <StorePreview />}
          <HeaderPreview />
-         <BottomNavPreview />
+         <BottomNavPreview now={now} />
       </AnimatePresence>
    );
 };
