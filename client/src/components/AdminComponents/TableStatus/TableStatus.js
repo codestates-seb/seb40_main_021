@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-// import { RiDeleteBinLine } from 'react-icons/ri';
+import { RiDeleteBinLine } from 'react-icons/ri';
 const TableStatus = ({ data, orderDataUpdate, setOrderDataUpdate }) => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const priceList = data.orderList.map(menus => {
@@ -16,25 +16,33 @@ const TableStatus = ({ data, orderDataUpdate, setOrderDataUpdate }) => {
          });
       }
    };
-
+   // const tset = () => {
+   //    setIsMenuDetail(!isMenuDetail);
+   // };
    return (
       <TableStatusBox>
          <div className="orderHead">
             <div>No. {data.tableNumber}</div>
-            <div>
-               주문 <b>{data.orderList.length}</b>개
-            </div>
+            <div>{`주문 ${data.orderList.length} 개`}</div>
             <button className="orderDelete" onClick={hadleClickDeleteOrder}>
-               {/* <RiDeleteBinLine size="15"></RiDeleteBinLine> */}X
+               <RiDeleteBinLine size="15"></RiDeleteBinLine>
             </button>
          </div>
          <div className="orderList">
             {data.orderList.map(menus => {
                return (
                   <div className="order" key={menus.menuId}>
-                     <div>{menus.menuName}</div>
-                     <div>{`${menus.quantity}개`}</div>
-                     <div>{(menus.price * menus.quantity).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</div>
+
+                     <div className="fistLine">
+                        <div className="menuName">
+                           <p>{menus.menuName}</p>
+                        </div>
+                        <div className="quantity">
+                           <p>{`${menus.quantity}개`}</p>
+                        </div>
+                     </div>
+
+                     {/* <div className="price">{`${menus.price * menus.quantity}원`}</div> */}
                   </div>
                );
             })}
@@ -63,27 +71,28 @@ const TableStatusBox = styled.div`
       color: gray;
       font-weight: bold;
       position: relative;
-      top: -35px;
+      top: -25px;
    }
    .orderHead {
       display: flex;
       align-items: center;
       width: 100%;
-      height: 80px;
+      height: 60px;
       border-bottom: 1px solid #c2a9a9;
       font-weight: 900;
       > :nth-child(1) {
          font-size: 30px;
          color: #ff5252;
          font-weight: bold;
-         width: 50%;
+         width: 60%;
          margin-left: 10px;
       }
       > :nth-child(2) {
-         width: 50%;
-         b {
-            font-size: 24px;
-         }
+         display: flex;
+         align-items: center;
+         justify-content: end;
+         width: 40%;
+         font-size: 14px;
       }
    }
    .orderList {
@@ -103,11 +112,29 @@ const TableStatusBox = styled.div`
       }
       .order {
          display: flex;
+         flex-direction: column;
          width: 100%;
-         padding: 8px 0;
+         padding: 4px 0;
          font-size: 16px;
          font-weight: 900;
          justify-content: space-between;
+         .fistLine {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2px;
+            .menuName {
+               width: 80%;
+               line-height: 1.5;
+            }
+            .quantity {
+               display: flex;
+               line-height: 1.5;
+            }
+         }
+      }
+      .price {
+         text-align: end;
+         margin-right: 20px;
       }
    }
    .totalPrice {

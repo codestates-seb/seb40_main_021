@@ -6,7 +6,6 @@ import {
    SET_SEVED_TABLE_NUM,
    MODIFYING_SAVED_TABLE_NUM,
    SAVED_TABLE_LIST_CHECKBOX_ARR,
-   QR_LIST_ALL_CHECK,
    PRINT_MODAL,
    CLEAR_SAVED_TABLE_LIST_CHECKBOX_ARR,
    UPDATE_TABLE_NUMBER,
@@ -18,7 +17,7 @@ import {
 } from '../action/action';
 const adminState = {
    printModal: false,
-   qrListAllCheck: false,
+   qrListAllCheck: true,
    storeInfoUpdateState: false,
    qrDate: [],
    savedTableListCheckBoxArr: [],
@@ -71,8 +70,6 @@ export const adminReducer = (state = adminState, action) => {
          }
          return Object.assign({}, state, { savedTableListCheckBoxArr: newSavedTableListCheckBoxArr });
 
-      case QR_LIST_ALL_CHECK:
-         return Object.assign({}, state, { qrListAllCheck: action.payload.chack });
       case PRINT_MODAL:
          return Object.assign({}, state, { printModal: action.payload.chack });
       case CLEAR_SAVED_TABLE_LIST_CHECKBOX_ARR:

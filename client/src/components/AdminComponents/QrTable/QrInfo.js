@@ -1,29 +1,30 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { savedTableListCheckBoxArr, registUpdateTableNumber } from '../../../redux/action/action';
-const QrInfo = ({ data, idx, dummyState }) => {
+
+const QrInfo = ({ data, idx, length, allChackBoxRef }) => {
    const modifyingSavedTableNumState = useSelector(state => state.adminReducer.modifyingSavedTableNum);
    const savedTableListCheckBoxArrState = useSelector(state => state.adminReducer.savedTableListCheckBoxArr);
+
+   const [isChecked, setIsChecked] = useState(false);
    const isIncludes = savedTableListCheckBoxArrState.includes(idx);
    const dispatch = useDispatch();
    const handleClickCheckBox = idx => {
+      setIsChecked(!isChecked);
       dispatch(savedTableListCheckBoxArr(idx));
    };
-   const qrListAllCheckState = useSelector(state => state.adminReducer.qrListAllCheck);
    const checkBoxRef = useRef(null);
    const inputRef = useRef(null);
 
    useEffect(() => {
-      inputRef.current.value = data.tableNumber;
-   }, [dummyState]);
-   useEffect(() => {
-      if (qrListAllCheckState) {
-         checkBoxRef.current.checked = true;
+      if (length === savedTableListCheckBoxArrState.length) {
+         allChackBoxRef.current.checked = true;
       } else {
-         checkBoxRef.current.checked = false;
+         allChackBoxRef.current.checked = false;
       }
-   }, [qrListAllCheckState]);
+   }, [isChecked]);
+
    const handleChangeInput = e => {
       if (isNaN(e.target.value)) {
          alert('숫자를 입력해주세요.');
@@ -32,6 +33,9 @@ const QrInfo = ({ data, idx, dummyState }) => {
          dispatch(registUpdateTableNumber(idx, e.target.value));
       }
    };
+   const onChangeCheck = () => {
+      setIsChecked(isIncludes);
+   };
    return (
       <QrInfoBox isIncludes={isIncludes}>
          <div className="qrInfos">
@@ -39,6 +43,8 @@ const QrInfo = ({ data, idx, dummyState }) => {
                <input
                   disabled={modifyingSavedTableNumState ? true : false}
                   ref={checkBoxRef}
+                  checked={isIncludes}
+                  onChange={onChangeCheck}
                   onClick={() => handleClickCheckBox(idx)}
                   type="checkbox"></input>
             </div>
