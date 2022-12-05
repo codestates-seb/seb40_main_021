@@ -568,6 +568,11 @@ export const BottomNavStyle = styled.div`
       transform: translate(-50%, 100%);
    }
 
+   .button.preview,
+   button.preview {
+      color: lightgray;
+      cursor: default;
+   }
    button,
    .button {
       width: 15%;

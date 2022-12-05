@@ -6,21 +6,21 @@ import { BottomNavStyle } from '../../style/menu.style';
 export const BottomNavPreview = ({ now }) => {
    return (
       <BottomNavStyle>
-         <a className={now === 'menu' ? 'active button' : 'button'}>
+         <a className={now === 'menu' ? 'active button' : 'button preview'}>
             <FontAwesomeIcon icon={faUtensils} />
             <p>메뉴</p>
          </a>
 
-         <button>
+         <button className="preview">
             <FontAwesomeIcon icon={faBell} />
             <p>호출</p>
          </button>
-         <a className={now !== 'menu' ? 'active button' : 'button'}>
+         <a className={now !== 'menu' ? 'active button' : 'button preview'}>
             <FontAwesomeIcon icon={faStore} />
             <p>가게정보</p>
          </a>
 
-         <a className="button class이상">
+         <a className="button preview">
             <FontAwesomeIcon icon={faCartShopping} />
             <p>주문목록</p>
          </a>
