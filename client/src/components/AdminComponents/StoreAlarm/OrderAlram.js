@@ -44,17 +44,19 @@ const OrderAlram = ({ menu, idx }) => {
          onClick={() => {
             setMenuViewDetails(!menuViewDetails);
          }}>
-         <div className="deleteBtn">
-            <button onClick={handleClickOrderCheck}>
-               <RiDeleteBinLine size="15"></RiDeleteBinLine>
-            </button>
-         </div>
          <div id="oderInfo">
             <b>No. {menu.tableNumber}</b>
-            <div>
+            <div className="orderMenu">
                주문 메뉴 : <b>{menu.orderMenuList.length}</b>개
             </div>
-            <div id="orderTime">{resultHour === 0 ? `${resultMin}분 전` : `${resultHour}시간 ${resultMin}분 전`}</div>
+            <div className="orderTime">
+               {resultHour === 0 ? `${resultMin}분 전` : `${resultHour}시간 ${resultMin}분 전`}
+            </div>
+
+            <button className="deleteBtn" onClick={handleClickOrderCheck}>
+               <RiDeleteBinLine size="15"></RiDeleteBinLine>
+               삭제
+            </button>
 
             <div className="detailedMenu">
                <MdExpandMore className="detailedMenuIcon" />
