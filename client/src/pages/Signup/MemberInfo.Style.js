@@ -282,9 +282,33 @@ export const BtnFill = styled.button`
    }
 `;
 
-export const BtnIdCheck = styled(BtnFill)`
+export const BtnIdCheck = styled.button`
    width: 25%;
    height: 45px;
+   cursor: pointer;
+   white-space: nowrap;
+   background: #ff6c01;
+   text-shadow: none;
+   border: none;
+   border-radius: 10px;
+   padding: 12px 35px;
+   font-size: 16px;
+   font-weight: 900;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin: 8px 0;
+   height: 45px;
+   span {
+      color: #fff;
+      font-size: 15px;
+   }
+   a {
+      color: #fff;
+      &:hover {
+         color: #fff;
+      }
+   }
 
    span {
       width: 90px;
@@ -294,5 +318,9 @@ export const BtnIdCheck = styled(BtnFill)`
    @media screen and (max-width: 900px) {
       width: 10rem;
       height: 45px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      border-radius: 0 5px 0 0;
    }
 `;
