@@ -32,7 +32,6 @@ const TableStatus = ({ data, orderDataUpdate, setOrderDataUpdate }) => {
             {data.orderList.map(menus => {
                return (
                   <div className="order" key={menus.menuId}>
-
                      <div className="fistLine">
                         <div className="menuName">
                            <p>{menus.menuName}</p>
