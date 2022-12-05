@@ -136,7 +136,7 @@ const MemberInfo = () => {
    };
 
    const handlePassword = e => {
-      dispatch(onChangePasswordAction(e.target.value));
+      dispatch(onChangePasswordAction(e.target.value.replace(/ /g, '')));
 
       const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,}$/;
 
@@ -150,7 +150,7 @@ const MemberInfo = () => {
    };
 
    const handlePasswordConfirm = e => {
-      setPasswordConfirm(e.target.value);
+      setPasswordConfirm(e.target.value.replace(/ /g, ''));
       if (inputValue?.userMemberReducer?.password !== e.target.value) {
          setPasswordConfirmError(true);
          setFinalCheck({ ...finalCheck, pwConfirmCheck: true });
