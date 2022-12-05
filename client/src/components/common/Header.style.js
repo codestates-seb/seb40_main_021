@@ -181,7 +181,7 @@ export const LineBtnUser = styled.button`
       }
    }
 `;
-export const LineBtnUserNoUnder = styled.button`
+export const LineBtnUserNoUnder = styled.div`
    & button {
       text-decoration: none;
       height: 33px;
