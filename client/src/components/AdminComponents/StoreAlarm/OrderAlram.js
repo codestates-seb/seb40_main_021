@@ -21,16 +21,21 @@ const OrderAlram = ({ menu, idx }) => {
             .catch(err => err);
       }
    };
-
-   const today = new Date();
-   const hours = today.getHours();
-   const minutes = today.getMinutes();
+   //주문시간 시 분으로 분할
    const findHourIndex = menu.createdAt.indexOf('시');
    const findMinuteIndex = menu.createdAt.indexOf('분');
-   const findHour = menu.createdAt.slice(0, findHourIndex);
-   const findMinute = menu.createdAt.slice(findHourIndex + 2, findMinuteIndex);
-   const hourCalculation = hours - findHour;
-   const minuteCalculation = minutes - findMinute;
+   const orderHour = menu.createdAt.slice(0, findHourIndex);
+   const orderMinute = menu.createdAt.slice(findHourIndex + 2, findMinuteIndex);
+   //현재시간
+   const today = new Date();
+   //현재시간 초로 변환
+   const currentTimeToSeconds = today.getHours() * 3600 + today.getMinutes() * 60;
+   //주문시간 초로 변환
+   const orderTimeToseconds = orderHour * 3600 + orderMinute * 60;
+   //시간 계산
+   const timeCalculation = currentTimeToSeconds - orderTimeToseconds;
+   const resultHour = parseInt(timeCalculation / 3600);
+   const resultMin = parseInt(timeCalculation % 3600) / 60;
 
    return (
       <Order
@@ -49,11 +54,7 @@ const OrderAlram = ({ menu, idx }) => {
             <div>
                주문 메뉴 : <b>{menu.orderMenuList.length}</b>개
             </div>
-            <div id="orderTime">
-               {hourCalculation === 0
-                  ? `${minuteCalculation}분 전`
-                  : `${hourCalculation}시간 ${minuteCalculation}분 전`}
-            </div>
+            <div id="orderTime">{resultHour === 0 ? `${resultMin}분 전` : `${resultHour}시간 ${resultMin}분 전`}</div>
 
             <div className="detailedMenu">
                <MdExpandMore className="detailedMenuIcon" />
