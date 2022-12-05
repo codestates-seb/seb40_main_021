@@ -30,7 +30,7 @@ const Menu = () => {
 
    const navigation = useNavigate();
    const NavToSetMenu = () => {
-      navigation('/user/menusetting');
+      navigation('./user/menusetting');
    };
    const viewPreview = useSelector(state => state.previewToggleReducer);
    return (
