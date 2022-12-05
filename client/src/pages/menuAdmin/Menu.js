@@ -35,11 +35,11 @@ const Menu = () => {
 
    const navigation = useNavigate();
    const NavToSetMenu = () => {
-      navigation('./user/menusetting');
+      navigation('/user/menusetting');
    };
    const viewPreview = useSelector(state => state.previewToggleReducer);
    return (
-      <S.SetMenuLayout>
+      <S.SetMenuLayout className={viewPreview ? 'modalOpen' : null}>
          {viewPreview ? <PreviewModal now={'menu'} /> : null}
          <S.Head>메뉴 목록</S.Head>
          <S.MenuLayout>
