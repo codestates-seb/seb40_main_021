@@ -6,7 +6,7 @@ import { StorePreview } from './StorePreview';
 const MenuAppPreview = ({ now }) => {
    return (
       <AnimatePresence>
-         {now === 'menu' ? <HomePreview /> : <StorePreview />}
+         {now === 'menu' ? <HomePreview now={now} /> : <StorePreview />}
          <HeaderPreview />
          <BottomNavPreview now={now} />
       </AnimatePresence>

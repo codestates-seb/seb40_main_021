@@ -9,6 +9,10 @@ export const SetMenuLayout = styled.div`
    box-sizing: border-box;
    display: flex;
    flex-direction: column;
+   &.modalOpen {
+      height: calc(100vh - 250px);
+      overflow: hidden;
+   }
    @media screen and (max-width: 900px) {
       width: 100%;
       height: calc(100vh - 50px);

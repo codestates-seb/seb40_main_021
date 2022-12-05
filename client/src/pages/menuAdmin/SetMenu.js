@@ -130,7 +130,7 @@ const SetMenu = () => {
 
    const viewPreview = useSelector(state => state.previewToggleReducer);
    return (
-      <S.SetMenuLayout>
+      <S.SetMenuLayout className={viewPreview ? 'modalOpen' : null}>
          {viewPreview ? <PreviewModal now={'menu'} /> : null}
          <S.Head>메뉴판 제작</S.Head>
          <S.MenuLayout>

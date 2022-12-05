@@ -130,6 +130,10 @@ export const Wrapper = styled.div`
             box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
          }
       }
+      .menulist-wrapper.preview {
+         height: calc(100vh - 175px);
+         overflow-y: scroll;
+      }
       .menulist-wrapper {
          background-color: white;
          margin-top: 100px;
