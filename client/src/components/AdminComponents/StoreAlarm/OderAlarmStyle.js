@@ -1,149 +1,160 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from 'styled-components';
 
 const dropMenuList = keyframes`
       0% {
             opacity: 0;
-            transform: translate3d(0, -100%, 0);
+            transform: translate3d(0%, -100%, 0%);
         }
         to {
             opacity: 1;
-            transform: translateZ(0);
+            transform: translateY(0);
         }
 
 `;
 export const OrderListBox = styled.div`
-  display: ${(props) => (props.menuViewDetails ? "block" : "none")};
+   display: ${({ menuViewDetails }) => (menuViewDetails ? 'block' : 'none')};
+   animation: ${dropMenuList} 0.3s;
 
-  animation: ${dropMenuList} 0.3s;
-
-  > :nth-child(odd) {
-    background-color: rgb(246, 246, 246);
-  }
-  .orderList {
-    display: flex;
-    align-items: center;
-    height: 70px;
-    font-weight: bold;
-
-    > :first-child {
-      margin-left: 45px;
-      width: 25%;
-    }
-    > :nth-child(2) {
-      width: 25%;
-    }
-    > :nth-child(3) {
-      font-weight: 400;
-    }
-  }
-  @media screen and (max-width: 700px) {
-    .orderList {
+   > :nth-child(odd) {
+      background-color: rgb(237 237 237);
+   }
+   .orderList {
       display: flex;
       align-items: center;
       height: 70px;
       font-weight: bold;
 
       > :first-child {
-        margin-left: 20px;
-        width: 40%;
+         margin-left: 45px;
+         width: 25%;
       }
       > :nth-child(2) {
-        width: 30%;
+         width: 25%;
       }
       > :nth-child(3) {
-        font-weight: 400;
+         font-weight: 400;
       }
-    }
-  }
+   }
+   @media screen and (max-width: 900px) {
+      .orderList {
+         display: flex;
+         align-items: center;
+         height: 70px;
+         font-weight: bold;
+         font-size: 14px;
+         > :first-child {
+            margin-left: 20px;
+            width: 40%;
+         }
+         > :nth-child(2) {
+            width: 30%;
+         }
+         > :nth-child(3) {
+            font-weight: 400;
+         }
+      }
+   }
 `;
 export const Order = styled.div`
-  border: ${(props) =>
-    props.menuViewDetails ? "3px solid rgb(255, 107, 0)" : "none"};
-  box-shadow: 1px 1px 10px 1px lightgray;
-  border-radius: 3px;
-  width: 80%;
-  height: auto;
-  font-size: 20px;
-  background-color: white;
-  margin-bottom: 40px;
-  .reqText {
-    display: flex;
-    align-items: center;
-    margin-left: 45px;
-    height: 70px;
-  }
-  .detailedMenu {
-    display: flex;
-    justify-content: end;
-    flex-grow: 1;
-    width: auto;
-  }
-  .detailedMenuIcon {
-    margin-right: 65px;
-    width: 30px;
-    height: 30px;
-    transform: ${(props) =>
-      props.menuViewDetails ? "scaleY(1)" : "scaleY(-1)"};
-    transition: 0.3s;
-  }
-  #oderInfo {
-    height: 100px;
-    width: 100%;
-    background-color: white;
-    display: flex;
-    align-items: center;
-    > :first-child {
-      font-size: 32px;
-      margin-left: 45px;
-      margin-right: 22px;
-    }
-    > div > b {
-      font-size: 24px;
-    }
-  }
-  #orderTime {
-    display: flex;
-    align-items: center;
-    font-size: 15px;
-    margin-left: 30px;
-    > :first-child {
-      font-weight: bold;
-      margin-right: 9px;
-    }
-  }
-  @media screen and (max-width: 700px) {
-    font-size: 16px;
-    #oderInfo {
-      > :first-child {
-        margin: 0;
-        width: 15%;
-        font-size: 24px;
-        margin-left: 20px;
-      }
-      > :nth-child(2) {
-        text-align: center;
-        width: 20%;
-      }
-      > div > b {
-        font-size: 20px;
-      }
-    }
-    .reqText {
-      margin-left: 20px;
-    }
-    #orderTime {
+   cursor: pointer;
+   box-shadow: 0 2px 10px 2px rgb(0 0 0 / 15%);
+   border-radius: 3px;
+   width: auto;
+   height: auto;
+   font-size: 20px;
+   margin-bottom: 15px;
+   background-color: white;
+   padding-top: 5px;
+   .reqText {
       display: flex;
-      justify-content: space-around;
+      align-items: center;
+      height: 70px;
+   }
+   .detailedMenu {
+      display: flex;
+      justify-content: end;
       flex-grow: 1;
-      margin-left: 5px;
-      font-size: 16px;
-      > :first-child {
-        text-align: right;
-        margin-right: 30px;
+      width: auto;
+   }
+   .detailedMenuIcon {
+      cursor: pointer;
+      margin-right: 65px;
+      width: 30px;
+      height: 30px;
+      transform: ${({ menuViewDetails }) => (menuViewDetails ? 'rotate(-180deg)' : 'rotate(0deg)')};
+      transition: 0.3s;
+   }
+   #oderInfo {
+      height: 100px;
+      width: 100%;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      font-weight: 900;
+
+      .detailedMenuIcon {
+         margin-right: 10px;
       }
-    }
-    .detailedMenuIcon {
-      margin-right: 15px;
-    }
-  }
+      > :first-child {
+         width: 15%;
+         font-size: 30px;
+         margin-left: 45px;
+         margin-right: 100px;
+         color: #ff6c01;
+      }
+      .orderMenu {
+         width: 20%;
+      }
+      .orderTime {
+         width: 20%;
+         font-size: 14px;
+         margin-left: 30px;
+         text-align: center;
+      }
+      .deleteBtn {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         width: 20%;
+         height: fit-content;
+         > :first-child {
+            margin-right: 5px;
+            margin-bottom: 2px;
+         }
+      }
+      /* &:hover {
+         background-color: #fdffde;
+      } */
+   }
+
+   .reqText {
+      padding-left: 40px;
+   }
+   @media screen and (max-width: 900px) {
+      font-size: 16px;
+      font-weight: bold;
+
+      #oderInfo {
+         font-size: 12px;
+         > :first-child {
+            font-size: 24px;
+            margin: 0;
+            width: 25%;
+            margin-left: 20px;
+         }
+         > :nth-child(2) {
+            text-align: center;
+            width: 25%;
+         }
+         #orderTime {
+            text-align: center;
+            font-size: 10px;
+            margin-left: 0px;
+            > :first-child {
+               font-weight: bold;
+               margin-right: 9px;
+            }
+         }
+      }
+   }
 `;
