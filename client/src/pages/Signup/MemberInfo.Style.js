@@ -181,7 +181,7 @@ export const InfoFormAuthComplete = styled(InfoForm)`
                  border-bottom: 3px solid #ff6c01;
               `
             : css`
-                 border-bottom: 3px solid #b6b6b6;
+                 //   border-bottom: 3px solid #b6b6b6;
               `};
    }
 
@@ -232,8 +232,8 @@ export const Btn = styled.button`
    }
 
    @media screen and (max-width: 900px) {
-      max-width: none;
-      background: #bababa;
+      max-width: 80%;
+      background: ${props => (props.allChecked ? 'black' : '#bababa')};
       text-shadow: none;
       border: none;
       color: #fff;
@@ -260,9 +260,10 @@ export const BtnFill = styled.button`
    align-items: center;
    justify-content: center;
    margin: 8px 0;
+   height: 45px;
    span {
       color: #fff;
-      font-size: 16px;
+      font-size: 15px;
    }
 
    a {
@@ -276,19 +277,22 @@ export const BtnFill = styled.button`
       position: absolute;
       top: 0;
       right: 0;
-      width: 70px;
+      width: 10rem;
       border-radius: 0 5px 0 0;
    }
 `;
 
 export const BtnIdCheck = styled(BtnFill)`
    width: 25%;
+   height: 45px;
 
    span {
-      width: 70px;
+      width: 90px;
+      font-size: 15px;
    }
 
    @media screen and (max-width: 900px) {
       width: 10rem;
+      height: 45px;
    }
 `;
