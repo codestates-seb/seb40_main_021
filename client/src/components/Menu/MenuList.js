@@ -53,10 +53,10 @@ const LabelPhoto = styled.label`
 const MenuList = ({ el, submit, setSubmit }) => {
    const dispatch = useDispatch();
 
-   const [imgSrc, setImageSrc] = useState('');
-   const [menuNameChange, setmenuNameChange] = useState('');
-   const [menuAboutChange, setmenuAboutChange] = useState('');
-   const [pricesChange, setpricesChange] = useState('');
+   const [imgSrc, setImageSrc] = useState(el.menuImage);
+   const [menuNameChange, setmenuNameChange] = useState(el.menuName);
+   const [menuAboutChange, setmenuAboutChange] = useState(el.menuContent);
+   const [pricesChange, setpricesChange] = useState(el.price);
    const [checkedChange, setcheckedChange] = useState(false);
 
    const encodeFileToBase64 = fileBlob => {
@@ -77,14 +77,6 @@ const MenuList = ({ el, submit, setSubmit }) => {
 
    const [, setIsError] = useState(true);
    const [helperText, setHelperText] = useState({});
-   //get menu
-   useEffect(() => {
-      setImageSrc(el.menuImage);
-      setmenuNameChange(el.menuName);
-      setpricesChange(el.price);
-      setmenuAboutChange(el.menuContent);
-      setcheckedChange(el.recommendedMenu);
-   }, [el]);
 
    //유효성
    const handleValue = e => {

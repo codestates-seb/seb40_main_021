@@ -12,8 +12,9 @@ const menuSaveItemReducer = (state = initialState, action) => {
          state.data = dataSet;
          return state;
       case DELETE_CATEGORY_RESTE_MENU_MENU:
-         state = initialState;
-         return state;
+         state.data = [];
+         console.log(state);
+         return Object.assign({}, state);
       default:
          return state;
    }
