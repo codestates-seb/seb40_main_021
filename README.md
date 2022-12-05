@@ -23,7 +23,7 @@
 - 사장님은 쉽게 메뉴판을 만들거나 수정할 수 있습니다.
 
 ## 서비스 시연
-
+[QR오더 시연영상](https://www.youtube.com/watch?v=lW3lR1sEcRk)
 ## 기술스택
 
 ### Front-End
