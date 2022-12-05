@@ -6,7 +6,7 @@ import { Container } from './Complete.Style';
 import { Info, InfoFormError, FormControl } from './MemberInfo.Style';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setLoginStatus } from '../../redux/action/action';
+import { setGuideModalState, setLoginStatus } from '../../redux/action/action';
 
 const Login = () => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
@@ -37,9 +37,16 @@ const Login = () => {
 
          if (res.status === 200) {
             dispatch(setLoginStatus(true));
+
+            // 카테고리 목록 불러오기
+            const category = await axios.get(`${API_BASE_URL}/category/${sessionStorage.getItem('userId')}`);
+            // 메뉴판 제작이 안되어있는경우 가이드모달 띄워주기
+            if (category.data.length === 0) {
+               dispatch(setGuideModalState(true));
+            }
             navigate('/user');
          } else {
-            alert('일단 로그인 실패');
+            alert('로그인 실패');
          }
       } catch (err) {
          alert('입력하신 아이디 또는 비밀번호가 정확하지 않습니다.');
