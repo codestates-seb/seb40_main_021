@@ -16,12 +16,14 @@ const Gnb = () => {
    const gnbState = useSelector(store => store.gnbReducer);
    const alarmData = useSelector(state => state.adminReducer.alarmData);
    const getAlarm = async url => {
-      let variable = await axios.get(url).then(res => {
-         return res.data.data
-            .slice(0)
-            .reverse()
-            .map(num => num);
-      });
+      let variable = await axios
+         .get(url, { headers: { Authorization: sessionStorage.getItem('Authorization') } })
+         .then(res => {
+            return res.data.data
+               .slice(0)
+               .reverse()
+               .map(num => num);
+         });
       return variable;
    };
    const bellAnimation = deg => {

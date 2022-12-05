@@ -1,5 +1,40 @@
 import styled from 'styled-components';
 
+export const Btn = styled.button`
+   align-self: center;
+   max-width: 120px;
+   height: 45px;
+   background: #fff;
+   border: 2px solid #ff6c01;
+   border-radius: 10px;
+   padding: 12px 35px;
+   font-size: 16px;
+   font-weight: 900;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin: 20px auto 0 auto;
+
+   &:hover {
+      color: #ff6c01;
+   }
+
+   @media screen and (max-width: 900px) {
+      max-width: 80%;
+      background: ${props => (props.allChecked ? 'black' : '#bababa')};
+      text-shadow: none;
+      border: none;
+      color: #fff;
+      border-radius: 10px;
+      width: 100%;
+      margin: none;
+   }
+   @media screen and (max-width: 900px) {
+      width: 100%;
+      height: 50px;
+   }
+`;
+
 export const BtnDefault = styled.button`
    width: 120px;
    height: 45px;

@@ -8,7 +8,6 @@ import {
    FormControl,
    InfoForm,
    InfoFormAuthComplete,
-   InfoFormError,
    Btn,
    Info
 } from './MemberInfo.Style';
@@ -137,7 +136,7 @@ const MemberInfo = () => {
    };
 
    const handlePassword = e => {
-      dispatch(onChangePasswordAction(e.target.value));
+      dispatch(onChangePasswordAction(e.target.value.replace(/ /g, '')));
 
       const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,}$/;
 
@@ -151,7 +150,7 @@ const MemberInfo = () => {
    };
 
    const handlePasswordConfirm = e => {
-      setPasswordConfirm(e.target.value);
+      setPasswordConfirm(e.target.value.replace(/ /g, ''));
       if (inputValue?.userMemberReducer?.password !== e.target.value) {
          setPasswordConfirmError(true);
          setFinalCheck({ ...finalCheck, pwConfirmCheck: true });
@@ -279,7 +278,7 @@ const MemberInfo = () => {
                      />
                   </InfoForm>
                   {passwordError && <span>영문, 숫자, 특수문자 포함 8자리 이상</span>}
-                  <InfoFormError buttonError={finalCheck.pwConfirmCheck} passwordConfirmError={passwordConfirmError}>
+                  <InfoForm buttonError={finalCheck.pwConfirmCheck} passwordConfirmError={passwordConfirmError}>
                      <p>비밀번호 재확인</p>
                      <FormControl
                         value={passwordConfirm}
@@ -288,12 +287,13 @@ const MemberInfo = () => {
                         name="passwordConfirm"
                         onChange={handlePasswordConfirm}
                      />
-                  </InfoFormError>
+                  </InfoForm>
                   {passwordConfirmError && <span>확인 비밀번호가 다릅니다.</span>}
                   <InfoFormAuthComplete businessNumberError={finalCheck.businessNumCheck}>
                      <p>사업자번호 입력</p>
                      <CompanyNum>
                         <FormControl
+                           maxLength={10}
                            type="text"
                            name="businessNumber"
                            placeholder="'-'제외 입력"
@@ -305,7 +305,18 @@ const MemberInfo = () => {
                         </BtnFill>
                      </CompanyNum>
                      <span>{businessNumberError && businessNumberError?.data[0].tax_type}</span>
-                     <Btn onClick={postMemberDataNavi}>다음</Btn>
+                     <Btn
+                        onClick={postMemberDataNavi}
+                        allChecked={
+                           !(
+                              inputValue?.userMemberReducer?.id === '' ||
+                              inputValue?.userMemberReducer?.password === '' ||
+                              passwordConfirm === '' ||
+                              Certification === ''
+                           )
+                        }>
+                        다음
+                     </Btn>
                   </InfoFormAuthComplete>
                </MemberPanel>
             </MemberReg>

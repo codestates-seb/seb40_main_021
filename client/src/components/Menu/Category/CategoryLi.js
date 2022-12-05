@@ -44,7 +44,11 @@ const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex }) => {
             clickFetchFunc({
                method: 'PATCH',
                url: `${API_BASE_URL}/category/update/${categoryId}`,
-               data: { categoryName: categoryAddName }
+               data: { categoryName: categoryAddName },
+               headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: sessionStorage.getItem('access token')
+               }
             });
             setTogglePatchCategory(!togglePatchCategory);
          }
@@ -80,7 +84,11 @@ const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex }) => {
          }
          clickFetchFunc({
             method: 'DELETE',
-            url: `${API_BASE_URL}/category/${categoryId}`
+            url: `${API_BASE_URL}/category/${categoryId}`,
+            headers: {
+               'Content-Type': 'application/json',
+               Authorization: sessionStorage.getItem('access token')
+            }
          });
 
          if (state.data.length === 1) {

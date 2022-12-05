@@ -28,7 +28,7 @@ export const NavMenuPreview = () => {
                .then(dispatch(activateCategory(categoryId)))
          )
          .catch(err => err);
-   }, []);
+   }, [categoryId]);
 
    return (
       <div className="nav-wrapper">

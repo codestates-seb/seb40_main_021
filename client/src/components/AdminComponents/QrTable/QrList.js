@@ -3,6 +3,13 @@ import styled from 'styled-components';
 import QrInfo from './QrInfo';
 const QrList = ({ dummyState, allChackBoxRef }) => {
    const qrData = useSelector(state => state.adminReducer.qrDate);
+
+   qrData.sort((a, b) => {
+      if (a.tableNumber > b.tableNumber) return 1;
+      if (a.tableNumber < b.tableNumber) return -1;
+      return 0;
+   });
+
    return (
       <QrListBox>
          {qrData && qrData.length === 0 ? (

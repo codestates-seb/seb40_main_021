@@ -27,10 +27,14 @@ const CreateQR = () => {
    const savedTableListCheckBoxArrState = useSelector(state => state.adminReducer.savedTableListCheckBoxArr);
    const qrDatas = useSelector(state => state.adminReducer.qrDate);
    const getQrDatas = () => {
-      axios.get(`${API_BASE_URL}/table/${sessionStorage.getItem('userId')}/qr`).then(res => {
-         setQrData(res.data.data);
-         dispatch(getQrData(res.data.data));
-      });
+      axios
+         .get(`${API_BASE_URL}/table/${sessionStorage.getItem('userId')}/qr`, {
+            headers: { Authorization: sessionStorage.getItem('Authorization') }
+         })
+         .then(res => {
+            setQrData(res.data.data);
+            dispatch(getQrData(res.data.data));
+         });
    };
 
    //수정버튼
@@ -82,7 +86,7 @@ const CreateQR = () => {
       };
       fetch(`${API_BASE_URL}/table/update/${sessionStorage.getItem('userId')}`, {
          method: 'PATCH',
-         headers: { 'Content-Type': 'application/json' },
+         headers: { 'Content-Type': 'application/json', Authorization: sessionStorage.getItem('Authorization') },
          body: JSON.stringify(body)
       })
          .then(res => {
@@ -114,7 +118,7 @@ const CreateQR = () => {
 
          fetch(`${API_BASE_URL}/table/${sessionStorage.getItem('userId')}`, {
             method: 'DELETE',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', Authorization: sessionStorage.getItem('Authorization') },
             body: JSON.stringify(body)
          })
             .then(() => {
