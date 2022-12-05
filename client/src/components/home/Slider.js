@@ -8,6 +8,7 @@ import adminPage4 from '../../assets/image/admin4.png';
 import adminPage5 from '../../assets/image/admin5.png';
 import adminPage6 from '../../assets/image/admin6.png';
 import adminPage7 from '../../assets/image/admin7.png';
+import adminPage8 from '../../assets/image/admin8.png';
 
 export default class CenterMode extends Component {
    render() {
@@ -83,6 +84,12 @@ export default class CenterMode extends Component {
                      <p>
                         <span>테이블 목록 페이지</span>각 테이블의 번호, 메뉴판의 정보가 담겨 생성된 QR을 인쇄할 수 있는
                         페이지입니다.
+                     </p>
+                  </div>
+                  <div className="slider">
+                     <img src={adminPage8} alt="" />
+                     <p>
+                        <span>가게정보 페이지</span>메뉴판에 보여질 가게의 정보를 수정할 수 있는 페이지입니다.
                      </p>
                   </div>
                </Slider>

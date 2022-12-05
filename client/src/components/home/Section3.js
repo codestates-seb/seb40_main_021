@@ -6,6 +6,7 @@ import adminPage4 from '../../assets/image/admin4.png';
 import adminPage5 from '../../assets/image/admin5.png';
 import adminPage6 from '../../assets/image/admin6.png';
 import adminPage7 from '../../assets/image/admin7.png';
+import adminPage8 from '../../assets/image/admin8.png';
 import userMenu1 from '../../assets/image/menu1.png';
 import userMenu2 from '../../assets/image/menu2.png';
 import userMenu3 from '../../assets/image/menu3.png';
@@ -39,7 +40,7 @@ export const Section_3 = () => {
             <img src={adminPage5} alt="" />
             <img src={adminPage6} alt="" />
             <img src={adminPage7} alt="" />
-            <img src={adminPage7} alt="" />
+            <img src={adminPage8} alt="" />
          </div>
          <div className="usermenu-wrapper" data-aos="fade-in">
             <img src={userMenu1} alt="" />
