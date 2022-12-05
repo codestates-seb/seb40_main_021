@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { menuUserAdd, menuUserErrorMessageSubmit, setMenuUpdate } from '../../redux/action/action';
 import IconAdd from '../../assets/img/icon_add.png';
@@ -19,7 +19,16 @@ const SetMenu = () => {
    const state = useSelector(store => store.menuUserItemReducer);
    const categoryList = useSelector(store => store.categoryUserItemReducer.data);
    const menuListState = useSelector(store => store.menuUserItemReducer.data);
+   const [noCategory, setNoCategory] = useState(false);
    // const setmenuChangeState = useSelector(store => store.setmenuStateChangeReducer);
+
+   useEffect(() => {
+      if (categoryList.length === 0) {
+         setNoCategory(true);
+      } else {
+         setNoCategory(false);
+      }
+   }, [categoryList]);
 
    const menuCountPlus = () => {
       dispatch(setMenuUpdate(true));
@@ -150,7 +159,7 @@ const SetMenu = () => {
                </S.MenuListUl>
                {/* <S.ButtonWarp> */}
                {/* <S.NonePlace /> */}
-               <S.AddBtn onClick={menuCountPlus}>
+               <S.AddBtn className={noCategory ? 'noCategory' : null} onClick={menuCountPlus}>
                   <img src={IconAdd} alt="add" />
                   메뉴 추가
                </S.AddBtn>

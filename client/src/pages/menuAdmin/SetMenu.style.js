@@ -98,6 +98,9 @@ export const AddBtn = styled.button`
    font-size: 15px;
    font-weight: 700;
    margin: 0 auto;
+   &.noCategory {
+      background-color: lightgray;
+   }
    & img {
       width: 12px;
       height: 12px;
