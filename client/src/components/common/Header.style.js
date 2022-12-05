@@ -25,6 +25,9 @@ export const HeaderWrap = styled.header`
       .logo {
          display: none;
       }
+      .logo.main {
+         display: block;
+      }
    }
 `;
 
@@ -46,7 +49,14 @@ export const LogoImg = styled.img`
    width: auto;
    height: 50px;
    @media screen and (max-width: 900px) {
-      display: ${props => (props.isLogin ? 'none' : 'block')};
+      display: block;
+   }
+`;
+export const MainLogoImg = styled.img`
+   width: auto;
+   height: 50px;
+   @media screen and (max-width: 900px) {
+      display: block;
    }
 `;
 export const IconBtn = styled.button`
