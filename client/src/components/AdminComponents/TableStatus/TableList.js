@@ -9,14 +9,22 @@ const TableList = () => {
    const [orderData, setOrderData] = useState([]);
    const [orderDataUpdate, setOrderDataUpdate] = useState(false);
    useEffect(() => {
-      axios.get(`${API_BASE_URL}/table/${sessionStorage.getItem('userId')}`).then(res => {
-         setOrderData(res.data.data);
-      });
+      axios
+         .get(`${API_BASE_URL}/table/${sessionStorage.getItem('userId')}`, {
+            headers: { Authorization: sessionStorage.getItem('Authorization') }
+         })
+         .then(res => {
+            setOrderData(res.data.data);
+         });
    }, [orderDataUpdate]);
    useInterval(() => {
-      axios.get(`${API_BASE_URL}/table/${sessionStorage.getItem('userId')}`).then(res => {
-         setOrderData(res.data.data);
-      });
+      axios
+         .get(`${API_BASE_URL}/table/${sessionStorage.getItem('userId')}`, {
+            headers: { Authorization: sessionStorage.getItem('Authorization') }
+         })
+         .then(res => {
+            setOrderData(res.data.data);
+         });
    }, 3000);
    return (
       <Content>

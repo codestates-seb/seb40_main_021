@@ -13,11 +13,15 @@ const InputTable = () => {
    const hadleClickCreateQR = e => {
       setTableValue(e.target.value);
    };
-   axios.get(`${API_BASE_URL}/category/${sessionStorage.getItem('userId')}`).then(res => {
-      if (res.data.length !== 0) {
-         setThereIsMenu(true);
-      }
-   });
+   axios
+      .get(`${API_BASE_URL}/category/${sessionStorage.getItem('userId')}`, {
+         headers: { Authorization: sessionStorage.getItem('Authorization') }
+      })
+      .then(res => {
+         if (res.data.length !== 0) {
+            setThereIsMenu(true);
+         }
+      });
    return (
       <InputTableBox>
          {thereIsMenu ? (
