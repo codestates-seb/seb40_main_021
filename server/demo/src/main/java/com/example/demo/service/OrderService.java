@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -40,7 +41,7 @@ public class OrderService {
         }
         Order findOrder = orderRepository.save(order);
 
-        String formatedNow = findOrder.getCreateDate().format(formatter);
+        String formatedNow = LocalDateTime.now(ZoneId.of("Asia/Tokyo")).format(formatter);
         findOrder.setCreatedAt(formatedNow);
 
         return orderRepository.save(findOrder);
