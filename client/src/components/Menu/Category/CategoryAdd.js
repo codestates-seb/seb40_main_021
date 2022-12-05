@@ -36,6 +36,10 @@ const CategoryAdd = ({ placeholder, active, setToggleCategoryAdd, userId }) => {
          data: {
             memberId: userId,
             categoryName: categoryName
+         },
+         headers: {
+            'Content-Type': 'application/json',
+            Authorization: sessionStorage.getItem('access token')
          }
       }).then(res => {
          dispatch(

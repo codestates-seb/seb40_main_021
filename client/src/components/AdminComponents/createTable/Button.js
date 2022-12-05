@@ -51,7 +51,11 @@ const ButtonWrap = ({ text, num }) => {
          const body = { tableList: qrData };
          fetch(`${API_BASE_URL}/table/${sessionStorage.getItem('userId')}`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+               'Content-Type': 'application/json',
+               Authorization: sessionStorage.getItem('Authorization')
+            },
+
             body: JSON.stringify(body)
          })
             .then(res => {

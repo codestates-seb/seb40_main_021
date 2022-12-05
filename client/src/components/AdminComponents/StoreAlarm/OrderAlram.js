@@ -12,7 +12,7 @@ const OrderAlram = ({ menu, idx }) => {
          const orderId = menu.orderId;
          fetch(`${API_BASE_URL}/order/${orderId}`, {
             method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', Authorization: sessionStorage.getItem('Authorization') },
             body: JSON.stringify({ checkBox: false })
          })
             .then(() => {

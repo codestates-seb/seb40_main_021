@@ -30,7 +30,7 @@ const ButtonWrap = ({ bottom, isEmptyValue, setUserInfo }) => {
          };
          fetch(`${API_BASE_URL}/member/${sessionStorage.getItem('userId')}`, {
             method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', Authorization: sessionStorage.getItem('Authorization') },
             body: JSON.stringify(body)
          })
             .then(() => {

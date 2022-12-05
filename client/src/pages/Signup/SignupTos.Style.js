@@ -34,6 +34,8 @@ export const MemberReg = styled.section`
    padding: 30px;
    @media screen and (max-width: 900px) {
       width: 100%;
+      height: 95vh;
+      overflow: scroll;
       background: #fff;
    }
 `;
@@ -92,6 +94,7 @@ export const MemberPanel = styled.div`
       padding: 2.6rem 2.6rem 0;
       background: #fff;
       border-radius: 10px;
+      box-shadow: none;
    }
 `;
 export const PanelTitle = styled.div`
@@ -173,7 +176,7 @@ export const AgreeDetail = styled.div`
    }
 `;
 export const AgreeDetailActive = styled(AgreeDetail)`
-   display: ${props => (props.isToggleOpen ? 'block' : 'none')};
+   display: block;
    height: 250px;
    background: #f0f0f0;
    overflow-y: scroll;
@@ -212,15 +215,14 @@ export const Btn = styled.div`
       margin: 20px auto 0 auto;
 
       @media screen and (max-width: 900px) {
-         max-width: none;
-         background: #bababa;
+         max-width: 80%;
+         background: ${props => (props.allChecked ? 'black' : '#bababa')};
          text-shadow: none;
          border: none;
          color: #fff;
          border-radius: 10px;
          width: 100%;
          height: 50px;
-         margin: none;
       }
    }
    @media screen and (max-width: 900px) {

@@ -12,7 +12,7 @@ const CallAlarm = ({ data }) => {
          setTimeout(() => {
             fetch(`${API_BASE_URL}/call/${sessionStorage.getItem('userId')}/${data.tableNumber}`, {
                method: 'DELETE',
-               headers: { 'Content-Type': 'application/json' }
+               headers: { 'Content-Type': 'application/json', Authorization: sessionStorage.getItem('Authorization') }
             }).then(() => {
                sessionStorage.setItem('call', callAlarmList.length);
             });

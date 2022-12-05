@@ -36,7 +36,15 @@ export const StorePreview = () => {
             }}>
             <section className="store-wrapper">
                <div className="store-imgBox">
-                  <img src={store.img} alt="가게" />
+                  {store.userImage === null ? (
+                     <p>
+                        이미지
+                        <br />
+                        준비중입니다
+                     </p>
+                  ) : (
+                     <img src={store.userImage} alt="가게" />
+                  )}
                </div>
                <h1>{store.businessName}</h1>
                <ul>

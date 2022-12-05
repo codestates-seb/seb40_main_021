@@ -8,7 +8,7 @@ import { Wrapper } from '../../style/menu.style';
 import { motion } from 'framer-motion';
 import { NavMenuPreview } from './NavMenuPreview';
 
-export const HomePreview = () => {
+export const HomePreview = ({ now }) => {
    const dispatch = useDispatch();
 
    useEffect(() => {
@@ -28,7 +28,7 @@ export const HomePreview = () => {
                transition: { duration: 0.3 }
             }}>
             <NavMenuPreview />
-            <StoreMenuList />
+            <StoreMenuList now={now} />
             <MenuDetailed />
          </motion.main>
       </Wrapper>

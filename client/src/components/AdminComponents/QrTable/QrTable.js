@@ -27,10 +27,14 @@ const CreateQR = () => {
    const savedTableListCheckBoxArrState = useSelector(state => state.adminReducer.savedTableListCheckBoxArr);
    const qrDatas = useSelector(state => state.adminReducer.qrDate);
    const getQrDatas = () => {
-      axios.get(`${API_BASE_URL}/table/${sessionStorage.getItem('userId')}/qr`).then(res => {
-         setQrData(res.data.data);
-         dispatch(getQrData(res.data.data));
-      });
+      axios
+         .get(`${API_BASE_URL}/table/${sessionStorage.getItem('userId')}/qr`, {
+            headers: { Authorization: sessionStorage.getItem('Authorization') }
+         })
+         .then(res => {
+            setQrData(res.data.data);
+            dispatch(getQrData(res.data.data));
+         });
    };
 
    //수정버튼
@@ -82,7 +86,7 @@ const CreateQR = () => {
       };
       fetch(`${API_BASE_URL}/table/update/${sessionStorage.getItem('userId')}`, {
          method: 'PATCH',
-         headers: { 'Content-Type': 'application/json' },
+         headers: { 'Content-Type': 'application/json', Authorization: sessionStorage.getItem('Authorization') },
          body: JSON.stringify(body)
       })
          .then(res => {
@@ -114,7 +118,7 @@ const CreateQR = () => {
 
          fetch(`${API_BASE_URL}/table/${sessionStorage.getItem('userId')}`, {
             method: 'DELETE',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', Authorization: sessionStorage.getItem('Authorization') },
             body: JSON.stringify(body)
          })
             .then(() => {
@@ -176,11 +180,14 @@ const CreateQR = () => {
                <div className="th">
                   <div className="allCheck">
                      <input
+                        id="select-all"
                         disabled={modifyingSavedTableNumState ? true : false}
                         ref={allChackBoxRef}
                         type="checkbox"
                         onClick={allCheck}></input>
-                     전체선택
+                     <label htmlFor="select-all">
+                        <span></span>전체선택
+                     </label>
                   </div>
                   <div>No.</div>
                   <div>테이블 번호</div>
@@ -221,6 +228,40 @@ const MainContants = styled.div`
       align-items: center;
       > :first-child {
          margin-right: 10px;
+      }
+      input {
+         display: none;
+      }
+      input:checked + label span::after {
+         content: '✔';
+         font-size: 10px;
+         width: 16px;
+         height: 16px;
+         text-align: center;
+         position: absolute;
+         left: -1px;
+         top: 1px;
+         background-color: #838f94;
+         color: white;
+      }
+      label {
+         /* background-color: pink; */
+         display: flex;
+         span {
+            width: 16px;
+            height: 16px;
+            border-radius: 2px;
+            border: 1px solid white;
+            display: flex;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            margin-right: 5px;
+         }
+      }
+      input,
+      label {
+         cursor: pointer;
       }
    }
    .u_d_btn {
