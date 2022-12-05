@@ -72,7 +72,7 @@ const MenuViewList = ({ el }) => {
                   </S.InputListWrap>
                   <S.InputListWrap>
                      <p>가격</p>
-                     <p className="menuListPrice">{el.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
+                     <p className="menuListPrice">{el.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</p>
                   </S.InputListWrap>
                </S.InputList>
                <S.InputList>

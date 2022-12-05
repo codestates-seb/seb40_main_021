@@ -17,7 +17,7 @@ const ButtonWrap = ({ bottom, isEmptyValue, setUserInfo }) => {
    const handleClickInfoUpdate = () => {
       if (!UpdateState) dispatch(storeInfoUpdate(true));
       if (UpdateState && isEmptyValue) {
-         alert('전송');
+         alert('수정이 완료되었습니다.');
          dispatch(storeInfoUpdate(false));
          const body = {
             businessName: storeInfoData.businessName,

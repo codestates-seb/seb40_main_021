@@ -5,6 +5,7 @@ export const HomeWrapper = styled.div`
    flex-direction: column;
    align-items: center;
    position: relative;
+   background: white;
    &::after {
       width: 100%;
       height: 100vh;
@@ -353,7 +354,6 @@ export const Section_Style_3 = styled.section`
       padding: 0 30px;
       grid-template-columns: repeat(3, 1fr);
       grid-gap: 10px;
-      /* grid-template-rows: repeat(3, 1fr); */
       img {
          width: 100%;
          border-radius: 5px;
@@ -397,6 +397,11 @@ export const Section_Style_3 = styled.section`
       }
       #btn-admin:checked ~ .admin-imgBox {
          display: grid;
+      }
+   }
+   @media screen and (max-width: 600px) {
+      .admin-imgBox {
+         grid-template-columns: repeat(2, 1fr);
       }
    }
 `;
@@ -463,72 +468,6 @@ export const SliderWrapper = styled.section`
       width: 50px;
       height: 50px;
       top: calc(50% - 90px);
-      z-index: 10;
-      &::before {
-         font-size: 30px;
-         color: black;
-         text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-      }
-   }
-   .slick-prev {
-      left: 32vw;
-   }
-   .slick-next {
-      right: 32vw;
-   }
-`;
-
-export const SliderWrapper2 = styled.section`
-   position: absolute;
-   top: -100vh;
-   left: 0;
-   opacity: 0;
-   .container {
-      padding: 0;
-      width: 100%;
-      max-width: 100vw;
-   }
-   div {
-      transition: all 0.3s ease;
-   }
-   .slider {
-      padding: 50px 0 100px 0;
-      display: flex !important;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-   }
-   img {
-      width: 90%;
-   }
-   p {
-      max-width: 400px;
-      font-size: 16px;
-      word-break: keep-all;
-      text-align: center;
-      line-height: 20px;
-      bottom: 10px;
-      z-index: 100;
-      color: transparent;
-      transition: 0.5s ease;
-   }
-   .slick-next:before,
-   .slick-prev:before {
-      color: #000;
-   }
-   .center .slick-center {
-      color: #e67e22;
-      opacity: 1;
-      -ms-transform: scale(1.2);
-      transform: scale(1.2);
-      p {
-         color: black;
-      }
-   }
-   .slick-arrow {
-      width: 50px;
-      height: 50px;
-      top: calc(50% - 50px);
       z-index: 10;
       &::before {
          font-size: 30px;

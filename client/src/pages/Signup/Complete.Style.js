@@ -140,8 +140,7 @@ export const BtnDefaultActive = styled.button`
    font-weight: 700;
    margin-right: 15px;
    @media screen and (max-width: 900px) {
-      background: #000;
-      text-shadow: none;
+      background: #000
       border: none;
       color: #fff;
       border-radius: 10px;

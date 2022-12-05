@@ -65,12 +65,6 @@ export const Order = styled.div`
    margin-bottom: 15px;
    background-color: white;
    padding-top: 5px;
-   .deleteBtn {
-      position: absolute;
-      right: 75px;
-      font-weight: bold;
-      color: gray;
-   }
    .reqText {
       display: flex;
       align-items: center;
@@ -102,39 +96,44 @@ export const Order = styled.div`
          margin-right: 10px;
       }
       > :first-child {
+         width: 15%;
          font-size: 30px;
          margin-left: 45px;
          margin-right: 100px;
          color: #ff6c01;
       }
-      > :nth-child(2) {
+      .orderMenu {
+         width: 20%;
+      }
+      .orderTime {
+         width: 20%;
+         font-size: 14px;
+         margin-left: 30px;
          text-align: center;
-         flex-grow: 1;
+      }
+      .deleteBtn {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         width: 20%;
+         height: fit-content;
+         > :first-child {
+            margin-right: 5px;
+            margin-bottom: 2px;
+         }
       }
       /* &:hover {
          background-color: #fdffde;
       } */
    }
-   #orderTime {
-      display: flex;
-      align-items: center;
-      font-size: 14px;
-      margin-left: 30px;
-      > :first-child {
-         font-weight: bold;
-         margin-right: 9px;
-      }
-   }
+
    .reqText {
       padding-left: 40px;
    }
    @media screen and (max-width: 900px) {
       font-size: 16px;
       font-weight: bold;
-      .deleteBtn {
-         position: absolute;
-         right: 60px;
-      }
+
       #oderInfo {
          font-size: 12px;
          > :first-child {
