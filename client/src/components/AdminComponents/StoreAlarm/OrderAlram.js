@@ -65,7 +65,7 @@ const OrderAlram = ({ menu, idx }) => {
                   <div className="orderList" key={order.menuId}>
                      <div> {order.menuName}</div>
                      <div> {order.quantity}개</div>
-                     <div> {order.price}원</div>
+                     <div> {order.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</div>
                   </div>
                );
             })}

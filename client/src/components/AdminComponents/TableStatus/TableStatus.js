@@ -32,6 +32,7 @@ const TableStatus = ({ data, orderDataUpdate, setOrderDataUpdate }) => {
             {data.orderList.map(menus => {
                return (
                   <div className="order" key={menus.menuId}>
+
                      <div className="fistLine">
                         <div className="menuName">
                            <p>{menus.menuName}</p>
@@ -47,7 +48,7 @@ const TableStatus = ({ data, orderDataUpdate, setOrderDataUpdate }) => {
             })}
          </div>
          <div className="totalPrice">
-            <div>{`total : ${totalPrice}원`}</div>
+            <div>{`total : ${totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원`}</div>
          </div>
       </TableStatusBox>
    );

@@ -12,8 +12,11 @@ export const FooterWrapper = styled.footer`
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      .logo-imgBox img {
+      .logo-imgBox {
          width: 100px;
+         img {
+            width: 100%;
+         }
       }
       p {
          font-size: 16px;
@@ -56,6 +59,9 @@ export const FooterWrapper = styled.footer`
          .logo-imgBox {
             font-size: 24px;
          }
+         p {
+            max-width: 60%;
+         }
          .flex {
             ul {
                li {
@@ -68,14 +74,15 @@ export const FooterWrapper = styled.footer`
    }
    @media screen and (max-width: 700px) {
       .inner-container {
-         .logo-imgBox {
-            font-size: 24px;
-         }
          p {
             max-width: 100%;
+            font-size: 14px;
          }
          .flex {
             flex-direction: column;
+            p {
+               font-size: 12px;
+            }
             ul {
                li {
                   font-size: 18px;

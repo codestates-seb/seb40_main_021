@@ -1,5 +1,3 @@
-// import axios from 'axios';
-import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { CartItem } from '../../components/usermenu/CartItem';
@@ -7,17 +5,12 @@ import { emptyCart } from '../../redux/actions/menuAction';
 
 export const Cart = () => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
-   const [total, setTotal] = useState(0);
    const cart = useSelector(store => store.menuReducer.cart);
-   let temp = 0;
+   const priceArr = cart.map(menu => menu.price * menu.quantity);
+   const totalPrice = priceArr.reduce((prev, cur) => prev + cur, 0);
    const dispatch = useDispatch();
    const userId = useParams().userId;
    const tableNumber = useParams().tableNumber;
-
-   useEffect(() => {
-      cart.map(menu => (temp += menu.price * menu.quantity));
-      setTotal(temp);
-   }, [cart]);
 
    // 주문하기
    const orderHandler = async () => {
@@ -58,7 +51,9 @@ export const Cart = () => {
             ))}
          </ul>
          <div className="fixed">
-            <p className="total-price">총 주문 금액 : {total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</p>
+            <p className="total-price">
+               총 주문 금액 : {totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
+            </p>
             <button className="order-btn" onClick={orderHandler}>
                주문하기
             </button>

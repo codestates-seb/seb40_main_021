@@ -88,6 +88,7 @@ export const MListIcon = styled.img`
    height: 23px;
 `;
 export const Button = styled.button`
+   display: flex;
    & a {
       height: 33px;
       border-radius: 20px;

@@ -28,7 +28,7 @@ export const CartItem = ({ data }) => {
       <li className="stored-menu">
          <div className="left">
             <div className="imgBox">
-               {data.img === undefined ? (
+               {data.img === '' ? (
                   <p>
                      이미지
                      <br />
