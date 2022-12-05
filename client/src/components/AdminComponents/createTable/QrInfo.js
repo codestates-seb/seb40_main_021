@@ -45,9 +45,13 @@ const QrInfo = ({ idx }) => {
       }
    };
    useEffect(() => {
-      axios.get(`${API_BASE_URL}/table/${sessionStorage.getItem('userId')}/qr`).then(res => {
-         setQrData(res.data.data);
-      });
+      axios
+         .get(`${API_BASE_URL}/table/${sessionStorage.getItem('userId')}/qr`, {
+            headers: { Authorization: sessionStorage.getItem('Authorization') }
+         })
+         .then(res => {
+            setQrData(res.data.data);
+         });
    }, []);
    return (
       <QrInfoBox savedNumChack={savedNumChack}>

@@ -10,15 +10,12 @@ const TableStatus = ({ data, orderDataUpdate, setOrderDataUpdate }) => {
       if (confirm('정말 삭제하시겠습니까?')) {
          fetch(`${API_BASE_URL}/order/${sessionStorage.getItem('userId')}/${data.tableNumber}`, {
             method: 'DELETE',
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json', Authorization: sessionStorage.getItem('Authorization') }
          }).then(() => {
             setOrderDataUpdate(!orderDataUpdate);
          });
       }
    };
-   // const tset = () => {
-   //    setIsMenuDetail(!isMenuDetail);
-   // };
    return (
       <TableStatusBox>
          <div className="orderHead">
