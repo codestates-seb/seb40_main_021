@@ -1,8 +1,8 @@
-# [로고]QR오더
+# <img src = "http://qr-order.s3-website.ap-northeast-2.amazonaws.com/static/media/logo.4b2839336cf8f8350aae10837aa7512d.svg">
 메뉴판 없이 스마트폰으로 QR코드를 스캔해서 간단하게 주문을 할 수 있는 서비스입니다.
 
 ## 배포링크
-ㅇㅇㅇㅇㅇㅇㅇㅇ
+[QR오더 배포링크](http://qr-order.s3-website.ap-northeast-2.amazonaws.com/)
 
 ## 👨‍👩‍👧‍👦 Team Members 
 |류희경|오현지|임채영|편범준|강문수|김효성|박정민|
