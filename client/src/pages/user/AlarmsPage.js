@@ -1,10 +1,24 @@
 import CallAlarms from '../../components/AdminComponents/StoreAlarm/CallAlarms';
 import OrderAlarms from '../../components/AdminComponents/StoreAlarm/OrderAlarms';
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { GuideModal } from '../../components/common/GuideModal';
+import { useEffect } from 'react';
+import { setGuideModalState } from '../../redux/action/action';
 
 const Alarms = () => {
+   const GuideModalState = useSelector(state => state.gnbGuideReducer);
+   const dispatch = useDispatch();
+
+   useEffect(() => {
+      return () => {
+         dispatch(setGuideModalState(false));
+      };
+   }, [GuideModalState]);
+
    return (
       <Container>
+         {GuideModalState && <GuideModal />}
          <CallAlarms />
          <OrderAlarms />
       </Container>
