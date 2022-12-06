@@ -7,7 +7,8 @@ const OrderAlram = ({ menu, idx }) => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const [menuViewDetails, setMenuViewDetails] = useState(false);
    const orderAlarmList = useSelector(state => state.adminReducer.alarmData.orderAlarmReverse);
-   const handleClickOrderCheck = () => {
+   const handleClickOrderCheck = e => {
+      e.stopPropagation();
       if (confirm('정말 삭제 하시겠습니까?')) {
          const orderId = menu.orderId;
          fetch(`${API_BASE_URL}/order/${orderId}`, {
@@ -53,7 +54,11 @@ const OrderAlram = ({ menu, idx }) => {
                {resultHour === 0 ? `${resultMin}분 전` : `${resultHour}시간 ${resultMin}분 전`}
             </div>
 
-            <button className="deleteBtn" onClick={handleClickOrderCheck}>
+            <button
+               className="deleteBtn"
+               onClick={e => {
+                  handleClickOrderCheck(e);
+               }}>
                <RiDeleteBinLine size="15"></RiDeleteBinLine>
                삭제
             </button>
