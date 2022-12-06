@@ -41,14 +41,16 @@ const QrInfo = ({ data, idx, length, allChackBoxRef }) => {
          <div className="qrInfos">
             <div>
                <input
+                  id={`check-input${idx}`}
                   disabled={modifyingSavedTableNumState ? true : false}
                   ref={checkBoxRef}
                   checked={isIncludes}
                   onChange={onChangeCheck}
                   onClick={() => handleClickCheckBox(idx)}
                   type="checkbox"></input>
+               <label htmlFor={`check-input${idx}`}> </label>
             </div>
-            <div>{idx + 1}</div>
+            <div className="number">{idx + 1}</div>
             <div className="tableNumBox">
                <div className={modifyingSavedTableNumState && isIncludes ? 'displayNone' : 'none'}>
                   {data.tableNumber}
@@ -59,7 +61,7 @@ const QrInfo = ({ data, idx, length, allChackBoxRef }) => {
                   className={modifyingSavedTableNumState && isIncludes ? 'tableNuminput' : 'displayNone'}
                   type="text"></input>
             </div>
-            <div>{data.createdAt}</div>
+            <div className="created-date">{data.createdAt}</div>
             <div></div>
          </div>
       </QrInfoBox>
@@ -69,6 +71,36 @@ const QrInfoBox = styled.div`
    height: 50px;
    background-color: ${({ isIncludes }) => (isIncludes ? '#FFEBDD' : 'white')};
    border-bottom: 1px solid #ffebdd;
+   .number,
+   .tableNumBox,
+   .created-date {
+      font-size: 16px;
+   }
+   input {
+      display: none;
+   }
+   input:checked + label::after {
+      content: '✔';
+      font-size: 12px;
+      width: 16px;
+      height: 16px;
+      text-align: center;
+      position: absolute;
+      left: 0;
+      top: 0;
+      background-color: #838f94;
+      color: white;
+   }
+   label {
+      width: 17px;
+      height: 16px;
+      border-radius: 2px;
+      border: 1px solid gray;
+      display: flex;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+   }
    .tableNuminput {
       border: 0;
       height: 30px;

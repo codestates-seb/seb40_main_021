@@ -52,25 +52,6 @@ export const MenuDetailed = () => {
          img: menu.menuImage
       };
 
-      // 로컬 스토리지에 저장된 장바구니 리스트 불러오기
-      const getCartItem = JSON.parse(localStorage.getItem('cart'));
-      // 아무것도 없으면 추가
-      if (getCartItem === null) {
-         localStorage.setItem('cart', JSON.stringify([data]));
-
-         // 장바구니에 저장된 메뉴가 있는경우
-      } else {
-         const target = getCartItem.filter(menu => menu.menuId === data.menuId)[0];
-         // 같은 메뉴는 수량 합친후 저장
-         if (target) {
-            target.quantity += data.quantity;
-            localStorage.setItem('cart', JSON.stringify(getCartItem));
-            // 같은 메뉴가 아닌경우 배열에 추가한 후 저장
-         } else {
-            localStorage.setItem('cart', JSON.stringify([...getCartItem, data]));
-         }
-      }
-
       dispatch(putItem(data));
       closeModal();
    };
