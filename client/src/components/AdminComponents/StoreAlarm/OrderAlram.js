@@ -35,7 +35,7 @@ const OrderAlram = ({ menu, idx }) => {
    const orderTimeToseconds = orderHour * 3600 + orderMinute * 60;
    //시간 계산
    const timeCalculation = currentTimeToSeconds - orderTimeToseconds;
-   const resultHour = parseInt(timeCalculation / 3600);
+   const resultHour = parseInt(timeCalculation / 3600) - 9;
    const resultMin = parseInt(timeCalculation % 3600) / 60;
    useEffect(() => {
       if (String(resultHour).includes('-')) {
