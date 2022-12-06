@@ -32,12 +32,6 @@ const PreviewContent = ({ now }) => {
    };
    return (
       <ContentWrap>
-         {/* <iframe
-            title="title"
-            width="100%"
-            height="100vh"
-            src="http://menutestmobile.s3-website.ap-northeast-2.amazonaws.com/"
-         /> */}
          <MenuAppPreview now={now} />
          <CloseButton onClick={ClosePreview}>
             <img src={IconCloseWhite} alt={'closeBtn'} />

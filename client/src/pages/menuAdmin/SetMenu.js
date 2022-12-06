@@ -134,7 +134,6 @@ const SetMenu = () => {
          }
       }
    };
-   console.log(isalertFloat, toggleIsalertFloat);
    const viewPreview = useSelector(state => state.previewToggleReducer);
    return (
       <S.SetMenuLayout className={viewPreview ? 'modalOpen' : null}>
