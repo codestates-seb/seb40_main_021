@@ -27,7 +27,6 @@ import ImageNotes from './../../assets/images/notes.png';
 import { onChangeIdAction, onChangePasswordAction, onChangeBusinessNumberAction } from '../../redux/action/action';
 
 const MemberInfo = () => {
-   // const location = useLocation();
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const navigate = useNavigate();
    const dispatch = useDispatch();
@@ -50,14 +49,6 @@ const MemberInfo = () => {
    });
 
    const [Certification, setCertification] = React.useState('');
-
-   // useEffect(() => {
-   //    if (location?.state === null) {
-   //       alert('잘못된 접근입니다.');
-   //       navigate('/SignupTos', { replace: true });
-   //       return;
-   //    }
-   // }, []);
 
    const valiation = () => {
       if (idDuplicate === 0) {
@@ -164,7 +155,6 @@ const MemberInfo = () => {
       dispatch(onChangeBusinessNumberAction(e.target.value));
    };
 
-   // postBusinessNumber 사업자 오픈 api
    const postBusinessNumber = async () => {
       const token = 'Infuser e4ljz5QijI7ihKnKQFr3PfVxrppJxAQtNP4cqbykOX2d+nPayV9d8rkbaFEAi/v8JekzxSiy1uDD8cs1buEtSg==';
       try {

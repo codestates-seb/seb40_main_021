@@ -23,7 +23,6 @@ import { onChangeIdAction, onChangePasswordAction, onChangeBusinessNumberAction 
 
 const StoreInfo = () => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
-   // const location = useLocation();
 
    const dispatch = useDispatch();
    const navigate = useNavigate();
