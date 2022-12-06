@@ -36,6 +36,7 @@ export const SET_MENU_UPDATE = 'SET_MENU_UPDATE';
 export const IS_LOGIN = 'IS_LOGIN';
 export const DELETE_CATEGORY_RESTE_MENU = 'DELETE_CATEGORY_RESTE_MENU';
 export const DELETE_CATEGORY_RESTE_MENU_MENU = 'DELETE_CATEGORY_RESTE_MENU_MENU';
+export const GUIDE_MODAL = 'GUIDE_MODAL';
 
 export const storeInfoUpdate = chack => {
    return {
@@ -318,5 +319,12 @@ export const deleteCategoryAndMenu = () => {
 export const deleteCategoryAndMenumenu = () => {
    return {
       type: DELETE_CATEGORY_RESTE_MENU_MENU
+   };
+};
+
+export const setGuideModalState = res => {
+   return {
+      type: GUIDE_MODAL,
+      payload: res
    };
 };

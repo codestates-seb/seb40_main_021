@@ -1,5 +1,5 @@
 import { combineReducers, legacy_createStore as createStore } from 'redux';
-import { gnbReducer } from './gnbReducer';
+import { gnbGuideReducer, gnbReducer } from './gnbReducer';
 import { adminReducer } from './adminReducer';
 import menuUserItemReducer from './menuUserItemReducer';
 import categoryUserItemReducer from './categoryUserItemReducer';
@@ -33,7 +33,8 @@ export const rootReducer = combineReducers({
    userMemberReducer,
    setmenuStateChangeReducer,
    globalTokenReducer,
-   isLoginReducer
+   isLoginReducer,
+   gnbGuideReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
