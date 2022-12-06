@@ -32,7 +32,7 @@ public class CallService {
 
         Call findCall = callRepository.save(call);
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss").withZone(ZoneId.of("Asia/Tokyo"));
         String formattedNow = ZonedDateTime.now(ZoneId.of("Asia/Tokyo")).format(formatter);
         findCall.setCreatedAt(formattedNow);
 

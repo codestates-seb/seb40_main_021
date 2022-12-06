@@ -27,7 +27,7 @@ public class OrderService {
     private final OrderMenuRepository orderMenuRepository;
 
     public Order createOrder(Order order, Long memberId) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH시 mm분 ss초");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH시 mm분 ss초").withZone(ZoneId.of("Asia/Tokyo"));
         Optional<Member> member = memberRepository.findById(memberId);
         List<Table> tableList = tableRepository.findAllByMember(member.get())
                 .stream().filter(table -> table.getTableNumber() == order.getTable().getTableNumber())
