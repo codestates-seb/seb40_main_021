@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { setStoreInfo } from '../../redux/actions/menuAction';
 import axios from 'axios';
 
-export const StorePreview = () => {
+export const StorePreview = ({ now }) => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const store = useSelector(store => store.menuReducer.store);
    const dispatch = useDispatch();
@@ -34,7 +34,7 @@ export const StorePreview = () => {
                opacity: 1,
                transition: { duration: 0.3 }
             }}>
-            <section className="store-wrapper">
+            <section className={now === 'store' ? 'store-wrapper preview' : 'store-wrapper'}>
                <div className="store-imgBox">
                   {store.userImage === null ? (
                      <p>

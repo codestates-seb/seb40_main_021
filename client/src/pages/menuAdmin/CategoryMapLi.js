@@ -6,7 +6,14 @@ import { setGetUserCategory } from '../../redux/action/action';
 import { useAxios } from '../../util/useAxios';
 import * as S from './SetMenu.style';
 
-const CategoryMapLi = ({ activeIndex, setActiveIndex, setSubmit, toggleCategoryAdd, setToggleCategoryAdd }) => {
+const CategoryMapLi = ({
+   activeIndex,
+   setActiveIndex,
+   setSubmit,
+   toggleCategoryAdd,
+   setToggleCategoryAdd,
+   setIsalertFloat
+}) => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const categoryList = useSelector(store => store.categoryUserItemReducer.data);
 
@@ -35,6 +42,7 @@ const CategoryMapLi = ({ activeIndex, setActiveIndex, setSubmit, toggleCategoryA
                   const active = idx === activeIndex;
                   return (
                      <CategoryLi
+                        setIsalertFloat={setIsalertFloat}
                         setSubmit={setSubmit}
                         key={idx}
                         el={el}

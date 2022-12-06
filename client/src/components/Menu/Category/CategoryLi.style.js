@@ -12,7 +12,7 @@ export const CategoryLiSTyle = styled.li`
    align-items: center;
    border-radius: 10px 10px 0 0;
    justify-content: space-between;
-   @media screen and (max-width: 700px) {
+   @media screen and (max-width: 900px) {
       font-size: 14px;
    }
 `;
