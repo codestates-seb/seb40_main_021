@@ -11,6 +11,7 @@ import PreviewModal from '../../components/Preview/PreviewModal';
 import { useNavigate } from 'react-router-dom';
 import { useAxios } from '../../util/useAxios';
 import { v4 as uuidv4 } from 'uuid';
+import CategoryAlert from '../../components/Menu/Category/CategoryAlert';
 
 const SetMenu = () => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
@@ -54,6 +55,8 @@ const SetMenu = () => {
       }
    };
 
+   const [isalertFloat, setIsalertFloat] = useState(true);
+   const [toggleIsalertFloat, setToggleIsalertFloat] = useState(true);
    const [activeIndex, setActiveIndex] = useState(0);
    const [submit, setSubmit] = useState(false);
    const { clickFetchFunc } = useAxios({}, false);
@@ -131,21 +134,29 @@ const SetMenu = () => {
          }
       }
    };
-
    const viewPreview = useSelector(state => state.previewToggleReducer);
    return (
       <S.SetMenuLayout className={viewPreview ? 'modalOpen' : null}>
          {viewPreview ? <PreviewModal now={'menu'} /> : null}
          <S.Head>메뉴판 제작</S.Head>
          <S.MenuLayout>
+            {categoryList.length === 0 && isalertFloat && toggleIsalertFloat ? (
+               <CategoryAlert setIsalertFloat={setIsalertFloat} />
+            ) : null}
+
             <CategoryMapLi
                activeIndex={activeIndex}
                toggleCategoryAdd={toggleCategoryAdd}
                setActiveIndex={setActiveIndex}
                setToggleCategoryAdd={setToggleCategoryAdd}
                setSubmit={setSubmit}
+               setIsalertFloat={setToggleIsalertFloat}
             />
-            <S.CategoryAddBtn onClick={() => setToggleCategoryAdd(!toggleCategoryAdd)}>
+            <S.CategoryAddBtn
+               onClick={() => {
+                  setToggleCategoryAdd(!toggleCategoryAdd);
+                  setToggleIsalertFloat(!toggleIsalertFloat);
+               }}>
                {!toggleCategoryAdd ? (
                   <>
                      <img src={IconCategoryAdd} alt="categoryAdd" />

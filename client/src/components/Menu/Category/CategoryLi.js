@@ -14,7 +14,7 @@ import {
 } from '../../../redux/action/action';
 import { useAxios } from '../../../util/useAxios';
 
-const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex }) => {
+const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex, setIsalertFloat }) => {
    const API_BASE_URL = process.env.REACT_APP_API_ROOT;
    const { categoryId, categoryName } = el;
 
@@ -90,6 +90,7 @@ const CategoryLi = ({ placeholder, edit, el, active, idx, setActiveIndex }) => {
                Authorization: sessionStorage.getItem('access token')
             }
          });
+         setIsalertFloat(true);
 
          if (state.data.length === 1) {
             dispatch(deleteCategoryAndMenu());

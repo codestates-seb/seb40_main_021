@@ -15,9 +15,6 @@ const CategoryAdd = ({ placeholder, active, setToggleCategoryAdd, userId }) => {
       const value = e.target.value;
       dispatch(setUserCategoryNaming(value));
    };
-   //post
-   // const { response, clickFetchFunc } = useAxios({}, false);
-   // response && console.log(response);
    const CategoryNameSave = () => {
       if (!categoryName || !categoryName.trim()) {
          return alert('카테고리 이름을 작성하세요.');
