@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -26,7 +27,7 @@ public class OrderService {
     private final OrderMenuRepository orderMenuRepository;
 
     public Order createOrder(Order order, Long memberId) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH시 mm분 ss초");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH시 mm분 ss초").withZone(ZoneId.of("Asia/Tokyo"));
         Optional<Member> member = memberRepository.findById(memberId);
         List<Table> tableList = tableRepository.findAllByMember(member.get())
                 .stream().filter(table -> table.getTableNumber() == order.getTable().getTableNumber())
@@ -41,7 +42,7 @@ public class OrderService {
         }
         Order findOrder = orderRepository.save(order);
 
-        String formatedNow = LocalDateTime.now(ZoneId.of("Asia/Tokyo")).format(formatter);
+        String formatedNow = ZonedDateTime.now(ZoneId.of("Asia/Tokyo")).format(formatter);
         findOrder.setCreatedAt(formatedNow);
 
         return orderRepository.save(findOrder);

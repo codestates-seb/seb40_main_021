@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
@@ -31,8 +32,8 @@ public class CallService {
 
         Call findCall = callRepository.save(call);
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        String formattedNow = LocalDateTime.now(ZoneId.of("Asia/Tokyo")).format(formatter);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss").withZone(ZoneId.of("Asia/Tokyo"));
+        String formattedNow = ZonedDateTime.now(ZoneId.of("Asia/Tokyo")).format(formatter);
         findCall.setCreatedAt(formattedNow);
 
         return callRepository.save(findCall);
