@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Order, OrderListBox } from './OderAlarmStyle';
 import { MdExpandMore } from 'react-icons/md';
 import { useSelector } from 'react-redux';
@@ -37,7 +37,20 @@ const OrderAlram = ({ menu, idx }) => {
    const timeCalculation = currentTimeToSeconds - orderTimeToseconds;
    const resultHour = parseInt(timeCalculation / 3600);
    const resultMin = parseInt(timeCalculation % 3600) / 60;
-
+   useEffect(() => {
+      if (String(resultHour).includes('-')) {
+         const orderId = menu.orderId;
+         fetch(`${API_BASE_URL}/order/${orderId}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json', Authorization: sessionStorage.getItem('Authorization') },
+            body: JSON.stringify({ checkBox: false })
+         })
+            .then(() => {
+               sessionStorage.setItem('order', orderAlarmList.length);
+            })
+            .catch(err => err);
+      }
+   }, []);
    return (
       <Order
          menuViewDetails={menuViewDetails}
